@@ -1,0 +1,116 @@
+.show-cart-button{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.show-cart-button img{
+    width:25px;
+    height: 25px;
+}
+
+.empty-cart-message{
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    background-color:rgba(128, 128, 128, 0.486);
+    font-size: 18px;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.cart-products-cont{
+    background-color: rgb(209, 0, 0);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    color: white;
+}
+
+.cart-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
+.cart-title img{
+    filter: brightness(0) saturate(100%) invert(0);
+    margin-bottom: 5px;
+}
+
+.cart-modal-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    overflow: hidden;
+    padding: 0;
+    padding-bottom: 1rem;
+}
+
+.cart-modal-content .table-grid-container{
+    width: 100%;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.cart-modal-content .p-datatable-wrapper{
+    overflow-x: hidden!important;
+}
+
+.cart-delivery-info-container{
+    width: 100%;
+    margin-top:20px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.cart-action-buttons{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap:20px;
+    background-color: white;
+    padding: 1.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.cart-action-buttons button{
+    border: 1px solid black;
+}
+
+.cart-action-buttons button:first-child{
+    margin-right: auto;
+}
+
+.cart-action-buttons button/*:last-child*/{
+    background-color: #545454;
+    color: white;
+    border: 0;
+}
+.cart-action-buttons button i{
+ margin-right: 5px;
+}
+
+
+/*Mobile*/
+@media (max-width: 600px) {
+    .cart-action-buttons{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .cart-action-buttons button{
+        display: none;
+    }
+    .cart-action-buttons button:last-child{
+        display: block;
+    }
+}

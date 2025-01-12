@@ -1,0 +1,108 @@
+
+.promotion-card-container{
+    display: flex;
+    flex-direction: row;
+    line-height: normal;
+    font-family: Noto Sans;
+    padding: 5px;
+}
+.grid-promotion-card-container{
+    height: 280px;
+    border-radius: 15px;
+    box-shadow: 2px 5px 10px rgb(202, 201, 201);
+    border-radius: 5px;
+    border: 2px solid rgba(212, 212, 212, 0.209);
+    position: relative;
+}
+
+
+.img-promotion-card-section{
+    padding:10px; 
+    width: 40%; 
+    margin: auto;
+    min-width: 150px;
+    text-align: left;
+}
+
+.img-grid-card-promotion{
+    width: 75%; 
+}
+
+.img-promotion-container{
+    width: 100%;
+    min-width: 135px;
+    
+}
+
+.img-promotion-container img{
+    border-radius: 6px;
+    width: 100%;
+    height: 120px;
+    min-height: 120px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0);
+}
+
+.details-prmotion-card-section{
+    display: flex;
+    width: 45%;
+    text-align: left;
+    min-width: 110px;   
+    flex-direction: column; 
+    position: relative;
+}
+
+.details-grid-prmotion{
+    width: 100%;
+}
+
+
+
+.p-grid-card-promotion{
+    margin-block: 0px;
+    font-size: 14px !important;
+}
+
+.discount-grid-container{
+    position: absolute;
+    left: 150px;
+    bottom: 10px;
+}
+
+.discount-promotion-container{
+    border-radius: 50%;
+    background-color: rgba(0, 95, 55, 0.7);
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 4px 0px rgba(2, 68, 27, 0.7);
+    
+}
+
+.discount-promotion-container p{
+    font-size: medium;
+}
+
+.accion-promotion-card-section{
+    flex-direction: column;
+    width: 12%;
+    margin: auto ;
+    background-color: rgba(187, 187, 187, 0.3);
+    border-radius: 10px;
+}
+
+.grid-accion-prmotion{
+    width: 15%;
+}
+.accion-promotion-card-section button{
+    width: 100%;
+    height: 50px;
+}
+
+
+.accion-promotion-card-section button i{
+    font-size:medium;
+}
+

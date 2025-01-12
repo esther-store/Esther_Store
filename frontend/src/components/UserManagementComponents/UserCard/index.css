@@ -1,0 +1,133 @@
+.users-card-container {
+  display: flex;
+  flex-direction: row;
+  line-height: normal;
+  font-family: Noto Sans;
+  gap: 5px;
+  padding: 10px;
+  max-width: 258px;
+}
+.grid-users-card-container {
+  height: 130px;
+  border-radius: 15px;
+  box-shadow: 2px 5px 10px rgb(202, 201, 201);
+  border-radius: 5px;
+  border: 2px solid rgba(212, 212, 212, 0.209);
+  position: relative;
+  background-color: rgba(128, 128, 128, 0.151);
+}
+.details-users-card-section p {
+  min-height: 20px;
+  width: 100%;
+  background-color: #d3d3d34b;
+  border-radius: 3px;
+  margin-block: 0px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-icon-card {
+  font-size: 2rem;
+  color: #545454;
+}
+.img-users-card-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  width: 40%;
+  width: 100%;
+  min-width: 200px;
+  text-align: left;
+}
+.img-users-card-section .p-checkbox {
+  align-self: flex-start;
+}
+.img-grid-card-users {
+  width: 75%;
+}
+
+.img-users-container {
+  width: 100%;
+  min-width: 135px;
+}
+
+.img-users-container img {
+  border-radius: 6px;
+  width: 100%;
+  height: 120px;
+  min-height: 120px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0);
+}
+
+.details-users-card-section {
+  display: flex;
+  width: 45%;
+  text-align: left;
+  min-width: 110px;
+  flex-direction: column;
+  gap: 5px;
+}
+.details-users-card-section i {
+  width: 100%;
+}
+
+.details-grid-users {
+  width: 100%;
+}
+
+.p-grid-card-users {
+  margin-block: 0px;
+  font-size: 14px !important;
+}
+
+.discount-grid-container {
+  position: absolute;
+  left: 150px;
+  bottom: 10px;
+}
+
+.discount-users-container {
+  border-radius: 50%;
+  background-color: rgba(0, 95, 55, 0.7);
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 4px 0px rgba(2, 68, 27, 0.7);
+}
+
+.discount-users-container p {
+  font-size: medium;
+}
+
+.accion-users-card-section {
+  display: flex;
+  flex-direction: column;
+  width: 12%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(187, 187, 187, 0.3);
+  border-radius: 10px;
+}
+
+.grid-accion-users {
+  width: 15%;
+}
+
+.accion-users-card-section button {
+  width: 100%;
+  background-color: transparent;
+    padding: 6px;
+    border: none;
+}
+
+.accion-users-card-section button i {
+  font-size: medium;
+}

@@ -1,0 +1,65 @@
+.cart-button-add-delivery-info{
+    border: 1px solid black!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:5px
+}
+
+.cart-delivery-info-error{
+    border: 2px solid red!important;
+}
+
+.cart-button-add-delivery-info i{
+    margin-bottom: 3px;
+}
+
+.cart-delivery-info-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:25px;
+    color: black;
+    padding-top: 20px;
+}
+
+.cart-delivery-info-form span{
+    width: 100%;
+}
+
+.cart-delivery-info-form span input{
+    width: 100%;
+}
+.cart-delivery-info-form span input:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+}
+.cart-delivery-info-form span input:hover{
+    border-color: black;
+}
+
+.cart-delivery-info-form span textarea{
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.cart-delivery-info-form span textarea:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+}
+.cart-delivery-info-form span textarea:hover{
+    border-color: black;
+}
+
+.cart-delivery-info-form button{
+    border: 1px solid black!important;
+}
+
+.save-btn{
+    color: rgb(0, 0, 0) !important;
+}

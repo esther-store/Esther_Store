@@ -1,0 +1,194 @@
+
+.carousel-detail .p-carousel-indicators .p-link {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+.carousel-detail .p-carousel-container{
+    border: 2px solid #5454541f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-detail .p-carousel-next,
+.carousel-detail .p-carousel-prev {
+    width: 10px;
+    display: none;
+}
+
+.p-carousel-indicators {
+    padding-bottom: 0;
+}
+
+.header-side-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-products-details .p-sidebar-content {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.img-card-carrusel {
+    width: 100%;
+    aspect-ratio: 4/2.8;
+}
+.car-img-carrusel{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.sidebar-products-details .p-sidebar-header {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.car-img-carrusel {
+    border-radius: 5px;
+}
+
+
+
+/**/
+
+.close-button-responsive, .close-button {
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    border: 1px solid #0000008e;
+}
+
+.oferts-status img {
+    width: 25px;
+    height: 25px;
+}
+.oferts-status{
+    height: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+/*Price*/
+.product-detail-price-with-discount {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.product-detail-price-with-discount .original-price {
+    text-decoration-line: line-through;
+    font-size: 16px;
+    opacity: .6;
+}
+
+.price-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid rgba(128, 128, 128, 0.288);
+}
+
+.price-status .price-label {
+    align-self: center;
+
+    margin-block: 0px;
+    display: inline;
+    color: #202020;
+    font-size: 1rem;
+    letter-spacing: -0.1px;
+    line-height: 21px;
+    font-family: Noto Sans;
+}
+
+.description {
+    margin-block: 0px;
+    display: inline;
+    color: #202020;
+    font-size: 0.78rem;
+    letter-spacing: -0.1px;
+    line-height: 21px;
+    font-family: Noto Sans;
+
+}
+
+.product-name {
+    color: #000000;
+    font-family: Noto Sans;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: -0.8px;
+}
+
+.product-description-container {
+    margin-bottom: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.288);
+}
+
+.padding-line{
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+
+}
+
+.product-name,
+.product-description{
+    margin-top: 0;
+}
+
+.product-description{
+    border-radius: 5px;
+    min-height: 105px;
+    background-color: rgba(128, 128, 128, 0.077);
+    padding: 3px;
+    margin-bottom: 0;
+    font-size: 0.9rem !important;
+    text-wrap: balance;
+}
+
+.product-name{
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.077);
+    padding: 3px;
+}
+
+
+@media (min-width: 800px) {
+    .product-description{
+        min-height: 165px;
+    }
+}
+
+.oferts-status .cart{
+    background-color: #000000;
+    border-radius: 5px;
+    border: 3px solid #00000042;
+    height: 30px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oferts-status .cart .show-cart-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-header{
+    width: 45px !important;
+    height: 40px !important;
+}

@@ -1,0 +1,142 @@
+@font-face {
+    font-family: "Mulish";
+    src: url('../../assets/fonts/Mulish-Regular.woff2');
+}
+
+@font-face {
+    font-family: "Agency-fb";
+    src: url("../../assets/fonts/AgencyFB-Bold.woff2");
+}
+.products-management-grid{
+    width: 100%;
+    height: 100%;
+    min-height: 52vh;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap:10px;
+    justify-content: center;
+    align-items:start;
+    margin:0 auto;
+    padding:10px;
+    margin-top: 20px;
+
+    color: #FFF;
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 137%; /* 38.36px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+}
+
+.products-management-grid-loader-container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.products-management-grid-loader-container div{
+    width: 30px;
+    height: 30px;
+}
+
+.product-management-card{
+    width: 100%;
+    height: 250px;   
+    max-width: 300px;
+    background-color: #fff;
+    box-shadow: 2px 5px 10px rgb(202, 201, 201);
+    border-radius: 5px;
+    border: 2px solid rgba(212, 212, 212, 0.209);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-management-card .img-container {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(243 241 241);
+  }
+  
+.product-management-card .img-container img{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+  }
+
+.product-management-card .name-and-price-container{
+    width: 100%;
+    height: 20%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap:10px;
+}
+
+.product-management-card .product-card-name{
+    margin:0;
+    color: #5c6475;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.245px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.product-management-card .price{
+    margin: 0;
+    color: var(--blsvk-primary, #1E1F1F);
+    text-align: right;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40.214px; /* 167.557% */
+    letter-spacing: -0.48px;
+    font-family: "Agency-fb";
+}
+
+.product-management-card .action-buttons-container{
+    width: 100%;
+    height:20%;
+    padding: 10px;
+    padding-top:5px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-management-card-checkbox{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    margin-top: -10px;
+}
+
+@media (width > 1300px){
+    .products-management-grid-loader-container{
+        left: 40vw;
+    }
+}

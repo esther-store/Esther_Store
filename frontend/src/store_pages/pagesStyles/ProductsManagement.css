@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../../assets/fonts/NotoSans-Regular.woff2");
+}
+
+.products-management-page{
+    min-height: 85.5vh;
+    background-color: #fff;
+    position: relative;
+    font-family: "Noto Sans";
+}
+
+.back-button-title-container{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: center;
+    padding: 10px;
+    padding-left: 0;
+    margin: 0 auto
+}
+
+.products-management-go-back-button{
+    width: 26px;
+    height: 30px;
+    background-color: rgba(84, 84, 84, 1)!important;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.products-management-go-back-button img{
+    width:18px
+}
+
+.back-button-title-container h3{
+    color: #464646;
+    text-align: center;
+    font-family: 'Noto Sans';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 137%; /* 54.8px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    margin:0;
+}
+
+/*active filters container*/
+.products-management-page-active-filter-component-container{
+    margin: 0 auto;
+    margin-top:10px;
+    margin-bottom: -10px;
+    width: 91.5%;
+}
+
+@media (max-width: 500px){
+    .products-management-page-active-filter-component-container{
+        width: 95%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .products-management-page{
+        width: 100vw;
+    }
+    .back-button-title-container h3{
+        font-size: 25px;
+    }
+}

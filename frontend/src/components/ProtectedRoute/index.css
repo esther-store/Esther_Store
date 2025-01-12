@@ -1,0 +1,37 @@
+.protected-route-page{
+    min-height: 86vh;
+    width: 100%;
+    background-image: url('../../assets/home-background.jpeg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:10px
+}
+
+.protected-route-page article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: Noto Sans;
+    gap:10px;
+    background-color: rgba(1, 1, 1, 0.78);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px 0 black;
+    color: white;
+}
+
+.protected-route-page div{
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.protected-route-page a{
+    color: white!important;
+}

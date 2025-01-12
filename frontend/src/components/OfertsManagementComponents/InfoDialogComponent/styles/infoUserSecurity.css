@@ -1,0 +1,108 @@
+
+
+
+
+.info-dialog .p-dialog-content{
+ overflow: hidden;
+ background-color: #FFFBFB;
+}
+
+.info-dialog .p-dialog-header{
+    padding:3px 8px;
+    background-color: #545454;
+    color: white;
+}
+.info-dialog .p-dialog-title{
+    font-size: 0.8rem;
+    font-family: Noto Sans;
+}
+
+.info-dialog .p-dialog-header-icon{
+    background-color: transparent;
+    border: none;
+    outline: none !important;
+    background-image: url("../../assets/close-icon.svg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    font-size: x-small;
+    color: white;
+    line-height: 137%; /* 27.4px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+}
+
+.info-dialog-form{
+    padding:15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+ 
+}
+
+.input-info-dialog{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-family: Noto Sans;
+    
+}
+
+.input-dialog-container{
+    display: flex;
+   padding: 8px;
+    height: 30px;
+    align-items: center;
+    justify-content: left;
+    background: rgba(217, 217, 217, 0.16);  
+    width: 200px;   
+}
+
+.info-dialog-form input{
+    width: 100%;
+    height: 25px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-family: Noto Sans;
+}
+
+.p-dialog-container{
+    width: 150px;
+}
+
+.p-dialog-container p{
+    margin-block: 0px;
+    display: inline;
+    font-size: 14px;
+}
+
+.buttons-user-info-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 100px;
+}
+
+
+.buttons-user-info{
+    color: aliceblue;
+    border-radius: 6px;
+    background: #545454;
+    font-family: Noto Sans;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: small;
+    line-height: 137%;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+.buttons-user-info:hover{
+    background: #353535;
+}

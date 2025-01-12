@@ -1,0 +1,67 @@
+.products-management-list-table-container{
+    width: 90%;
+    min-height: 52vh;
+    margin: 0 auto;
+    margin-top:20px;
+
+    color: #FFF;
+    text-align: center;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 137%; /* 38.36px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+}
+
+.table-product-field-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
+
+.products-management-list-loader-container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.products-management-list-table-container .p-datatable .p-datatable-thead > tr > th{
+    background-color:rgba(84, 84, 84, 1);
+    color: #fff;
+    font-weight:400
+}
+
+.products-management-list-table-container .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{
+    background: #E9E9E9;
+}
+
+.products-management-list-table-container .p-datatable .p-datatable-tbody > tr.p-highlight{
+    background: #E9E9E9;
+}
+
+.products-management-list-loader-container div{
+    width: 30px;
+    height: 30px;
+}
+
+.data-table-product-image{
+    width: 40px;
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+}
+
+@media (min-width: 1300px){
+    .products-management-list-loader-container{
+        left: 40vw;
+    }
+}

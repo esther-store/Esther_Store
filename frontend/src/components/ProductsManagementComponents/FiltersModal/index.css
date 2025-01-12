@@ -1,0 +1,50 @@
+.products-management-filters-modal{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.products-management-filters-modal .close-modal-button{
+    justify-self: end;
+    margin-right: -20px;
+}
+
+.products-management-filters-modal h3{
+    display: none;
+}
+
+.products-management-filters-modal .order-button{
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 165px;
+    height: 40px;
+}
+
+.products-management-filters-modal .mobile-mode-categories-container{
+    justify-content: center;
+}
+
+.products-management-filters-modal .show-categories-modal-button{
+    background-color: white;
+    font-weight: 600;
+}
+
+.products-management-filters-modal .recommended-products-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-left: 45px;
+}
+
+/*cambio el color del checkbox a gris*/
+.products-management-filters-modal .recommended-products-checkbox .p-highlight{
+    background-color: rgba(84, 84, 84, 1);
+    border:0
+}
+/*Cambio estilos del borde del checkbox*/
+.products-management-filters-modal .recommended-products-checkbox .p-checkbox .p-checkbox-box{
+    border: 1.5px solid gray;
+}

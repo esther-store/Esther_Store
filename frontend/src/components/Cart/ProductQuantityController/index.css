@@ -1,0 +1,22 @@
+.product-quantity-controller{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-quantity-controller button{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid gray;
+    background-color: transparent;
+}
+
+.product-quantity-controller button img{
+    width: 14px;
+}

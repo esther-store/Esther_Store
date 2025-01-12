@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../../assets/fonts/NotoSans-Regular.woff2");
+}
+
+.mcontact-container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 87.8vh;
+}
+
+.ccontact-container {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.315);
+
+}
+
+.loading-spinner{
+  color: #545454;
+  font-size: 1.5rem;
+}
+
+.head-contact {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  gap: 1rem;
+  padding: 5px;
+}
+
+.head-contact h2 {
+  font-family: Noto Sans;
+  font-variant: small-caps;
+}
+.head-btn-back {
+  width: 50px;
+  height: 30px;
+  background-color: #545454;
+  color: #fff !important;
+  align-self: center;
+  border: none;
+}
+
+.ccontact-container li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.element-contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  color: rgb(87, 86, 86);
+}
+
+.element-contact i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.element-contact span {
+  min-width: 71px;
+}
+
+.select-cont {
+  width: 120px;
+  min-height: 35px;
+  background-color: rgba(128, 128, 128, 0.274);
+  border-radius: 3px;
+}
+
+.btn-pane {
+  background-color: #545454;
+  color: white;
+  border: 2px solid #545454;
+  font-family: Noto Sans;
+  font-size: 0.8rem;
+  align-self: center;
+}
+.save-btn-cont {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  padding-right: 0;
+  gap: 5px;
+}
+.p-inputgroup-addon{
+  background: #545454;
+  border: 2px solid #545454;
+}
+
+.p-inputgroup-addon i{
+  color: #fff;
+}

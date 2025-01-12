@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "Mulish";
+    src: url('../../assets/fonts/Mulish-Regular.woff2');
+}
+
+@font-face {
+    font-family: "Agency-fb";
+    src: url("../../assets/fonts/AgencyFB-Bold.woff2");
+}
+.product-card{
+    width: 100%;
+    height: auto;   
+    max-width: 300px;
+    min-width: 169.6px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 2px 5px 5px rgb(202, 201, 201);
+    border-radius: 5px;
+    position: relative;
+    padding:10px
+}
+
+.in-offert-icon{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width:28px
+}
+
+.img-container {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background: rgb(243, 241, 241);
+    border-radius:3px
+  }
+  
+.img-container img{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+    border-radius:3px
+  }
+
+.name-and-price-container{
+    width: 100%;
+    height: 50px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    gap:10px;
+    margin-bottom: 10px;
+}
+
+.product-card-name{
+    margin:0;
+    color: #5c6475;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.245px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    font-family: Noto Sans;
+}
+
+
+
+.product-card-mobile-location{
+    height: 250px;   
+    width: 150px !important;
+    min-width: 150px;
+    padding: 10px !important;
+    
+}
+
+.img-container-mobile{
+    height: 145px;
+}
+
+.p-details-mobile{
+    display: flex !important;
+    font-size: 10px !important;
+    gap: 0px !important;
+    margin-block: 0px;
+    flex-direction: row;
+ 
+}
+.p-details-mobile span{
+    font-size: 15px !important;
+}
+
+.p-details-mobile .price{
+   
+    font-size: 18px !important;
+    padding-bottom: 8px;
+}
+.p-details-mobile p{ 
+    font-size: 11px ;
+}
+
+
+.price{
+    height: 100%;
+    margin: 0;
+    color: var(--blsvk-primary, #1e1f1fc8);
+    text-align: right;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40.214px; /* 167.557% */
+    letter-spacing: -0.48px;
+    font-family: "Agency-fb";
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.price span{
+    height: 50%;
+}
+
+.price-with-discount .original-price{
+    text-decoration-line: line-through;
+    font-size: 16px;
+    opacity: .6;
+}
+
+.add-to-cart-section{
+    width: 100%;
+    height: 30px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(130, 130, 130, 0.19);
+    border-radius:3px;
+}
+
+.add-to-cart-button{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+    font-family: Noto Sans;
+    color: #5c6475;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.245px;
+    border-radius:3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
+@media (max-width: 400px) {
+  .add-to-cart-button{
+      font-size: 12px;
+  }
+}
+    
+
+
+

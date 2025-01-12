@@ -1,0 +1,69 @@
+.user-navbar-actions-dropdown-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    cursor: pointer;
+}
+
+.user-navbar-actions-dropdown-container img{
+    margin-bottom:2px
+}
+
+.user-navbar-actions-dropdown{
+    border: 0;
+    outline: 0;
+    align-items: center;
+    box-shadow: 0 0 0 transparent;
+    background-color: transparent;
+}
+
+.user-navbar-actions-dropdown div:last-child{
+    width: 10px;
+}
+.user-navbar-actions-dropdown span{
+    display: none;
+}
+
+.close-session-button{
+    width:100%;
+    height:auto;
+    background-color: transparent;
+    border: 0;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:10px;
+    font-family: Noto Sans;
+    border-radius: 5px;
+    padding:5px;
+}
+
+.close-session-button:hover{
+    background-color:rgba(128, 128, 128, 0.237);
+}
+
+.close-session-button img{
+    filter: brightness(100) saturate(100%) invert(1);
+}
+
+.change-password-button{
+    height:auto;
+    width:100%;
+    background-color: transparent;
+    border: 0;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    font-family: Noto Sans;
+    padding:5px;
+    border-radius: 5px;
+}
+
+.change-password-button:hover{
+    background-color:rgba(128, 128, 128, 0.237);
+}

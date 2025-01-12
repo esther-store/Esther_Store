@@ -1,0 +1,212 @@
+.product-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Noto Sans;
+}
+
+.product-form-dialog-header{
+    background-color:rgba(84, 84, 84, 1);
+    color: #fff;
+    height:20px;
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 15px */
+    font-variant: small-caps;
+}
+.product-form-dialog-header button{
+    margin-top:-15px;
+    color: #fff;
+}
+.product-form-dialog-header button:hover{
+    background-color:gray
+}
+
+.product-form-dialog-title{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.product-form-dialog-title img{
+    filter: brightness(0) saturate(100%) invert(1);
+}
+
+.product-form hr{
+    border: 1px solid rgba(128, 128, 128, 0.445);
+    width:100%
+}
+.product-form-field{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    gap:15px;
+    align-items: center;
+}
+.product-form-field input{
+    border: 1px solid gray;
+}
+.product-form-dropdown{
+    border: 1px solid gray;
+}
+
+.product-form-field label{
+    min-width: 120px;
+}
+.product-form-field label::after{
+    content: ":";
+}
+
+.product-form button{
+    margin-top:10px;
+    background:rgba(84, 84, 84, 1);
+}
+
+/*ACTIVE CHECKBOX*/
+.product-form-active-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:80px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*cambio el color del checkbox a gris*/
+.product-form-active-checkbox .p-highlight{
+    background-color: rgba(84, 84, 84, 1);
+    border:0
+}
+/*Cambio estilos del borde del checkbox*/
+.product-form-active-checkbox .p-checkbox .p-checkbox-box{
+    border: 1.5px solid gray;
+}
+
+/*RECOMMENDED CHECKBOX*/
+.product-form-recommended-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*cambio el color del checkbox a gris*/
+.product-form-recommended-checkbox .p-highlight{
+    background-color: rgba(84, 84, 84, 1);
+    border:0
+}
+/*Cambio estilos del borde del checkbox*/
+.product-form-recommended-checkbox .p-checkbox .p-checkbox-box{
+    border: 1.5px solid gray;
+}
+
+/*Images styles*/
+.product-form-images-container{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(1, 150px);
+    gap:20px;
+    justify-content: center;
+}
+.product-image-field{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.product-image-field img{
+    width:100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.image-selector{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(128, 128, 128, 0.53);
+}
+.image-selector img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%!important;
+}
+
+.product-description-field{
+    display: flex;
+    flex-direction: column;
+}
+.product-description-field textarea{
+    min-width: 100%;
+    max-width: 280px;
+    min-height: 100px;
+    border: 1px solid gray;
+    background: rgba(234, 229, 229, 0.17);
+}
+
+.product-form-action-buttons-container{
+    display: flex;
+    gap:20px;
+    justify-content: flex-end;
+}
+.product-form-action-buttons-container button{
+    width: 150px;
+}
+
+.product-form input:focus{
+    box-shadow: 0 0 0 0.05rem #525252;
+}
+
+.product-form .p-focus{
+    box-shadow: 0 0 0 0.05rem #525252!important;
+}
+
+.product-form .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus{
+    box-shadow: 0 0 0 0.05rem #525252!important;
+    border: 1px solid gray;
+}
+
+.product-description-field textarea:focus{
+    box-shadow: 0 0 0 0.05rem #525252;
+}
+
+/*Mobile*/
+@media (max-width: 540px) {
+    .product-form-dialog{
+        margin-top: 30px;
+    }
+    .product-image-field{
+        flex-direction: column;
+        width: 60%;
+        margin: 0 auto;
+    }
+    .product-image-field img{
+        width: 100%;
+        height: auto;
+    }
+    .product-form-field{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .product-form-field input{
+        width: 100%;
+    }
+    .product-form-active-checkbox{
+        gap:10px
+    }
+    .product-form-images-container{
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: repeat(3, auto);
+        justify-content: flex-start;
+    }
+}
+

@@ -1,0 +1,21 @@
+.order-button{
+    height: 30px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    align-items: center;
+    box-shadow: 0 0 0 transparent;
+    background-color: transparent;
+}
+.order-button span{
+    color: black;
+    font-weight: bold;
+}
+
+/*Mobile*/
+@media (max-width: 830px){
+    .order-button span{
+        margin:0;
+        padding: 0;
+    }
+}

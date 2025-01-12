@@ -1,0 +1,108 @@
+
+.data-users-scroller .p-datascroller-header{
+    background-color: #545454 ;
+    color: white;
+    font-family: Noto Sans;
+    border-radius: 0px 0px 5px 5px;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+}
+
+.users-template-container{
+    width: 100%;
+    min-width: 310px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: small;
+    line-height: normal;
+    font-family: Noto Sans;
+   justify-content: left;
+    align-items: center;
+    text-align: left !important;
+
+}
+
+
+.img-users-template-section{
+    display: flex;
+    padding:10px; 
+    justify-content: left ;
+    align-items: center ;
+    gap: 10px;
+}
+
+.img-template-container{
+    width: 100%; 
+}
+
+.img-template-container img{
+    border-radius: 6px;
+    max-width: 100px !important;
+    min-height: 100px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0);
+}
+
+.details-users-template-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
+.details-prmotion-template-section img{
+    width: 18px;
+}
+
+.mame-users{
+    font-size: medium;
+    margin-block: 0px;
+}
+
+.discount-users-container{
+    border-radius: 6px;
+    background-color: #545454;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;   
+    color: white; 
+}
+.discount-users-container .price{
+    color: white;
+}
+
+.discount-users-container p{
+    font-size: medium;
+}
+
+.accion-users-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+.accion-butotns-container{
+    flex-direction: row !important;
+    margin: auto ;
+    background-color: rgba(187, 187, 187, 0.3);
+    border-radius: 10px;
+}
+.accion-users-template-section button{
+    width: 25px;
+    height: 30px;
+}
+
+.users-actions-table-button{
+    background-color: transparent;
+    padding: 6px;
+    border: none;
+}
+
+
+.accion-users-template-section button i{
+    font-size:medium;
+}

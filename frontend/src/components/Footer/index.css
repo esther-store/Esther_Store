@@ -1,0 +1,19 @@
+.footer{
+    height:60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    /*width: 100vw;*/
+    border-top: 1px solid rgba(156, 154, 154, 0.245);
+    border-image: linear-gradient(to right,transparent, #8a8a8a , transparent ) 1 0.1;;
+    padding:10px;
+    background-color:#010101;
+    color: var(--Secondary, #ffffff);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; 
+    z-index: 100;
+}

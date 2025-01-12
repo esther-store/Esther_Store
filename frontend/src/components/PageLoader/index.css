@@ -1,0 +1,46 @@
+
+
+.pageLoader .p-dialog-mask{
+    z-index: 5 !important;
+}
+
+
+.pageLoader .p-dialog-header{
+    width: 0px;
+    height: 0px; 
+    padding: 0px;
+    
+}
+.pageLoader .p-dialog-content{
+    max-width: 0px ;
+    max-height: 0px; 
+    padding: 0px;
+    
+}
+.pageLoader .p-ripple-disabled{
+    width: 0px  ;
+    height: 0px ; 
+}
+
+
+.pageLoader .p-dialog-header-icon{
+    width: 0px;
+    height: 0px;
+}
+.pageLoader .p-dialog-content{
+    width: 0px;
+    height: 0px;
+}
+.pageLoader .p-dialog-header-close-icon{
+    width: 0px;
+    height: 0px;
+}
+
+.pageLoader path{
+    width: 0px;
+    height: 0px;
+}
+.spinner-pageLoader{
+    position: absolute;
+    width: 50px;
+}

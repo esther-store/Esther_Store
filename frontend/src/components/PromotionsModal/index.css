@@ -1,0 +1,121 @@
+.store-promotions-grid{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    gap:20px;
+    margin:0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.store-promotion-card{
+    width: 100%;
+    height: 200px;   
+    max-width: 250px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 2px 5px 10px rgb(202, 201, 201);
+    border-radius: 5px;
+    border: 2px solid rgba(212, 212, 212, 0.209);
+    position: relative;
+    margin: 0 auto;
+}
+
+.home-location{
+    width: 300px;
+    height: 250px;
+    min-height: 250px;   
+    max-width: 300px;
+    min-width: 155px;
+    margin: 0px;
+}
+
+.home-mobile-location{
+    height: 235px;   
+    max-width: 155px;
+    margin: 0px !important;
+}
+
+
+
+.header-mobile{
+    height: 70% !important;
+}
+
+.footer-mobile{
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 11px !important;
+    gap: 0px !important;
+    margin-block: 0px;
+    height: 30% !important;
+    
+}
+.store-promotion-card header{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background: rgb(243 241 241);
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.store-promotion-card img{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+    border-top-left-radius:5px ;
+    border-top-right-radius:5px ;
+}
+
+.store-promotion-card footer{
+    width: 100%;
+    height: 20%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    gap:10px;
+
+    margin:0;
+    color: #5c6475;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.245px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.store-promotion-card footer span:last-child{
+    margin: 0;
+    color: var(--blsvk-primary, #1e1f1fc4);
+    text-align: right;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40.214px; /* 167.557% */
+    letter-spacing: -0.48px;
+    font-family: "Agency-fb";
+}
+@media (max-width: 365px) {
+
+    .home-mobile-location{
+        
+        max-width: 155px;
+        margin: 0px !important;
+    }
+}

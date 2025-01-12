@@ -1,0 +1,113 @@
+
+
+.add-products-to-oferts-containers{
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+.data-products-ofert-scroller .p-datascroller-header{
+    background-color: #545454 ;
+    color: white;
+    font-family: Noto Sans;
+    border-radius: 0px 0px 5px 5px;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+}
+
+
+.data-products-ofert-scroller .p-datascroller-content{
+    max-height: 200px !important;
+    background:transparent !important;
+    overflow-x: hidden !important;
+   
+}
+.data-products-ofert-scroller .p-datascroller-footer{
+    background:transparent !important;   
+}
+
+
+
+.promotion-product-card-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-size: small;
+    line-height: normal;
+    font-family: Noto Sans;
+    align-items: left;
+    align-items:center;
+}
+
+.promotion-product-card-container-mobileSize{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: small;
+    line-height: normal;
+    font-family: Noto Sans;
+    align-items: left;
+    height: 105px;
+    scale: 0.75;
+    margin-left: -40px;
+    width: 310px;
+}
+
+
+.img-promotion-product-card-section{
+    display: flex; 
+    width: 40%; 
+    min-width: 150px;
+    text-align: left;
+    align-items: center;
+    gap: 3px;
+    
+}
+
+.img-promotion-product-card-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.img-promotion-product-card-container img{
+    border-radius: 6px;
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0);
+}
+
+.details-prmotion-product-card-section{
+    display: flex;
+    max-width:180px;
+    text-align: left;
+    min-width: 150px;   
+    flex-direction: column; 
+}
+
+.mame-promotion-product-card{
+    font-size: medium;
+    
+}
+
+
+.dtp-price-container .price{
+    color: aliceblue !important; 
+}
+
+@media   (max-width: 800px) {
+    .data-products-ofert-scroller .p-datascroller-content{
+        max-height: 200px !important;
+        background: rgba(199, 194, 194, 0.1) !important;
+    }
+    .details-prmotion-product-card-section{
+        width: 100px !important;
+        min-width: unset;
+    }
+}
