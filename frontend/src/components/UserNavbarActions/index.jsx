@@ -11,30 +11,40 @@ function UserNavbarActionsDropdown() {
 const navigate = useNavigate()
 const dropdownRef = useRef(null)
 const {auth} = useContext(AuthenticationContext)
-  const options = [
-    {
-      name: (
-        <button className="change-password-button" onClick = {() => navigate("/change-password")}>
-          <img alt="change-password" src={LockOpen.src} />
-          <span>Cambiar Contraseña</span>
-        </button>
-      ),
-      value: "change-password",
-    },
-    { name: <CloseSession />, value: "close-session" },
-  ];
+const options = [
+  {
+    name: 'Change Password',
+    component: (
+      <button className="change-password-button" onClick={() => navigate('/change-password')}>
+        <img alt="change-password" src={LockOpen.src} />
+        <span>Cambiar Contraseña</span>
+      </button>
+    ),
+    value: 'change-password',
+  },
+  {
+    name: 'Close Session',
+    component: <CloseSession />,
+    value: 'close-session',
+  },
+];
+
+const itemTemplate = (option) => {
+  return option.component;
+};
 
   return (
     auth.token?
     <section className = "user-navbar-actions-dropdown-container" onClick={() => dropdownRef.current.show()}>
         <img alt="user-icon" src={UserIcon.src}/>
         <Dropdown
-          ref = {dropdownRef}
+          ref={dropdownRef}
           onChange={(e) => handleChange(e)}
           options={options}
           optionLabel="name"
-          placeholder={""}
+          placeholder=""
           className="user-navbar-actions-dropdown"
+          itemTemplate={itemTemplate}
         />
     </section>
     :null
