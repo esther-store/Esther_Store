@@ -7,7 +7,7 @@ import ProductList from "../components/ProductsManagementComponents/ProductList"
 import ProductsGrid from "../components/ProductsManagementComponents/ProductsGrid/index";
 import QueryFiltersContext from "../context/filtersContext";
 import { useManageProducts } from "../hooks/useManageProducts";
-//import Paginator from "../components/Paginator";
+import Paginator from "../components/Paginator";
 import { Toast } from "primereact/toast";
 import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
@@ -179,12 +179,12 @@ function ProductsManagement() {
         processUpdateProduct = {processUpdateProduct}
         />
       }
-      {/* <Paginator
+      <Paginator
         numOfProducts={numOfProducts}
         setFilter={setFilter}
         getActiveFilter={getActiveFilter}
         products={products}
-      /> */}
+      />
     </section>
   );
 }

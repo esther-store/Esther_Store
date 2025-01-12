@@ -8,7 +8,6 @@ function ProtectedRoute({ children }) {
   const [showChildren, setShowChildren] = useState(false);
 
   useEffect(() => {
-    console.log(auth.infoUser)
     if (auth.token) {
       setShowChildren(true);
     }

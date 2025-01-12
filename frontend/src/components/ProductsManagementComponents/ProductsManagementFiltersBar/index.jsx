@@ -78,7 +78,7 @@ function ProductsManagementFiltersBar({
       <div className="view-toggle-container">
         <span>Vista:</span>
         <img
-          src={listView ? ViewToggleGrid : ViewToggleList}
+          src={listView ? ViewToggleGrid.src : ViewToggleList.src}
           onClick={() => setListView((prev) => !prev)}
         />
       </div>
@@ -97,7 +97,7 @@ function ProductsManagementFiltersBar({
             setProductFormProperties((prev) => ({ ...prev, show: true }))
           }
         >
-          <img src={AddProductIcon} />
+          <img src={AddProductIcon.src} />
           <span>Agregar</span>
         </button>
       </div>

@@ -3,7 +3,7 @@ import ProductCard from "../ProductCard";
 import React, { useState, useContext } from "react";
 import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
-//import Paginator from "../Paginator";
+import Paginator from "../Paginator";
 import {useGetProducts} from '../../hooks/useGetProducts'
 
 export default function ProductsGrid({activateProductdetails}) {
@@ -40,12 +40,12 @@ export default function ProductsGrid({activateProductdetails}) {
             </div>
           )}
         </div>
-        {/* <Paginator 
+        <Paginator 
           numOfProducts={numOfProducts}
           setFilter={setFilter}
           getActiveFilter={getActiveFilter}
           products={products}
-          /> */}
+          />
       </section>
       }
     </>

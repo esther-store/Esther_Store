@@ -25,7 +25,7 @@ const nameTamplate = (data) => {
 const statusTamplate = (data) => {
   return (
     <div className="status-template-container">
-        <img src={data.is_active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
+        <img src={data.is_active?ActiveStatusIcon.src:DeactiveStatusIcon.src} alt="" />
     </div>
   );
 };
