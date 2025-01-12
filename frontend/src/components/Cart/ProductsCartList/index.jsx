@@ -90,7 +90,7 @@ function ProductsCartList() {
                 <button className = "delete-product-from-cart-button">
                   <img
                     alt="trash"
-                    src={TrashIcon}
+                    src={TrashIcon.src}
                     onClick={() => deleteProductFromCart(product.id)}
                   />
                 </button>
