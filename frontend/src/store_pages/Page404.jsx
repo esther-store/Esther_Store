@@ -1,7 +1,16 @@
-function Page404() {
-    return ( 
-        <>404 Not Found</>
-     );
+import "./pagesStyles/Products.css";
+import 'primeicons/primeicons.css';
+
+
+export function Page404() {
+  
+  return (
+    <section className="products-container">
+        <section className="products-section">
+        <i className="pi pi-exclamation-triangle"></i>
+        <p>404 !</p>
+        </section>
+    </section>
+    );
 }
 
-export default Page404;

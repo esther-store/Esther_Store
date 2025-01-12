@@ -15,12 +15,12 @@ import ManagementOferts from './store_pages/ManagementOferts.jsx'
 import ManagementSecurity from './store_pages/ManagementSecurity.jsx'
 import ManagementContact from './store_pages/ManagementContact.jsx'
 import ProtectedRoute from './components/ProtectedRoute'
-import Products from './store_pages/Products.jsx'
 import Login from './store_pages/Login.jsx'
 import ChangePassword from './store_pages/ChangePassword.jsx'
 import Bye from './store_pages/Bye.jsx'
 import 'primeicons/primeicons.css';
 import './index.css'
+import {Page404} from './store_pages/Page404.jsx'
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
                 <header><NavBar /></header>
                 <section className="main-section-route">
                   <Routes>
+                    <Route path = "/" element = {<Home/>}/>
                     <Route path = "/store" element = {<Store/>}/>
                     <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
                     <Route path = "/management/products" element = {<ProtectedRoute><ProductsManagement/></ProtectedRoute>}/>
@@ -42,8 +43,7 @@ function App() {
                     <Route path = "/login" element = {<Login/>}/>
                     <Route path = "/change-password" element = {<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
                     <Route path = "/bye" element = {<Bye/>}/>
-                    <Route path = "/" element = {<Home/>}/>
-                    <Route path = "*" element = {<Products/>}/>
+                    <Route path = "*" element = {<Page404/>}/>
                   </Routes>
                 </section>
                 <footer><Footer/></footer>
