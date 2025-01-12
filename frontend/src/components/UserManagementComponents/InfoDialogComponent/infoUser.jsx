@@ -32,7 +32,6 @@ function InfoUser({
     address: "",
     zip_code: "",
     password: "",
-    country: "",
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
   const { auth } = useContext(AuthenticationContext);
@@ -101,7 +100,6 @@ function InfoUser({
             address: "",
             zip_code: "",
             password: "",
-            country: "",
           })
         }}
       >
@@ -161,7 +159,6 @@ function InfoUser({
                     address: "",
                     zip_code: "",
                     password: "",
-                    country: "",
                   })
                 })
                 .catch((err) => {
