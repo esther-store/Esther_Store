@@ -7,8 +7,9 @@ import CartButton from "./CartButton";
 import { Carousel } from "primereact/carousel";
 import Cart from "../Cart";
 import BMlogo from "../../assets/BYM logo/B&M-LOGO.svg";
+import React from "react";
 
-function ProductDetails2({ active, data, onHide }) {
+const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHide }) {
   const responsive = useWindowSize("max", 600);
 
   const imgData = [
@@ -137,6 +138,6 @@ function ProductDetails2({ active, data, onHide }) {
   ) : (
     <></>
   );
-}
+})
 
 export default ProductDetails2;

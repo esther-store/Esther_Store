@@ -6,13 +6,14 @@ import QueryFiltersContext from "../../context/filtersContext";
 import Paginator from "../Paginator";
 import {useGetProducts} from '../../hooks/useGetProducts'
 
-export default function ProductsGrid({activateProductdetails}) {
+export const ProductsGrid = React.memo(function ProductsGrid({activateProductdetails}) {
   const [numOfProducts, setNumOfProducts] = useState(0)
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const {products, loading} = useGetProducts({searchParams:searchParams, setNumOfProducts:setNumOfProducts})
 
   return (
     <>
+      {console.log("products-grid")}
       {loading ? (
         <section className="products-loader-container">
             <div>
@@ -50,4 +51,6 @@ export default function ProductsGrid({activateProductdetails}) {
       }
     </>
   );
-}
+})
+
+export default ProductsGrid

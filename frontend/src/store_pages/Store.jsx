@@ -3,17 +3,18 @@ import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
 import "./pagesStyles/Store.css";
-import ProductDetails2 from "../components/ProductDetails/ProductDetail2";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 import ActiveFilters from "../components/ActiveFilters";
+import Loader from "@/components/Loader";
 
 function Store() {
   const [activeProductDetails, setActiveProductDetails] = useState(false);
   const [detail, setDetail] = useState({});
   const { categories, loading } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
+  const ProductDetails2 = React.lazy(() => import("../components/ProductDetails/ProductDetail2"))
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -54,13 +55,13 @@ function Store() {
         <ProductsGrid activateProductdetails={handleOnactivateProductdetails} />
       </main>
 
-
-      <ProductDetails2
-        active={activeProductDetails}
-        onHide={() => setActiveProductDetails(false)}
-        data={detail}
-      />
-
+      <Suspense fallback = {<Loader/>}>
+        <ProductDetails2
+          active={activeProductDetails}
+          onHide={() => setActiveProductDetails(false)}
+          data={detail}
+        />
+      </Suspense>
       
     </section>
   );
