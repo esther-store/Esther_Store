@@ -1,4 +1,3 @@
-import { unstable_batchedUpdates } from "react-dom";
 import "./index.css";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
 import { applyDiscount } from "../../utils/applyDiscount";
@@ -6,7 +5,7 @@ import CartContext from "../../context/cartContext";
 import React, { useContext } from "react";
 import ProductQuantityController from "../Cart/ProductQuantityController";
 
-function ProductCard({
+const ProductCard = React.memo(function ProductCard({
   id,
   isInStore = false,
   product_name,
@@ -111,6 +110,6 @@ function ProductCard({
       ) : null}
     </section>
   );
-}
+})
 
 export default ProductCard;

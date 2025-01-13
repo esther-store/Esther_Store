@@ -1,8 +1,9 @@
 import './index.css'
 import MinusIcon from '../../../assets/minus-icon.svg'
 import PlusIcon from '../../../assets/plus-icon.svg'
+import React from 'react';
 
-function ProductQuantityController({item, quantity, add, rest}) {
+const ProductQuantityController = React.memo(function ProductQuantityController({item, quantity, add, rest}) {
     return ( 
         <div className = "product-quantity-controller">
             <button onClick = {() => rest(item)}>
@@ -14,6 +15,6 @@ function ProductQuantityController({item, quantity, add, rest}) {
             </button>
         </div>
      );
-}
+})
 
 export default ProductQuantityController;
