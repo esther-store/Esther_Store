@@ -21,37 +21,41 @@ import Bye from './store_pages/Bye.jsx'
 import 'primeicons/primeicons.css';
 import './index.css'
 import {Page404} from './store_pages/Page404.jsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 function App() {
+  const client = new QueryClient()
   return (
     <Router>
-      <PrimeReactProvider>
-        <AuthenticationContextProvider>
-          <CartContextProvider>
-            <QueryFiltersContextProvider>
-              <section >
-                <header><NavBar /></header>
-                <section className="main-section-route">
-                  <Routes>
-                    <Route path = "/" element = {<Home/>}/>
-                    <Route path = "/store" element = {<Store/>}/>
-                    <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
-                    <Route path = "/management/products" element = {<ProtectedRoute><ProductsManagement/></ProtectedRoute>}/>
-                    <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
-                    <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
-                    <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>
-                    <Route path = "/login" element = {<Login/>}/>
-                    <Route path = "/change-password" element = {<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
-                    <Route path = "/bye" element = {<Bye/>}/>
-                    <Route path = "*" element = {<Page404/>}/>
-                  </Routes>
+      <QueryClientProvider client={client}>
+        <PrimeReactProvider>
+          <AuthenticationContextProvider>
+            <CartContextProvider>
+              <QueryFiltersContextProvider>
+                <section >
+                  <header><NavBar /></header>
+                  <section className="main-section-route">
+                    <Routes>
+                      <Route path = "/" element = {<Home/>}/>
+                      <Route path = "/store" element = {<Store/>}/>
+                      <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
+                      <Route path = "/management/products" element = {<ProtectedRoute><ProductsManagement/></ProtectedRoute>}/>
+                      <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
+                      <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
+                      <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>
+                      <Route path = "/login" element = {<Login/>}/>
+                      <Route path = "/change-password" element = {<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
+                      <Route path = "/bye" element = {<Bye/>}/>
+                      <Route path = "*" element = {<Page404/>}/>
+                    </Routes>
+                  </section>
+                  <footer><Footer/></footer>
                 </section>
-                <footer><Footer/></footer>
-              </section>
-            </QueryFiltersContextProvider>
-          </CartContextProvider>
-        </AuthenticationContextProvider>
-      </PrimeReactProvider>
+              </QueryFiltersContextProvider>
+            </CartContextProvider>
+          </AuthenticationContextProvider>
+        </PrimeReactProvider>
+      </QueryClientProvider>
     </Router>
   )
 }
