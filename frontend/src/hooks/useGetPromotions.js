@@ -16,6 +16,7 @@ export function useGetPromotions({
   } = useQuery({
     queryKey: ["promotions", searchParams.toString(), auth.token],
     queryFn: () => getPromotions(searchParams.toString(), auth.token),
+    staleTime: 1000 * 60 * 30
   });
   const promotions = data || [];
   //get promotions of store
