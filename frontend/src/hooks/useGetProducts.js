@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
 import {getProducts} from '../services/getProducts'
+import { useQuery } from "@tanstack/react-query";
 
-export function useGetProducts({searchParams, setNumOfProducts,updateProductList}) {
-    const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false);
-    const [next, setNext] = useState("")
-    const [previous, setPrevious] = useState("")
+export function useGetProducts({searchParams, setNumOfProducts, updateProductList}) {
+    console.log(searchParams.toString())
+    const { data, isLoading: loading, isError } = useQuery({
+        queryKey: ["products", searchParams.toString(), updateProductList], // Include searchParams in the queryKey to refetch when it changes
+        queryFn: () => getProducts(searchParams.toString()),
+    });
+    const products = data?.results || []
+    const next = data?.next || ""
+    const previous = data?.previous || ""
     
-    //get products of store
-    useEffect(() => {
-        setLoading(true);
-        getProducts(searchParams)
-        .then((data) => {
-            setProducts(data.results);
-            setNext(data.next);
-            setPrevious(data.previous);
-            setNumOfProducts(data.count)
-            setLoading(false);
-        })
-        .catch(() => {
-            setLoading(false);
-            setNumOfProducts(0)
-        });
-    }, [searchParams,updateProductList]);
+   // Update the number of products when data changes
+   useEffect(() => {
+    if (data) {
+        setNumOfProducts(data.count);
+    }
+}, [data]);
 
-    return ({products,loading,next,previous});
+    return ({products, loading, next, previous});
 }
 
