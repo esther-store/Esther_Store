@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getCategories } from "../services/getCategories";
+import { useQuery } from "@tanstack/react-query";
 
 export function useGetCategories() {
-    const [categories, setCategories] = useState([])
-    const [loading, setLoading] = useState(false);
-
-
-    //get categories
-    useEffect(() => {
-        setLoading(true);
-        getCategories().then((data) => {
-          setCategories(data);
-          setLoading(false);
-        });
-      }, []);
-
-    return ( {categories, loading} );
+  const { data, isLoading: loading } = useQuery({
+    queryKey: ["cateogories"],
+    queryFn: () => getCategories(),
+    staleTime: 1000 * 60 * 30
+  });
+  const categories = data || [];
+  return { categories, loading };
 }
-
