@@ -13,7 +13,6 @@ export const ProductsGrid = React.memo(function ProductsGrid({activateProductdet
 
   return (
     <>
-      {console.log("products-grid")}
       {loading ? (
         <section className="products-loader-container">
             <div>

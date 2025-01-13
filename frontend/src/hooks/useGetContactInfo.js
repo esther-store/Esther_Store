@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
 import { getContactInfo } from "../services/ManageContact/contact_info_management";
+import { useQuery } from "@tanstack/react-query";
 
 export function useGetContactInfo() {
-    const [contactInfo, setContactInfo] = useState(null)
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["contact-info"],
+    queryFn: () => getContactInfo(),
+    staleTime: 1000 * 60 * 30
+  });
+  const contactInfo = data || [];
 
-    useEffect(() => {
-        getContactInfo()
-        .then(data => {
-            setContactInfo(data)
-        })
-        .catch(err => {})
-    },[])
-
-    return ( {contactInfo} );
+  return { contactInfo };
 }
-

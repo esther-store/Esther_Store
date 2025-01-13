@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {getProducts} from '../services/getProducts'
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetProducts({searchParams, setNumOfProducts, updateProductList}) {
-    console.log(searchParams.toString())
     const { data, isLoading: loading, isError } = useQuery({
         queryKey: ["products", searchParams.toString(), updateProductList], // Include searchParams in the queryKey to refetch when it changes
         queryFn: () => getProducts(searchParams.toString()),
+        staleTime: 1000 * 60 * 10
     });
     const products = data?.results || []
     const next = data?.next || ""
