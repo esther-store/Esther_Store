@@ -40,7 +40,6 @@ function ManagementSecurity() {
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
-  //const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
   const {loading,setLoading} = useGetUsers({searchParams:searchParams,setUsers:setDataUsers})
 
   useEffect(() => {

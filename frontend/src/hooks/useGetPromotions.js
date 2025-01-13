@@ -8,7 +8,9 @@ export function useGetPromotions({
   setNumOfPromotions,
   setPromotions,
 }) {
+
   const { auth } = useContext(AuthenticationContext);
+
   const {
     data,
     isLoading: loading,
@@ -18,7 +20,9 @@ export function useGetPromotions({
     queryFn: () => getPromotions(searchParams.toString(), auth.token),
     staleTime: 1000 * 60 * 30
   });
+
   const promotions = data || [];
+
   //get promotions of store
   useEffect(() => {
     if (data) {

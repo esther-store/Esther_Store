@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
 import { getPromotions } from "../services/getPromotions";
+import { useQuery } from "@tanstack/react-query";
 
 export function useGetPromotions() {
-    const [promotions, setPromotions] = useState([])
-    const [loadingPromotions, setLoading] = useState(false);
+  const {
+    data,
+    isLoading: loadingPromotions,
+    isError,
+  } = useQuery({
+    queryKey: ["get-promotions"],
+    queryFn: () => {
+      getPromotions();
+    },
+    staleTime: 1000 * 60 * 30,
+  });
 
-    //get promotions
-    useEffect(() => {
-        setLoading(true);
-        getPromotions()
-        .then((data) => {
-          setPromotions(data);
-          setLoading(false);
-        })
-        .catch((error) => {})
-      }, []);
+  const promotions = data || []
 
-    return ( {promotions, loadingPromotions} );
+  return { promotions, loadingPromotions };
 }
