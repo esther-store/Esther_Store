@@ -8,12 +8,9 @@ export function useGetPromotions() {
     isError,
   } = useQuery({
     queryKey: ["get-promotions"],
-    queryFn: () => {
-      getPromotions();
-    },
+    queryFn:getPromotions,
     staleTime: 1000 * 60 * 30,
   });
-
   const promotions = data || []
 
   return { promotions, loadingPromotions };
