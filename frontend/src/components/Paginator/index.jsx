@@ -1,16 +1,15 @@
 import ReactPaginate from "react-paginate";
 import RightArrow from "../../assets/chevron-right-24.svg";
 import LeftArrow from "../../assets/chevron-left-24.svg";
-import React, { useContext } from "react";
-import QueryFiltersContext from "@/context/filtersContext";
+import React from "react";
 import "./index.css";
 
 const Paginator = React.memo(function Paginator({
   count,
   itemsLength,
+  getActiveFilter,
+  setFilter
 }) {
-  const { setFilter, getActiveFilter } =
-    useContext(QueryFiltersContext);
   
   const filterPageValue = getActiveFilter('page')
   const currentPage = filterPageValue === ''? 1 : parseInt(filterPageValue)
