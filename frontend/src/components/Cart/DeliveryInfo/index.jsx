@@ -12,7 +12,6 @@ const DeliveryInfo = React.memo(function DeliveryInfo({
   deliveryInfoButtonRef,
 }) {
   const [show, setShow] = useState(false);
-  console.log("delivery-info");
   return (
     <>
       <button

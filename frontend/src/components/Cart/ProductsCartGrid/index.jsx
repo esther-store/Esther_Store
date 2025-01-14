@@ -4,18 +4,37 @@ import TrashIcon from '../../../assets/trash-icon.svg'
 import React, {useContext } from "react";
 import './index.css'
 
-function ProductsCartGrid() {
+const ProductsCartGrid = React.memo(function ProductsCartGrid() {
     const {
         productsCart,
         addProductToCart,
         restProductFromCart,
         deleteProductFromCart,
-        calculateTotal
+        total
       } = useContext(CartContext);
     return ( 
         <>
             <section className = "products-cart-grid">
-                {productsCart.map(product => <article key = {product.id} className = "products-cart-grid-card">
+                {productsCart.map(product => 
+                <ProductsCartGridCard
+                    key = {product.id}
+                    product = {product}
+                    deleteProductFromCart = {deleteProductFromCart}
+                    addProductToCart = {addProductToCart}
+                    restProductFromCart = {restProductFromCart}
+                />
+            )}
+            </section>
+            <div className = "cart-grid-view-total">Total: ${total.toFixed(2)}</div>
+        </>
+     );
+})
+
+const ProductsCartGridCard = React.memo(
+    function ProductsCartGridCard({product, deleteProductFromCart, addProductToCart, restProductFromCart}){
+        console.log(`product-cart-card of ${product.productName}`)
+        return(
+            <article key = {product.id} className = "products-cart-grid-card">
                     <button className = "remove-product-from-cart-grid-view" onClick = {() => deleteProductFromCart(product.id)}>
                         <img alt = "trash" src = {TrashIcon.src}/>
                     </button>
@@ -30,11 +49,9 @@ function ProductsCartGrid() {
                     <footer>
                         <ProductQuantityController item = {product} quantity={product.quantity} add = {addProductToCart} rest={restProductFromCart}/>
                     </footer>
-                </article>)}
-            </section>
-            <div className = "cart-grid-view-total">Total: ${calculateTotal().toFixed(2)}</div>
-        </>
-     );
-}
+                </article>
+        )
+    }
+)
 
 export default ProductsCartGrid;
