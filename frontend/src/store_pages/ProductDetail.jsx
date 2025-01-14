@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import "@/store_pages/pagesStyles/ProductDetail.css";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { Page404 } from "./Page404";
+import ProductDetails from '@/components/ProductDetails'
 
 export function ProductDetail({}) {
   const { productId } = useParams();
@@ -11,6 +12,10 @@ export function ProductDetail({}) {
   return products.length === 0 ? (
     <Page404 />
   ) : (
-    <main className="product-detail-page"></main>
+    <main className="product-detail-page">
+        <ProductDetails
+        data = {products[0]}
+        />
+    </main>
   );
 }

@@ -1,17 +1,12 @@
-import "./PDindex.css";
-import { Sidebar } from "primereact/sidebar";
-import useWindowSize from "../../hooks/useWindowSize";
+import "./index.css";
 import { applyDiscount } from "../../utils/applyDiscount";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
-import CartButton from "./CartButton";
+import AddToCartButton from "../Cart/AddToCartButton";
 import { Carousel } from "primereact/carousel";
-import Cart from "../Cart";
 import BMlogo from "../../assets/BYM logo/B&M-LOGO.svg";
 import React from "react";
 
-const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHide }) {
-  const responsive = useWindowSize("max", 600);
-
+const ProductDetails= React.memo(function ProductDetails({ data }) {
   const imgData = [
     {
       img: data.product_img1,
@@ -24,27 +19,11 @@ const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHi
     },
   ];
 
-  const headerSide = () => {
+  const Header = () => {
     return (
       <div className="header-side-content">
-        <button
-          onClick={onHide}
-          className={
-            responsive
-              ? active
-                ? "close-button-responsive open"
-                : "close-button-responsive closed"
-              : active
-              ? "close-button open"
-              : "close-button closed"
-          }
-        >
-          <i className="pi pi-chevron-right"></i>
-        </button>
-          <img src={BMlogo.src} className="logo-header" />
-
+        <img src={BMlogo.src} className="logo-header" />
         <div className="oferts-status">
-          <Cart />
           {data.promotion ? <img src={InOffertIcon.src} alt="En Oferta" /> : null}
         </div>
       </div>
@@ -64,19 +43,7 @@ const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHi
       title="Detalles del producto"
       className="product-details-container"
     >
-      <Sidebar
-        className="sidebar-products-details"
-        visible={active}
-        onHide={() => {
-          return;
-        }}
-        position="right"
-        style={{ width: responsive ? "100%" : "350px" }}
-        showCloseIcon={false}
-        maskStyle={{ color: "red" }}
-        maskClassName="sidebar-2"
-        header={headerSide}
-      >
+      <Header/>
         <section className="details-container">
           <div className="carrusel-sidebar content">
             <Carousel
@@ -122,22 +89,14 @@ const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHi
               <p className="product-description">{data.product_description}</p>
             </div>
           </div>
-          <CartButton
-            key={data.id}
-            id={data.id}
-            product_name={data.product_name}
-            precio={data.precio}
-            descuento={data.descuento}
-            promotion={data.promotion}
-            product_img1={data.product_img1}
-            promotion_full_info={data.promotion_full_info}
+          <AddToCartButton
+            product = {data}
           />
         </section>
-      </Sidebar>
     </section>
   ) : (
     <></>
   );
 })
 
-export default ProductDetails2;
+export default ProductDetails;

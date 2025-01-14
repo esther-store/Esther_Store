@@ -27,7 +27,7 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
             <>
               {products.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard key={product.id} {...product} isInStore = {true}  onClick = {()=> navigate(`product/${product.id}`)} />
+                  <ProductCard key={product.id} product = {product} onClick = {()=> navigate(`product/${product.id}`)} />
                 ))
               ) : (
                 <div className="products-grid-not-found-message">
