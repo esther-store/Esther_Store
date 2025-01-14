@@ -1,20 +1,28 @@
 import { Dialog } from "primereact/dialog";
-import {InputText} from "primereact/inputtext"
-import {InputTextarea} from "primereact/inputtextarea"
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
 import React, { useState } from "react";
 import "./index.css";
 
-function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo, deliveryInfoButtonRef}) {
+const DeliveryInfo = React.memo(function DeliveryInfo({
+  deliveryInfo,
+  setDeliveryInfo,
+  showErrorDeliveryInfo,
+  setShowErrorDeliveryInfo,
+  deliveryInfoButtonRef,
+}) {
   const [show, setShow] = useState(false);
-
+  console.log("delivery-info");
   return (
     <>
       <button
-        ref = {deliveryInfoButtonRef}
-        className={`btn-general-styles cart-button-add-delivery-info ${showErrorDeliveryInfo?'cart-delivery-info-error':null}`}
+        ref={deliveryInfoButtonRef}
+        className={`btn-general-styles cart-button-add-delivery-info ${
+          showErrorDeliveryInfo ? "cart-delivery-info-error" : null
+        }`}
         onClick={() => {
-            setShowErrorDeliveryInfo(false)
-            setShow(true)
+          setShowErrorDeliveryInfo(false);
+          setShow(true);
         }}
       >
         <i className="pi pi-map-marker"></i>
@@ -27,15 +35,20 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
         draggable={false}
         resizable={false}
         header="Detalles de Envío"
-        style={{width:'85%'}}
+        style={{ width: "85%" }}
       >
         <form
           action=""
           className="cart-delivery-info-form"
           onSubmit={(e) => {
             e.preventDefault();
-            setDeliveryInfo((prev) => ({...prev,name:e.target["name"].value ,phone:e.target["phone"].value, address:e.target["address"].value}))
-            setShow(false)
+            setDeliveryInfo((prev) => ({
+              ...prev,
+              name: e.target["name"].value,
+              phone: e.target["phone"].value,
+              address: e.target["address"].value,
+            }));
+            setShow(false);
           }}
         >
           <span className="p-float-label">
@@ -62,11 +75,13 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
             />
             <label htmlFor="address">Dirección</label>
           </span>
-          <button className = "btn-general-styles save-btn" type="submit">Guardar</button>
+          <button className="btn-general-styles save-btn" type="submit">
+            Guardar
+          </button>
         </form>
       </Dialog>
     </>
   );
-}
+});
 
 export default DeliveryInfo;

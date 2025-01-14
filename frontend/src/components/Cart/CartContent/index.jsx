@@ -1,7 +1,6 @@
 import React from "react";
 import ProductsCartList from "@/components/Cart/ProductsCartList";
 import ProductsCartGrid from "@/components/Cart/ProductsCartGrid";
-import DeliveryInfo from "@/components/Cart/DeliveryInfo";
 import { Dialog } from "primereact/dialog";
 import CartIcon from "@/assets/cart-icon.svg";
 import "./index.css";
@@ -9,15 +8,11 @@ import "./index.css";
 const CartContent = React.memo(function CartContext({
   show,
   setShow,
-  listView,
+  mobileMode,
   cleanCart,
   productsCart,
-  deliveryInfo,
-  setDeliveryInfo,
   handleSendPedido,
-  showErrorDeliveryInfo,
-  setShowErrorDeliveryInfo,
-  deliveryInfoButtonRef
+  children
 }) {
   return (
     <Dialog
@@ -38,15 +33,9 @@ const CartContent = React.memo(function CartContext({
       {productsCart.length > 0 ? (
         <>
           <div className="table-grid-container">
-            {listView ? <ProductsCartList /> : <ProductsCartGrid />}
+            {!mobileMode ? <ProductsCartList /> : <ProductsCartGrid />}
             <div className="cart-delivery-info-container">
-              <DeliveryInfo
-                deliveryInfo={deliveryInfo}
-                setDeliveryInfo={setDeliveryInfo}
-                showErrorDeliveryInfo={showErrorDeliveryInfo}
-                setShowErrorDeliveryInfo={setShowErrorDeliveryInfo}
-                deliveryInfoButtonRef={deliveryInfoButtonRef}
-              />
+              {children}
             </div>
           </div>
           <section className="cart-action-buttons">
