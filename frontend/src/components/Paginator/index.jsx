@@ -8,7 +8,8 @@ const Paginator = React.memo(function Paginator({
   count,
   itemsLength,
   getActiveFilter,
-  setFilter
+  setFilter,
+  removeFilter
 }) {
   
   const filterPageValue = getActiveFilter('page')
@@ -30,7 +31,11 @@ const Paginator = React.memo(function Paginator({
       marginPagesDisplayed={1}
       onPageChange={(page) => {
         document.querySelector("body").scrollIntoView({ top: 0 });
-        setFilter({ name: "page", value: page.selected + 1 });
+        if(page.selected === 0){
+          removeFilter('page')
+        }else{
+          setFilter({ name: "page", value: page.selected + 1 });
+        }
       }}
       disableInitialCallback={true}
       forcePage={currentPage - 1}

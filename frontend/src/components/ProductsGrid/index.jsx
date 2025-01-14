@@ -7,7 +7,7 @@ import Paginator from "../Paginator";
 import {useGetProducts} from '../../hooks/useGetProducts'
 
 export const ProductsGrid = React.memo(function ProductsGrid({activateProductdetails}) {
-  const {searchParams, getActiveFilter, setFilter} = useContext(QueryFiltersContext)
+  const {searchParams, getActiveFilter, setFilter, removeFilter} = useContext(QueryFiltersContext)
   const {products, count, loading} = useGetProducts({searchParams:searchParams})
 
   return (
@@ -44,6 +44,7 @@ export const ProductsGrid = React.memo(function ProductsGrid({activateProductdet
           itemsLength={products.length}
           getActiveFilter = {getActiveFilter}
           setFilter = {setFilter}
+          removeFilter = {removeFilter}
           />
       </section>
       }
