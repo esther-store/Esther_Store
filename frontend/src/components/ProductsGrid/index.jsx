@@ -1,14 +1,16 @@
 import Loader from "../Loader";
 import ProductCard from "../ProductCard";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
 import Paginator from "../Paginator";
 import {useGetProducts} from '../../hooks/useGetProducts'
+import { useNavigate } from "react-router-dom";
 
-export const ProductsGrid = React.memo(function ProductsGrid({activateProductdetails}) {
+export const ProductsGrid = React.memo(function ProductsGrid() {
   const {searchParams, getActiveFilter, setFilter, removeFilter} = useContext(QueryFiltersContext)
   const {products, count, loading} = useGetProducts({searchParams:searchParams})
+  const navigate = useNavigate()
 
   return (
     <>
@@ -25,7 +27,7 @@ export const ProductsGrid = React.memo(function ProductsGrid({activateProductdet
             <>
               {products.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard key={product.id} {...product} isInStore = {true}  onClick = {()=>activateProductdetails(product)} />
+                  <ProductCard key={product.id} {...product} isInStore = {true}  onClick = {()=> navigate(`product/${product.id}`)} />
                 ))
               ) : (
                 <div className="products-grid-not-found-message">
