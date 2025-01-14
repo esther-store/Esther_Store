@@ -3,8 +3,7 @@
     src: url("../../assets/fonts/NotoSans-Regular.woff2");
 }
 
-
-.products-container {
+.page-404 {
   width: 100%;
   height: 88vh;
   font-family: Noto Sans;
@@ -17,11 +16,10 @@
   padding: 5rem 0;
 }
 
-.products-section {
+.page-404 .message-container {
   background-color: white;
-  width: 100%;
-  height: 88vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #545454;
@@ -29,7 +27,14 @@
     font-size: 2rem;
     gap: 10px;
 }
-.products-section i{
-    font-size: 1.5rem;
-    
+
+.page-404 i{
+    font-size: 1.5rem; 
+}
+
+.page-404 div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:10px
 }
