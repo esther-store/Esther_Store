@@ -1,10 +1,10 @@
 import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
-import QueryFiltersContext from "../../context/filtersContext";
-import { orderingValues } from "../../constants";
+import QueryFiltersContext from "@/context/filtersContext";
+import { orderingValues } from "@/constants";
 
-function OrderingProducts() {
+const OrderingProducts = React.memo(function OrderingProducts() {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
   const [ordering, setOrdering] = useState();
 
@@ -28,6 +28,6 @@ function OrderingProducts() {
       className="w-full md:w-14rem order-button"
     />
   );
-}
+})
 
 export default OrderingProducts;
