@@ -2,20 +2,25 @@ import { useParams } from "react-router-dom";
 import "@/store_pages/pagesStyles/ProductDetail.css";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { Page404 } from "./Page404";
-import ProductDetails from '@/components/ProductDetails'
+import ProductDetails from "@/components/ProductDetails";
+import Loader from "@/components/Loader";
 
-export function ProductDetail({}) {
+export function ProductDetailPage({}) {
   const { productId } = useParams();
   const { products, loading } = useGetProducts({
     searchParams: `id=${productId}`,
   });
-  return products.length === 0 ? (
-    <Page404 />
-  ) : (
+  return (
     <main className="product-detail-page">
-        <ProductDetails
-        data = {products[0]}
-        />
+      {loading ? (
+        <div className="loader-container">
+          <Loader />
+        </div>
+      ) : products.length === 0 ? (
+        <Page404 />
+      ) : (
+        <ProductDetails data={products[0]} />
+      )}
     </main>
   );
 }

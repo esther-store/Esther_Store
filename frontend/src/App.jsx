@@ -18,7 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Login from './store_pages/Login.jsx'
 import ChangePassword from './store_pages/ChangePassword.jsx'
 import Bye from './store_pages/Bye.jsx'
-import {ProductDetail} from '@/store_pages/ProductDetail.jsx'
+import {ProductDetailPage} from '@/store_pages/ProductDetailPage.jsx'
 import 'primeicons/primeicons.css';
 import './index.css'
 import {Page404} from './store_pages/Page404.jsx'
@@ -39,7 +39,7 @@ function App() {
                     <Routes>
                       <Route path = "/" element = {<Home/>}/>
                       <Route path = "/store" element = {<Store/>}/>
-                      <Route path = "/store/product/:productId" element = {<ProductDetail/>}/>
+                      <Route path = "/store/product/:productId" element = {<ProductDetailPage/>}/>
                       <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
                       <Route path = "/management/products" element = {<ProtectedRoute><ProductsManagement/></ProtectedRoute>}/>
                       <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
