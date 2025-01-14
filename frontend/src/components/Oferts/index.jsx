@@ -1,6 +1,6 @@
 import "./index.css";
 import ProductCard from "../ProductCard";
-import React, { useState,useContext } from "react";
+import React, { useState } from "react";
 import "primeicons/primeicons.css";
 import useWindowSize from "../../hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
@@ -89,14 +89,13 @@ function Oferts({
       <article title="Productos Recomendados">
         <div className={showAll2 ? "oferts expanded" : "oferts"}>
           {!load1 ? (
-            recomendedProducts.map((products, index) => (
+            recomendedProducts.map((product, index) => (
               <ProductCard
-                key = {products.id}
+                key = {product.id}
                 className={"item"}
-                id={products.id}
-                {...products}
+                product = {product}
                 onClick={() =>
-                  navigate(`/store?search=${products.product_name}`)
+                  navigate(`/store?search=${product.product_name}`)
                 }
                 isInStore={true}
                 location={mobileSize?"home-mobile":"home"}
@@ -137,16 +136,13 @@ function Oferts({
       <article title="Últimos Añadidos">
         <div className={showAll3 ? "oferts expanded" : "oferts"}>
           {!load2 ? (
-            lastAded.map((products, index) => (
+            lastAded.map((product, index) => (
               <ProductCard
-                key = {products.id}
-                id={products.id}
-                precio={products.precio}
-                {...products}
+                key = {product.id}
+                product = {product}
                 onClick={() =>
-                  navigate(`/store?search=${products.product_name}`)
+                  navigate(`/store?search=${product.product_name}`)
                 }
-                isInStore={true}
                 location={mobileSize?"home-mobile":"home"}
               />
             ))
