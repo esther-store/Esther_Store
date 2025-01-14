@@ -181,9 +181,7 @@ function ProductsManagement() {
       }
       <Paginator
         numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
-        products={products}
+        productsLength={products.length}
       />
     </section>
   );
