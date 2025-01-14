@@ -4,7 +4,7 @@ import CloseIcon from "../../assets/close-icon.svg";
 import { showActiveFilter } from "../../utils/showActiveFilter";
 import "./index.css";
 
-function ActiveFilters() {
+const ActiveFilters = React.memo(function ActiveFilters() {
   const { searchParams, removeFilter, getAllFilters } =
     useContext(QueryFiltersContext);
 
@@ -23,6 +23,6 @@ function ActiveFilters() {
       </ul>
     </section>
   ) : null;
-}
+})
 
 export default ActiveFilters;
