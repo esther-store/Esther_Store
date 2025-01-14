@@ -106,7 +106,7 @@ const ProductDetails2 = React.memo(function ProductDetails2({ active, data, onHi
                     $
                     {applyDiscount({
                       price: data.precio,
-                      promotion: data.promotion_full_info,
+                      promotionDiscountInPercent: data.promotion_full_info?.discount_in_percent,
                       discount: data.descuento,
                     }).toFixed(2)}
                   </span>

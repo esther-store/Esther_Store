@@ -56,7 +56,7 @@ const ProductCard = React.memo(function ProductCard({
               $
               {applyDiscount({
                 price: precio,
-                promotion: promotion_full_info,
+                promotionDiscountInPercent: promotion_full_info?.discount_in_percent,
                 discount: descuento,
               }).toFixed(2)}
             </span>
@@ -75,7 +75,7 @@ const ProductCard = React.memo(function ProductCard({
                 productName: product_name,
                 price: applyDiscount({
                   price: precio,
-                  promotion: promotion_full_info,
+                  promotionDiscountInPercent: promotion_full_info?.discount_in_percent,
                   discount: descuento,
                 }),
                 img1: product_img1,
@@ -95,7 +95,7 @@ const ProductCard = React.memo(function ProductCard({
                   productName: product_name,
                   price: applyDiscount({
                     price: precio,
-                    promotion: promotion_full_info,
+                    promotionDiscountInPercent: promotion_full_info?.discount_in_percent,
                     discount: descuento,
                   }),
                   img1: product_img1,

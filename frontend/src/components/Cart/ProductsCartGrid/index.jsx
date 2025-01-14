@@ -32,7 +32,6 @@ const ProductsCartGrid = React.memo(function ProductsCartGrid() {
 
 const ProductsCartGridCard = React.memo(
     function ProductsCartGridCard({product, deleteProductFromCart, addProductToCart, restProductFromCart}){
-        console.log(`product-cart-card of ${product.productName}`)
         return(
             <article key = {product.id} className = "products-cart-grid-card">
                     <button className = "remove-product-from-cart-grid-view" onClick = {() => deleteProductFromCart(product.id)}>

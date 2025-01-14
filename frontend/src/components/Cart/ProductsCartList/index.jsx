@@ -7,7 +7,7 @@ import CartContext from "../../../context/cartContext";
 import React, {useContext } from "react";
 import './index.css'
 
-function ProductsCartList() {
+const ProductsCartList = React.memo(function ProductsCartList() {
     const {
         productsCart,
         addProductToCart,
@@ -99,6 +99,6 @@ function ProductsCartList() {
           />
         </DataTable>
      );
-}
+})
 
 export default ProductsCartList;

@@ -23,7 +23,7 @@ function CartButtton(
             price: applyDiscount({
               price: productCar.precio,
               discount: productCar.descuento,
-              promotion: productCar.promotion_full_info,
+              promotionDiscountInPercent: productCar.promotion_full_info?.discount_in_percent,
             }),
             img1: productCar.product_img1,
           }}
@@ -42,7 +42,7 @@ function CartButtton(
               price: applyDiscount({
                 price: productCar.precio,
                 discount: productCar.descuento,
-                promotion: productCar.promotion_full_info,
+                promotionDiscountInPercent: productCar.promotion_full_info?.discount_in_percent,
               }),
               img1: productCar.product_img1,
             })
