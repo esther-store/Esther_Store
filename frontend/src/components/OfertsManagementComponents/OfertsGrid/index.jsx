@@ -1,5 +1,4 @@
 import Loader from "../../Loader";
-import React, { useState, useContext } from "react";
 import "./index.css";
 import OfertCard from "../OfertCard";
 
