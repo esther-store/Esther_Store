@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const QueryFiltersContext = React.createContext("");
@@ -6,7 +6,7 @@ const QueryFiltersContext = React.createContext("");
 export function QueryFiltersContextProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  function setFilter({ name, value }) {
+  const setFilter = useCallback(function setFilter({ name, value }) {
     /*Recive a filter name and its value, and includes it in the query params of the url*/
     let params = new URLSearchParams(searchParams);
     //if the given filter don't exist, it's added
@@ -22,20 +22,20 @@ export function QueryFiltersContextProvider({ children }) {
       params.delete("page")
     }
     setSearchParams(params);
-  }
+  })
 
   function removeAllFilters() {
     /*Remove all query params from the url*/
     setSearchParams({});
   }
 
-  function removeFilter(name) {
+  const removeFilter = useCallback(function removeFilter(name) {
     let params = new URLSearchParams(searchParams);
     params.delete(name);
     setSearchParams(params);
-  }
+  })
 
-  function getActiveFilter(name) {
+  const getActiveFilter = useCallback(function getActiveFilter(name) {
     /*get the active value in the url query params of the filter given*/
     let params = new URLSearchParams(searchParams);
     let filterValue = params.get(name);
@@ -43,16 +43,16 @@ export function QueryFiltersContextProvider({ children }) {
       return "";
     }
     return filterValue;
-  }
+  })
 
-  function getAllFilters() {
+  const allActiveFilters = useMemo(function getAllFilters() {
     return searchParams
       .toString()
       .split("&")
       .map((param) => {
         return { name: param.split("=")[0], value: param.split("=")[1] };
       });
-  }
+  },[searchParams])
 
   return (
     <QueryFiltersContext.Provider
@@ -63,7 +63,7 @@ export function QueryFiltersContextProvider({ children }) {
         removeFilter,
         removeAllFilters,
         getActiveFilter,
-        getAllFilters,
+        allActiveFilters,
       }}
     >
       {children}
