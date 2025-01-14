@@ -2,7 +2,11 @@ import './index.css'
 
 function Loader() {
     return ( 
-        <div className = "loader"></div>
+        <section className = "loader-container">
+            <div style = {{width:"40px", height:"40px"}}>
+                <div className = "loader"></div>
+            </div>
+        </section>
     );
 }
 

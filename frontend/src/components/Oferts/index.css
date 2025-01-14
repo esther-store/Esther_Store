@@ -91,11 +91,6 @@
 .showAll-button:hover{
    background-color:rgb(160, 166, 172,0.3);
 }
-
-.loader-container{
-    width:30px;
-    height: 30px;
-}
 .button-container{
     position: relative;
     display: flex;

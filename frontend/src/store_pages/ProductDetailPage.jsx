@@ -13,9 +13,7 @@ export function ProductDetailPage({}) {
   return (
     <main className="product-detail-page">
       {loading ? (
-        <div className="loader-container">
-          <Loader />
-        </div>
+        <Loader />
       ) : products.length === 0 ? (
         <Page404 />
       ) : (
