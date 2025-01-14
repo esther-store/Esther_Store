@@ -1,14 +1,9 @@
-import './index.css';
-import FilterIcon from "../../../assets/oferts-management-filter.svg";
-import AddIcon from "../../../assets/oferts-management-add.svg";
-import DeleteIcon from "../../../assets/oferts-management-delete.svg";
-import SearchIcon from "../../../assets/search-icon.svg";
-
-import { ToggleButton } from 'primereact/togglebutton';
-import ViewToggleGrid from "../../../assets/view-toggle-grid.svg";
-import ViewToggleList from "../../../assets/view-toggle-list.svg";
-        
-const options = [<i className='pi pi-table'></i>, <i className='pi pi-list'></i>]
+import "./index.css";
+import AddIcon from "@/assets/icons/oferts-management-add.svg";
+import DeleteIcon from "@/assets/icons/oferts-management-delete.svg";
+import SearchIcon from "@/assets/icons/search-icon.svg";
+import ViewToggleGrid from "@/assets/icons/view-toggle-grid.svg";
+import ViewToggleList from "@/assets/icons/view-toggle-list.svg";
 
 function SearchOferts({
   setSearch,
@@ -19,7 +14,7 @@ function SearchOferts({
   handelOnChangeView,
   responsive,
   search,
-  viewMode
+  viewMode,
 }) {
   return (
     <search
@@ -47,12 +42,10 @@ function SearchOferts({
 
       <div className="view-toggle-container-oferts">
         <img
-          src={viewMode == 'table' ?ViewToggleGrid.src: ViewToggleList.src}
+          src={viewMode == "table" ? ViewToggleGrid.src : ViewToggleList.src}
           onClick={handelOnChangeView}
         />
-        </div>
-
-      
+      </div>
 
       <button
         className="search-oferts-button"

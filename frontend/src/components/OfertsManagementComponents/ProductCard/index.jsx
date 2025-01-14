@@ -1,7 +1,7 @@
 import './index.css'
 import { Checkbox } from "primereact/checkbox";
-import InOffertIcon from "../../../assets/in-offert-icon.svg";
-import { applyDiscount } from "../../../utils/applyDiscount";
+import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
+import { applyDiscount } from "@/utils/applyDiscount";
 
 
 function ProductCardForOfertManagement({data,handleOnChangeChecked,searchChecked}){

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import QueryFiltersContext from "../../context/filtersContext";
-import CloseIcon from "../../assets/close-icon.svg";
-import { showActiveFilter } from "../../utils/showActiveFilter";
+import QueryFiltersContext from "@/context/filtersContext";
+import CloseIcon from "@/assets/icons/close-icon.svg";
+import { showActiveFilter } from "@/utils/showActiveFilter";
 import "./index.css";
 
 const ActiveFilters = React.memo(function ActiveFilters() {

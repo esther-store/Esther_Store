@@ -1,6 +1,6 @@
 import "./index.css";
-import InOffertIcon from "../../assets/in-offert-icon.svg";
-import { applyDiscount } from "../../utils/applyDiscount";
+import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
+import { applyDiscount } from "@/utils/applyDiscount";
 import React from "react";
 import AddToCartButton from "../Cart/AddToCartButton";
 

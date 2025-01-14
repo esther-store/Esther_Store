@@ -1,7 +1,7 @@
-import CartContext from "../../../context/cartContext";
+import CartContext from "@/context/cartContext";
 import React, { useContext } from "react";
 import ProductQuantityController from "../ProductQuantityController";
-import { applyDiscount } from "../../../utils/applyDiscount";
+import { applyDiscount } from "@/utils/applyDiscount";
 
 const AddToCartButton = React.memo(function AddToCartButton({product}){
   const {

@@ -1,9 +1,9 @@
 import "./index.css";
-import { applyDiscount } from "../../utils/applyDiscount";
-import InOffertIcon from "../../assets/in-offert-icon.svg";
+import { applyDiscount } from "@/utils/applyDiscount";
+import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
 import AddToCartButton from "../Cart/AddToCartButton";
 import { Carousel } from "primereact/carousel";
-import BMlogo from "../../assets/BYM logo/B&M-LOGO.svg";
+import BMlogo from "@/assets/BYM logo/B&M-LOGO.svg";
 import React from "react";
 
 const ProductDetails= React.memo(function ProductDetails({ data }) {

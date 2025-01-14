@@ -1,8 +1,8 @@
 import './index.css';
 import { DataScroller } from "primereact/datascroller";
 import { Checkbox } from "primereact/checkbox";
-import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
-import ActiveStatusIcon from "../../../assets/active-status-icon.svg";
+import DeactiveStatusIcon from "@/assets/icons/deactive-status-icon.svg";
+import ActiveStatusIcon from "@/assets/icons/active-status-icon.svg";
 
 function DataScrollerOferts({
   dataOferts,

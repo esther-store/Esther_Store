@@ -1,6 +1,6 @@
 import './index.css'
-import MinusIcon from '../../../assets/minus-icon.svg'
-import PlusIcon from '../../../assets/plus-icon.svg'
+import MinusIcon from '@/assets/icons/minus-icon.svg'
+import PlusIcon from '@/assets/icons/plus-icon.svg'
 import React from 'react';
 
 const ProductQuantityController = React.memo(function ProductQuantityController({item, quantity, add, rest}) {

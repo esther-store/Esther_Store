@@ -2,9 +2,9 @@ import Loader from "../Loader";
 import ProductCard from "../ProductCard";
 import React, { useContext } from "react";
 import "./index.css";
-import QueryFiltersContext from "../../context/filtersContext";
+import QueryFiltersContext from "@/context/filtersContext";
 import Paginator from "../Paginator";
-import { useGetProducts } from "../../hooks/useGetProducts";
+import { useGetProducts } from "@/hooks/useGetProducts";
 import { useNavigate } from "react-router-dom";
 
 export const ProductsGrid = React.memo(function ProductsGrid() {

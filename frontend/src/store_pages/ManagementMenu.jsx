@@ -1,11 +1,10 @@
 import "./pagesStyles/ManagementMenu.css";
-import ProductsManagement from "../assets/products-management.svg";
-import OfertsManagement from "../assets/oferts-management.svg";
-import SecurityManagement from "../assets/security-management.svg";
-import ContactsManagement from "../assets/contacts-management.svg";
-import BackArrow from '../assets/products-management-back-icon.svg';
-import useWindowSize from "../hooks/useWindowSize";
-import IconPage from "../assets/productsIcon.svg"
+import ProductsManagement from "@/assets/icons/products-management.svg";
+import OfertsManagement from "@/assets/icons/oferts-management.svg";
+import SecurityManagement from "@/assets/icons/security-management.svg";
+import ContactsManagement from "@/assets/icons/contacts-management.svg";
+import BackArrow from '@/assets/icons/products-management-back-icon.svg';
+import useWindowSize from "@/hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
 
 function ManagementMenu (){

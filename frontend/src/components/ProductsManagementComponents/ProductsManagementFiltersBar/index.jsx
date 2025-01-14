@@ -1,12 +1,12 @@
 import "./index.css";
 import Search from "../../Search";
 import CategoriesManagement from "../CategoriesManagement/index";
-import ViewToggleGrid from "../../../assets/view-toggle-grid.svg";
-import ViewToggleList from "../../../assets/view-toggle-list.svg";
+import ViewToggleGrid from "@/assets/icons/view-toggle-grid.svg";
+import ViewToggleList from "@/assets/icons/view-toggle-list.svg";
 import React, { useState } from "react";
 import FiltersModal from "../FiltersModal";
-import AddProductIcon from "../../../assets/add-product-icon.svg";
-import RemoveProductIcon from "../../../assets/remove-product-icon.svg";
+import AddProductIcon from "@/assets/icons/add-product-icon.svg";
+import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import ProductForm from "../ProductForm";
 

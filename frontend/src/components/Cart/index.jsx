@@ -1,16 +1,12 @@
-import CartIcon from "../../assets/cart-icon.svg";
-import CartContext from "../../context/cartContext";
-import React, {
-  useState,
-  useContext,
-  useRef,
-} from "react";
-import { useIsMobileMode } from "../../hooks/useIsMobileMode";
+import CartIcon from "@/assets/icons/cart-icon.svg";
+import CartContext from "@/context/cartContext";
+import React, { useState, useContext, useRef } from "react";
+import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import {
   sendWhatsappMessage,
   prepareProductsCartToBeSentByWhatsapp,
-} from "../../utils/sendWhatsappMessage";
-import { useGetContactInfo } from "../../hooks/useGetContactInfo";
+} from "@/utils/sendWhatsappMessage";
+import { useGetContactInfo } from "@/hooks/useGetContactInfo";
 import "./index.css";
 import CartContent from "@/components/Cart/CartContent";
 import DeliveryInfo from "@/components/Cart/DeliveryInfo";

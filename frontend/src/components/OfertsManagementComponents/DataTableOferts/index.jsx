@@ -1,8 +1,8 @@
 import './index.css'
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
-import ActiveStatusIcon from "../../../assets/active-status-icon.svg";
+import DeactiveStatusIcon from "@/assets/icons/deactive-status-icon.svg";
+import ActiveStatusIcon from "@/assets/icons/active-status-icon.svg";
 
 const headerTableStyle = {
   backgroundColor: "#545454",

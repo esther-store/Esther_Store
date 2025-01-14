@@ -1,11 +1,11 @@
 import { Dropdown } from "primereact/dropdown";
-import UserIcon from "../../assets/user-icon.svg";
+import UserIcon from "@/assets/icons/user-icon.svg";
 import CloseSession from "./CloseSession";
-import LockOpen from "../../assets/lock-open.svg";
+import LockOpen from "@/assets/icons/lock-open.svg";
 import "./index.css";
 import {useNavigate} from 'react-router-dom'
 import React, { useContext, useRef } from "react";
-import AuthenticationContext from '../../context/authenticationContext'
+import AuthenticationContext from '@/context/authenticationContext'
 
 function UserNavbarActionsDropdown() {
 const navigate = useNavigate()

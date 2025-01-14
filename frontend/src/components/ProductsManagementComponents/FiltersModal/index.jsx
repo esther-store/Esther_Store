@@ -1,10 +1,10 @@
-import FilterIcon from "../../../assets/filter-icon.svg";
+import FilterIcon from "@/assets/icons/filter-icon.svg";
 import { Dialog } from "primereact/dialog";
 import React, { useState, useContext, useEffect } from "react";
 import OrderingProducts from "../../OrderingProducts";
 import CategorieSideBar from "../../CategorieSideBar";
 import {Checkbox} from 'primereact/checkbox'
-import QueryFiltersContext from "../../../context/filtersContext";
+import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
 
 function FiltersModal({

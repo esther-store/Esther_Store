@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import AuthenticationContext from "../../context/authenticationContext";
+import AuthenticationContext from "@/context/authenticationContext";
 import { useNavigate } from "react-router-dom";
-import CloseSessionIcon from "../../assets/close-session-icon.svg";
+import CloseSessionIcon from "@/assets/icons/close-session-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import "./index.css";
 

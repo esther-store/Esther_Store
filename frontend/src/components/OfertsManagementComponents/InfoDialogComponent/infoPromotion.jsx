@@ -1,17 +1,17 @@
 import "./styles/infoPromotion.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Dialog } from "primereact/dialog";
-import { updatePromotion } from "../../../services/ManagePromotions/updatePromotion";
-import { createPromotion } from "../../../services/ManagePromotions/createPromotion";
+import { updatePromotion } from "@/services/ManagePromotions/updatePromotion";
+import { createPromotion } from "@/services/ManagePromotions/createPromotion";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
-import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
-import { deleteProductsToPromotion } from "../../../services/ManagePromotions/deleteProductsToOfert";
+import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";
+import { deleteProductsToPromotion } from "@/services/ManagePromotions/deleteProductsToOfert";
 import Loader from "../../Loader";
-import { getProductsOfert } from "../../../services/ManagePromotions/getProductsOfert";
-import AuthenticationContext from "../../../context/authenticationContext";
+import { getProductsOfert } from "@/services/ManagePromotions/getProductsOfert";
+import AuthenticationContext from "@/context/authenticationContext";
 
 function InfoPromotion({
   visible,

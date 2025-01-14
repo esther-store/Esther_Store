@@ -1,10 +1,7 @@
-import './index.css';
-import AddIcon from "../../../assets/oferts-management-add.svg";
-import DeleteIcon from "../../../assets/oferts-management-delete.svg";
-import SearchIcon from "../../../assets/search-icon.svg";
-
-        
-const options = [<i className='pi pi-table'></i>, <i className='pi pi-list'></i>]
+import "./index.css";
+import AddIcon from "@/assets/icons/oferts-management-add.svg";
+import DeleteIcon from "@/assets/icons/oferts-management-delete.svg";
+import SearchIcon from "@/assets/icons/search-icon.svg";
 
 function SearchOferts({
   setSearch,
@@ -38,7 +35,6 @@ function SearchOferts({
           }}
         />
       </form>
-
 
       <button
         className="search-oferts-button"

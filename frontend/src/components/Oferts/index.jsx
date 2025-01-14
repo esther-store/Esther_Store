@@ -2,7 +2,7 @@ import "./index.css";
 import ProductCard from "../ProductCard";
 import React, { useState } from "react";
 import "primeicons/primeicons.css";
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "@/hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "primereact/skeleton";
 import PromotionCard from "../PromotionsModal/PromotionCard";

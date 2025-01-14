@@ -1,7 +1,7 @@
 import "./index.css";
 import React, { useState, useEffect, useContext } from "react";
-import QueryFiltersContext from "../../context/filtersContext";
-import SearchIcon from "../../assets/search-icon.svg";
+import QueryFiltersContext from "@/context/filtersContext";
+import SearchIcon from "@/assets/icons/search-icon.svg";
 
 const Search = React.memo(function Search() {
   const { searchParams, setFilter, getActiveFilter, removeFilter } =

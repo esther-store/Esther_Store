@@ -4,12 +4,12 @@ import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
-import { useManageProductForm } from "../../../hooks/useManageProductForm";
-import { useImagePreview } from "../../../hooks/useImagePreview";
-import AddIcon from "../../../assets/oferts-management-add.svg";
-import EditIcon from "../../../assets/edit-icon.svg";
-import DetailIcon from "../../../assets/eye-icon.svg";
-import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
+import { useManageProductForm } from "@/hooks/useManageProductForm";
+import { useImagePreview } from "@/hooks/useImagePreview";
+import AddIcon from "@/assets/icons/oferts-management-add.svg";
+import EditIcon from "@/assets/icons/edit-icon.svg";
+import DetailIcon from "@/assets/icons/eye-icon.svg";
+import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";
 import "./index.css";
 
 function ProductForm({

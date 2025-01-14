@@ -1,18 +1,16 @@
 import "./index.css";
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "@/hooks/useWindowSize";
 import { useNavigate, Link } from "react-router-dom";
 import { Sidebar } from "primereact/sidebar";
 import React, { useState, useEffect, useRef } from "react";
 import { Menu } from "primereact/menu";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
-import CompanyImage from "../../assets/BYM logo/B&M-LOGO.svg";
-import ByMEcommers from "../../assets/BYM logo/B&M-SUB-LOGO.svg";
-import HomeIcon from "../../assets/home.svg";
-import StoreIcon from "../../assets/tiendaIcon.svg";
-import ProductsIcon from "../../assets/productsIcon.svg";
-import ContactIcon from "../../assets/contactusIcon.svg";
-import RemesasIcon from "../../assets/remesas-icon.svg";
+import CompanyImage from "@/assets/BYM logo/B&M-LOGO.svg";
+import ByMEcommers from "@/assets/BYM logo/B&M-SUB-LOGO.svg";
+import HomeIcon from "@/assets/icons/home.svg";
+import StoreIcon from "@/assets/icons/tiendaIcon.svg";
+import ProductsIcon from "@/assets/icons/productsIcon.svg";
 import Cart from '../Cart'
 import UserNavbarActionsDropdown from "../UserNavbarActions";
 

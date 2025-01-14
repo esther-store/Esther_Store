@@ -2,7 +2,7 @@ import React from "react";
 import ProductsCartList from "@/components/Cart/ProductsCartList";
 import ProductsCartGrid from "@/components/Cart/ProductsCartGrid";
 import { Dialog } from "primereact/dialog";
-import CartIcon from "@/assets/cart-icon.svg";
+import CartIcon from "@/assets/icons/cart-icon.svg";
 import "./index.css";
 
 const CartContent = React.memo(function CartContext({

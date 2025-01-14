@@ -1,7 +1,7 @@
 import ProductQuantityController from "../ProductQuantityController";
-import CartContext from "../../../context/cartContext";
-import TrashIcon from '../../../assets/trash-icon.svg'
-import React, {useContext } from "react";
+import CartContext from "@/context/cartContext";
+import TrashIcon from '@/assets/icons/trash-icon.svg'
+import React, { useContext } from "react";
 import './index.css'
 
 const ProductsCartGrid = React.memo(function ProductsCartGrid() {

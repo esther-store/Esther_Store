@@ -1,6 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import BoxIcon from "../../../assets/box-icon.svg";
+import BoxIcon from "@/assets/icons/box-icon.svg";
 import ActionButtons from "../ProductList/ActionButtons";
 
 function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory, processUpdateCategory, processDetailCategory}) {

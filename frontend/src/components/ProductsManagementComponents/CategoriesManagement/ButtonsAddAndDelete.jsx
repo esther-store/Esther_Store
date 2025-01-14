@@ -1,5 +1,5 @@
-import AddProductIcon from "../../../assets/add-product-icon.svg";
-import RemoveProductIcon from "../../../assets/remove-product-icon.svg";
+import AddProductIcon from "@/assets/icons/add-product-icon.svg";
+import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
 
 function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) {
     return ( 

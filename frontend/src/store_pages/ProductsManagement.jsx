@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import "./pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
-import BackArrow from "../assets/products-management-back-icon.svg";
+import BackArrow from "../assets/icons/products-management-back-icon.svg";
 import ProductsManagementFiltersBar from "../components/ProductsManagementComponents/ProductsManagementFiltersBar";
 import ProductList from "../components/ProductsManagementComponents/ProductList";
 import ProductsGrid from "../components/ProductsManagementComponents/ProductsGrid/index";

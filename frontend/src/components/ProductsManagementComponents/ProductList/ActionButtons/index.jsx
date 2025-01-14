@@ -1,7 +1,7 @@
 import './index.css'
-import TrashIcon from '../../../../assets/trash-icon.svg'
-import EyeIcon from '../../../../assets/eye-icon.svg'
-import EditIcon from '../../../../assets/edit-icon.svg'
+import TrashIcon from '@/assets/icons/trash-icon.svg'
+import EyeIcon from '@/assets/icons/eye-icon.svg'
+import EditIcon from '@/assets/icons/edit-icon.svg'
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import React, { useState } from 'react'
 

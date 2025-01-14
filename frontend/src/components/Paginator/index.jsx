@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate";
-import RightArrow from "../../assets/chevron-right-24.svg";
-import LeftArrow from "../../assets/chevron-left-24.svg";
+import RightArrow from "@/assets/icons/chevron-right-24.svg";
+import LeftArrow from "@/assets/icons/chevron-left-24.svg";
 import React from "react";
 import "./index.css";
 

@@ -1,6 +1,6 @@
 import './index.css' 
-import React, {useState, useEffect, useContext} from 'react'
-import SearchIcon from '../../../assets/search-icon.svg'
+import React, {useState, useEffect} from 'react'
+import SearchIcon from '@/assets/icons/search-icon.svg'
 
 function SearchProducts({onHandleChange,search}) {
     const [mounted, setMounted] = useState(false)

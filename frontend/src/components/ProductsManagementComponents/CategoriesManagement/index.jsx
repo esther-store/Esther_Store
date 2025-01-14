@@ -6,8 +6,8 @@ import CategoriesForm from "./CategoriesForm";
 import CategoriesDatatable from "./CategoriesDatatable";
 import CategoriesGrid from './CategoriesGrid'
 import ButtonsAddAndDelete from "./ButtonsAddAndDelete";
-import TagIcon from "../../../assets/tag-icon.svg";
-import {useIsMobileMode} from '../../../hooks/useIsMobileMode'
+import TagIcon from "@/assets/icons/tag-icon.svg";
+import {useIsMobileMode} from '@/hooks/useIsMobileMode'
 import "./index.css";
 
 function CategoriesManagement({

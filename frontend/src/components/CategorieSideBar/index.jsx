@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, Suspense } from "react";
-import QueryFilterContext from "../../context/filtersContext";
-import CategoryIcon from "../../assets/category-icon.svg";
+import QueryFilterContext from "@/context/filtersContext";
+import CategoryIcon from "@/assets/icons/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
-import { useIsMobileMode } from "../../hooks/useIsMobileMode";
+import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import PromotionsModal from "../PromotionsModal";
 import "./index.css";
 

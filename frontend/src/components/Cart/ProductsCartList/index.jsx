@@ -1,9 +1,9 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import TrashIcon from "../../../assets/trash-icon.svg";
-import BoxIcon from "../../../assets/box-icon.svg";
+import TrashIcon from "@/assets/icons/trash-icon.svg";
+import BoxIcon from "@/assets/icons/box-icon.svg";
 import ProductQuantityController from "../ProductQuantityController";
-import CartContext from "../../../context/cartContext";
+import CartContext from "@/context/cartContext";
 import React, {useContext } from "react";
 import './index.css'
 
