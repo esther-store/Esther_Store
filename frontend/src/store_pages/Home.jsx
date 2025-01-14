@@ -2,32 +2,16 @@ import "./pagesStyles/Home.css";
 import useWindowSize from "../hooks/useWindowSize";
 import Oferts from "../components/Oferts";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import getLastProducts from "../services/getLastProducts";
-import getRecommendedProducts from "../services/getRecommendedProducts";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
+import { useGetRecommendedProducts } from "@/hooks/useGetRecommendedProducts";
+import { useGetProducts } from "@/hooks/useGetProducts";
 
 function Home() {
   const responsive = useWindowSize("max", 800);
   const navigate = useNavigate();
-  const [lastAded, setLastAded] = useState([]);
-  const [recomendedProducts, setRecomendedProducts] = useState([]);
-  const [loading1, setLoading1] = useState(false);
-  const [loading2, setLoading2] = useState(false);
   const { promotions, loadingPromotions } = useGetPromotions();
-
-  useEffect(() => {
-    setLoading1(true);
-    setLoading2(true);
-    getLastProducts().then((products) => {
-      setLastAded(products.results);
-      setLoading1(false);
-    });
-    getRecommendedProducts().then((products) => {
-      setRecomendedProducts(products.results);
-      setLoading2(false);
-    });
-  }, []);
+  const {recommendedProducts, loadingRecommendedProducts} = useGetRecommendedProducts()
+  const {products: lastAddedProducts, loading: loadingLastAddedProducts} = useGetProducts({searchParams:'ordering=-updated_at', setNumOfProducts:() => {}})
 
   return (
     <section className="home-container">
@@ -80,10 +64,10 @@ function Home() {
         </section>
         <section className="main-content">
           <Oferts
-            load1={loading1}
-            load2={loading2}
-            recomendedProducts={recomendedProducts}
-            lastAded={lastAded}
+            load1={loadingLastAddedProducts}
+            load2={loadingRecommendedProducts}
+            recomendedProducts={recommendedProducts}
+            lastAded={lastAddedProducts}
             promotions={promotions}
             loadingPromotions={loadingPromotions}
           />
