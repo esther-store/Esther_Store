@@ -17,7 +17,7 @@ import DeliveryInfo from "@/components/Cart/DeliveryInfo";
 
 const Cart = React.memo(function Cart() {
   const [showCartContent, setShowCartContent] = useState(false);
-  const { productsCart, cleanCart, calculateTotal } = useContext(CartContext);
+  const { productsCart, cleanCart, total } = useContext(CartContext);
   const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
   const { contactInfo } = useGetContactInfo();
   const deliveryInfoButtonRef = useRef(null);
@@ -42,7 +42,7 @@ const Cart = React.memo(function Cart() {
           phone: contactInfo.whatsapp,
           message: prepareProductsCartToBeSentByWhatsapp({
             productsCart: productsCart,
-            total: calculateTotal().toFixed(2),
+            total: total.toFixed(2),
             deliveryInfo: deliveryInfo,
           }),
         });

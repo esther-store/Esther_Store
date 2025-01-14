@@ -70,11 +70,7 @@ export function CartContextProvider({ children }) {
   }
 
   const total = useMemo(function calculateTotal() {
-    let total = 0;
-    productsCart.forEach((product) => {
-      total += product.subtotal;
-    });
-    return total;
+    return productsCart.reduce((acc, product) => acc += product.subtotal, 0)
   }, [productsCart])
 
   const checkProductInCart = useCallback(function checkProductInCart(id) {

@@ -13,7 +13,7 @@ function ProductsCartList() {
         addProductToCart,
         restProductFromCart,
         deleteProductFromCart,
-        calculateTotal
+        total
       } = useContext(CartContext);
 
     return ( 
@@ -79,7 +79,7 @@ function ProductsCartList() {
           <Column
             field="subtotal"
             header="Sub Total"
-            footer = {`Total: $${calculateTotal().toFixed(2)}`}
+            footer = {`Total: $${total.toFixed(2)}`}
             body={(product) => {
               return `$${product.subtotal.toFixed(2)}`;
             }}
