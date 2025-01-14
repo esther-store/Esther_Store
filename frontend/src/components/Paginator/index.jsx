@@ -6,8 +6,8 @@ import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
 
 const Paginator = React.memo(function Paginator({
-  numOfProducts,
-  productsLength,
+  count,
+  itemsLength,
 }) {
   const { setFilter, getActiveFilter } =
     useContext(QueryFiltersContext);
@@ -17,13 +17,13 @@ const Paginator = React.memo(function Paginator({
 
   return (
     <ReactPaginate
-      className={productsLength > 0 ? "paginator" : "paginator-invisible"}
+      className={itemsLength > 0 ? "paginator" : "paginator-invisible"}
       activeClassName={"page-active"}
       pageClassName={"page"}
       nextLinkClassName={"next-page-button"}
       previousLinkClassName={"previous-page-button"}
       breakClassName={"page"}
-      pageCount={Math.ceil(numOfProducts / 14)}
+      pageCount={Math.ceil(count / 14)}
       pageRangeDisplayed={3}
       previousLabel={<img src={LeftArrow.src} />}
       nextLabel={<img src={RightArrow.src} />}

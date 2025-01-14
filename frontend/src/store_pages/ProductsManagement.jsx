@@ -180,8 +180,8 @@ function ProductsManagement() {
         />
       }
       <Paginator
-        numOfProducts={numOfProducts}
-        productsLength={products.length}
+        count={numOfProducts}
+        itemsLength={products.length}
       />
     </section>
   );

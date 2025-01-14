@@ -40,8 +40,8 @@ export const ProductsGrid = React.memo(function ProductsGrid({activateProductdet
           )}
         </div>
         <Paginator 
-          numOfProducts={count}
-          productsLength={products.length}
+          count={count}
+          itemsLength={products.length}
           />
       </section>
       }
