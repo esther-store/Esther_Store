@@ -14,9 +14,7 @@ function CategoriesList({
     <section className="categories-side-bar">
       <h2>Categorías</h2>
       {loading ? (
-        <div className="categories-loader-container">
           <Loader />
-        </div>
       ) : (
         <ul>
           <li
