@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getUsers } from "../services/ManageUser/getUsers";
+import React, { useEffect, useContext } from "react";
+import { getUsers } from "../services/ManageUser/getUsers.js";
 import AuthenticationContext from "../context/authenticationContext.jsx";
 import { useQuery } from "@tanstack/react-query";
 
