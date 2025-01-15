@@ -10,7 +10,6 @@ function ProductManagementCard({product, handleDeleteProduct, processDetailProdu
         >
           <div className="img-container">
             <img
-              loading="lazy"
               src={product.product_img1}
               alt={product.product_name}
             />

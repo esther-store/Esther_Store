@@ -22,7 +22,7 @@ const ProductCard = React.memo(function ProductCard({
           ? "img-container img-container-mobile"
           : "img-container"
       } onClick={onClick}>
-        <img loading="lazy" src={product.product_img1} alt={product.product_name} />
+        <img src={product.product_img1} alt={product.product_name} />
       </div>
       {product.promotion ? (
         <abbr title="En oferta">

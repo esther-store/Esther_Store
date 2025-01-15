@@ -29,7 +29,6 @@ function CategoriesGrid({
           >
             <div className="img-container">
               <img
-                loading="lazy"
                 src={category.img}
                 alt={category.nombre}
               />
