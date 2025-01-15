@@ -1,5 +1,12 @@
-export function sendWhatsappMessage({phone, message}){
-    window.open(`whatsapp://send?phone=${phone}&text=${encodeURI(message)}&app_absent=0`)
+export function sendWhatsappMessage({phone, message}) {
+    const whatsappUrl = `whatsapp://send?phone=${phone}&text=${encodeURI(message)}&app_absent=0`;
+    const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURI(message)}`;
+
+    try {
+        window.open(whatsappUrl);
+    } catch (error) {
+        window.open(whatsappWebUrl);
+    }
 }
 
 export function prepareProductsCartToBeSentByWhatsapp({productsCart, total, deliveryInfo}){
