@@ -7,7 +7,7 @@ import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import PromotionsModal from "../PromotionsModal";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
-import ErrorGettingCategoriesMessage from "./ErrorGettingCategoriesMessage";
+import RetryQueryComponent from "../RetryQueryComponent";
 import "./index.css";
 
 const CategorieSideBar = React.memo(function CategorieSideBar({
@@ -23,7 +23,7 @@ const CategorieSideBar = React.memo(function CategorieSideBar({
     categories,
     loading,
     isError: errorGettingCategories,
-    refetch: refetchCategories
+    refetch: refetchCategories,
   } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
 
@@ -79,7 +79,14 @@ const CategorieSideBar = React.memo(function CategorieSideBar({
               X
             </button>
             {errorGettingCategories ? (
-              <ErrorGettingCategoriesMessage refetchCategories = {refetchCategories}/>
+              <section style={{paddingTop:"50px"}}>
+                <RetryQueryComponent
+                  message={
+                    "Error obteniendo las categorías. Revisa tu conexión a internet"
+                  }
+                  refetch={refetchCategories}
+                />
+              </section>
             ) : (
               <CategoriesList
                 categories={categories}
@@ -95,7 +102,12 @@ const CategorieSideBar = React.memo(function CategorieSideBar({
           </Dialog>
         </section>
       ) : errorGettingCategories ? (
-        <ErrorGettingCategoriesMessage refetchCategories = {refetchCategories}/>
+        <RetryQueryComponent
+          message={
+            "Error obteniendo las categorías. Revisa tu conexión a internet"
+          }
+          refetchCategories={refetchCategories}
+        />
       ) : (
         <CategoriesList
           categories={categories}

@@ -6,7 +6,7 @@ export function useGetCategories() {
     queryKey: ["cateogories"],
     queryFn: () => getCategories(),
     staleTime: 1000 * 60 * 30,
-    retry: (failuresCount, error) => {
+    retry: (failuresCount) => {
       if(failuresCount >= 2) return false
       return true
     },

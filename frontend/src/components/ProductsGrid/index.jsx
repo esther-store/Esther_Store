@@ -6,11 +6,12 @@ import QueryFiltersContext from "@/context/filtersContext";
 import Paginator from "../Paginator";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useNavigate } from "react-router-dom";
+import RetryQueryComponent from "../RetryQueryComponent";
 
 export const ProductsGrid = React.memo(function ProductsGrid() {
   const { searchParams, getActiveFilter, setFilter, removeFilter } =
     useContext(QueryFiltersContext);
-  const { products, count, loading } = useGetProducts({
+  const { products, count, loading, isError, refetch } = useGetProducts({
     searchParams: searchParams,
   });
   const navigate = useNavigate();
@@ -19,6 +20,11 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
     <>
       {loading ? (
         <Loader />
+      ) : isError ? (
+        <RetryQueryComponent
+          message={"Error obteniendo los productos. Revisa tu conexión a internet"}
+          refetch={refetch}
+        />
       ) : (
         <section className="products-grid-and-paginator-container">
           <div className="products-grid">
