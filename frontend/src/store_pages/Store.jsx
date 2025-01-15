@@ -3,23 +3,13 @@ import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
 import "./pagesStyles/Store.css";
-import { useGetCategories } from "../hooks/useGetCategories";
-import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 import ActiveFilters from "../components/ActiveFilters";
 
 function Store() {
-  const { categories, loading } = useGetCategories();
-  const { promotions, loadingPromotions } = useGetPromotions();
-
   return (
     <section className={"store-page"}>
       <aside>
-        <CategorieSideBar
-          loading={loading}
-          loadingPromotions={loadingPromotions}
-          categories={categories}
-          promotions={promotions}
-        />
+        <CategorieSideBar/>
       </aside>
       <search>
         <section className="search-product">
