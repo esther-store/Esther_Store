@@ -5,7 +5,7 @@ import { createCategory } from "../services/ManageCategories/createCategory";
 import { updateCategory } from "../services/ManageCategories/updateCategory";
 import AuthenticationContext from '../context/authenticationContext.jsx'
 
-export function useManageCategories({toastRef, searchParams, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
+export function useManageCategories({toastRef, searchParams, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
   const {auth} = useContext(AuthenticationContext)
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoading] = useState(false);

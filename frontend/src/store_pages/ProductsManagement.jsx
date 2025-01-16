@@ -59,7 +59,7 @@ function ProductsManagement() {
     numOfProducts,
     handleDeleteProduct,
     handleDeleteMultipleProducts,
-    setUpdateProducts,
+    refetchProducts,
     handleUpdateProduct,
     handleCreateProduct
   } = useManageProducts({
@@ -80,7 +80,6 @@ function ProductsManagement() {
     handleUpdateCategory
   } = useManageCategories({
     toastRef: toast,
-    setUpdateProducts: setUpdateProducts,
     setSelectedCategories: setSelectedCategories,
     removeAllFilters: removeAllFilters,
     setCategoryFormProperties:setCategoryFormProperties,
@@ -139,7 +138,6 @@ function ProductsManagement() {
         selectedProducts={selectedProducts}
         selectedCategories = {selectedCategories}
         toastRef={toast}
-        setUpdateProducts={setUpdateProducts}
         removeAllFilters={removeAllFilters}
         categoryFormProperties = {categoryFormProperties}
         resetProductFormProperties={resetProductFormProperties}

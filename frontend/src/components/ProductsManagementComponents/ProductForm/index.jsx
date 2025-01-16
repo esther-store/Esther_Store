@@ -288,7 +288,7 @@ function ProductForm({
           {/*Submit*/}
           {productFormProperties.disabled == false ? (
             <Button
-              label={loading == true ? "Enviando..." : "Enviar"}
+              label={loading? "Enviando..." : "Enviar"}
               className="btn-general-styles"
             />
           ) : null}
