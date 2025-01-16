@@ -1,7 +1,7 @@
 import './App.css'
 import {HashRouter as Router, Route, Routes} from 'react-router-dom'
 import Store from './store_pages/Store'
-import ProductsManagement from './store_pages/ProductsManagement'
+import ManageProducts from './store_pages/ManageProducts.jsx'
 import Home from './store_pages/Home'
 import ManagementMenu from './store_pages/ManagementMenu.jsx'
 import { PrimeReactProvider } from 'primereact/api';
@@ -41,7 +41,7 @@ function App() {
                       <Route path = "/store" element = {<Store/>}/>
                       <Route path = "/store/product/:productId" element = {<ProductDetailPage/>}/>
                       <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
-                      <Route path = "/management/products" element = {<ProtectedRoute><ProductsManagement/></ProtectedRoute>}/>
+                      <Route path = "/management/products" element = {<ProtectedRoute><ManageProducts/></ProtectedRoute>}/>
                       <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
                       <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
                       <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>

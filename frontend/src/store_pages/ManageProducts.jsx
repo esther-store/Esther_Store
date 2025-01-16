@@ -9,13 +9,14 @@ import QueryFiltersContext from "../context/filtersContext";
 import { useManageProducts } from "../hooks/useManageProducts";
 import Paginator from "../components/Paginator";
 import { Toast } from "primereact/toast";
+import { useNavigate } from "react-router-dom";
 import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 import { useIsMobileMode } from "../hooks/useIsMobileMode";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 import ActiveFilters from '../components/ActiveFilters'
 
-function ProductsManagement() {
+function ManageProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -24,6 +25,7 @@ function ProductsManagement() {
   const {promotions, loadingPromotions} = useGetPromotions()
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);
+  const navigate = useNavigate()
 
   //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
@@ -121,7 +123,7 @@ function ProductsManagement() {
       <section className="back-button-title-container">
         <button
           className="products-management-go-back-button btn-general-styles"
-          onClick={() => history.back()}
+          onClick={() => navigate("/management-menu")}
         >
           <img src={BackArrow.src} />
         </button>
@@ -186,4 +188,4 @@ function ProductsManagement() {
   );
 }
 
-export default ProductsManagement;
+export default ManageProducts;
