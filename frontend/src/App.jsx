@@ -23,6 +23,7 @@ import 'primeicons/primeicons.css';
 import './index.css'
 import {Page404} from './store_pages/Page404.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ManageCategories from './store_pages/managment/ManageCategories.jsx'
 
 function App() {
   const client = new QueryClient()
@@ -42,6 +43,7 @@ function App() {
                       <Route path = "/store/product/:productId" element = {<ProductDetailPage/>}/>
                       <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
                       <Route path = "/management/products" element = {<ProtectedRoute><ManageProducts/></ProtectedRoute>}/>
+                      <Route path = "/management/categories" element = {<ProtectedRoute><ManageCategories/></ProtectedRoute>}/>
                       <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
                       <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
                       <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>

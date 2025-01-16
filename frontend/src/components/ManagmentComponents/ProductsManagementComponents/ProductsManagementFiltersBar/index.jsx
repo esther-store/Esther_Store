@@ -1,6 +1,5 @@
 import "./index.css";
 import Search from "../../../Search";
-import CategoriesManagement from "../CategoriesManagement/index";
 import ViewToggleGrid from "@/assets/icons/view-toggle-grid.svg";
 import ViewToggleList from "@/assets/icons/view-toggle-list.svg";
 import React, { useState } from "react";
@@ -15,19 +14,11 @@ const ProductsManagementFiltersBar = React.memo(function ProductsManagementFilte
   loadingCategories,
   loadingProducts,
   selectedProducts,
-  selectedCategories,
-  setSelectedCategories,
   listView,
   setListView,
   handleDeleteMultipleProducts,
   resetProductFormProperties,
   setProductFormProperties,
-  categoryFormProperties,
-  setCategoryFormProperties,
-  handleCreateCategory,
-  handleUpdateCategory,
-  handleDeleteCategory,
-  handleDeleteMultipleCategories,
   productFormProperties,
   handleCreateProduct,
   handleUpdateProduct,
@@ -53,18 +44,6 @@ const ProductsManagementFiltersBar = React.memo(function ProductsManagementFilte
         <Search />
       </div>
       <div className="categories-management-button-container">
-        <CategoriesManagement
-          loadingCategories={loadingCategories}
-          categories={categories}
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
-          categoryFormProperties={categoryFormProperties}
-          setCategoryFormProperties={setCategoryFormProperties}
-          handleCreateCategory={handleCreateCategory}
-          handleUpdateCategory={handleUpdateCategory}
-          handleDeleteCategory={handleDeleteCategory}
-          handleDeleteMultipleCategories={handleDeleteMultipleCategories}
-        />
         <ProductForm
           productFormProperties={productFormProperties}
           resetProductFormProperties={resetProductFormProperties}

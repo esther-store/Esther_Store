@@ -10,22 +10,22 @@ import { useManageProducts } from "@/hooks/useManageProducts";
 import Paginator from "@/components/Paginator";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
-import { useManageCategories } from "@/hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "@/utils/productInitialValues";
 import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import ActiveFilters from '@/components/ActiveFilters'
+import { useGetCategories } from "@/hooks/useGetCategories";
 
 function ManageProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [listView, setListView] = useState(true);
   const {mobileMode} = useIsMobileMode({mobileWidth:840})
   const {promotions, loadingPromotions} = useGetPromotions()
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);
   const navigate = useNavigate()
+  const {categories, loading: loadingCategories} = useGetCategories()
 
   //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
@@ -34,14 +34,6 @@ function ManageProducts() {
     creatingMode: true,
     initialValues: getInitialValues(),
   });
-
-  //categories form properties state
-  const [categoryFormProperties, setCategoryFormProperties] = useState({
-    show:false,
-    initialValues:null,
-    disabled:false,
-    creatingMode:true
-  })
 
   //function to reset the product Form Properties
   function resetProductFormProperties(){
@@ -69,22 +61,6 @@ function ManageProducts() {
     setSelectedProducts: setSelectedProducts,
     resetProductFormProperties: resetProductFormProperties,
     removeAllFilters:removeAllFilters
-  });
-
-  //categories management hook
-  const {
-    categories,
-    loadingCategories,
-    handleDeleteCategory,
-    handleDeleteMultipleCategories,
-    handleCreateCategory,
-    handleUpdateCategory
-  } = useManageCategories({
-    toastRef: toast,
-    setSelectedCategories: setSelectedCategories,
-    removeAllFilters: removeAllFilters,
-    setCategoryFormProperties:setCategoryFormProperties,
-    searchParams:searchParams
   });
 
   function processUpdateProduct(product) {
@@ -137,18 +113,10 @@ function ManageProducts() {
         categories = {categories}
         handleDeleteMultipleProducts={handleDeleteProduct}
         selectedProducts={selectedProducts}
-        selectedCategories = {selectedCategories}
         toastRef={toast}
         removeAllFilters={removeAllFilters}
-        categoryFormProperties = {categoryFormProperties}
         resetProductFormProperties={resetProductFormProperties}
         setProductFormProperties={setProductFormProperties}
-        setSelectedCategories={setSelectedCategories}
-        setCategoryFormProperties = {setCategoryFormProperties}
-        handleCreateCategory = {handleCreateCategory}
-        handleUpdateCategory = {handleUpdateCategory}
-        handleDeleteCategory = {handleDeleteCategory}
-        handleDeleteMultipleCategories={handleDeleteMultipleCategories}
         productFormProperties={productFormProperties}
         handleCreateProduct = {handleCreateProduct}
         handleUpdateProduct = {handleUpdateProduct}
