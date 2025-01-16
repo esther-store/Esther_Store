@@ -1,5 +1,5 @@
 import { Dialog } from "primereact/dialog";
-import Loader from "../../Loader";
+import Loader from "../../../Loader";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import React, { useState } from "react";
 import CategoriesForm from "./CategoriesForm";

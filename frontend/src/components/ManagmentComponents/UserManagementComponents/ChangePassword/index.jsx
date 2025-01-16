@@ -1,7 +1,7 @@
 import "./index.css";
 import { Dialog } from "primereact/dialog";
 import React, { useState } from "react";
-import { changePassword } from "../../../services/ManageUser/changePassword";
+import { changePassword } from "@/services/ManageUser/changePassword";
 
 const heaerTitle = () => {
   return (

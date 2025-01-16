@@ -1,17 +1,17 @@
 import "./pagesStyles/ManagementOfertsAndSecurity.css";
 import React, { useState, useEffect, useRef,useContext } from "react";
 import useWindowSize from "../hooks/useWindowSize";
-import InfoUser from "../components/UserManagementComponents/InfoDialogComponent/infoUser";
+import InfoUser from "../components/ManagmentComponents/UserManagementComponents/InfoDialogComponent/infoUser";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { deleteUser } from "../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
-import UsersGrid from "../components/UserManagementComponents/UserGrid";
+import UsersGrid from "@/components/ManagmentComponents/UserManagementComponents/UserGrid";
 import PageLoader from "../components/PageLoader";
-import SearchOferts from "../components/UserManagementComponents/SearchOfertsComponent";
+import SearchOferts from "../components/ManagmentComponents/UserManagementComponents/SearchOfertsComponent";
 import QueryFiltersContext from "../context/filtersContext";
 import { useGetUsers } from "../hooks/useGetUsers";
 import { getUsers } from "../services/ManageUser/getUsers";
-import DataTableUsers from "../components/UserManagementComponents/DataTableUsers";
+import DataTableUsers from "../components/ManagmentComponents/UserManagementComponents/DataTableUsers";
 import AuthenticationContext from "../context/authenticationContext";
 
 const heaerTitle =(info) => {

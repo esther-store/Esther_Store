@@ -1,5 +1,5 @@
 import "./index.css";
-import Loader from "../../Loader";
+import Loader from "../../../Loader";
 import ProductManagementCard from "./ProductManagementCard";
 import React from "react";
 

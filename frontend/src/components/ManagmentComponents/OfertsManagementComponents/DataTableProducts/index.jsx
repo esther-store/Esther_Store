@@ -1,11 +1,11 @@
 import './index.css';
 import { DataScroller } from "primereact/datascroller";
 import { Checkbox } from "primereact/checkbox";
-import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
+import { getProductsOfert } from '../../../../services/ManagePromotions/getProductsOfert';
 import React, { useState,useEffect,useRef } from 'react';
 import { Image } from "primereact/image";
 import { Button } from 'primereact/button';
-import { applyDiscount } from '../../../utils/applyDiscount';
+import { applyDiscount } from '../../../../utils/applyDiscount';
 
 
 

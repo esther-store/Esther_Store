@@ -1,5 +1,5 @@
 import "./index.css"
-import Loader from "../../Loader";
+import Loader from "../../../Loader";
 import ProductCardForOfertManagement from "../ProductCard";
 
 function ProductsGridForOfertManagement({

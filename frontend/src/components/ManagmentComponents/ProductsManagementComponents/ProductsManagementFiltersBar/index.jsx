@@ -1,5 +1,5 @@
 import "./index.css";
-import Search from "../../Search";
+import Search from "../../../Search";
 import CategoriesManagement from "../CategoriesManagement/index";
 import ViewToggleGrid from "@/assets/icons/view-toggle-grid.svg";
 import ViewToggleList from "@/assets/icons/view-toggle-list.svg";

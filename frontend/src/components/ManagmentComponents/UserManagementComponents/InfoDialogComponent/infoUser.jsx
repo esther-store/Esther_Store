@@ -3,9 +3,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { Dialog } from "primereact/dialog";
 import { ChangePassword } from "../ChangePassword";
 import { Checkbox } from "primereact/checkbox";
-import AuthenticationContext from "../../../context/authenticationContext";
-import { addUsers } from "../../../services/ManageUser/addUser";
-import { updateUser } from "../../../services/ManageUser/updateUser";
+import AuthenticationContext from "@/context/authenticationContext";
+import { addUsers } from "@/services/ManageUser/addUser";
+import { updateUser } from "@/services/ManageUser/updateUser";
 
 function InfoUser({
   visible,

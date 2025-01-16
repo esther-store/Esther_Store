@@ -1,5 +1,4 @@
-import Loader from "../../Loader";
-import React, { useState, useContext } from "react";
+import Loader from "@/components/Loader";
 import "./index.css";
 import UserCard from "../UserCard";
 

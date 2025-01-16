@@ -9,7 +9,7 @@ import { addProductsToPromotion } from "@/services/ManagePromotions/addProductsT
 import AddIcon from "@/assets/icons/oferts-management-add.svg";
 import { getProductsOfert } from "@/services/ManagePromotions/getProductsOfert";
 import { useGetProducts } from "@/hooks/useGetProducts";
-import Loader from "../../Loader";
+import Loader from "../../../Loader";
 import AuthenticationContext from "@/context/authenticationContext";
 
 const heaerTitle = (info) => {
