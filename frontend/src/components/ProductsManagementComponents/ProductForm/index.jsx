@@ -67,7 +67,7 @@ function ProductForm({
         )
       }
       visible={productFormProperties.show}
-      onHide={() => resetProductFormProperties()}
+      onHide={() => !loading?resetProductFormProperties():null}
       draggable={false}
       resizable={false}
       style={{ minHeight: "95vh", minWidth: "50vw", maxWidth: "98vw" }}
@@ -288,6 +288,7 @@ function ProductForm({
           {/*Submit*/}
           {productFormProperties.disabled == false ? (
             <Button
+              disabled = {loading? 'true': false}
               label={loading? "Enviando..." : "Enviar"}
               className="btn-general-styles"
             />
@@ -297,6 +298,7 @@ function ProductForm({
             label={
               productFormProperties.creatingMode == true ? "Cancelar" : "Cerrar"
             }
+            disabled = {loading? 'true': false}
             className="btn-general-styles"
             type="button"
             onClick={() => resetProductFormProperties()}
