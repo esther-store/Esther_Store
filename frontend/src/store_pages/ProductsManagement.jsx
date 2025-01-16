@@ -58,7 +58,6 @@ function ProductsManagement() {
     loadingProducts,
     numOfProducts,
     handleDeleteProduct,
-    handleDeleteMultipleProducts,
     refetchProducts,
     handleUpdateProduct,
     handleCreateProduct
@@ -134,7 +133,7 @@ function ProductsManagement() {
         listView={listView}
         setListView = {setListView}
         categories = {categories}
-        handleDeleteMultipleProducts={handleDeleteMultipleProducts}
+        handleDeleteMultipleProducts={handleDeleteProduct}
         selectedProducts={selectedProducts}
         selectedCategories = {selectedCategories}
         toastRef={toast}

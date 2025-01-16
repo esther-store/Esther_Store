@@ -6,6 +6,7 @@ import { updateProduct } from "../services/ManageProducts/updateProduct";
 import AuthenticationContext from "../context/authenticationContext.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { showToast } from "@/utils/showToast.ts";
+import { isProductInfoValid } from "@/utils/isProductInfoValid.ts";
 
 export function useManageProducts({
   searchParams,
@@ -38,10 +39,8 @@ export function useManageProducts({
 
   //create product
   const {mutate: handleCreateProduct, isPending: loadingCreateProduct } = useMutation({mutationFn:({values}) => {
-    if (productInfoValid({ values: values })) {
+    if (isProductInfoValid({ values: values })) {
       return createProduct({ values: values, token: auth.token })        
-    }else{
-      throw new Error('Error al crear el producto. Revisa los datos')
     }
   },
   onSuccess:(newProduct) => {
@@ -67,10 +66,8 @@ export function useManageProducts({
 
   //edit product
   const {mutate: handleUpdateProduct, isPending: loadingEditProduct } = useMutation({mutationFn:({id, values}) => {
-    if (productInfoValid({ values: values, creating: false })) {
+    if (isProductInfoValid({ values: values, creating: false })) {
       return updateProduct({ id: id, values: values, token: auth.token })        
-    }else{
-      throw new Error('Error al crear el producto. Revisa los datos')
     }
   },
   onSuccess:(productInfo) => {
@@ -96,11 +93,15 @@ export function useManageProducts({
 })
   
   //delete products
-  const {mutate: handleDeleteProduct, isPending: loadingDeleteProduct } = useMutation({mutationFn:(products) => {
-    const productsId = products.map(product => product.id)
-    return deleteProducts({ products: productsId, token: auth.token })        
+  const {mutate: handleDeleteProduct, isPending: loadingDeleteProduct } = useMutation({mutationFn:(products = []) => {
+    if (products.length > 0) {
+      const productsId = products.map(product => product.id)
+      return deleteProducts({ products: productsId, token: auth.token })        
+    }else{
+      throw new Error("Debes seleccionar algun producto")
+    }
   },
-  onSuccess:(productInfo) => {
+  onSuccess:() => {
     setSelectedProducts([]);
     queryClient.invalidateQueries({queryKey: ['products-to-manage']})
     showToast({
@@ -124,80 +125,6 @@ export function useManageProducts({
   const numOfProducts = data?.count || 0;
   const loadingProducts = isLoading || loadingCreateProduct || loadingEditProduct || loadingDeleteProduct
 
-  //delete multiple products by a list of ids
-  function handleDeleteMultipleProducts(products) {
-    if (products.length > 0) {
-      //create a list only with the ids
-      const productsId = products.map((product) => product.id);
-      setLoading(true);
-      deleteProducts({ products: productsId, token: auth.token })
-        .then((res) => {
-          setUpdateProducts((prev) => !prev);
-          setSelectedProducts([]);
-          showToast({
-            severity: "success",
-            summary: "Éxito",
-            detail: "Operación Exitosa",
-          });
-        })
-        .catch((err) => {
-          setLoading(false);
-          showToast({
-            severity: "error",
-            summary: "Error",
-            detail: "Fallo en la Operación",
-          });
-        });
-    } else {
-      showToast({
-        severity: "error",
-        summary: "Error",
-        detail: "Debes seleccionar algun producto",
-      });
-    }
-  }
-
-  function productInfoValid({ values, creating = true }) {
-    if (
-      values.product_name == "" ||
-      values.product_name == null ||
-      values.product_name == undefined
-    ) {
-      showToast({
-        severity: "error",
-        summary: "Error",
-        detail: "Debes ingresar un nombre válido",
-      });
-      return false;
-    }
-    if (
-      values.precio == "" ||
-      values.precio == null ||
-      values.precio == undefined
-    ) {
-      showToast({
-        severity: "error",
-        summary: "Error",
-        detail: "Debes ingresar un precio válido",
-      });
-      return false;
-    }
-    if (
-      creating == true &&
-      (values.product_img1 == "" ||
-        values.product_img1 == null ||
-        values.product_img1 == undefined)
-    ) {
-      showToast({
-        severity: "error",
-        summary: "Error",
-        detail: "Debes ingresar al menos la primera imagen",
-      });
-      return false;
-    }
-    return true;
-  }
-
   return {
     products,
     loadingProducts,
@@ -206,7 +133,6 @@ export function useManageProducts({
     refetchProducts,
     showToast,
     handleDeleteProduct,
-    handleDeleteMultipleProducts,
     handleUpdateProduct,
     handleCreateProduct,
   };

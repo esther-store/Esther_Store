@@ -1,7 +1,6 @@
 import {URL_MANAGE_PRODUCTS} from "../../settings"
 
 export function deleteProducts({products, token = ""}){
-    console.log(products)
     return(
         fetch(URL_MANAGE_PRODUCTS,{
             method: 'DELETE',
