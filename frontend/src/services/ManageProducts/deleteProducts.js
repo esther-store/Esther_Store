@@ -12,7 +12,7 @@ export function deleteProducts({products, token = ""}){
         })
         .then(response => {
             if(response.status == 200){
-                return response
+                return {response: response, deletedProductsId: products}
             }
             else{
                 throw new Error("Error en la operación")

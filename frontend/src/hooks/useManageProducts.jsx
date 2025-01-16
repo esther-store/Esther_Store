@@ -103,9 +103,13 @@ export function useManageProducts({
           throw new Error("Debes seleccionar algun producto");
         }
       },
-      onSuccess: () => {
+      onSuccess: ({deletedProductsId}) => {
         setSelectedProducts([]);
-        queryClient.invalidateQueries({ queryKey: ["products-to-manage"] });
+        //removing deleted products from products list
+        queryClient.setQueryData(['products-to-manage'], (oldProducts) => {
+             if(oldProducts == null) return []
+             return oldProducts.filter(product => deletedProductsId.indexOf(product.id) === -1)
+          })
         showToast({
           toastRef: toastRef,
           severity: "success",

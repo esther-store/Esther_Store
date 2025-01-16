@@ -33,7 +33,7 @@ function ProductForm({
     updateProduct,
     createProduct,
     recommendedCheck,
-    setRecommendedCheck
+    setRecommendedCheck,
   } = useManageProductForm({
     productFormProperties: productFormProperties,
     handleCreateProduct: handleCreateProduct,
@@ -45,7 +45,6 @@ function ProductForm({
     formProperties: productFormProperties,
     isProductForm: true,
   });
-  console.log(imagesPreview)
   return (
     <Dialog
       position="right"
@@ -68,7 +67,7 @@ function ProductForm({
         )
       }
       visible={productFormProperties.show}
-      onHide={() => !loading?resetProductFormProperties():null}
+      onHide={() => (!loading ? resetProductFormProperties() : null)}
       draggable={false}
       resizable={false}
       style={{ minHeight: "95vh", minWidth: "50vw", maxWidth: "98vw" }}
@@ -289,8 +288,8 @@ function ProductForm({
           {/*Submit*/}
           {productFormProperties.disabled == false ? (
             <Button
-              disabled = {loading? 'true': false}
-              label={loading? "Enviando..." : "Enviar"}
+              disabled={loading ? "true" : false}
+              label={loading ? "Enviando..." : "Enviar"}
               className="btn-general-styles"
             />
           ) : null}
@@ -299,7 +298,7 @@ function ProductForm({
             label={
               productFormProperties.creatingMode == true ? "Cancelar" : "Cerrar"
             }
-            disabled = {loading? 'true': false}
+            disabled={loading ? "true" : false}
             className="btn-general-styles"
             type="button"
             onClick={() => resetProductFormProperties()}
