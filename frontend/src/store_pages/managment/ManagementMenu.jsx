@@ -29,6 +29,12 @@ function ManagementMenu (){
                                     <img src={ProductsManagement.src} alt="products" width="55px"/>
                                 </div>
                         </div>
+                        <div title="oferts-section" className="management-menu-section" onClick={()=>navigate("/management/categories")}>
+                            <h4>Categorías</h4>
+                            <div className="icon-management-section">
+                                <img src={OfertsManagement.src} alt="oferts" width="55px"/> 
+                            </div>
+                        </div>
                         <div title="oferts-section" className="management-menu-section" onClick={()=>navigate("/management/oferts")}>
                             <h4>Ofertas</h4>
                             <div className="icon-management-section">

@@ -64,7 +64,7 @@ function ManageCategories() {
       }));
     }
   return (
-    <main style = {{minHeight:'90vh'}}>
+    <main style = {{minHeight:'90vh', paddingTop:"50px"}}>
       <Toast ref={toast} position="bottom-center" />
       <section className="categories-management-modal-content-container">
           {loadingCategories ? (
