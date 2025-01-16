@@ -45,6 +45,7 @@ function ProductForm({
     formProperties: productFormProperties,
     isProductForm: true,
   });
+  console.log(imagesPreview)
   return (
     <Dialog
       position="right"
@@ -216,7 +217,7 @@ function ProductForm({
             />
             <label htmlFor="img1">
               {imagesPreview[0] ? (
-                <img src={imagesPreview[0].src} />
+                <img src={imagesPreview[0]} />
               ) : (
                 <div className="image-selector">
                   <img src={ImagePlaceholder.src} />
@@ -238,7 +239,7 @@ function ProductForm({
             />
             <label htmlFor="img2">
               {imagesPreview[1] ? (
-                <img src={imagesPreview[1].src} />
+                <img src={imagesPreview[1]} />
               ) : (
                 <div className="image-selector">
                   <img src={ImagePlaceholder.src} />
