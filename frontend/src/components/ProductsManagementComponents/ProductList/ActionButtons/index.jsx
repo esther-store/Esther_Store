@@ -19,7 +19,7 @@ function ActionButtons({item, handleDelete, handleEdit = () => {}, handleDetil =
                 message="Deseas continuar con la operación?" 
                 header="Confirmación" 
                 icon="pi pi-exclamation-triangle" 
-                accept={() => handleDelete(item.id)} 
+                accept={() => handleDelete([item])} 
                 draggable = {false}
                 resizable = {false}
                 style={{maxWidth:"90%"}}

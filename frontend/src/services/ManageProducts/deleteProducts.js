@@ -1,6 +1,7 @@
 import {URL_MANAGE_PRODUCTS} from "../../settings"
 
 export function deleteProducts({products, token = ""}){
+    console.log(products)
     return(
         fetch(URL_MANAGE_PRODUCTS,{
             method: 'DELETE',
@@ -15,7 +16,7 @@ export function deleteProducts({products, token = ""}){
                 return response
             }
             else{
-                throw new Error("Error al eliminar el producto")
+                throw new Error("Error en la operación")
             }
         })
     )

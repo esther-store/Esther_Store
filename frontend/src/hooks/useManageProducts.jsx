@@ -94,33 +94,35 @@ export function useManageProducts({
     });
   }
 })
+  
+  //delete products
+  const {mutate: handleDeleteProduct, isPending: loadingDeleteProduct } = useMutation({mutationFn:(products) => {
+    const productsId = products.map(product => product.id)
+    return deleteProducts({ products: productsId, token: auth.token })        
+  },
+  onSuccess:(productInfo) => {
+    setSelectedProducts([]);
+    queryClient.invalidateQueries({queryKey: ['products-to-manage']})
+    showToast({
+      toastRef: toastRef,
+      severity: "success",
+      summary: "Éxito",
+      detail: "Operación Exitosa",
+    });
+  },
+  onError:(err) => {
+    showToast({
+      toastRef: toastRef,
+      severity: "error",
+      summary: "Error",
+      detail: err.message,
+    });
+  }
+})
 
   const products = data?.results || [];
   const numOfProducts = data?.count || 0;
-  const loadingProducts = isLoading || loadingCreateProduct || loadingEditProduct
-
-  //delete one product by its id
-  function handleDeleteProduct(productId) {
-    setLoading(true);
-    deleteProducts({ products: [productId], token: auth.token })
-      .then((res) => {
-        setUpdateProducts((prev) => !prev);
-        setSelectedProducts([]);
-        showToast({
-          severity: "success",
-          summary: "Éxito",
-          detail: "Operación Exitosa",
-        });
-      })
-      .catch((err) => {
-        setLoading(false);
-        showToast({
-          severity: "error",
-          summary: "Error",
-          detail: "Fallo en la Operación",
-        });
-      });
-  }
+  const loadingProducts = isLoading || loadingCreateProduct || loadingEditProduct || loadingDeleteProduct
 
   //delete multiple products by a list of ids
   function handleDeleteMultipleProducts(products) {
