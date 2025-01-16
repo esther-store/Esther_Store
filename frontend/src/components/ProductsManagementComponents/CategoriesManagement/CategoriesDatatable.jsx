@@ -2,8 +2,9 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import BoxIcon from "@/assets/icons/box-icon.svg";
 import ActionButtons from "../ProductList/ActionButtons";
+import React from "react";
 
-function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory, processUpdateCategory, processDetailCategory}) {
+const CategoriesDatatable = React.memo(function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory, processUpdateCategory, processDetailCategory}) {
     return ( 
         <DataTable
             value={categories}
@@ -52,6 +53,6 @@ function CategoriesDatatable({categories, selectedCategories, setSelectedCategor
             />
           </DataTable>
      );
-}
+})
 
 export default CategoriesDatatable;

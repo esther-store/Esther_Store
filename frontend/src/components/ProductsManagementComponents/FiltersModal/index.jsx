@@ -7,7 +7,7 @@ import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
 
-function FiltersModal({
+const FiltersModal = React.memo(function FiltersModal({
   categories,
   loadingCategories,
   promotions,
@@ -88,6 +88,6 @@ function FiltersModal({
       </Dialog>
     </section>
   );
-}
+})
 
 export default FiltersModal;

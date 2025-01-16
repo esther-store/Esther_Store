@@ -10,9 +10,10 @@ import AddIcon from "@/assets/icons/oferts-management-add.svg";
 import EditIcon from "@/assets/icons/edit-icon.svg";
 import DetailIcon from "@/assets/icons/eye-icon.svg";
 import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";
+import React from "react";
 import "./index.css";
 
-function ProductForm({
+const ProductForm = React.memo(function ProductForm({
   productFormProperties,
   resetProductFormProperties,
   handleCreateProduct,
@@ -307,6 +308,6 @@ function ProductForm({
       </form>
     </Dialog>
   );
-}
+})
 
 export default ProductForm;

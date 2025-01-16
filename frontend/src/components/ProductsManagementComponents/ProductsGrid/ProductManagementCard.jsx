@@ -1,7 +1,8 @@
 import ActionButtons from "../ProductList/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
+import React from "react";
 
-function ProductManagementCard({product, handleDeleteProduct, processDetailProduct, processUpdateProduct, selectedProducts, handleCheckProduct}) {
+const ProductManagementCard = React.memo(function ProductManagementCard({product, handleDeleteProduct, processDetailProduct, processUpdateProduct, selectedProducts, handleCheckProduct}) {
     return ( 
         <div
           className="product-management-card"
@@ -34,6 +35,6 @@ function ProductManagementCard({product, handleDeleteProduct, processDetailProdu
           </div>
         </div>
      );
-}
+})
 
 export default ProductManagementCard;

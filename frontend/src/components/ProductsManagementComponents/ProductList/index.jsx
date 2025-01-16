@@ -5,26 +5,24 @@ import DeactiveStatusIcon from "@/assets/icons/deactive-status-icon.svg";
 import BoxIcon from "@/assets/icons/box-icon.svg";
 import ActionButtons from "./ActionButtons";
 import Loader from "../../Loader";
-import BlockIcon from '@/assets/icons/block-icon.svg'
+import BlockIcon from "@/assets/icons/block-icon.svg";
 import "./index.css";
+import React from "react";
 
-function ProductList({
+const ProductList = React.memo(function ProductList({
   products,
   loading,
   selectedProducts,
   setSelectedProducts,
   handleDeleteProduct,
   processUpdateProduct,
-  processDetailProduct
+  processDetailProduct,
 }) {
   return (
-    
     <section className="products-management-list-table-container">
-      {loading? (
+      {loading ? (
         <section className="products-management-list-loader-container">
-          <div>
-            <Loader />
-          </div>
+          <Loader />
         </section>
       ) : null}
       <DataTable
@@ -52,22 +50,22 @@ function ProductList({
             );
           }}
         ></Column>
-        <Column 
-          field="categoria_full_info.nombre" 
+        <Column
+          field="categoria_full_info.nombre"
           header="Categoría"
           body={(product) => {
-            return product.categoria == '' || product.categoria == null ? (
-              <img src = {BlockIcon.src}/>
+            return product.categoria == "" || product.categoria == null ? (
+              <img src={BlockIcon.src} />
             ) : (
               product.categoria_full_info.nombre
             );
           }}
-          ></Column>
+        ></Column>
         <Column
           field="is_active"
           header="Estado"
           body={(product) => {
-            return product.is_active == true? (
+            return product.is_active == true ? (
               <img src={ActiveStatusIcon.src} />
             ) : (
               <img src={DeactiveStatusIcon.src} />
@@ -84,17 +82,19 @@ function ProductList({
         <Column
           header="Acciones"
           body={(product) => {
-            return <ActionButtons 
-                item={product} 
+            return (
+              <ActionButtons
+                item={product}
                 handleDelete={handleDeleteProduct}
                 handleDetil={processDetailProduct}
                 handleEdit={processUpdateProduct}
-                />;
+              />
+            );
           }}
         ></Column>
       </DataTable>
     </section>
   );
-}
+});
 
 export default ProductList;

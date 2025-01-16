@@ -1,7 +1,8 @@
 import AddProductIcon from "@/assets/icons/add-product-icon.svg";
 import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
+import React from "react";
 
-function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) {
+const ButtonsAddAndDelete = React.memo(function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) {
     return ( 
         <div className="buttons-add-delete-container">
             <div className="add-product-button-container">
@@ -30,6 +31,6 @@ function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) 
             </div>
           </div>
      );
-}
+})
 
 export default ButtonsAddAndDelete;

@@ -10,7 +10,7 @@ import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import ProductForm from "../ProductForm";
 
-function ProductsManagementFiltersBar({
+const ProductsManagementFiltersBar = React.memo(function ProductsManagementFiltersBar({
   categories,
   loadingCategories,
   loadingProducts,
@@ -112,6 +112,6 @@ function ProductsManagementFiltersBar({
       </div>
     </section>
   );
-}
+})
 
 export default ProductsManagementFiltersBar;

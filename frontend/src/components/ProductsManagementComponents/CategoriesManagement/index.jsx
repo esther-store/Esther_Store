@@ -10,7 +10,7 @@ import TagIcon from "@/assets/icons/tag-icon.svg";
 import {useIsMobileMode} from '@/hooks/useIsMobileMode'
 import "./index.css";
 
-function CategoriesManagement({
+const CategoriesManagement = React.memo(function CategoriesManagement({
   loadingCategories,
   categories,
   selectedCategories,
@@ -75,9 +75,7 @@ function CategoriesManagement({
         <section className="categories-management-modal-content-container">
           {loadingCategories ? (
             <section className="categories-management-list-loader-container">
-              <div>
                 <Loader />
-              </div>
             </section>
           ) : null}
           <section>
@@ -128,6 +126,6 @@ function CategoriesManagement({
       </Dialog>
     </section>
   );
-}
+})
 
 export default CategoriesManagement;

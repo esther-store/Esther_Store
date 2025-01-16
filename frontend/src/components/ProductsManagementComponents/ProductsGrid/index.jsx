@@ -1,8 +1,9 @@
 import "./index.css";
 import Loader from "../../Loader";
 import ProductManagementCard from "./ProductManagementCard";
+import React from "react";
 
-function ProductsGrid({
+const ProductsGrid = React.memo(function ProductsGrid({
   products,
   loading,
   selectedProducts,
@@ -26,9 +27,7 @@ function ProductsGrid({
     <section className="products-management-grid">
       {loading ? (
         <section className="products-management-grid-loader-container">
-          <div>
             <Loader />
-          </div>
         </section>
       ) : null}
       {products.map((product) => (
@@ -44,6 +43,6 @@ function ProductsGrid({
       ))}
     </section>
   );
-}
+})
 
 export default ProductsGrid;

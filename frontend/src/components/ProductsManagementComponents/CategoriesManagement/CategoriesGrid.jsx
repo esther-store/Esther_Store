@@ -1,7 +1,8 @@
 import ActionButtons from "../ProductList/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
+import React from "react";
 
-function CategoriesGrid({
+const CategoriesGrid = React.memo(function CategoriesGrid({
   categories,
   selectedCategories,
   setSelectedCategories,
@@ -57,6 +58,6 @@ function CategoriesGrid({
       ))}
     </section>
   );
-}
+})
 
 export default CategoriesGrid;
