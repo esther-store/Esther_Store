@@ -1,14 +1,14 @@
-import "./pagesStyles/ManagementContact.css";
+import "@/store_pages/pagesStyles/ManagementContact.css";
 import "primeicons/primeicons.css";
 
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { AuthenticationContext } from "../context/authenticationContext.jsx";
+import { AuthenticationContext } from "@/context/authenticationContext.jsx";
 
 import {
   getContactInfo,
   editContactInfo,
-} from "../services/ManageContact/contact_info_management";
+} from "@/services/ManageContact/contact_info_management";
 
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";

@@ -1,4 +1,4 @@
-import "./pagesStyles/ManagementMenu.css";
+import "../pagesStyles/ManagementMenu.css";
 import ProductsManagement from "@/assets/icons/products-management.svg";
 import OfertsManagement from "@/assets/icons/oferts-management.svg";
 import SecurityManagement from "@/assets/icons/security-management.svg";

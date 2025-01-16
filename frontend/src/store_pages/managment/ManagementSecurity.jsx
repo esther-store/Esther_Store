@@ -1,35 +1,34 @@
-import "./pagesStyles/ManagementOfertsAndSecurity.css";
-import React, { useState, useEffect, useRef, useContext } from "react";
-import useWindowSize from "../hooks/useWindowSize";
-import { getPromotions } from "../services/ManagePromotions/getPromotions";
-import InfoPromotion from "../components/ManagmentComponents/OfertsManagementComponents/InfoDialogComponent/infoPromotion";
+import "../pagesStyles/ManagementOfertsAndSecurity.css";
+import React, { useState, useEffect, useRef,useContext } from "react";
+import useWindowSize from "../../hooks/useWindowSize";
+import InfoUser from "../../components/ManagmentComponents/UserManagementComponents/InfoDialogComponent/infoUser";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
-import { deletePromotions } from "../services/ManagePromotions/deletePrmotion";
+import { deleteUser } from "../../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
-import { useGetPromotions } from "../hooks/useGetPromotions";
-import OfertsGrid from "../components/ManagmentComponents/OfertsManagementComponents/OfertsGrid";
-import PageLoader from "../components/PageLoader";
-import DataTableOferts from "../components/ManagmentComponents/OfertsManagementComponents/DataTableOferts";
-import SearchOferts from "../components/ManagmentComponents/OfertsManagementComponents/SearchOfertsComponent";
-import DataScrollerOferts from "../components/ManagmentComponents/OfertsManagementComponents/DataScrollerOferts";
-import QueryFiltersContext from "../context/filtersContext";
-import AuthenticationContext from "../context/authenticationContext";
-import { useNavigate } from "react-router-dom";
+import UsersGrid from "@/components/ManagmentComponents/UserManagementComponents/UserGrid";
+import PageLoader from "../../components/PageLoader";
+import SearchOferts from "../../components/ManagmentComponents/UserManagementComponents/SearchOfertsComponent";
+import QueryFiltersContext from "../../context/filtersContext";
+import { useGetUsers } from "../../hooks/useGetUsers";
+import { getUsers } from "../../services/ManageUser/getUsers";
+import DataTableUsers from "../../components/ManagmentComponents/UserManagementComponents/DataTableUsers";
+import AuthenticationContext from "../../context/authenticationContext";
 
 const heaerTitle =(info) => {
   return(
     <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
-      <i className="pi pi-tag "></i>
+      <i className="pi pi-user "></i>
       <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
     </div>
   )
 }
 
 //Management Ofert Component
-function ManagementOferts() {
-  const [selectedOferts, setSelectedOferts] = useState([]);
+function ManagementSecurity() {
+  const {auth} = useContext(AuthenticationContext)
+  const [selectedUsers, setSelectedUsers] = useState([]);
   const mobileView = useWindowSize("max", 800);
-  const [dataOferts, setDataOferts] = useState([]);
+  const [dataUsers, setDataUsers] = useState([]);
   const responsive = useWindowSize("max", 600);
   const [infoDialogStatus, setInfoDialogStatus] = useState(false);
   const [infoDialogEdit, setInfoDialogEdit] = useState(false);
@@ -38,13 +37,10 @@ function ManagementOferts() {
   const toast = useRef(null);
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
-  const [numOfOferts, setNumOferts] = useState(0) 
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
-  const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
-  const {auth} = useContext(AuthenticationContext)
-  const navigate = useNavigate();
+  const {loading,setLoading} = useGetUsers({searchParams:searchParams,setUsers:setDataUsers})
 
   useEffect(() => {
     if(mounted){
@@ -54,8 +50,7 @@ function ManagementOferts() {
     else{
         setMounted(true)
     }
-},[search])
-
+},[search]) 
 
   //Function for show delete messange when ofert is deleted
   const show = (detail,severity) => {
@@ -77,21 +72,21 @@ function ManagementOferts() {
         return false;
     };
 
-  const handleOnChangeChecked = (oferts,data) =>{
-       var copyOferts = [] 
-        if(oferts.length > 0){
-        for(let i = 0; i < oferts.length; i++) {
-            if(oferts[i] !== data){
-                copyOferts.push(oferts[i]);
+  const handleOnChangeChecked = (users,data) =>{
+    var copyUsers = []
+        if(users.length > 0){
+        for(let i = 0; i < users.length; i++) {
+            if(users[i] !== data){
+                copyUsers.push(users[i]);
             }
         }
-            if(copyOferts.length == oferts.length){ 
-                copyOferts.push(data);
+            if(copyUsers.length == users.length){ 
+              copyUsers.push(data);
             }
-            setSelectedOferts(copyOferts);
+            setSelectedUsers(copyUsers);
         }else{
-            copyOferts.push(data)
-            setSelectedOferts(copyOferts);
+          copyUsers.push(data)
+            setSelectedUsers(copyUsers);
         }
     };
 
@@ -103,15 +98,15 @@ function ManagementOferts() {
     };
   const confirm2 = (id) => {
     confirmDialog({
-      message: "Esta seguro que desea eliminar esta promoción?",
+      message: "Esta seguro que desea eliminar este usuario?",
       header: "Delete Confirmation",
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {
         setLoading(true);
-        deletePromotions({ promotions: [id],token:auth.token }).then(() => {
-          getPromotions("",auth.token,).then((result) => {
-            setDataOferts(result);
+        deleteUser({ users:[id],token:auth.token }).then(() => {
+          getUsers("",auth.token).then((users) => {
+            setDataUsers(users.results);
             setLoading(false);
             show("Eliminación completada","success");
           });
@@ -134,12 +129,12 @@ function ManagementOferts() {
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {
-        deletePromotions({ promotions: dataId,token:auth.token}).then(() => {
-          getPromotions("",auth.token).then((result) => {
-            setDataOferts(result);
+        deleteUser({ users: dataId,token:auth.token }).then(() => {
+          getUsers("",auth.token).then((result) => {
+            setDataUsers(result.results);
             show("Eliminación completada","success");
           });
-          setSelectedOferts([])
+          setSelectedUsers([])
         }); 
       },
       reject: () => {},
@@ -147,8 +142,8 @@ function ManagementOferts() {
   };
 
   const handleOnChangeData = () => {
-    getPromotions("",auth.token).then((promotions) => {
-      setDataOferts(promotions);
+    getUsers("",auth.token).then((users) => {
+      setDataUsers(users.results);
     });
   };
   const handleOnClickInfoButton = () => {
@@ -167,20 +162,20 @@ function ManagementOferts() {
       <PageLoader visible={loading} onHide={()=> null}/>
       <Toast ref={toast} position="bottom-center"/>
       <ConfirmDialog />
-      <InfoPromotion
+      <InfoUser
         editable={false}
-        heaerTitle={heaerTitle("Información de promoción")}
+        heaerTitle={heaerTitle("Información de usuario")}
         data={rowData}
         visible={infoDialogStatus}
         onHide={handleOnClickInfoButton}
         setPageLoad={setLoading}
         mobileSize={responsive}
       />
-      <InfoPromotion
+      <InfoUser
         accion={"update"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={heaerTitle("Editar información de promoción")}
+        heaerTitle={heaerTitle("Editar información de usuario")}
         data={rowData}
         visible={infoDialogEdit}
         onHide={handleOnClickEditButton}
@@ -188,11 +183,11 @@ function ManagementOferts() {
         show={show}
         mobileSize={responsive}
       />
-      <InfoPromotion
+      <InfoUser
         accion={"create"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={heaerTitle("Agregar promoción")}
+        heaerTitle={heaerTitle("Agregar usuario")}
         data={{}}
         visible={infoDialogCreate}
         onHide={handleOnClickCreateButton}
@@ -208,14 +203,14 @@ function ManagementOferts() {
         >
           <i className="pi pi-arrow-left" ></i>
         </button>
-        <h1>Gestión de Ofertas</h1>
+        <h1 className="management-user-title">Gestión de Usuarios</h1>
       </header>
       {/* Seccion de la barra de busqueda */}
       <SearchOferts
         confirmAll={confirmAll}
         handelOnChangeView={handelOnChangeView}
         handleOnClickCreateButton={handleOnClickCreateButton}
-        selectedOferts={selectedOferts}
+        selectedOferts={selectedUsers}
         setSearch={setSearch}
         show={show}
         responsive={responsive}
@@ -224,38 +219,38 @@ function ManagementOferts() {
       />
       {/* Tabla de ofertas */}
       <section className={viewMode=="table"?"table-oferts-container":"table-oferts-container not-overfllow-x"}>
-        {!mobileView && viewMode !=="grid"? (
-          <DataTableOferts
-            dataOferts={dataOferts}
-            selectedOferts={selectedOferts}
-            setSelectedOferts={setSelectedOferts}
+      {!mobileView && viewMode !=="grid"? (
+          <DataTableUsers
+            dataUsers={dataUsers}
+            selectedUSers={selectedUsers}
+            setelectedUSers={setDataUsers}
             confirm2={confirm2}
             handleOnClickEditButton={handleOnClickEditButton}
             setRowData={setRowData}
             handleOnClickInfoButton={handleOnClickInfoButton}
+            setSelectedUSers={setSelectedUsers}
           />
         ) : viewMode =="grid"?
-          <OfertsGrid 
+          <UsersGrid 
             deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
             handleOnClickEditButton={handleOnClickEditButton}
             handleOnClickInfoButton={handleOnClickInfoButton}
             searchChecked={searchChecked}
             setRowData={setRowData}
-            selectedOferts={selectedOferts}
-            oferts={dataOferts}
-            numOfOferts={numOfOferts}
+            selectedUsers={selectedUsers}
+            users={dataUsers}
           />
         :(
-          <DataScrollerOferts
-            dataOferts={dataOferts}
-            confirm2={confirm2}
+          <UsersGrid 
+            deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
             handleOnClickEditButton={handleOnClickEditButton}
             handleOnClickInfoButton={handleOnClickInfoButton}
             searchChecked={searchChecked}
-            selectedOferts={selectedOferts}
             setRowData={setRowData}
+            selectedUsers={selectedUsers}
+            users={dataUsers}
           />
         )}
       </section>
@@ -263,4 +258,4 @@ function ManagementOferts() {
   );
 }
 
-export default ManagementOferts;
+export default ManagementSecurity;

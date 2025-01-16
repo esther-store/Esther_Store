@@ -1,20 +1,20 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import "./pagesStyles/ProductsManagement.css";
+import "@/store_pages/pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
-import BackArrow from "../assets/icons/products-management-back-icon.svg";
-import ProductsManagementFiltersBar from "../components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
-import ProductList from "../components/ManagmentComponents/ProductsManagementComponents/ProductList";
-import ProductsGrid from "../components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index";
-import QueryFiltersContext from "../context/filtersContext";
-import { useManageProducts } from "../hooks/useManageProducts";
-import Paginator from "../components/Paginator";
+import BackArrow from "@/assets/icons/products-management-back-icon.svg";
+import ProductsManagementFiltersBar from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
+import ProductList from "@/components/ManagmentComponents/ProductsManagementComponents/ProductList";
+import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index";
+import QueryFiltersContext from "@/context/filtersContext";
+import { useManageProducts } from "@/hooks/useManageProducts";
+import Paginator from "@/components/Paginator";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
-import { useManageCategories } from "../hooks/useManageCategories";
-import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
-import { useIsMobileMode } from "../hooks/useIsMobileMode";
-import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
-import ActiveFilters from '../components/ActiveFilters'
+import { useManageCategories } from "@/hooks/useManageCategories";
+import { getInitialValues, createProductInitialValues } from "@/utils/productInitialValues";
+import { useIsMobileMode } from "@/hooks/useIsMobileMode";
+import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import ActiveFilters from '@/components/ActiveFilters'
 
 function ManageProducts() {
   const toast = useRef(null);
