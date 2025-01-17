@@ -1,7 +1,7 @@
 import './App.css'
 import {HashRouter as Router, Route, Routes} from 'react-router-dom'
 import Store from './store_pages/Store'
-import ManageProducts from './store_pages/managment/ManageProducts.jsx'
+import ManagementProducts from './store_pages/managment/ManagementProducts.jsx'
 import Home from './store_pages/Home'
 import ManagementMenu from './store_pages/managment/ManagementMenu.jsx'
 import { PrimeReactProvider } from 'primereact/api';
@@ -23,7 +23,7 @@ import 'primeicons/primeicons.css';
 import './index.css'
 import {Page404} from './store_pages/Page404.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import ManageCategories from './store_pages/managment/ManageCategories.jsx'
+import ManagementCategories from './store_pages/managment/ManagementCategories.jsx'
 
 function App() {
   const client = new QueryClient()
@@ -42,8 +42,8 @@ function App() {
                       <Route path = "/store" element = {<Store/>}/>
                       <Route path = "/store/product/:productId" element = {<ProductDetailPage/>}/>
                       <Route path = "/management-menu" element = {<ProtectedRoute><ManagementMenu/></ProtectedRoute>}/>
-                      <Route path = "/management/products" element = {<ProtectedRoute><ManageProducts/></ProtectedRoute>}/>
-                      <Route path = "/management/categories" element = {<ProtectedRoute><ManageCategories/></ProtectedRoute>}/>
+                      <Route path = "/management/products" element = {<ProtectedRoute><ManagementProducts/></ProtectedRoute>}/>
+                      <Route path = "/management/categories" element = {<ProtectedRoute><ManagementCategories/></ProtectedRoute>}/>
                       <Route path = "/management/oferts" element = {<ProtectedRoute><ManagementOferts/></ProtectedRoute>}/>
                       <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
                       <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>

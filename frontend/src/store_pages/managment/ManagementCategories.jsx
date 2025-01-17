@@ -10,7 +10,7 @@ import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesMana
 import {useIsMobileMode} from '@/hooks/useIsMobileMode'
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
 
-function ManageCategories() {
+function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const toast = useRef(null);
   //categories form properties state
@@ -121,4 +121,4 @@ function ManageCategories() {
   );
 }
 
-export default ManageCategories;
+export default ManagementCategories;

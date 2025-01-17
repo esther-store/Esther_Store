@@ -7,12 +7,7 @@ import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
 
-const FiltersModal = React.memo(function FiltersModal({
-  categories,
-  loadingCategories,
-  promotions,
-  loadingPromotions,
-}) {
+const FiltersModal = React.memo(function FiltersModal() {
   const [showModal, setShowModal] = useState(false);
   const [recommendedFilterCheck, setRecommendedFilterCheck] = useState(false)
   const [inactiveFilterCheck, setInactiveFilterCheck] = useState(false)
@@ -60,10 +55,6 @@ const FiltersModal = React.memo(function FiltersModal({
         <OrderingProducts />
         <CategorieSideBar
           forceMobileMode={true}
-          categories={categories}
-          loading={loadingCategories}
-          promotions={promotions}
-          loadingPromotions={loadingPromotions}
         />
         {/*products recommended filter*/}
         <div className="recommended-products-checkbox">

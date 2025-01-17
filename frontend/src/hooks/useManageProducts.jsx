@@ -25,12 +25,16 @@ export function useManageProducts({
     refetch: refetchProducts,
   } = useQuery({
     queryKey: ["products-to-manage", searchParams.toString(), auth.token],
-    queryFn: () =>
-      getProductsToManage({
+    queryFn: () =>{
+      return getProductsToManage({
         filters: searchParams.toString(),
         token: auth.token,
-      }),
+      })},
     staleTime: 1000 * 60 * 30,
+    retry: (failuresCount) => {
+      if(failuresCount >= 2) return false
+      return true
+    },
   });
 
   //create product

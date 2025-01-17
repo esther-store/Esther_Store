@@ -10,8 +10,6 @@ import { ConfirmDialog } from "primereact/confirmdialog";
 import ProductForm from "../ProductForm";
 
 const ProductsManagementFiltersBar = React.memo(function ProductsManagementFiltersBar({
-  categories,
-  loadingCategories,
   loadingProducts,
   selectedProducts,
   listView,
@@ -22,8 +20,6 @@ const ProductsManagementFiltersBar = React.memo(function ProductsManagementFilte
   productFormProperties,
   handleCreateProduct,
   handleUpdateProduct,
-  promotions,
-  loadingPromotions,
 }) {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   return (
@@ -49,8 +45,6 @@ const ProductsManagementFiltersBar = React.memo(function ProductsManagementFilte
           resetProductFormProperties={resetProductFormProperties}
           handleCreateProduct={handleCreateProduct}
           handleUpdateProduct={handleUpdateProduct}
-          categories={categories}
-          promotions={promotions}
           loading={loadingProducts}
         />
       </div>
@@ -62,12 +56,7 @@ const ProductsManagementFiltersBar = React.memo(function ProductsManagementFilte
         />
       </div>
       <div className="filters-modal-button-container">
-        <FiltersModal
-          categories={categories}
-          loadingCategories={loadingCategories}
-          promotions={promotions}
-          loadingPromotions={loadingPromotions}
-        />
+        <FiltersModal/>
       </div>
       <div className="add-product-button-container">
         <button
