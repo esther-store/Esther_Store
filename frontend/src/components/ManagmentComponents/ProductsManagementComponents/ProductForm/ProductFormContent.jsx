@@ -9,6 +9,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import React from "react";
+import Loader from "@/components/Loader";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -88,33 +89,45 @@ const ProductFormContent = React.memo(function ProductFormContent({
       {/*category*/}
       <div className="product-form-field">
         <label htmlFor="category">Categoría</label>
-        <Dropdown
-          id="category"
-          aria-describedby="category-help"
-          disabled={productFormProperties.disabled}
-          value={categorySelected}
-          onChange={(e) => setCategorySelected(e.value)}
-          options={categoriesOptions}
-          optionLabel="name"
-          placeholder="Ninguna"
-          className="w-full md:w-14rem product-form-dropdown"
-        />
+        {loadingCategories ? (
+          <div style={{ width: "50px" }}>
+            <Loader />
+          </div>
+        ) : (
+          <Dropdown
+            id="category"
+            aria-describedby="category-help"
+            disabled={productFormProperties.disabled}
+            value={categorySelected}
+            onChange={(e) => setCategorySelected(e.value)}
+            options={categoriesOptions}
+            optionLabel="name"
+            placeholder="Ninguna"
+            className="w-full md:w-14rem product-form-dropdown"
+          />
+        )}
       </div>
       {/*promotion*/}
       <div className="product-form-field">
         <label htmlFor="promotion">Oferta</label>
-        <Dropdown
-          id="promotion"
-          aria-describedby="promotion-help"
-          disabled={productFormProperties.disabled}
-          value={promotionSelected}
-          onChange={(e) => setPromotionSelected(e.value)}
-          options={promotionsOptions}
-          optionLabel="name"
-          placeholder="Ninguna"
-          className="w-full md:w-14rem product-form-dropdown"
-          style={{ minWidth: "150px" }}
-        />
+        {loadingPromotions ? (
+          <div style={{ width: "50px" }}>
+            <Loader />
+          </div>
+        ) : (
+          <Dropdown
+            id="promotion"
+            aria-describedby="promotion-help"
+            disabled={productFormProperties.disabled}
+            value={promotionSelected}
+            onChange={(e) => setPromotionSelected(e.value)}
+            options={promotionsOptions}
+            optionLabel="name"
+            placeholder="Ninguna"
+            className="w-full md:w-14rem product-form-dropdown"
+            style={{ minWidth: "150px" }}
+          />
+        )}
       </div>
       {/*active*/}
       <div className="product-form-active-checkbox">
