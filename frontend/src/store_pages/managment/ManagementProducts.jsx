@@ -126,10 +126,19 @@ function ManagementProducts() {
         <h3>Gestión de Productos</h3>
       </section>
       {errorGettingProducts ? (
-        <RetryQueryComponent
-          message="Error obteniendo los productos. Revisa tu conexión a internet"
-          refetch={refetchProducts}
-        />
+        <section
+          style={{
+            minHeight: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <RetryQueryComponent
+            message="Error obteniendo los productos. Revisa tu conexión a internet"
+            refetch={refetchProducts}
+          />
+        </section>
       ) : (
         <>
           <ProductsManagementFiltersBar
