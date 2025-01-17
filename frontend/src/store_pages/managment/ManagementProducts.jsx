@@ -1,10 +1,14 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useContext,
+  useRef,
+  useEffect,
+  Suspense,
+} from "react";
 import "@/store_pages/pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
 import BackArrow from "@/assets/icons/products-management-back-icon.svg";
 import ProductsManagementFiltersBar from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
-import ProductList from "@/components/ManagmentComponents/ProductsManagementComponents/ProductList";
-import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index";
 import QueryFiltersContext from "@/context/filtersContext";
 import { useManageProducts } from "@/hooks/useManageProducts";
 import Paginator from "@/components/Paginator";
@@ -17,6 +21,17 @@ import {
 import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import ActiveFilters from "@/components/ActiveFilters";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
+import Loader from "@/components/Loader";
+const ProductList = React.lazy(() =>
+  import(
+    "@/components/ManagmentComponents/ProductsManagementComponents/ProductList"
+  )
+);
+const ProductsGrid = React.lazy(() =>
+  import(
+    "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
+  )
+);
 
 function ManagementProducts() {
   const toast = useRef(null);
@@ -135,25 +150,55 @@ function ManagementProducts() {
             <ActiveFilters />
           </div>
           {listView ? (
-            <ProductList
-              products={products}
-              loading={loadingProducts}
-              selectedProducts={selectedProducts}
-              setSelectedProducts={setSelectedProducts}
-              handleDeleteProduct={handleDeleteProduct}
-              processDetailProduct={processDetailProduct}
-              processUpdateProduct={processUpdateProduct}
-            />
+            <Suspense
+              fallback={
+                <section
+                  style={{
+                    minHeight: "60vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Loader />
+                </section>
+              }
+            >
+              <ProductList
+                products={products}
+                loading={loadingProducts}
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
+                handleDeleteProduct={handleDeleteProduct}
+                processDetailProduct={processDetailProduct}
+                processUpdateProduct={processUpdateProduct}
+              />
+            </Suspense>
           ) : (
-            <ProductsGrid
-              products={products}
-              loading={loadingProducts}
-              selectedProducts={selectedProducts}
-              setSelectedProducts={setSelectedProducts}
-              handleDeleteProduct={handleDeleteProduct}
-              processDetailProduct={processDetailProduct}
-              processUpdateProduct={processUpdateProduct}
-            />
+            <Suspense
+              fallback={
+                <section
+                  style={{
+                    minHeight: "60vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Loader />
+                </section>
+              }
+            >
+              <ProductsGrid
+                products={products}
+                loading={loadingProducts}
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
+                handleDeleteProduct={handleDeleteProduct}
+                processDetailProduct={processDetailProduct}
+                processUpdateProduct={processUpdateProduct}
+              />
+            </Suspense>
           )}
           <Paginator
             count={numOfProducts}
