@@ -6,7 +6,6 @@ import FiltersModal from "../FiltersModal";
 const ProductsManagementFiltersBar = React.memo(
   function ProductsManagementFiltersBar({
     DeleteMultipleProductsButton,
-    ViewToggle,
     CreateProductButton
   }) {
     return (
@@ -15,8 +14,6 @@ const ProductsManagementFiltersBar = React.memo(
         <div className="search-container">
           <Search />
         </div>
-
-        {ViewToggle}
 
         <div className="filters-modal-button-container">
           <FiltersModal />

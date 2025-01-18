@@ -18,6 +18,6 @@ export function useIsMobileMode({forceMobileMode = false, mobileWidth = 830}){
             window.removeEventListener("resize", handleResize);
         };
         }
-    });
+    },[]);
     return ({mobileMode})
 }

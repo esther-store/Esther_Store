@@ -2,7 +2,6 @@ import React, {
   useState,
   useRef,
   useEffect,
-  Suspense,
   useCallback,
 } from "react";
 import "@/store_pages/pagesStyles/ProductsManagement.css";
@@ -15,21 +14,13 @@ import {
   getInitialValues,
   createProductInitialValues,
 } from "@/utils/productInitialValues";
-import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import ActiveFilters from "@/components/ActiveFilters";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
-import Loader from "@/components/Loader";
 import CreateProductButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/CreateProductButton";
-import ViewToggle from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/ViewToggle";
 import ProductForm from "@/components/ManagmentComponents/ProductsManagementComponents/ProductForm";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import DeleteMultipleProductsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleProductsButton";
 
-const ProductList = React.lazy(() =>
-  import(
-    "@/components/ManagmentComponents/ProductsManagementComponents/ProductList"
-  )
-);
 const ProductsGrid = React.lazy(() =>
   import(
     "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
@@ -39,8 +30,6 @@ const ProductsGrid = React.lazy(() =>
 function ManagementProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [listView, setListView] = useState(true);
-  const { mobileMode } = useIsMobileMode({ mobileWidth: 840 });
 
   //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
@@ -60,7 +49,8 @@ function ManagementProducts() {
         disabled: false,
         initialValues: getInitialValues(),
       }));
-    }, []
+    },
+    []
   );
 
   //products management hook
@@ -89,7 +79,8 @@ function ManagementProducts() {
       disabled: false,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  },[]);
+  },
+  []);
 
   const processDetailProduct = useCallback(function processDetailProduct(
     product
@@ -101,16 +92,8 @@ function ManagementProducts() {
       disabled: true,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  },[]);
-
-  //effect to change the view type to grid or list depending of the mobileMode
-  useEffect(() => {
-    if (mobileMode) {
-      setListView(false);
-    } else {
-      setListView(true);
-    }
-  }, [mobileMode]);
+  },
+  []);
 
   return (
     <section className="products-management-page">
@@ -133,9 +116,6 @@ function ManagementProducts() {
       ) : (
         <>
           <ProductsManagementFiltersBar
-            ViewToggle={
-              <ViewToggle listView={listView} setListView={setListView} />
-            }
             CreateProductButton={
               <CreateProductButton
                 setProductFormProperties={setProductFormProperties}
@@ -158,61 +138,16 @@ function ManagementProducts() {
           <div className="products-management-page-active-filter-component-container">
             <ActiveFilters />
           </div>
-          {listView ? (
-            <Suspense
-              fallback={
-                <section
-                  style={{
-                    minHeight: "60vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Loader />
-                </section>
-              }
-            >
-              <ProductList
-                products={products}
-                loading={loadingProducts}
-                selectedProducts={selectedProducts}
-                setSelectedProducts={setSelectedProducts}
-                handleDeleteProduct={handleDeleteProduct}
-                processDetailProduct={processDetailProduct}
-                processUpdateProduct={processUpdateProduct}
-              />
-            </Suspense>
-          ) : (
-            <Suspense
-              fallback={
-                <section
-                  style={{
-                    minHeight: "60vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Loader />
-                </section>
-              }
-            >
-              <ProductsGrid
-                products={products}
-                loading={loadingProducts}
-                selectedProducts={selectedProducts}
-                setSelectedProducts={setSelectedProducts}
-                handleDeleteProduct={handleDeleteProduct}
-                processDetailProduct={processDetailProduct}
-                processUpdateProduct={processUpdateProduct}
-              />
-            </Suspense>
-          )}
-          <Paginator
-            count={numOfProducts}
-            itemsLength={products.length}
+          <ProductsGrid
+            products={products}
+            loading={loadingProducts}
+            selectedProducts={selectedProducts}
+            setSelectedProducts={setSelectedProducts}
+            handleDeleteProduct={handleDeleteProduct}
+            processDetailProduct={processDetailProduct}
+            processUpdateProduct={processUpdateProduct}
           />
+          <Paginator count={numOfProducts} itemsLength={products.length} />
         </>
       )}
     </section>
