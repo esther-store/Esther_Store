@@ -13,6 +13,7 @@ import { useGetUsers } from "../../hooks/useGetUsers";
 import { getUsers } from "../../services/ManageUser/getUsers";
 import DataTableUsers from "../../components/ManagmentComponents/UserManagementComponents/DataTableUsers";
 import AuthenticationContext from "../../context/authenticationContext";
+import { useNavigate } from "react-router-dom";
 
 const heaerTitle =(info) => {
   return(
@@ -39,6 +40,7 @@ function ManagementSecurity() {
   const [viewMode,setViewMode] = useState("table")
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [search,setSearch] = useState(getActiveFilter("search"))
+  const navigate = useNavigate()
   // Useeffect hook for getting ofert data from server
   const {loading,setLoading} = useGetUsers({searchParams:searchParams,setUsers:setDataUsers})
 
@@ -199,7 +201,7 @@ function ManagementSecurity() {
       <header>
         <button
           className="products-management-go-back-button btn-general-styles"
-          onClick={() => ("/management-menu")}
+          onClick={() => navigate("/management-menu")}
         >
           <i className="pi pi-arrow-left" ></i>
         </button>

@@ -1,13 +1,13 @@
 import FilterIcon from "@/assets/icons/filter-icon.svg";
 import { Dialog } from "primereact/dialog";
 import React, { useState, useContext, useEffect } from "react";
-import OrderingProducts from "../../../OrderingProducts";
-import CategorieSideBar from "../../../CategorieSideBar";
+import OrderingProducts from "@/components/OrderingProducts";
+import CategoriesFilter from "./CategoriesFilter";
 import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
 
-const FiltersModal = React.memo(function FiltersModal() {
+function FiltersModal() {
   const [showModal, setShowModal] = useState(false);
   const [recommendedFilterCheck, setRecommendedFilterCheck] = useState(false)
   const [inactiveFilterCheck, setInactiveFilterCheck] = useState(false)
@@ -53,9 +53,8 @@ const FiltersModal = React.memo(function FiltersModal() {
           X
         </button>
         <OrderingProducts />
-        <CategorieSideBar
-          forceMobileMode={true}
-        />
+        <div style = {{height:"10px"}}/>
+        <CategoriesFilter/>
         {/*products recommended filter*/}
         <div className="recommended-products-checkbox">
           <Checkbox
@@ -79,6 +78,6 @@ const FiltersModal = React.memo(function FiltersModal() {
       </Dialog>
     </section>
   );
-})
+}
 
 export default FiltersModal;
