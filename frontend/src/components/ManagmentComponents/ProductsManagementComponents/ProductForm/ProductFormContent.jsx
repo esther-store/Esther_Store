@@ -56,12 +56,13 @@ const ProductFormContent = React.memo(function ProductFormContent({
     >
       {/*name*/}
       <div className="product-form-field">
-        <label htmlFor="name">Nombre</label>
+        <label htmlFor="name">Nombre * </label>
         <InputText
           id="name"
           aria-describedby="name-help"
           className=".p-inputtext-sm"
           disabled={productFormProperties.disabled}
+          required = {true}
           style={{ minWidth: "70%" }}
           defaultValue={
             productFormProperties.creatingMode
@@ -72,11 +73,13 @@ const ProductFormContent = React.memo(function ProductFormContent({
       </div>
       {/*price*/}
       <div className="product-form-field">
-        <label htmlFor="price">Precio</label>
+        <label htmlFor="price">Precio * </label>
         <InputText
           id="price"
           aria-describedby="price-help"
           className=".p-inputtext-sm"
+          required = {true}
+          min={0}
           disabled={productFormProperties.disabled}
           type="number"
           defaultValue={
@@ -169,11 +172,13 @@ const ProductFormContent = React.memo(function ProductFormContent({
       </div>
       {/*Discount*/}
       <div className="product-form-field">
-        <label htmlFor="discount">Descuento (%)</label>
+        <label htmlFor="discount">Descuento (%) </label>
         <InputText
           id="discount"
           aria-describedby="discount-help"
           className=".p-inputtext-sm"
+          min={0}
+          max={100}
           disabled={productFormProperties.disabled}
           type="number"
           defaultValue={
