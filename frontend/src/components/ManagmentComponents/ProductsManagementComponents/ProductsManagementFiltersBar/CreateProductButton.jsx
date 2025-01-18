@@ -1,5 +1,7 @@
 import AddProductIcon from "@/assets/icons/add-product-icon.svg";
-function CreateProductButton({setProductFormProperties}) {
+import React from "react";
+
+const CreateProductButton = React.memo(function CreateProductButton({setProductFormProperties}) {
   return (
     <div className="add-product-button-container">
       <button
@@ -13,6 +15,6 @@ function CreateProductButton({setProductFormProperties}) {
       </button>
     </div>
   );
-}
+})
 
 export default CreateProductButton;

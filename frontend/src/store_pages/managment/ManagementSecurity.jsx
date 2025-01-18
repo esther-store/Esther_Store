@@ -199,7 +199,7 @@ function ManagementSecurity() {
       <header>
         <button
           className="products-management-go-back-button btn-general-styles"
-          onClick={() => history.back()}
+          onClick={() => ("/management-menu")}
         >
           <i className="pi pi-arrow-left" ></i>
         </button>

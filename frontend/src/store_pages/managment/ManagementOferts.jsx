@@ -204,7 +204,7 @@ function ManagementOferts() {
       <header>
         <button
           className="products-management-go-back-button btn-general-styles"
-          onClick={() => history.back()}
+          onClick={() => navigate("/management-menu")}
         >
           <i className="pi pi-arrow-left" ></i>
         </button>

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 const DeleteMultipleProductsButton = React.memo(function DeleteMultipleProductsButton({selectedProducts, handleDeleteMultipleProducts}) {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-
     return ( 
         <>
         <ConfirmDialog

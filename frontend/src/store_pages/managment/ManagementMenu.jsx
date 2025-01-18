@@ -16,7 +16,7 @@ function ManagementMenu (){
             <div className = "managment-menu-title-container">
                 <button
                     className="products-management-go-back-button btn-general-styles"
-                    onClick={() => history.back()}
+                    onClick={() => navigate("/store")}
                     >
                     <img src={BackArrow.src} />
                 </button>
