@@ -22,18 +22,18 @@ export function QueryFiltersContextProvider({ children }) {
       params.delete("page")
     }
     setSearchParams(params);
-  })
+  },[])
 
   function removeAllFilters() {
     /*Remove all query params from the url*/
     setSearchParams({});
   }
 
-  const removeFilter = useCallback(function removeFilter(name) {
+  const removeFilter = function removeFilter(name) {
     let params = new URLSearchParams(searchParams);
     params.delete(name);
     setSearchParams(params);
-  })
+  }
 
   const getActiveFilter = useCallback(function getActiveFilter(name) {
     /*get the active value in the url query params of the filter given*/
@@ -43,7 +43,7 @@ export function QueryFiltersContextProvider({ children }) {
       return "";
     }
     return filterValue;
-  })
+  },[])
 
   const allActiveFilters = useMemo(function getAllFilters() {
     return searchParams

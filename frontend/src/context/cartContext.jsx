@@ -2,18 +2,6 @@ import React, { useState, useCallback, useMemo } from "react";
 
 const CartContext = React.createContext([]);
 
-/*
-Product cart object model:
-{
-    id:id,
-    productName:productName,
-    price:price,
-    img1:img1,
-    quantity:1,
-    subtotal:quantity*price
-}
-*/
-
 export function CartContextProvider({ children }) {
   const [productsCart, setProductCart] = useState([]);
 
@@ -34,7 +22,7 @@ export function CartContextProvider({ children }) {
       productsCartCopy.push(newProduct);
       setProductCart(productsCartCopy);
     }
-  })
+  },[productsCart])
 
   const restProductFromCart = useCallback(function restProductFromCart(newProduct) {
     let productsCartCopy = [...productsCart];
@@ -52,7 +40,7 @@ export function CartContextProvider({ children }) {
       }
       setProductCart(productsCartCopy);
     }
-  })
+  },[productsCart])
 
   const deleteProductFromCart = useCallback(function deleteProductFromCart(id) {
     let productsCartCopy = [...productsCart];
@@ -63,7 +51,7 @@ export function CartContextProvider({ children }) {
       }
     }
     setProductCart(productsCartCopy);
-  })
+  },[productsCart])
 
   function cleanCart() {
     setProductCart([]);
@@ -78,7 +66,7 @@ export function CartContextProvider({ children }) {
         (product) => product.id == id
       );
     return product === undefined ? false : true  
-  })
+  },[productsCart])
 
   return (
     <CartContext.Provider
