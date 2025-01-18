@@ -220,7 +220,8 @@ function InfoPromotion({
                   </div>
                   <div className="input-dialog-container discount-input">
                     <input
-                      min={1}
+                      min={0}
+                      max = {100}
                       type="number"
                       defaultValue={infoData.discount_in_percent}
                       onChange={(e) =>
