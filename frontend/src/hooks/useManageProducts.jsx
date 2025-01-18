@@ -5,17 +5,18 @@ import { createProduct } from "../services/ManageProducts/createProduct";
 import { updateProduct } from "../services/ManageProducts/updateProduct";
 import AuthenticationContext from "../context/authenticationContext.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import QueryFiltersContext from "@/context/filtersContext";
 import { showToast } from "@/utils/showToast.ts";
 import { isProductInfoValid } from "@/utils/isProductInfoValid.ts";
 
 export function useManageProducts({
-  searchParams,
   toastRef,
   setSelectedProducts,
   resetProductFormProperties,
 }) {
   const { auth } = useContext(AuthenticationContext);
   const queryClient = useQueryClient();
+  const { searchParams } = useContext(QueryFiltersContext);
 
   //get products to manage
   const {

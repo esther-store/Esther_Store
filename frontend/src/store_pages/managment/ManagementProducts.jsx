@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useContext,
   useRef,
   useEffect,
   Suspense,
@@ -9,7 +8,6 @@ import React, {
 import "@/store_pages/pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
 import ProductsManagementFiltersBar from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
-import QueryFiltersContext from "@/context/filtersContext";
 import { useManageProducts } from "@/hooks/useManageProducts";
 import Paginator from "@/components/Paginator";
 import { Toast } from "primereact/toast";
@@ -43,13 +41,6 @@ function ManagementProducts() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [listView, setListView] = useState(true);
   const { mobileMode } = useIsMobileMode({ mobileWidth: 840 });
-  const {
-    searchParams,
-    removeFilter,
-    setFilter,
-    getActiveFilter,
-    removeAllFilters,
-  } = useContext(QueryFiltersContext);
 
   //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
@@ -83,11 +74,9 @@ function ManagementProducts() {
     handleUpdateProduct,
     handleCreateProduct,
   } = useManageProducts({
-    searchParams: searchParams,
     toastRef: toast,
     setSelectedProducts: setSelectedProducts,
     resetProductFormProperties: resetProductFormProperties,
-    removeAllFilters: removeAllFilters,
   });
 
   const processUpdateProduct = useCallback(function processUpdateProduct(
@@ -223,9 +212,6 @@ function ManagementProducts() {
           <Paginator
             count={numOfProducts}
             itemsLength={products.length}
-            getActiveFilter={getActiveFilter}
-            setFilter={setFilter}
-            removeFilter={removeFilter}
           />
         </>
       )}
