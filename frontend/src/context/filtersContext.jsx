@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const QueryFiltersContext = React.createContext("");
@@ -6,7 +6,7 @@ const QueryFiltersContext = React.createContext("");
 export function QueryFiltersContextProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const setFilter = useCallback(function setFilter({ name, value }) {
+  function setFilter({ name, value }) {
     /*Recive a filter name and its value, and includes it in the query params of the url*/
     let params = new URLSearchParams(searchParams);
     //if the given filter don't exist, it's added
@@ -22,7 +22,7 @@ export function QueryFiltersContextProvider({ children }) {
       params.delete("page")
     }
     setSearchParams(params);
-  },[])
+  }
 
   function removeAllFilters() {
     /*Remove all query params from the url*/
@@ -35,7 +35,7 @@ export function QueryFiltersContextProvider({ children }) {
     setSearchParams(params);
   }
 
-  const getActiveFilter = useCallback(function getActiveFilter(name) {
+  function getActiveFilter(name) {
     /*get the active value in the url query params of the filter given*/
     let params = new URLSearchParams(searchParams);
     let filterValue = params.get(name);
@@ -43,7 +43,7 @@ export function QueryFiltersContextProvider({ children }) {
       return "";
     }
     return filterValue;
-  },[])
+  }
 
   const allActiveFilters = useMemo(function getAllFilters() {
     return searchParams
