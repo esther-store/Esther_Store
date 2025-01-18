@@ -2,10 +2,11 @@ import { Dialog } from "primereact/dialog";
 import AddIcon from "@/assets/icons/oferts-management-add.svg";
 import EditIcon from "@/assets/icons/edit-icon.svg";
 import DetailIcon from "@/assets/icons/eye-icon.svg";
-import React, { Suspense } from "react";
-import "./index.css";
-const ProductFormContent = React.lazy(() => import("./ProductFormContent"));
+import React, {Suspense} from "react";
 import Loader from "@/components/Loader";
+import "./index.css";
+const ProductFormContent = React.lazy(() => import("./ProductFormContent")) 
+
 
 const ProductForm = React.memo(function ProductForm({
   productFormProperties,
@@ -44,27 +45,27 @@ const ProductForm = React.memo(function ProductForm({
       className="product-form-dialog"
     >
       <Suspense
-        fallback={
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <Loader />
-          </div>
-        }
-      >
-        <ProductFormContent
-          productFormProperties={productFormProperties}
-          resetProductFormProperties={resetProductFormProperties}
-          handleCreateProduct={handleCreateProduct}
-          handleUpdateProduct={handleUpdateProduct}
-          loading={loading}
-        />
-      </Suspense>
+              fallback={
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <Loader />
+                </div>
+              }
+            >
+              <ProductFormContent
+                productFormProperties={productFormProperties}
+                resetProductFormProperties={resetProductFormProperties}
+                handleCreateProduct={handleCreateProduct}
+                handleUpdateProduct={handleUpdateProduct}
+                loading={loading}
+              />
+            </Suspense>
     </Dialog>
   );
 });

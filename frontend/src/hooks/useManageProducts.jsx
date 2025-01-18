@@ -45,7 +45,7 @@ export function useManageProducts({
           return createProduct({ values: values, token: auth.token });
         }
       },
-      onSuccess: (newProduct) => {
+      onSuccess: () => {
         resetProductFormProperties();
         setSelectedProducts([]);
         queryClient.invalidateQueries({ queryKey: ["products-to-manage"] });

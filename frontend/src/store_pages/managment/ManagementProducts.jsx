@@ -4,16 +4,15 @@ import React, {
   useRef,
   useEffect,
   Suspense,
+  useCallback,
 } from "react";
 import "@/store_pages/pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
-import BackArrow from "@/assets/icons/products-management-back-icon.svg";
 import ProductsManagementFiltersBar from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
 import QueryFiltersContext from "@/context/filtersContext";
 import { useManageProducts } from "@/hooks/useManageProducts";
 import Paginator from "@/components/Paginator";
 import { Toast } from "primereact/toast";
-import { useNavigate } from "react-router-dom";
 import {
   getInitialValues,
   createProductInitialValues,
@@ -22,6 +21,12 @@ import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import ActiveFilters from "@/components/ActiveFilters";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 import Loader from "@/components/Loader";
+import CreateProductButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/CreateProductButton";
+import ViewToggle from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/ViewToggle";
+import ProductForm from "@/components/ManagmentComponents/ProductsManagementComponents/ProductForm";
+import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
+import DeleteMultipleProductsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleProductsButton";
+
 const ProductList = React.lazy(() =>
   import(
     "@/components/ManagmentComponents/ProductsManagementComponents/ProductList"
@@ -45,7 +50,6 @@ function ManagementProducts() {
     getActiveFilter,
     removeAllFilters,
   } = useContext(QueryFiltersContext);
-  const navigate = useNavigate();
 
   //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
@@ -56,15 +60,17 @@ function ManagementProducts() {
   });
 
   //function to reset the product Form Properties
-  function resetProductFormProperties() {
-    setProductFormProperties((prev) => ({
-      ...prev,
-      show: false,
-      creatingMode: true,
-      disabled: false,
-      initialValues: getInitialValues(),
-    }));
-  }
+  const resetProductFormProperties = useCallback(
+    function resetProductFormProperties() {
+      setProductFormProperties((prev) => ({
+        ...prev,
+        show: false,
+        creatingMode: true,
+        disabled: false,
+        initialValues: getInitialValues(),
+      }));
+    }
+  );
 
   //products management hook
   const {
@@ -84,7 +90,9 @@ function ManagementProducts() {
     removeAllFilters: removeAllFilters,
   });
 
-  function processUpdateProduct(product) {
+  const processUpdateProduct = useCallback(function processUpdateProduct(
+    product
+  ) {
     setProductFormProperties((prev) => ({
       ...prev,
       show: true,
@@ -92,9 +100,11 @@ function ManagementProducts() {
       disabled: false,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  }
+  });
 
-  function processDetailProduct(product) {
+  const processDetailProduct = useCallback(function processDetailProduct(
+    product
+  ) {
     setProductFormProperties((prev) => ({
       ...prev,
       show: true,
@@ -102,7 +112,7 @@ function ManagementProducts() {
       disabled: true,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  }
+  });
 
   //effect to change the view type to grid or list depending of the mobileMode
   useEffect(() => {
@@ -116,15 +126,7 @@ function ManagementProducts() {
   return (
     <section className="products-management-page">
       <Toast ref={toast} position="bottom-center" />
-      <section className="back-button-title-container">
-        <button
-          className="products-management-go-back-button btn-general-styles"
-          onClick={() => navigate("/management-menu")}
-        >
-          <img src={BackArrow.src} />
-        </button>
-        <h3>Gestión de Productos</h3>
-      </section>
+      <ManagementProductsPageHeader />
       {errorGettingProducts ? (
         <section
           style={{
@@ -142,18 +144,27 @@ function ManagementProducts() {
       ) : (
         <>
           <ProductsManagementFiltersBar
-            loadingProducts={loadingProducts}
-            listView={listView}
-            setListView={setListView}
-            handleDeleteMultipleProducts={handleDeleteProduct}
-            selectedProducts={selectedProducts}
-            toastRef={toast}
-            removeAllFilters={removeAllFilters}
-            resetProductFormProperties={resetProductFormProperties}
-            setProductFormProperties={setProductFormProperties}
+            ViewToggle={
+              <ViewToggle listView={listView} setListView={setListView} />
+            }
+            CreateProductButton={
+              <CreateProductButton
+                setProductFormProperties={setProductFormProperties}
+              />
+            }
+            DeleteMultipleProductsButton={
+              <DeleteMultipleProductsButton
+                handleDeleteMultipleProducts={handleDeleteProduct}
+                selectedProducts={selectedProducts}
+              />
+            }
+          />
+          <ProductForm
             productFormProperties={productFormProperties}
+            resetProductFormProperties={resetProductFormProperties}
             handleCreateProduct={handleCreateProduct}
             handleUpdateProduct={handleUpdateProduct}
+            loading={loadingProducts}
           />
           <div className="products-management-page-active-filter-component-container">
             <ActiveFilters />

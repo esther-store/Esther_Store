@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 
 const ActionButtons = React.memo(function ActionButtons({item, handleDelete, handleEdit = () => {}, handleDetil = () => {}}) {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
-
+    console.log('action-buttons')
     return ( 
         <section className = "action-buttons-container">
             <ConfirmDialog 

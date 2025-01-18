@@ -3,10 +3,10 @@ import { useState, useRef } from "react";
 import { Toast } from "primereact/toast";
 import Loader from "@/components/Loader";
 import { ConfirmDialog } from "primereact/confirmdialog";
-import CategoriesForm from "@/components/ManagmentComponents/CategoriesManagement/CategoriesForm";
-import CategoriesDatatable from "@/components/ManagmentComponents/CategoriesManagement/CategoriesDatatable";
-import CategoriesGrid from '@/components/ManagmentComponents/CategoriesManagement/CategoriesGrid'
-import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
+import CategoriesForm from "@/components/ManagmentComponents/ProductsManagementComponents/CategoriesManagement/CategoriesForm";
+import CategoriesDatatable from "@/components/ManagmentComponents/ProductsManagementComponents/CategoriesManagement/CategoriesDatatable";
+import CategoriesGrid from '@/components/ManagmentComponents/ProductsManagementComponents/CategoriesManagement/CategoriesGrid'
+import ButtonsAddAndDelete from "@/components/ManagmentComponents/ProductsManagementComponents/CategoriesManagement/ButtonsAddAndDelete";
 import {useIsMobileMode} from '@/hooks/useIsMobileMode'
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
 
