@@ -23,7 +23,7 @@ const ProductManagementCard = React.memo(function ProductManagementCard({product
             <ActionButtons
                 item={product}
               handleDelete={handleDeleteProduct}
-              handleDetil={processDetailProduct}
+              handleDetail={processDetailProduct}
               handleEdit={processUpdateProduct}
             />
           </div>

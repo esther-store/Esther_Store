@@ -60,7 +60,7 @@ function ManagementProducts() {
         disabled: false,
         initialValues: getInitialValues(),
       }));
-    }
+    }, []
   );
 
   //products management hook
@@ -89,7 +89,7 @@ function ManagementProducts() {
       disabled: false,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  });
+  },[]);
 
   const processDetailProduct = useCallback(function processDetailProduct(
     product
@@ -101,7 +101,7 @@ function ManagementProducts() {
       disabled: true,
       initialValues: createProductInitialValues({ product: product }),
     }));
-  });
+  },[]);
 
   //effect to change the view type to grid or list depending of the mobileMode
   useEffect(() => {

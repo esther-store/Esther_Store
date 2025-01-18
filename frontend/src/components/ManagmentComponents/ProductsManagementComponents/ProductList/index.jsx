@@ -86,7 +86,7 @@ const ProductList = React.memo(function ProductList({
               <ActionButtons
                 item={product}
                 handleDelete={handleDeleteProduct}
-                handleDetil={processDetailProduct}
+                handleDetail={processDetailProduct}
                 handleEdit={processUpdateProduct}
               />
             );
