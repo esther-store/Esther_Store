@@ -3,7 +3,7 @@ import { Column } from "primereact/column";
 import ActiveStatusIcon from "@/assets/icons/active-status-icon.svg";
 import DeactiveStatusIcon from "@/assets/icons/deactive-status-icon.svg";
 import BoxIcon from "@/assets/icons/box-icon.svg";
-import ActionButtons from "./ActionButtons";
+import ActionButtons from "../ProductsGrid/ActionButtons";
 import Loader from "../../../Loader";
 import BlockIcon from "@/assets/icons/block-icon.svg";
 import "./index.css";

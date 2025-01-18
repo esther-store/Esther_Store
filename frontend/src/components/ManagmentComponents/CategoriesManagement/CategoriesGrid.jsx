@@ -1,4 +1,4 @@
-import ActionButtons from "../ProductList/ActionButtons";
+import ActionButtons from "../ProductsManagementComponents/ProductsGrid/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
 import React from "react";
 

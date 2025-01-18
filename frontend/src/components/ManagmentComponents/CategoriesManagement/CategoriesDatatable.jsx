@@ -1,7 +1,7 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import BoxIcon from "@/assets/icons/box-icon.svg";
-import ActionButtons from "../ProductList/ActionButtons";
+import ActionButtons from "../ProductsManagementComponents/ProductsGrid/ActionButtons";
 import React from "react";
 
 const CategoriesDatatable = React.memo(function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory, processUpdateCategory, processDetailCategory}) {
