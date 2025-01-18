@@ -6,6 +6,7 @@ import CategoriesFilter from "./CategoriesFilter";
 import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
+import PromotionsFilter from "./PromotionsFilter";
 
 function FiltersModal() {
   const [showModal, setShowModal] = useState(false);
@@ -52,9 +53,11 @@ function FiltersModal() {
         >
           X
         </button>
-        <OrderingProducts />
+        <OrderingProducts onOrdering = {() => setShowModal(false)}/>
         <div style = {{height:"10px"}}/>
-        <CategoriesFilter/>
+        <CategoriesFilter onCategorySelect={() => setShowModal(false)}/>
+        <div style = {{height:"10px"}}/>
+        <PromotionsFilter onPromotionSelect={() => setShowModal(false)}/>
         {/*products recommended filter*/}
         <div className="recommended-products-checkbox">
           <Checkbox

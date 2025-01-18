@@ -4,11 +4,11 @@ import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
 import { useGetCategories } from "@/hooks/useGetCategories";
 
-function CategoriesFilter() {
+function CategoriesFilter({onCategorySelect = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
   const [category, setCategory] = useState();
   const {categories} = useGetCategories()
-  const categoriesValues = [{name:"Categorías: Todas", code:""}].concat(categories.map(category => ({name:category.nombre, code: category.id})))
+  const categoriesValues = [{name:"Categoría: Todas", code:""}].concat(categories.map(category => ({name:category.nombre, code: category.id})))
   
   //update the category filter value
   function handleSetCategory(value) {
@@ -23,7 +23,10 @@ function CategoriesFilter() {
   return (
     <Dropdown
       value={category}
-      onChange={(e) => handleSetCategory(e.value)}
+      onChange={(e) => {
+        handleSetCategory(e.value)
+        onCategorySelect()
+      }}
       options={categoriesValues}
       optionLabel="name"
       placeholder="Categoría"

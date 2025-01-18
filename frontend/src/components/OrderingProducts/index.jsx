@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
 import { orderingValues } from "@/constants";
 
-const OrderingProducts = React.memo(function OrderingProducts() {
+const OrderingProducts = React.memo(function OrderingProducts({onOrdering = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
   const [ordering, setOrdering] = useState();
 
@@ -21,7 +21,10 @@ const OrderingProducts = React.memo(function OrderingProducts() {
   return (
     <Dropdown
       value={ordering}
-      onChange={(e) => handleSetOrdering(e.value)}
+      onChange={(e) => {
+        handleSetOrdering(e.value)
+        onOrdering()
+      }}
       options={orderingValues}
       optionLabel="name"
       placeholder="Ordenar"

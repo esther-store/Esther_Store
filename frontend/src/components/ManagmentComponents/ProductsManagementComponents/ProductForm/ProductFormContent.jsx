@@ -109,7 +109,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
       </div>
       {/*promotion*/}
       <div className="product-form-field">
-        <label htmlFor="promotion">Oferta</label>
+        <label htmlFor="promotion">Promoción</label>
         {loadingPromotions ? (
           <div style={{ width: "50px" }}>
             <Loader />
