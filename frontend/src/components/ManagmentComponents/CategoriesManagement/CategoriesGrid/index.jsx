@@ -34,6 +34,16 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
                 src={category.img}
                 alt={category.nombre}
               />
+              <div className = "checkbox-container">
+                <Checkbox
+                  checked={selectedCategories.some(
+                    (selectedCategory) => category.id === selectedCategory.id
+                  )}
+                  onChange={(e) =>
+                    handleCheckCategory({ checked: e.checked, category: category })
+                  }
+                />
+              </div>
             </div>
             <div className="namecontainer">
               <p className="category-card-name">{category.nombre}</p>
@@ -44,14 +54,6 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
                 handleDelete={handleDeleteCategory}
                 handleDetil={processDetailCategory}
                 handleEdit={processUpdateCategory}
-              />
-              <Checkbox
-                checked={selectedCategories.some(
-                  (selectedCategory) => category.id === selectedCategory.id
-                )}
-                onChange={(e) =>
-                  handleCheckCategory({ checked: e.checked, category: category })
-                }
               />
             </div>
           </div>
