@@ -36,7 +36,7 @@ const CategoriesForm = React.memo(function CategoriesForm({
     <Dialog
       visible={categoryFormProperties.show}
       onHide={() =>{
-        setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} }))
+        !loading?setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} })):null
       }
       }
       position="top"
@@ -87,11 +87,11 @@ const CategoriesForm = React.memo(function CategoriesForm({
             />
           </div>
           {imagesPreview[0]?
-          <img src ={imagesPreview[0].src}/>
+          <img src ={imagesPreview[0]}/>
           :null}
         </div>
         {categoryFormProperties.disabled == false ? (
-          <Button label={loading?"Enviando ...":"Enviar"} className="btn-general-styles" />
+          <Button disabled = {loading?true:false} label={loading?"Enviando ...":"Enviar"} className="btn-general-styles" />
         ) : null}
       </form>
     </Dialog>
