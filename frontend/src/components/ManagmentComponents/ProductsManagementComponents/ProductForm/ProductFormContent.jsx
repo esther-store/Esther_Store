@@ -276,7 +276,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
         {/*Submit*/}
         {productFormProperties.disabled == false ? (
           <Button
-            disabled={loading ? "true" : false}
+            disabled={loading ? true : false}
             label={loading ? "Enviando..." : "Enviar"}
             className="btn-general-styles"
           />
@@ -286,7 +286,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
           label={
             productFormProperties.creatingMode == true ? "Cancelar" : "Cerrar"
           }
-          disabled={loading ? "true" : false}
+          disabled={loading ? true : false}
           className="btn-general-styles"
           type="button"
           onClick={() => resetProductFormProperties()}

@@ -1,3 +1,4 @@
+import type { ProductType, CreateProductType, ProductFormPropertiesType } from "@/Types";
 import {
   getInitialValues,
   createProductInitialValues,
@@ -6,7 +7,7 @@ import { useCallback, useState } from "react";
 
 export function useProductFormProperties() {
   //product form properties state
-  const [productFormProperties, setProductFormProperties] = useState({
+  const [productFormProperties, setProductFormProperties] = useState<ProductFormPropertiesType>({
     show: false,
     disabled: false,
     creatingMode: true,
@@ -28,7 +29,7 @@ export function useProductFormProperties() {
   );
 
   const processUpdateProduct = useCallback(function processUpdateProduct(
-    product
+    product: ProductType
   ) {
     setProductFormProperties((prev) => ({
       ...prev,
@@ -41,7 +42,7 @@ export function useProductFormProperties() {
   []);
 
   const processDetailProduct = useCallback(function processDetailProduct(
-    product
+    product: ProductType
   ) {
     setProductFormProperties((prev) => ({
       ...prev,
@@ -53,5 +54,11 @@ export function useProductFormProperties() {
   },
   []);
 
-  return {productFormProperties, setProductFormProperties, resetProductFormProperties, processDetailProduct, processUpdateProduct}
+  return {
+    productFormProperties,
+    setProductFormProperties,
+    resetProductFormProperties,
+    processDetailProduct,
+    processUpdateProduct,
+  };
 }

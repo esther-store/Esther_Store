@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import QueryFiltersContext from "@/context/filtersContext";
 import { showToast } from "@/utils/showToast.ts";
 import { isProductInfoValid } from "@/utils/isProductInfoValid.ts";
+import { type ProductType, type CreateProductType, type ProductIdType } from "@/Types.js";
 
 export function useManageProducts({
   toastRef,
@@ -41,7 +42,7 @@ export function useManageProducts({
   //create product
   const { mutate: handleCreateProduct, isPending: loadingCreateProduct } =
     useMutation({
-      mutationFn: ({ values }) => {
+      mutationFn: ({ values }:{values:CreateProductType}) => {
         if (isProductInfoValid({ values: values })) {
           return createProduct({ values: values, token: auth.token });
         }
@@ -70,12 +71,12 @@ export function useManageProducts({
   //edit product
   const { mutate: handleUpdateProduct, isPending: loadingEditProduct } =
     useMutation({
-      mutationFn: ({ id, values }) => {
+      mutationFn: ({ id, values }:{id:ProductIdType, values:CreateProductType}) => {
         if (isProductInfoValid({ values: values, creating: false })) {
           return updateProduct({ id: id, values: values, token: auth.token });
         }
       },
-      onSuccess: (productInfo) => {
+      onSuccess: () => {
         resetProductFormProperties();
         setSelectedProducts([]);
         queryClient.invalidateQueries({ queryKey: ["products-to-manage"] });
@@ -100,7 +101,7 @@ export function useManageProducts({
   //delete products
   const { mutate: handleDeleteProduct, isPending: loadingDeleteProduct } =
     useMutation({
-      mutationFn: (products = []) => {
+      mutationFn: (products:ProductType[] = []) => {
         if (products.length > 0) {
           const productsId = products.map((product) => product.id);
           return deleteProducts({ products: productsId, token: auth.token });
@@ -128,9 +129,9 @@ export function useManageProducts({
       },
     });
 
-  const products = data?.results || [];
-  const numOfProducts = data?.count || 0;
-  const loadingProducts =
+  const products: ProductType[] = data?.results || [];
+  const numOfProducts: number = data?.count || 0;
+  const loadingProducts: boolean =
     isLoading ||
     loadingCreateProduct ||
     loadingEditProduct ||

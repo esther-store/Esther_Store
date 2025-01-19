@@ -1,5 +1,6 @@
 import {getProducts} from '../services/getProducts'
 import { useQuery } from "@tanstack/react-query";
+import {type ProductType} from '@/Types.ts'
 
 export function useGetProducts({searchParams, updateProductList}) {
     const { data, isLoading: loading, isError, refetch } = useQuery({
@@ -11,10 +12,10 @@ export function useGetProducts({searchParams, updateProductList}) {
             return true
           },
     });
-    const products = data?.results || []
-    const next = data?.next || ""
-    const previous = data?.previous || ""
-    const count = data?.count || 0
+    const products: ProductType[] = data?.results || []
+    const next: string = data?.next || ""
+    const previous: string = data?.previous || ""
+    const count: number = data?.count || 0
 
     return ({products, count, loading, next, previous, isError, refetch});
 }
