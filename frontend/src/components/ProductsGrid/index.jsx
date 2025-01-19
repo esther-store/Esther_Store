@@ -22,41 +22,37 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
         <Loader />
       ) : isError ? (
         <RetryQueryComponent
-          message={"Error obteniendo los productos. Revisa tu conexión a internet"}
+          message={
+            "Error obteniendo los productos. Revisa tu conexión a internet"
+          }
           refetch={refetch}
         />
       ) : (
         <section className="products-grid-and-paginator-container">
-          <div className="products-grid">
-            {products !== null && products !== undefined ? (
-              <>
-                {products.length > 0 ? (
-                  products.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onClick={() => navigate(`product/${product.id}`)}
-                    />
-                  ))
-                ) : (
-                  <div className="products-grid-not-found-message">
-                    <strong>No hay productos</strong>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="products-grid-not-found-message">
-                <strong>No hay productos</strong>
+          {products == null || products?.length === 0 ? (
+            <div className="products-grid-not-found-message">
+              <strong>No hay productos</strong>
+            </div>
+          ) : (
+            <>
+              <div className="products-grid">
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onClick={() => navigate(`product/${product.id}`)}
+                  />
+                ))}
               </div>
-            )}
-          </div>
-          <Paginator
-            count={count}
-            itemsLength={products.length}
-            getActiveFilter={getActiveFilter}
-            setFilter={setFilter}
-            removeFilter={removeFilter}
-          />
+              <Paginator
+                count={count}
+                itemsLength={products.length}
+                getActiveFilter={getActiveFilter}
+                setFilter={setFilter}
+                removeFilter={removeFilter}
+              />
+            </>
+          )}
         </section>
       )}
     </>
