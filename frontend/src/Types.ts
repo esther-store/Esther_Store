@@ -1,0 +1,15 @@
+interface ProductType{
+    id:null,
+    product_name: "",
+    product_description: "",
+    precio: 0,
+    categoria: null,
+    promotion:null,
+    is_active: true,
+    recommended:false,
+    in_stock: 0,
+    descuento: 0,
+    product_img1: null,
+    product_img2: null,
+    product_img3: null,
+}

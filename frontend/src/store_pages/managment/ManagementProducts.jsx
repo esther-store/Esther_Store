@@ -1,19 +1,11 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useRef } from "react";
 import "@/store_pages/pagesStyles/ProductsManagement.css";
 import "primeicons/primeicons.css";
 import ProductsManagementFiltersBar from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar";
 import { useManageProducts } from "@/hooks/useManageProducts";
 import Paginator from "@/components/Paginator";
+import { useProductFormProperties } from "@/hooks/useProductFormProperties";
 import { Toast } from "primereact/toast";
-import {
-  getInitialValues,
-  createProductInitialValues,
-} from "@/utils/productInitialValues";
 import ActiveFilters from "@/components/ActiveFilters";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 import CreateProductButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/CreateProductButton";
@@ -30,28 +22,13 @@ const ProductsGrid = React.lazy(() =>
 function ManagementProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
-
-  //product form properties state
-  const [productFormProperties, setProductFormProperties] = useState({
-    show: false,
-    disabled: false,
-    creatingMode: true,
-    initialValues: getInitialValues(),
-  });
-
-  //function to reset the product Form Properties
-  const resetProductFormProperties = useCallback(
-    function resetProductFormProperties() {
-      setProductFormProperties((prev) => ({
-        ...prev,
-        show: false,
-        creatingMode: true,
-        disabled: false,
-        initialValues: getInitialValues(),
-      }));
-    },
-    []
-  );
+  const {
+    productFormProperties,
+    setProductFormProperties,
+    resetProductFormProperties,
+    processDetailProduct,
+    processUpdateProduct,
+  } = useProductFormProperties();
 
   //products management hook
   const {
@@ -68,32 +45,6 @@ function ManagementProducts() {
     setSelectedProducts: setSelectedProducts,
     resetProductFormProperties: resetProductFormProperties,
   });
-
-  const processUpdateProduct = useCallback(function processUpdateProduct(
-    product
-  ) {
-    setProductFormProperties((prev) => ({
-      ...prev,
-      show: true,
-      creatingMode: false,
-      disabled: false,
-      initialValues: createProductInitialValues({ product: product }),
-    }));
-  },
-  []);
-
-  const processDetailProduct = useCallback(function processDetailProduct(
-    product
-  ) {
-    setProductFormProperties((prev) => ({
-      ...prev,
-      show: true,
-      creatingMode: false,
-      disabled: true,
-      initialValues: createProductInitialValues({ product: product }),
-    }));
-  },
-  []);
 
   return (
     <section className="products-management-page">
