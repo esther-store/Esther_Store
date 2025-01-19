@@ -1,5 +1,6 @@
 import { getCategories } from "../services/getCategories";
 import { useQuery } from "@tanstack/react-query";
+import type { CategoryType } from "@/Types";
 
 export function useGetCategories() {
   const { data, isLoading: loading, isError, refetch } = useQuery({
@@ -11,6 +12,6 @@ export function useGetCategories() {
       return true
     },
   });
-  const categories = data || [];
+  const categories:CategoryType[] = data || [];
   return { categories, loading, isError, refetch };
 }

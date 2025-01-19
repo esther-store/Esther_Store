@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from "react";
-import { getPromotions } from "../services/ManagePromotions/getPromotions";
+import { getPromotions } from "../services/ManagePromotions/getPromotions.js";
 import AuthenticationContext from "../context/authenticationContext.jsx";
 import { useQuery } from "@tanstack/react-query";
+import type { PromotionType } from "@/Types.js";
 
 export function useGetPromotions({
   searchParams,
@@ -21,7 +22,7 @@ export function useGetPromotions({
     staleTime: 1000 * 60 * 30
   });
 
-  const promotions = data || [];
+  const promotions: PromotionType[] = data || [];
 
   //get promotions of store
   useEffect(() => {
