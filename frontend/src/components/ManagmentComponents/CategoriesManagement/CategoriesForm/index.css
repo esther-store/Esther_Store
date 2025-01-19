@@ -1,0 +1,38 @@
+.categories-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-form-field{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+
+.category-form-field input{
+    width: 100%;
+}
+
+.categories-form button{
+    margin-top:10px;
+    background:rgba(84, 84, 84, 1);
+}
+
+.category-image-field img{
+    width:100px;
+    height: 70px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+@media (max-width : 500px) {
+    .category-image-field{
+        flex-direction: column;
+    }
+    .category-image-field img{
+        width: 50%;
+        height: auto;
+    }
+}

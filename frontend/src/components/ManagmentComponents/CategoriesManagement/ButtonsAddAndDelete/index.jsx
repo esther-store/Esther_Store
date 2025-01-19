@@ -1,6 +1,7 @@
 import AddProductIcon from "@/assets/icons/add-product-icon.svg";
 import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
 import React from "react";
+import './index.css'
 
 const ButtonsAddAndDelete = React.memo(function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) {
     return ( 

@@ -1,0 +1,8 @@
+.buttons-add-delete-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: center;
+    margin-bottom:10px;
+}

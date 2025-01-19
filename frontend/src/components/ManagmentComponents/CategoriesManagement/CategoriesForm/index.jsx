@@ -1,8 +1,9 @@
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { useImagePreview } from "../../../hooks/useImagePreview";
+import { useImagePreview } from "@/hooks/useImagePreview";
 import React from "react";
+import './index.css'
 
 const CategoriesForm = React.memo(function CategoriesForm({
   categoryFormProperties,

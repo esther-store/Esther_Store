@@ -1,6 +1,7 @@
-import ActionButtons from "../ProductsManagementComponents/ProductsGrid/ActionButtons";
+import ActionButtons from "../../ProductsManagementComponents/ProductsGrid/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
 import React from "react";
+import './index.css'
 
 const CategoriesGrid = React.memo(function CategoriesGrid({
   categories,

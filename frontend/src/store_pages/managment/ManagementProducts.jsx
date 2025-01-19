@@ -12,12 +12,8 @@ import CreateProductButton from "@/components/ManagmentComponents/ProductsManage
 import ProductForm from "@/components/ManagmentComponents/ProductsManagementComponents/ProductForm";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import DeleteMultipleProductsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleProductsButton";
+import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
 
-const ProductsGrid = React.lazy(() =>
-  import(
-    "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
-  )
-);
 
 function ManagementProducts() {
   const toast = useRef(null);
