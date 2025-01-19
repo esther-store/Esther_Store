@@ -2,7 +2,6 @@ import { useManageCategories } from "@/hooks/useManageCategories";
 import { useState, useRef } from "react";
 import { Toast } from "primereact/toast";
 import Loader from "@/components/Loader";
-import { ConfirmDialog } from "primereact/confirmdialog";
 import CategoriesForm from "@/components/ManagmentComponents/CategoriesManagement/CategoriesForm";
 import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagement/CategoriesGrid";
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
@@ -31,8 +30,6 @@ function ManagementCategories() {
     setSelectedCategories: setSelectedCategories,
     setCategoryFormProperties: setCategoryFormProperties,
   });
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-
   function processUpdateCategory({ id, nombre, img }) {
     setCategoryFormProperties((prev) => ({
       ...prev,
@@ -64,43 +61,33 @@ function ManagementCategories() {
     <main style={{ width: "100%", minHeight: "90vh", paddingTop: "50px" }}>
       <Toast ref={toast} position="bottom-center" />
       {loadingCategories ? (
-        <section className="categories-management-list-loader-container">
+        <section style = {{position:'absolute', top:"50%", left:"50%", transform:"translate(-50%, -50%)"}}>
           <Loader />
         </section>
-      ) : null}
-      <section>
-        <ConfirmDialog
-          visible={showConfirmDialog}
-          onHide={() => setShowConfirmDialog(false)}
-          acceptClassName="p-button-danger"
-          acceptLabel="Aceptar"
-          rejectLabel="Cancelar"
-          message="Deseas continuar con la operación?"
-          header="Confirmación"
-          icon="pi pi-exclamation-triangle"
-          accept={() => handleDeleteMultipleCategories(selectedCategories)}
-          style={{ maxWidth: "90%" }}
-        />
-        <CategoriesForm
-          categoryFormProperties={categoryFormProperties}
-          setCategoryFormProperties={setCategoryFormProperties}
-          handleCreateCategory={handleCreateCategory}
-          handleUpdateCategory={handleUpdateCategory}
-          loading={loadingCategories}
-        />
-        <ButtonsAddAndDelete
-          setCategoryFormProperties={setCategoryFormProperties}
-          setShowConfirmDialog={setShowConfirmDialog}
-        />
-        <CategoriesGrid
-          categories={categories}
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
-          handleDeleteCategory={handleDeleteCategory}
-          processUpdateCategory={processUpdateCategory}
-          processDetailCategory={processDetailCategory}
-        />
-      </section>
+      ) : (
+        <section>
+          <CategoriesForm
+            categoryFormProperties={categoryFormProperties}
+            setCategoryFormProperties={setCategoryFormProperties}
+            handleCreateCategory={handleCreateCategory}
+            handleUpdateCategory={handleUpdateCategory}
+            loading={loadingCategories}
+          />
+          <ButtonsAddAndDelete
+            setCategoryFormProperties={setCategoryFormProperties}
+            handleDeleteMultipleCategories={handleDeleteMultipleCategories}
+            selectedCategories={selectedCategories}
+          />
+          <CategoriesGrid
+            categories={categories}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+            handleDeleteCategory={handleDeleteCategory}
+            processUpdateCategory={processUpdateCategory}
+            processDetailCategory={processDetailCategory}
+          />
+        </section>
+      )}
     </main>
   );
 }
