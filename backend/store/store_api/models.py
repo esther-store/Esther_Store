@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core import validators
 from django.dispatch import receiver
 from django.db.models.signals import pre_delete
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 User = get_user_model()
 
@@ -52,7 +52,7 @@ class Producto(models.Model):
     is_active = models.BooleanField(default=True)
     in_stock = models.IntegerField(null=True, blank = True, default = 0, validators = [MinValueValidator(limit_value=0)])
     precio = models.FloatField(default = 0, validators = [MinValueValidator(limit_value=0)])
-    descuento = models.FloatField(default = 0, validators = [MinValueValidator(limit_value=0)])
+    descuento = models.FloatField(default = 0, validators = [MinValueValidator(limit_value=0), MaxValueValidator(limit_value=100)])
     categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, blank=True, null=True)
     promotion = models.ForeignKey(Promotion, on_delete= models.SET_NULL, null=True, blank=True)
     recommended = models.BooleanField(default = False)
@@ -67,6 +67,21 @@ class Producto(models.Model):
     total_puntos = models.IntegerField(default = 0, validators = [MinValueValidator(limit_value=0)])
     puntuacion = models.IntegerField(default = 0, validators = [MinValueValidator(limit_value=0)])
     
+    @property
+    def price_with_discounts(self):
+        # Return the price with all discounts applyed
+        priceWithDiscount = self.precio
+
+        # product self discount
+        if self.descuento > 0 and self.descuento <= 100:
+            priceWithDiscount -= (self.precio * self.descuento/100)
+        
+        # discount by promotion 
+        if self.promotion.discount_in_percent > 0 and self.promotion.discount_in_percent <= 100:
+            priceWithDiscount -= (self.precio * self.promotion.discount_in_percent/100)
+
+        return priceWithDiscount   
+
     def update_puntuacion(self, new_puntuacion):
         self.cantidad_puntuaciones += 1
         self.total_puntos += new_puntuacion
