@@ -1,0 +1,22 @@
+.price{
+    margin: 0;
+    color: var(--blsvk-primary, #1e1f1fc8);
+    text-align: right;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 40.214px; /* 167.557% */
+    letter-spacing: -0.48px;
+    font-family: "Agency-fb";
+    display: flex;
+    flex-direction: column;
+}
+
+.price span{
+    max-height: 24px;
+}
+
+.price-with-discount .original-price{
+    text-decoration-line: line-through;
+    font-size: 16px;
+    opacity: .6;
+}

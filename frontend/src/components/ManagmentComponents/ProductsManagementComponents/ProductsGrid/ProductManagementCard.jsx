@@ -1,5 +1,6 @@
 import ActionButtons from "./ActionButtons";
 import { Checkbox } from "primereact/checkbox";
+import ProductPrice from "@/components/ProductCard/ProductPrice";
 import React from "react";
 
 const ProductManagementCard = React.memo(function ProductManagementCard({
@@ -17,7 +18,7 @@ const ProductManagementCard = React.memo(function ProductManagementCard({
       </div>
       <div className="name-and-price-container">
         <p className="product-card-name">{product.product_name}</p>
-        <p className="card-text price">${product.precio.toFixed(2)}</p>
+        <ProductPrice precio={product.precio} price_with_discounts={product.price_with_discounts}/>
       </div>
       <div className="action-buttons-container">
         <ActionButtons

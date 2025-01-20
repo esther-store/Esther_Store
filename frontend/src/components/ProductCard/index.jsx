@@ -2,6 +2,7 @@ import "./index.css";
 import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
 import React from "react";
 import AddToCartButton from "../Cart/AddToCartButton";
+import ProductPrice from "./ProductPrice";
 
 const ProductCard = React.memo(function ProductCard({
   product,
@@ -34,16 +35,7 @@ const ProductCard = React.memo(function ProductCard({
           : "name-and-price-container"
       } onClick={onClick}>
         <p title={product.product_name} className="product-card-name">{product.product_name}</p>
-        {product.price_with_discounts? (
-          <p className="card-text price price-with-discount">
-            <span className="new-price">
-              ${product.price_with_discounts.toFixed(2)}
-            </span>
-            <span className="original-price">${product.precio.toFixed(2)}</span>
-          </p>
-        ) : (
-          <p className="card-text price">${product.precio.toFixed(2)}</p>
-        )}
+        <ProductPrice precio={product.precio} price_with_discounts={product.price_with_discounts}/>
       </div>
       <AddToCartButton product = {product}/>
     </section>
