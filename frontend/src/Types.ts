@@ -33,6 +33,7 @@ export type ProductType = {
   cantidad_puntuaciones: number;
   product_description?: string;
   precio: number;
+  price_with_discount:number;
   is_active: boolean;
   recommended: boolean;
   in_stock: number;

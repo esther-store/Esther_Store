@@ -1,7 +1,6 @@
 import "./index.css";
 import { Checkbox } from "primereact/checkbox";
 import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
-import { applyDiscount } from "@/utils/applyDiscount";
 
 function ProductCardForOfertManagement({
   data,
@@ -28,17 +27,12 @@ function ProductCardForOfertManagement({
           onChange={() => handleOnChangeChecked(data)}
         />
         <p className="product-card-name">{data.product_name}</p>
-        {data.promotion || data.descuento > 0 ? (
+        {data.price_with_discounts ? (
           <p className="card-text price price-with-discount">
             <span className="original-price">${data.precio.toFixed(2)}</span>
             <span className="new-price">
               $
-              {applyDiscount({
-                price: data.precio,
-                promotionDiscountInPercent:
-                  data.promotion_full_info?.discount_in_percent,
-                discount: data.descuento,
-              }).toFixed(2)}
+              {data.price_with_discounts.toFixed(2)}
             </span>
           </p>
         ) : (

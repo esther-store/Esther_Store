@@ -1,7 +1,6 @@
 import CartContext from "@/context/cartContext";
 import React, { useContext } from "react";
 import ProductQuantityController from "../ProductQuantityController";
-import { applyDiscount } from "@/utils/applyDiscount";
 
 const AddToCartButton = React.memo(function AddToCartButton({product}){
   const {
@@ -18,11 +17,7 @@ const AddToCartButton = React.memo(function AddToCartButton({product}){
           item={{
             id: product.id,
             productName: product.product_name,
-            price: applyDiscount({
-              price: product.precio,
-              discount: product.descuento,
-              promotionDiscountInPercent: product.promotion_full_info?.discount_in_percent,
-            }),
+            price: product.price_with_discounts || product.precio,
             img1: product.product_img1,
           }}
           add={addProductToCart}
@@ -36,11 +31,7 @@ const AddToCartButton = React.memo(function AddToCartButton({product}){
             addProductToCart({
               id: product.id,
               productName: product.product_name,
-              price: applyDiscount({
-                price: product.precio,
-                discount: product.descuento,
-                promotionDiscountInPercent: product.promotion_full_info?.discount_in_percent,
-              }),
+              price: product.price_with_discounts || product.precio,
               img1: product.product_img1,
             })
           }

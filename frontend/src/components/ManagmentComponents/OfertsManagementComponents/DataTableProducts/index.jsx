@@ -5,7 +5,6 @@ import { getProductsOfert } from '../../../../services/ManagePromotions/getProdu
 import React, { useState,useEffect,useRef } from 'react';
 import { Image } from "primereact/image";
 import { Button } from 'primereact/button';
-import { applyDiscount } from '../../../../utils/applyDiscount';
 
 
 
@@ -66,16 +65,11 @@ function DataTableProducts({
           <p className="mame-promotion-product-card">{data.product_name}</p>
           <p className="category-product-card-promotion">{`Categoría: ${data.categoria!=null?data.categoria_full_info.nombre:undefined}`}</p>
         </div>
-        {data.promotion || data.descuento > 0 ? (
+        {data.price_with_discounts? (
           <p className="card-text price price-with-discount" style={{display:"flex",flexDirection:"column",}}>
             <span className="original-price" style={{marginRight:"0px"}}>${data.precio.toFixed(2)}</span>
             <span className="new-price">
-              $
-              {applyDiscount({
-                price: data.precio,
-                promotion: data.promotion_full_info,
-                discount: data.descuento,
-              }).toFixed(2)}
+              ${data.price_with_discounts.toFixed(2)}
             </span>
           </p>
         ) : (

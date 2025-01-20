@@ -1,6 +1,5 @@
 import "./index.css";
 import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
-import { applyDiscount } from "@/utils/applyDiscount";
 import React from "react";
 import AddToCartButton from "../Cart/AddToCartButton";
 
@@ -35,15 +34,10 @@ const ProductCard = React.memo(function ProductCard({
           : "name-and-price-container"
       } onClick={onClick}>
         <p title={product.product_name} className="product-card-name">{product.product_name}</p>
-        {product.promotion || product.descuento > 0 ? (
+        {product.price_with_discounts? (
           <p className="card-text price price-with-discount">
             <span className="new-price">
-              $
-              {applyDiscount({
-                price: product.precio,
-                promotionDiscountInPercent: product.promotion_full_info?.discount_in_percent,
-                discount: product.descuento,
-              }).toFixed(2)}
+              ${product.price_with_discounts.toFixed(2)}
             </span>
             <span className="original-price">${product.precio.toFixed(2)}</span>
           </p>

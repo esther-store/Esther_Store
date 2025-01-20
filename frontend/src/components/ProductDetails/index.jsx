@@ -1,5 +1,4 @@
 import "./index.css";
-import { applyDiscount } from "@/utils/applyDiscount";
 import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
 import AddToCartButton from "../Cart/AddToCartButton";
 import { Carousel } from "primereact/carousel";
@@ -64,18 +63,14 @@ const ProductDetails= React.memo(function ProductDetails({ data }) {
           <div className="price-oferts-container padding-line">
             <div className="price-status">
               <span className="price-label">Precio:</span>
-              {data.promotion || data.descuento > 0 ? (
+              {data.price_with_discounts? (
                 <p className="card-text price product-detail-price-with-discount">
                   <span className="original-price">
                     ${data.precio.toFixed(2)}
                   </span>
                   <span className="new-price">
                     $
-                    {applyDiscount({
-                      price: data.precio,
-                      promotionDiscountInPercent: data.promotion_full_info?.discount_in_percent,
-                      discount: data.descuento,
-                    }).toFixed(2)}
+                    {data.price_with_discounts.toFixed(2)}
                   </span>
                 </p>
               ) : (
