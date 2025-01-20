@@ -1,6 +1,5 @@
 .categories-management-grid{
     width: 100%;
-    max-width: 1200px;
     height: 100%;
     min-height:60vh;
     display:grid;
@@ -11,7 +10,6 @@
     margin:0 auto;
     padding:10px;
     position: relative;
-    
 }
 .categories-management-card{
     width: 100%;
