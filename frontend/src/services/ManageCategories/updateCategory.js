@@ -3,7 +3,7 @@ import { URL_MANAGE_CATEGORIES } from "../../settings"
 export function updateCategory({id, name, img, token}){
     let formData = new FormData();
     formData.append('nombre', name);
-    img !== undefined ? formData.append('img', img):null
+    if(img != null) formData.append('img', img)
     return(
         fetch(`${URL_MANAGE_CATEGORIES}${id}/`,{
             method: 'PUT',
@@ -19,6 +19,7 @@ export function updateCategory({id, name, img, token}){
             else{
                 return response.json()
                 .then(res => {
+                    console.log(res)
                     if (res["nombre"]){
                         throw new Error("Ya existe una categoría con ese nombre")
                     }

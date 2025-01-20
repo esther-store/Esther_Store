@@ -101,6 +101,7 @@ export function useManageCategories({
         });
       },
       onSuccess: () => {
+        refetchCategories()
         setSelectedCategories([]);
         setCategoryFormProperties((prev) => ({ ...prev, show: false }));
         showToast({

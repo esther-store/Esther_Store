@@ -5,16 +5,24 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class CategoriesSerializer(serializers.ModelSerializer):
-    img = serializers.ImageField(required=True)
+    img = serializers.ImageField(required=False)
     cantidad_products = serializers.IntegerField(read_only = True)
     created_at = serializers.DateTimeField(read_only=True)
+    
     class Meta:
         model = Categoria
         fields = ['id', 'nombre', "img", "cantidad_products", "created_at", "updated_at"]
 
+    #img only required on create
+    def validate(self, attrs):
+        if self.instance is None and 'img' not in attrs:
+            raise serializers.ValidationError({"img": "This field is required."})
+        return attrs
+
 class PromotionSerializer(serializers.ModelSerializer):
     cantidad_products = serializers.IntegerField(read_only = True)
     created_at = serializers.DateTimeField(read_only=True)
+    
     class Meta:
         model = Promotion
         fields = "__all__" 
@@ -52,6 +60,7 @@ class ProductoSerializer(serializers.ModelSerializer):
 
 class ScoreSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(read_only=True)
+    
     class Meta:
         model = Score
         fields = ['id', 'score', "user", "product", "comment", "created_at", "updated_at"]          
