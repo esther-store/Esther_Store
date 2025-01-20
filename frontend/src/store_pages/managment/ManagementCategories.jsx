@@ -6,6 +6,7 @@ import CategoriesForm from "@/components/ManagmentComponents/CategoriesManagemen
 import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagement/CategoriesGrid";
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
+import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 
 function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -58,8 +59,9 @@ function ManagementCategories() {
     }));
   }
   return (
-    <main style={{ width: "100%", minHeight: "90vh", paddingTop: "50px" }}>
+    <main style={{ width: "100%", minHeight: "90vh" }}>
       <Toast ref={toast} position="bottom-center" />
+      <ManagementProductsPageHeader title = "Categories Management"/>
       {loadingCategories ? (
         <section style = {{position:'absolute', top:"50%", left:"50%", transform:"translate(-50%, -50%)"}}>
           <Loader />

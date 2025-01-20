@@ -47,12 +47,13 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
             </div>
             <div className="namecontainer">
               <p className="category-card-name">{category.nombre}</p>
+              <p className="category-card-name">Productos: {category.cantidad_products}</p>
             </div>
             <div className="action-buttons-container">
               <ActionButtons
                 item={category}
                 handleDelete={handleDeleteCategory}
-                handleDetil={processDetailCategory}
+                handleDetail={processDetailCategory}
                 handleEdit={processUpdateCategory}
               />
             </div>

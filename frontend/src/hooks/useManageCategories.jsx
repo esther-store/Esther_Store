@@ -45,8 +45,9 @@ export function useManageCategories({toastRef, setSelectedCategories, setCategor
 
   //delete one product by its id
   function handleDeleteCategory(categoryId) {
+    const categoryIds = categoryId.map(category => category.id)
     setLoading(true);
-    deleteCategories({ categories: [categoryId], token:auth.token })
+    deleteCategories({ categories: categoryIds, token:auth.token })
       .then((res) => {
         handleSetUpdateCategories()
         setSelectedCategories([])

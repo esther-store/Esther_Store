@@ -6,12 +6,13 @@ export type CategoryType = {
   readonly id: CategoryIdType;
   nombre: string;
   img: string;
+  readonly cantidad_products: number;
   created_at: string;
   updated_at: string;
 };
 export type PromotionType = {
   readonly id: PromotionIdType;
-  cantidad_products: number;
+  readonly cantidad_products: number;
   created_at: string;
   name: string;
   description?: string;
