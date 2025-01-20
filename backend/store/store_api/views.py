@@ -9,6 +9,7 @@ from django.core.exceptions import *
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .paginators import NoPagination
+from django.db.models import Q
 User = get_user_model()
 
 # Create your views here.        
@@ -62,9 +63,20 @@ class CheckIfUserCanRate(APIView):
             return Response(status = status.HTTP_200_OK)                        
 
 class ProductList(generics.ListAPIView):
-    queryset = Producto.objects.filter(is_active = True)
     serializer_class = ProductoSerializer
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['id', 'categoria', 'precio', "recommended", "promotion"] 
-    search_fields = ['product_name',"product_description"]
     ordering_fields = ["product_name", "precio", "updated_at", "puntuacion",]
+    
+    def get_queryset(self):
+        # queryset adjusted to improve searching
+        queryset = Producto.objects.all()
+        search_query = self.request.query_params.get('search', None)
+        if search_query:
+            queryset = queryset.filter(
+                Q(product_name__icontains=search_query)|
+                Q(product_description__icontains=search_query)|
+                Q(categoria__nombre__icontains=search_query)|
+                Q(promotion__name__icontains=search_query) 
+            )
+        return queryset
