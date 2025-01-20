@@ -24,6 +24,7 @@ class ProductsManagment(viewsets.ModelViewSet):
     def delete(self, request):
         try:
             products_to_delete = request.data["products_to_delete"]
+            print(products_to_delete)
             if products_to_delete == [] or products_to_delete == None:
                 return super().delete(request)
             try:
@@ -54,6 +55,28 @@ class ManageCategories(viewsets.ModelViewSet):
                 return Response([], status = status.HTTP_400_BAD_REQUEST)
         except:
             return Response([], status = status.HTTP_400_BAD_REQUEST)   
+
+    @action(methods=["post"], detail=True)
+    def add_products_to_category(self, request, pk):
+        products = request.data["products"]
+        try:
+            Producto.objects.filter(id__in=products).update(categoria = pk)
+            return Response([], status = status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response([], status = status.HTTP_400_BAD_REQUEST)     
+        except:
+            return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)  
+           
+    @action(methods=["post"], detail=True)
+    def remove_products_from_category(self, request, pk):
+        products = request.data["products"]
+        try:
+            Producto.objects.filter(id__in=products).update(categoria = None)
+            return Response([], status = status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response([], status = status.HTTP_400_BAD_REQUEST)     
+        except:
+            return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)         
 
 class PromotionsManagment(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminUser]

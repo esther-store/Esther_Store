@@ -10,23 +10,20 @@ User = get_user_model()
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length= 50, unique=True)
-    img = models.ImageField(upload_to = "categories_images", default = "productos_images/blank.png", blank=True, null = True)
+    img = models.ImageField(upload_to = "categories_images", default = "productos_images/blank.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def cantidad_products(self):
+        # Count the number of products related to this Category
+        return Producto.objects.filter(categoria=self).count()
     
     class Meta:
         ordering = ["-id"]
     
     def __str__(self):
         return self.nombre
-
-#when a category is deleted, all the products related change his status is_active to False
-@receiver(pre_delete, sender=Categoria)
-def deactive_related_products(sender, instance, **kwargs):
-    # Actualizar el campo is_active de los productos relacionados
-    products = Producto.objects.filter(categoria=instance)
-    products.update(is_active=False) 
-       
 
 class Promotion(models.Model):
     name = models.CharField(max_length=200, default = "Promoción")

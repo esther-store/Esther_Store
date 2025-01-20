@@ -5,11 +5,12 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class CategoriesSerializer(serializers.ModelSerializer):
-    img = serializers.ImageField(required=False)
+    img = serializers.ImageField(required=True)
+    cantidad_products = serializers.IntegerField(read_only = True)
     created_at = serializers.DateTimeField(read_only=True)
     class Meta:
         model = Categoria
-        fields = ['id', 'nombre',"img", "created_at", "updated_at"]
+        fields = ['id', 'nombre', "img", "cantidad_products", "created_at", "updated_at"]
 
 class PromotionSerializer(serializers.ModelSerializer):
     cantidad_products = serializers.IntegerField(read_only = True)
