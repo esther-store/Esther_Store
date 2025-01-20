@@ -7,18 +7,21 @@ import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagemen
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
+import { useCategoryFormProperties } from "@/hooks/useCategoryFormProperties";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 
 function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const toast = useRef(null);
-  //categories form properties state
-  const [categoryFormProperties, setCategoryFormProperties] = useState({
-    show: false,
-    initialValues: null,
-    disabled: false,
-    creatingMode: true,
-  });
+
+  //category form properties
+  const {
+    categoryFormProperties,
+    setCategoryFormProperties,
+    processUpdateCategory,
+    processDetailCategory,
+  } = useCategoryFormProperties();
+
   //categories management hook
   const {
     categories,
@@ -27,39 +30,13 @@ function ManagementCategories() {
     handleDeleteCategories,
     handleCreateCategory,
     handleUpdateCategory,
-    refetchCategories
+    refetchCategories,
   } = useManageCategories({
     toastRef: toast,
     setSelectedCategories: setSelectedCategories,
     setCategoryFormProperties: setCategoryFormProperties,
   });
-  function processUpdateCategory({ id, nombre, img }) {
-    setCategoryFormProperties((prev) => ({
-      ...prev,
-      show: true,
-      creatingMode: false,
-      initialValues: {
-        id: id,
-        name: nombre,
-        img: img,
-      },
-      disabled: false,
-    }));
-  }
 
-  function processDetailCategory({ id, nombre, img }) {
-    setCategoryFormProperties((prev) => ({
-      ...prev,
-      show: true,
-      creatingMode: false,
-      initialValues: {
-        id: id,
-        name: nombre,
-        img: img,
-      },
-      disabled: true,
-    }));
-  }
   return (
     <main style={{ width: "100%", minHeight: "90vh" }}>
       <Toast ref={toast} position="bottom-center" />
@@ -67,24 +44,34 @@ function ManagementCategories() {
       {loadingCategories ? (
         <section
           style={{
-            width:"100%",
-            height:"100%",
+            width: "100%",
+            height: "100%",
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            zIndex:1,
-            backdropFilter:"blur(10px)",
-            display:"flex",
-            alignItems:"center"
+            zIndex: 1,
+            backdropFilter: "blur(10px)",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Loader />
         </section>
       ) : null}
       {errorGettingCategories ? (
-        <section style = {{position:"absolute", left:"50%", top:"50%", transform:"translate(-50%, -50%)"}}>
-          <RetryQueryComponent message = {"Error obteniendo las categorías"} refetch = {refetchCategories}/>
+        <section
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <RetryQueryComponent
+            message={"Error obteniendo las categorías"}
+            refetch={refetchCategories}
+          />
         </section>
       ) : (
         <section>
