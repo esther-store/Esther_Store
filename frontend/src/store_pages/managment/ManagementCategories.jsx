@@ -6,6 +6,7 @@ import CategoriesForm from "@/components/ManagmentComponents/CategoriesManagemen
 import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagement/CategoriesGrid";
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
+import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 
 function ManagementCategories() {
@@ -22,10 +23,11 @@ function ManagementCategories() {
   const {
     categories,
     loadingCategories,
-    handleDeleteCategory,
-    handleDeleteMultipleCategories,
+    errorGettingCategories,
+    handleDeleteCategories,
     handleCreateCategory,
     handleUpdateCategory,
+    refetchCategories
   } = useManageCategories({
     toastRef: toast,
     setSelectedCategories: setSelectedCategories,
@@ -61,10 +63,28 @@ function ManagementCategories() {
   return (
     <main style={{ width: "100%", minHeight: "90vh" }}>
       <Toast ref={toast} position="bottom-center" />
-      <ManagementProductsPageHeader title = "Categories Management"/>
+      <ManagementProductsPageHeader title="Categories Management" />
       {loadingCategories ? (
-        <section style = {{position:'absolute', top:"50%", left:"50%", transform:"translate(-50%, -50%)"}}>
+        <section
+          style={{
+            width:"100%",
+            height:"100%",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex:1,
+            backdropFilter:"blur(10px)",
+            display:"flex",
+            alignItems:"center"
+          }}
+        >
           <Loader />
+        </section>
+      ) : null}
+      {errorGettingCategories ? (
+        <section style = {{position:"absolute", left:"50%", top:"50%", transform:"translate(-50%, -50%)"}}>
+          <RetryQueryComponent message = {"Error obteniendo las categorías"} refetch = {refetchCategories}/>
         </section>
       ) : (
         <section>
@@ -77,14 +97,14 @@ function ManagementCategories() {
           />
           <ButtonsAddAndDelete
             setCategoryFormProperties={setCategoryFormProperties}
-            handleDeleteMultipleCategories={handleDeleteMultipleCategories}
+            handleDeleteMultipleCategories={handleDeleteCategories}
             selectedCategories={selectedCategories}
           />
           <CategoriesGrid
             categories={categories}
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
-            handleDeleteCategory={handleDeleteCategory}
+            handleDeleteCategories={handleDeleteCategories}
             processUpdateCategory={processUpdateCategory}
             processDetailCategory={processDetailCategory}
           />

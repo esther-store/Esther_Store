@@ -5,7 +5,9 @@ import type { CategoryType } from "@/Types";
 export function useGetCategories() {
   const { data, isLoading: loading, isError, refetch } = useQuery({
     queryKey: ["cateogories"],
-    queryFn: () => getCategories(),
+    queryFn: () => {
+      return getCategories()
+    },
     staleTime: 1000 * 60 * 30,
     retry: (failuresCount) => {
       if(failuresCount >= 2) return false

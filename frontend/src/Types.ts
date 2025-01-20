@@ -1,6 +1,6 @@
 export type ProductIdType = number;
-type CategoryIdType = number;
-type PromotionIdType = number;
+export type CategoryIdType = number;
+export type PromotionIdType = number;
 
 export type CategoryType = {
   readonly id: CategoryIdType;

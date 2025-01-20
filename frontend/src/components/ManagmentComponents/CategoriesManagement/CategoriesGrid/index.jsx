@@ -7,7 +7,7 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
   categories,
   selectedCategories,
   setSelectedCategories,
-  handleDeleteCategory,
+  handleDeleteCategories,
   processUpdateCategory,
   processDetailCategory,
 }) {
@@ -52,7 +52,7 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
             <div className="action-buttons-container">
               <ActionButtons
                 item={category}
-                handleDelete={handleDeleteCategory}
+                handleDelete={handleDeleteCategories}
                 handleDetail={processDetailCategory}
                 handleEdit={processUpdateCategory}
               />

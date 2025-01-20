@@ -15,9 +15,9 @@ export function useManageProducts({
   setSelectedProducts,
   resetProductFormProperties,
 }) {
-  const { auth } = useContext(AuthenticationContext);
+  const { auth } = useContext<any>(AuthenticationContext);
   const queryClient = useQueryClient();
-  const { searchParams } = useContext(QueryFiltersContext);
+  const { searchParams } = useContext<any>(QueryFiltersContext);
 
   //get products to manage
   const {

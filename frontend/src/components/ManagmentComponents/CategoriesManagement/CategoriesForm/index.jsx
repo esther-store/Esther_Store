@@ -61,6 +61,7 @@ const CategoriesForm = React.memo(function CategoriesForm({
           <label htmlFor="name">Nombre</label>
           <InputText
             id="name"
+            required
             aria-describedby="name-help"
             className=".p-inputtext-sm"
             disabled={categoryFormProperties.disabled}
@@ -78,6 +79,7 @@ const CategoriesForm = React.memo(function CategoriesForm({
             <label htmlFor="image">Imagen</label>
             <InputText
               id="image"
+              required = {categoryFormProperties.creatingMode?true:false}
               aria-describedby="image-help"
               className=".p-inputtext-sm"
               type="file"
