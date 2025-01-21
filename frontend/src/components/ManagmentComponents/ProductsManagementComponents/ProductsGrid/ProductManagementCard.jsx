@@ -9,6 +9,7 @@ const ProductManagementCard = React.memo(function ProductManagementCard({
   processDetailProduct,
   processUpdateProduct,
   selectedProducts,
+  showCheckboxes,
   handleCheckProduct,
 }) {
   return (
@@ -28,7 +29,7 @@ const ProductManagementCard = React.memo(function ProductManagementCard({
           handleEdit={processUpdateProduct}
         />
       </div>
-      <div className="product-management-card-checkbox">
+      <div style = {showCheckboxes?{display:"block"}:{display:"none"}} className="product-management-card-checkbox">
         <Checkbox
           checked={selectedProducts.some(
             (selectedProduct) => product.id === selectedProduct.id

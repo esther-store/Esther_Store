@@ -7,6 +7,7 @@ const ProductsGrid = React.memo(function ProductsGrid({
   products,
   loading,
   selectedProducts,
+  showCheckboxes,
   setSelectedProducts,
   handleDeleteProduct,
   processUpdateProduct,
@@ -38,6 +39,7 @@ const ProductsGrid = React.memo(function ProductsGrid({
           processUpdateProduct={processUpdateProduct}
           processDetailProduct={processDetailProduct}
           selectedProducts = {selectedProducts}
+          showCheckboxes = {showCheckboxes}
           handleCheckProduct={handleCheckProduct}
         />
       ))}

@@ -18,6 +18,7 @@ import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementCom
 function ManagementProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [showCheckboxes, setShowCheckboxes] = useState(false)
   const {
     productFormProperties,
     setProductFormProperties,
@@ -72,6 +73,9 @@ function ManagementProducts() {
               <DeleteMultipleProductsButton
                 handleDeleteMultipleProducts={handleDeleteProduct}
                 selectedProducts={selectedProducts}
+                setSelectedProducts = {setSelectedProducts}
+                showCheckboxes = {showCheckboxes}
+                setShowCheckboxes = {setShowCheckboxes}
               />
             }
           />
@@ -89,6 +93,7 @@ function ManagementProducts() {
             products={products}
             loading={loadingProducts}
             selectedProducts={selectedProducts}
+            showCheckboxes = {showCheckboxes}
             setSelectedProducts={setSelectedProducts}
             handleDeleteProduct={handleDeleteProduct}
             processDetailProduct={processDetailProduct}
