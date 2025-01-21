@@ -52,6 +52,46 @@
     grid-area: delete-products;
 }
 
+.confirm-cancel-multiple-products-deletion-container{
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    animation: hide 0.3s forwards ;
+}
+  
+.confirm-cancel-multiple-products-deletion-container.show {
+    animation: show 0.3s 0s forwards ;
+}
+
+@keyframes hide {
+    from{
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    to{
+        opacity: 0;
+        transform: translate(-50%, 100%);
+        display: none;
+    }
+}
+
+@keyframes show {
+    from{
+        display: flex;
+        opacity: 0;
+        transform: translate(-50%, 100%);
+    }
+    to{
+        display: flex;
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
 @media (max-width: 600px) {
     .products-management-filters-bar-button img{
         width:18px;
