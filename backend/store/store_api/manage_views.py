@@ -42,6 +42,12 @@ class ManageCategories(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     pagination_class = NoPagination
     
+    def create(self, request):
+        if Categoria.objects.all().count() >= 24:
+            return Response({"data":[], "message":"Maximun number of categories reached"}, status = status.HTTP_403_FORBIDDEN)
+        return super().create(request)
+
+
     def delete(self, request):
         try:
             categories_to_delete = request.data["categories_to_delete"]
@@ -101,6 +107,11 @@ class PromotionsManagment(viewsets.ModelViewSet):
                 return Response([], status = status.HTTP_400_BAD_REQUEST)
         except:
             return Response([], status = status.HTTP_400_BAD_REQUEST)
+
+    def create(self, request):
+        if Promotion.objects.all().count() >= 24:
+            return Response({"data":[], "message":"Maximun number of promotions reached"}, status = status.HTTP_403_FORBIDDEN)
+        return super().create(request)    
     
     @action(methods=["post"], detail=True)
     def add_products_to_promotion(self, request, pk):
