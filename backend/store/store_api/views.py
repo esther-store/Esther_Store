@@ -22,10 +22,8 @@ class PromotionList(generics.ListAPIView):
     queryset = Promotion.objects.filter(active = True)  
     serializer_class = PromotionSerializer
     pagination_class = NoPagination
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['id', "is_special"] 
-    search_fields = ['description', "name"]
-    ordering_fields = ["updated_at", "discount_in_percent", "cantidad_products"]               
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["is_special", "active"] 
               
 class RateProduct(APIView):  
     serializer_class = ScoreSerializer

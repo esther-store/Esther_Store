@@ -77,7 +77,7 @@ class Producto(models.Model):
             priceWithDiscount -= (self.precio * self.descuento/100)
         
         # discount by promotion 
-        if self.promotion.discount_in_percent > 0 and self.promotion.discount_in_percent <= 100:
+        if self.promotion.discount_in_percent > 0 and self.promotion.discount_in_percent <= 100 and self.promotion.active == True:
             priceWithDiscount -= (self.precio * self.promotion.discount_in_percent/100)
 
         return priceWithDiscount   

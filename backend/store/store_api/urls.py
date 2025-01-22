@@ -12,9 +12,9 @@ router.register("manage-categories", ManageCategories, basename = "categories-ma
 router.register("manage-products", ProductsManagment, basename = "products-managment")
 
 urlpatterns = [
-    path('products',views.ProductList.as_view()),
-    path('categories/', views.GetCategories.as_view()),
-    path('promotions/', views.PromotionList.as_view()),
+    path('products',views.ProductList.as_view(), name = "product_list"),
+    path('categories/', views.GetCategories.as_view(), name = "get_categories"),
+    path('promotions/', views.PromotionList.as_view(), name = "promotion_list"),
     path('rate-product/', views.RateProduct.as_view(), name = "rate_product"),
     path('check-user-can-rate/<int:id_product>', views.CheckIfUserCanRate.as_view(), name = "check_user_can_rate"),
 ]
