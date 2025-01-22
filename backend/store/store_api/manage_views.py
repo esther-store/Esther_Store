@@ -64,23 +64,37 @@ class ManageCategories(viewsets.ModelViewSet):
 
     @action(methods=["post"], detail=True)
     def add_products_to_category(self, request, pk):
+        if request.data == {}:
+            return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+       
         products = request.data["products"]
+        
+        if not all(isinstance(product_id, int) for product_id in products):
+            return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
+        
         try:
-            Producto.objects.filter(id__in=products).update(categoria = pk)
-            return Response([], status = status.HTTP_200_OK)
-        except ObjectDoesNotExist:
-            return Response([], status = status.HTTP_400_BAD_REQUEST)     
+            updated_count = Producto.objects.filter(id__in=products).update(categoria = pk)
+            if updated_count == 0:
+                return Response({"message": "No products were added. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response([], status = status.HTTP_200_OK)    
         except:
             return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)  
            
     @action(methods=["post"], detail=True)
     def remove_products_from_category(self, request, pk):
+        if request.data == {}:
+            return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+        
         products = request.data["products"]
+        
+        if not all(isinstance(product_id, int) for product_id in products):
+            return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
+        
         try:
-            Producto.objects.filter(id__in=products).update(categoria = None)
-            return Response([], status = status.HTTP_200_OK)
-        except ObjectDoesNotExist:
-            return Response([], status = status.HTTP_400_BAD_REQUEST)     
+            updated_count = Producto.objects.filter(id__in=products).update(categoria = None)
+            if updated_count == 0:
+                return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response([], status = status.HTTP_200_OK)    
         except:
             return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)         
 

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
-from .models import Score, Producto, Categoria, Promotion, User
+from ..models import Score, Producto, Categoria, Promotion, User
 
 class RateProductTest(TestCase):
     def setUp(self):
@@ -42,7 +42,7 @@ class GetCategoriesTest(TestCase):
 
     def test_get_categories(self):
         response = self.client.get(reverse("get_categories"))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)  
 
 class PromotionListTest(TestCase):
     def setUp(self):
@@ -83,6 +83,17 @@ class ProductListTest(TestCase):
     def test_get_products(self):
         response = self.client.get(reverse("product_list"))
         self.assertEqual(response.status_code, 200)
+
+    def test_filter_products_by_id(self):
+        response = self.client.get(reverse("product_list"), {'id': self.product1.id})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["results"][0]["id"], self.product1.id)
+        self.assertEqual(data["results"][0]["product_name"], self.product1.product_name)
+        self.assertEqual(data["results"][0]["categoria"], self.category.id)
+        self.assertEqual(data["results"][0]["promotion"], self.promotion.id)
+        self.assertEqual(data["results"][0]["precio"], self.product1.precio)
+        self.assertEqual(data["results"][0]["recommended"], self.product1.recommended)
 
     def test_filter_products_by_category(self):
         response = self.client.get(reverse("product_list"), {'categoria': self.category.id})
