@@ -103,10 +103,8 @@ class PromotionsManagment(viewsets.ModelViewSet):
     queryset = Promotion.objects.all()  
     serializer_class = PromotionSerializer
     pagination_class = NoPagination
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['id', "is_special", "active"] 
-    search_fields = ['description',"name"]
-    ordering_fields = ["updated_at", "discount_in_percent", "cantidad_products"]         
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["is_special", "active"]
     
     def delete(self, request):
         try:
