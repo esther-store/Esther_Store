@@ -21,13 +21,22 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 class PromotionSerializer(serializers.ModelSerializer):
     cantidad_products = serializers.IntegerField(read_only = True)
+    img = serializers.ImageField(required=False)
     created_at = serializers.DateTimeField(read_only=True)
     
     class Meta:
         model = Promotion
         fields = "__all__" 
 
+    #img only required on create
+    def validate(self, attrs):
+        if self.instance is None and 'img' not in attrs:
+            raise serializers.ValidationError({"img": "This field is required."})
+        return attrs    
+
 class ProductoSerializer(serializers.ModelSerializer):
+    product_img1 = serializers.ImageField(required = True)
+    precio = serializers.FloatField(required = True)
     categoria_full_info = CategoriesSerializer(source='categoria', read_only=True)
     promotion_full_info = PromotionSerializer(source='promotion', read_only=True)
     price_with_discounts = serializers.FloatField(read_only = True)

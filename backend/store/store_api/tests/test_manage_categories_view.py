@@ -1,14 +1,15 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
-from ..models import Score, Producto, Categoria, Promotion, User
+from ..models import Producto, Categoria, User
 from store_api.utils import get_image
 
 class ManageCategoriesTest(TestCase):
     CATEGORIES_MANAGEMENT_URL_NAME_LIST = "categories-managment-list"
     CATEGORIES_MANAGEMENT_URL_NAME_CREATE = "categories-managment-create"
     CATEGORIES_MANAGEMENT_URL_NAME_DETAIL = "categories-managment-detail"
-    test_image = get_image("store_api/tests/test_img.png")
+    TEST_IMG_PATH = "store_api/tests/test_img.png"
+    test_image = get_image(TEST_IMG_PATH)
     
     def setUp(self):
         self.client = APIClient()
@@ -16,7 +17,7 @@ class ManageCategoriesTest(TestCase):
         self.client.force_authenticate(user=self.user)
            
     def test_create_category(self):
-        response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": "New Category", "img":get_image("store_api/tests/test_img.png")}, format='multipart')
+        response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": "New Category", "img":get_image(self.TEST_IMG_PATH)}, format='multipart')
         self.assertEqual(response.status_code, 201)
 
     def test_create_category_max_limit(self):
@@ -40,7 +41,7 @@ class ManageCategoriesTest(TestCase):
 
     def test_update_category(self):
         category = Categoria.objects.create(nombre="Old Category", img=self.test_image)
-        response = self.client.put(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]), {"nombre": "Updated Category", "img": get_image("store_api/tests/test_img.png")}, format='multipart')
+        response = self.client.put(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]), {"nombre": "Updated Category", "img": get_image(self.TEST_IMG_PATH)}, format='multipart')
         self.assertEqual(response.status_code, 200)
         category.refresh_from_db()
         self.assertEqual(category.nombre, "Updated Category")
@@ -113,31 +114,3 @@ class ManageCategoriesTest(TestCase):
         url = reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]) + 'remove_products_from_category/'
         response = self.client.post(url, {"products":["asdfdf"]}, format='json')
         self.assertEqual(response.status_code, 400)     
-
-# class PromotionsManagmentTest(TestCase):
-#     def setUp(self):
-#         self.client = APIClient()
-#         self.user = User.objects.create(username="admin", email="admin@example.com", password="adminpass", is_staff=True)
-#         self.client.force_authenticate(user=self.user)
-
-#     def test_create_promotion(self):
-#         response = self.client.post(reverse("promotions_managment"), {"name": "New Promotion", "discount_in_percent": 10, "active": True}, format="json")
-#         self.assertEqual(response.status_code, 201)
-
-#     def test_create_promotion_max_limit(self):
-#         for i in range(24):
-#             Promotion.objects.create(name=f"Promotion {i}", discount_in_percent=10, active=True)
-#         response = self.client.post(reverse("promotions_managment"), {"name": "New Promotion", "discount_in_percent": 10, "active": True}, format="json")
-#         self.assertEqual(response.status_code, 403)
-#         self.assertEqual(response.data["message"], "Maximun number of promotions reached")
-
-# class ProductsManagmentTest(TestCase):
-#     def setUp(self):
-#         self.client = APIClient()
-#         self.user = User.objects.create(username="admin", email="admin@example.com", password="adminpass", is_staff=True)
-#         self.client.force_authenticate(user=self.user)
-#         self.category = Categoria.objects.create(nombre="Electronics")
-
-#     def test_create_product(self):
-#         response = self.client.post(reverse("products_managment"), {"product_name": "New Product", "precio": 100.0, "categoria": self.category.id}, format="json")
-#         self.assertEqual(response.status_code, 201)
