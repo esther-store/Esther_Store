@@ -57,6 +57,19 @@ class ManageCategoriesTest(TestCase):
         response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args = [category.id]))
         self.assertEqual(response.status_code, 403)
 
+    def test_update_category_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        category = Categoria.objects.create(nombre="Category detail", img=self.test_image)
+        response = self.client.put(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args = [category.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_update_category_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        category = Categoria.objects.create(nombre="Category detail", img=self.test_image)
+        response = self.client.put(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args = [category.id]))
+        self.assertEqual(response.status_code, 403)
+
     def test_delete_category_non_admin(self):
         non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
         self.client.force_authenticate(user=non_admin_user)

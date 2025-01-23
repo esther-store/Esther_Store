@@ -15,6 +15,18 @@ class ManagePromotionsTests(TestCase):
         self.user = User.objects.create(username="admin", email="admin@example.com", password="adminpass", is_staff=True)
         self.client.force_authenticate(user=self.user)
 
+    def test_list_promotion_unauthenticated(self):
+        unauthenticated_client = APIClient()
+        response = unauthenticated_client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST))
+        self.assertEqual(response.status_code, 403)
+
+    def test_list_promotion_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass")
+        non_admin_client = APIClient()
+        non_admin_client.force_authenticate(user=non_admin_user)
+        response = non_admin_client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST))
+        self.assertEqual(response.status_code, 403)
+
     def test_create_promotion_unauthenticated(self):
         unauthenticated_client = APIClient()
         response = unauthenticated_client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST), {"name": "Unauthorized"}, format='json')
@@ -24,8 +36,49 @@ class ManagePromotionsTests(TestCase):
         non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass")
         non_admin_client = APIClient()
         non_admin_client.force_authenticate(user=non_admin_user)
-    
         response = non_admin_client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST), {"name": "Unauthorized"}, format='json')
+        self.assertEqual(response.status_code, 403)
+
+    def test_detail_promotion_unauthenticated(self):
+        unauthenticated_client = APIClient()
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = unauthenticated_client.get(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_detail_promotion_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass")
+        non_admin_client = APIClient()
+        non_admin_client.force_authenticate(user=non_admin_user)
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = non_admin_client.get(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_update_promotion_unauthenticated(self):
+        unauthenticated_client = APIClient()
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = unauthenticated_client.delete(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_update_promotion_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass")
+        non_admin_client = APIClient()
+        non_admin_client.force_authenticate(user=non_admin_user)
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = non_admin_client.put(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
+        self.assertEqual(response.status_code, 403)
+    
+    def test_delete_promotion_unauthenticated(self):
+        unauthenticated_client = APIClient()
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = unauthenticated_client.delete(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_delete_promotion_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass")
+        non_admin_client = APIClient()
+        non_admin_client.force_authenticate(user=non_admin_user)
+        promotion = Promotion.objects.create(name="Promotion 1", description="Test description 1", discount_in_percent=10, img=self.test_image)
+        response = non_admin_client.put(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[promotion.id]))
         self.assertEqual(response.status_code, 403)
 
     def test_create_promotion(self):

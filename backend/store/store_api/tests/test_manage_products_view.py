@@ -64,6 +64,20 @@ class ProductsManagmentTests(TestCase):
                 }, format='multipart')        
         self.assertEqual(response.status_code, 403)
 
+    def test_update_product_unauthenticated(self):
+        product = Producto.objects.create(product_name="Product to delete", precio=100, product_img1=self.test_image)
+        self.client.force_authenticate(user=None)
+        response = self.client.put(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_update_product_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        product = Producto.objects.create(product_name="Product to delete", precio=100, product_img1=self.test_image)
+        self.client.force_authenticate(user=None)
+        response = self.client.put(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]))
+        self.assertEqual(response.status_code, 403)
+
     def test_delete_product_unauthenticated(self):
         product = Producto.objects.create(product_name="Product to delete", precio=100, product_img1=self.test_image)
         self.client.force_authenticate(user=None)
