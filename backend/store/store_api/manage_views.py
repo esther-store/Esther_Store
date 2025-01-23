@@ -22,21 +22,21 @@ class ProductsManagment(viewsets.ModelViewSet):
     ordering_fields = ["product_name", "precio", "updated_at", "puntuacion",]
     
     def delete(self, request, pk = None):
-        if pk is not None:
-            return super().delete(request)
-        
-        if request.data == {}:
-            return Response({"message":"missing 'products_to_delete' in query body"}, status = status.HTTP_400_BAD_REQUEST)
-
-        products_to_delete = request.data["products_to_delete"]
-        
-        if products_to_delete == [] or products_to_delete == None:
-            return Response({"message":"Invalid product IDs."}, status = status.HTTP_400_BAD_REQUEST)
-        
-        if not all(isinstance(product_id, int) for product_id in products_to_delete):
-            return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
-        
         try:
+            if pk is not None:
+                return super().delete(request)
+            
+            if request.data == {}:
+                return Response({"message":"missing 'products_to_delete' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+
+            products_to_delete = request.data["products_to_delete"]
+            
+            if products_to_delete == [] or products_to_delete == None:
+                return Response({"message":"Invalid product IDs."}, status = status.HTTP_400_BAD_REQUEST)
+            
+            if not all(isinstance(product_id, int) for product_id in products_to_delete):
+                return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
+        
             deleted_products = Producto.objects.filter(id__in=products_to_delete).delete()
             
             if deleted_products[0] == 0:
@@ -45,7 +45,7 @@ class ProductsManagment(viewsets.ModelViewSet):
             return Response([], status = status.HTTP_200_OK)
         
         except:
-            return Response([], status = status.HTTP_500_SERVER_ERROR)
+            return Response([], status = status.HTTP_400_BAD_REQUEST)
 
 class ManageCategories(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminUser]

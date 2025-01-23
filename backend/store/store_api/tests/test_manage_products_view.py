@@ -17,6 +17,67 @@ class ProductsManagmentTests(TestCase):
         self.category = Categoria.objects.create(nombre="Test Category", img=self.test_image)
         self.promotion = Promotion.objects.create(name="Test Promotion", description="Test description", discount_in_percent=10, img=self.test_image)
 
+    def test_list_products_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        response = self.client.get(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST))
+        self.assertEqual(response.status_code, 403)
+
+    def test_list_products_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        response = self.client.get(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST))
+        self.assertEqual(response.status_code, 403)
+        
+    def test_detail_products_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        product = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image)
+        response = self.client.get(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args = [product.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_detail_products_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        product = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image)
+        response = self.client.get(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args = [product.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_create_product_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {
+            "product_name": "New Product",
+            "product_description": "New description",
+            "precio": 100,
+            "categoria": self.category.id,
+            "product_img1": get_image(self.TEST_IMG_PATH)
+        }, format='multipart')
+        self.assertEqual(response.status_code, 403)
+
+    def test_create_product_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {
+                    "product_name": "New Product",
+                    "product_description": "New description",
+                    "precio": 100,
+                    "categoria": self.category.id,
+                    "product_img1": get_image(self.TEST_IMG_PATH)
+                }, format='multipart')        
+        self.assertEqual(response.status_code, 403)
+
+    def test_delete_product_unauthenticated(self):
+        product = Producto.objects.create(product_name="Product to delete", precio=100, product_img1=self.test_image)
+        self.client.force_authenticate(user=None)
+        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_delete_product_non_admin_user(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        product = Producto.objects.create(product_name="Product to delete", precio=100, product_img1=self.test_image)
+        self.client.force_authenticate(user=None)
+        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]))
+        self.assertEqual(response.status_code, 403)
+    
     def test_create_product(self):
         response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {
             "product_name": "New Product",
@@ -57,6 +118,19 @@ class ProductsManagmentTests(TestCase):
         response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]))
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Producto.objects.filter(id=product.id).exists())
+
+    def test_delete_non_existent_product(self):
+        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[9999]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete_products_with_invalid_ids(self):
+        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {'products_to_delete': [9999]}, format="json")
+        self.assertEqual(response.status_code, 400)
+
+    def test_delete_products_with_empty_products_to_delete_array(self):
+        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {'products_to_delete': []}, format="json")
+        self.assertEqual(response.status_code, 400)
+    
 
     def test_delete_multiple_products(self):
         product1 = Producto.objects.create(product_name="Product to delete 1", precio=100, product_img1=self.test_image)
@@ -102,16 +176,4 @@ class ProductsManagmentTests(TestCase):
         response = self.client.put(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[product.id]), {
             "precio": -50,
         }, format='multipart')
-        self.assertEqual(response.status_code, 400)
-
-    def test_delete_non_existent_product(self):
-        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_DETAIL, args=[9999]))
-        self.assertEqual(response.status_code, 404)
-
-    def test_delete_products_with_invalid_ids(self):
-        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {'products_to_delete': [9999]}, format="json")
-        self.assertEqual(response.status_code, 400)
-
-    def test_delete_products_with_empty_products_to_delete_array(self):
-        response = self.client.delete(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST), {'products_to_delete': []}, format="json")
         self.assertEqual(response.status_code, 400)
