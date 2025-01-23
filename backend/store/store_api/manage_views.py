@@ -106,24 +106,25 @@ class PromotionsManagment(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["is_special", "active"]
     
+    def create(self, request):
+        if Promotion.objects.all().count() >= 24:
+            return Response({"data":[], "message":"Maximun number of promotions reached"}, status = status.HTTP_403_FORBIDDEN)
+        return super().create(request)  
+
     def delete(self, request):
         try:
             promotions_to_delete = request.data["promotions_to_delete"]
             if promotions_to_delete == [] or promotions_to_delete == None:
                 return super().delete(request)
             try:
-                promotions = Promotion.objects.filter(id__in=promotions_to_delete)
-                promotions.delete()
+                updated_count = Promotion.objects.filter(id__in=promotions_to_delete).delete()
+                if updated_count == 0:
+                    return Response({"message": "No promotion were deleted. Check if the IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
                 return Response([], status = status.HTTP_200_OK)
             except ObjectDoesNotExist:
                 return Response([], status = status.HTTP_400_BAD_REQUEST)
         except:
-            return Response([], status = status.HTTP_400_BAD_REQUEST)
-
-    def create(self, request):
-        if Promotion.objects.all().count() >= 24:
-            return Response({"data":[], "message":"Maximun number of promotions reached"}, status = status.HTTP_403_FORBIDDEN)
-        return super().create(request)    
+            return Response([], status = status.HTTP_400_BAD_REQUEST)  
     
     @action(methods=["post"], detail=True)
     def add_products_to_promotion(self, request, pk):
