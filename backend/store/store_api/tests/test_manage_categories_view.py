@@ -85,6 +85,10 @@ class ManageCategoriesTest(TestCase):
         self.assertFalse(Categoria.objects.filter(id=category1.id).exists())
         self.assertFalse(Categoria.objects.filter(id=category2.id).exists())
 
+    def test_delete_multiple_categories_passing_empty_categories_to_delete_array(self):
+        response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {'categories_to_delete': []}, format="json")
+        self.assertEqual(response.status_code, 400)
+
     def test_delete_multiple_categories_mixed_ids(self):
         category = Categoria.objects.create(nombre="Valid Category", img=self.test_image)
         response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {'categories_to_delete': [category.id, 9999]}, format="json")
