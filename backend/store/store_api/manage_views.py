@@ -4,7 +4,7 @@ from .models import Producto, Categoria, Promotion
 from .serializers import ProductoSerializer, CategoriesSerializer, PromotionSerializer
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework import generics, filters, viewsets
+from rest_framework import filters, viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import *
 from .paginators import NoPagination
@@ -54,11 +54,12 @@ class ManageCategories(viewsets.ModelViewSet):
             if categories_to_delete == [] or categories_to_delete == None:
                 return super().delete(request)
             try:
-                categories = Categoria.objects.filter(id__in=categories_to_delete)
-                categories.delete()
+                updated_count = Categoria.objects.filter(id__in=categories_to_delete).delete()
+                if updated_count == 0:
+                    return Response({"message": "No categories were deleted. Check if the IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
                 return Response([], status = status.HTTP_200_OK)
-            except ObjectDoesNotExist:
-                return Response([], status = status.HTTP_400_BAD_REQUEST)
+            except :
+                return Response([], status = status.HTTP_500_SERVER_ERROR)
         except:
             return Response([], status = status.HTTP_400_BAD_REQUEST)   
 
@@ -66,6 +67,9 @@ class ManageCategories(viewsets.ModelViewSet):
     def add_products_to_category(self, request, pk):
         if request.data == {}:
             return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+        
+        if not Categoria.objects.filter(id = pk).exists():
+            return Response({"message": "Invalid category ID."}, status=status.HTTP_404_NOT_FOUND) 
        
         products = request.data["products"]
         
@@ -85,6 +89,9 @@ class ManageCategories(viewsets.ModelViewSet):
         if request.data == {}:
             return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
         
+        if not Categoria.objects.filter(id = pk).exists():
+            return Response({"message": "Invalid category ID."}, status=status.HTTP_404_NOT_FOUND) 
+
         products = request.data["products"]
         
         if not all(isinstance(product_id, int) for product_id in products):
@@ -131,6 +138,9 @@ class PromotionsManagment(viewsets.ModelViewSet):
         if request.data == {}:
             return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
         
+        if not Promotion.objects.filter(id = pk).exists():
+            return Response({"message": "Invalid promotion ID."}, status=status.HTTP_404_NOT_FOUND) 
+
         products = request.data["products"]
         
         if not all(isinstance(product_id, int) for product_id in products):
@@ -148,6 +158,9 @@ class PromotionsManagment(viewsets.ModelViewSet):
         if request.data == {}:
             return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
         
+        if not Promotion.objects.filter(id = pk).exists():
+            return Response({"message": "Invalid promotion ID."}, status=status.HTTP_404_NOT_FOUND) 
+
         products = request.data["products"]
         
         if not all(isinstance(product_id, int) for product_id in products):

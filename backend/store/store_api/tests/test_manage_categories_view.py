@@ -15,11 +15,26 @@ class ManageCategoriesTest(TestCase):
         self.client = APIClient()
         self.user = User.objects.create(username="admin", email="admin@example.com", password="adminpass", is_staff=True)
         self.client.force_authenticate(user=self.user)
-           
+
+    def test_create_category_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": "New Category", "img": self.test_image}, format='multipart')
+        self.assertEqual(response.status_code, 403)
+
+    def test_create_category_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": "New Category", "img": self.test_image}, format='multipart')
+        self.assertEqual(response.status_code, 403)
+
     def test_create_category(self):
         response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": "New Category", "img":get_image(self.TEST_IMG_PATH)}, format='multipart')
         self.assertEqual(response.status_code, 201)
 
+    def test_create_category_invalid_data(self):
+        response = self.client.post(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {"nombre": ""}, format='multipart')
+        self.assertEqual(response.status_code, 400)
+        
     def test_create_category_max_limit(self):
         for i in range(24):
             Categoria.objects.create(nombre=f"Category {i}", img = self.test_image)
@@ -46,11 +61,20 @@ class ManageCategoriesTest(TestCase):
         category.refresh_from_db()
         self.assertEqual(category.nombre, "Updated Category")
 
+    def test_update_category_invalid_data(self):
+        category = Categoria.objects.create(nombre="Old Category", img=self.test_image)
+        response = self.client.put(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]), {"nombre": ""}, format='multipart')
+        self.assertEqual(response.status_code, 400)
+    
     def test_delete_category(self):
         category = Categoria.objects.create(nombre="Category to delete", img=self.test_image)
         response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]))
         self.assertEqual(response.status_code, 204)
         self.assertFalse(Categoria.objects.filter(id=category.id).exists())
+
+    def test_delete_non_existent_category(self):
+        response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[9999]))
+        self.assertEqual(response.status_code, 404)
     
     def test_delete_multiple_categories(self):
         category1 = Categoria.objects.create(nombre="Category to delete 1", img=self.test_image)
@@ -60,6 +84,12 @@ class ManageCategoriesTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Categoria.objects.filter(id=category1.id).exists())
         self.assertFalse(Categoria.objects.filter(id=category2.id).exists())
+
+    def test_delete_multiple_categories_mixed_ids(self):
+        category = Categoria.objects.create(nombre="Valid Category", img=self.test_image)
+        response = self.client.delete(reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_LIST), {'categories_to_delete': [category.id, 9999]}, format="json")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Categoria.objects.filter(id=category.id).exists())
 
     def test_add_products_to_category(self):
         category = Categoria.objects.create(nombre="Test Category", img=self.test_image)
@@ -73,6 +103,12 @@ class ManageCategoriesTest(TestCase):
         self.assertEqual(product1.categoria.id, category.id)
         self.assertEqual(product2.categoria.id, category.id)
 
+    def test_add_products_to_non_existent_category(self):
+        product = Producto.objects.create(product_name="Test Product", precio=100)
+        url = reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[9999]) + 'add_products_to_category/'
+        response = self.client.post(url, {'products': [product.id]}, format='json')
+        self.assertEqual(response.status_code, 404)
+    
     def test_add_products_to_category_missing_products_param(self):
         category = Categoria.objects.create(nombre="Test Category", img=self.test_image)
         url = reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[category.id]) + 'add_products_to_category/'
@@ -102,6 +138,13 @@ class ManageCategoriesTest(TestCase):
         product2.refresh_from_db()
         self.assertIsNone(product1.categoria)
         self.assertIsNone(product2.categoria)
+
+    def test_remove_products_from_non_existent_category(self):
+        product = Producto.objects.create(product_name="Test Product", precio=100)
+        url = reverse(self.CATEGORIES_MANAGEMENT_URL_NAME_DETAIL, args=[9999]) + 'remove_products_from_category/'
+        response = self.client.post(url, {'products': [product.id]}, format='json')
+        self.assertEqual(response.status_code, 404)
+    
 
     def test_remove_products_from_category_nonexisting_product_id(self):
         category = Categoria.objects.create(nombre="Test Category", img=self.test_image)

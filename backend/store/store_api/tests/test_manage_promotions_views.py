@@ -146,7 +146,7 @@ class ManagePromotionsTests(TestCase):
     def test_add_products_to_nonexistent_promotion(self):
         url = reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[9999]) + 'add_products_to_promotion/'
         response = self.client.post(url, {'products': [1, 2]}, format='json')
-        self.assertEqual(response.status_code, 400)    
+        self.assertEqual(response.status_code, 404)    
 
     def test_add_products_to_promotion_missing_products_param(self):
         promotion = Promotion.objects.create(name="Test Promotion", description="Test description", discount_in_percent=10, img=self.test_image)
@@ -187,7 +187,7 @@ class ManagePromotionsTests(TestCase):
     def test_remove_products_from_nonexistent_promotion(self):
         url = reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_DETAIL, args=[9999]) + 'remove_products_from_promotion/'
         response = self.client.post(url, {'products': [1, 2]}, format='json')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
 
     def test_remove_products_empty_list(self):
         promotion = Promotion.objects.create(name="Test Promotion", description="Test", discount_in_percent=10, img=self.test_image)
