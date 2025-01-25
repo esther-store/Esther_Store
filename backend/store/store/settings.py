@@ -103,13 +103,24 @@ ASGI_APPLICATION = "store.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if config('USE_DEBUG_DATABASE') == '0':
+    DATABASES = {
+        'default': {
+            'ENGINE':'django.db.backends.postgresql_psycopg2',
+            'NAME':config("POSTGRES_DATABASE_NAME"),
+            'USER':config("POSTGRES_DATABASE_USER"),
+            'PASSWORD':config("POSTGRES_DATABASE_PASS"), 
+            'HOST':config("POSTGRES_DATABASE_HOST"),
+            'DATABASE_PORT': config("POSTGRES_DATABASE_PORT"),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }   
 
 
 # Password validation
