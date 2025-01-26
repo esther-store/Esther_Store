@@ -10,8 +10,12 @@ from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .paginators import NoPagination
 from django.db.models import Q
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 User = get_user_model()
 
+
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ProductList(generics.ListAPIView):
     serializer_class = ProductoSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
