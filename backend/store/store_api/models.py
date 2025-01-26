@@ -7,7 +7,7 @@ User = get_user_model()
 
 # Create your models here.
 class Categoria(models.Model):
-    nombre = models.CharField(max_length= 50, unique=True)
+    nombre = models.CharField(max_length= 50, unique=True, db_index=True)
     img = models.ImageField(upload_to = "categories_images", default = "productos_images/blank.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -24,8 +24,8 @@ class Categoria(models.Model):
         return self.nombre
 
 class Promotion(models.Model):
-    name = models.CharField(max_length=200, default = "Promoción")
-    description = models.CharField(max_length = 500, default = "Productos rebajados")  
+    name = models.CharField(max_length=200, default = "Promoción", db_index=True)
+    description = models.CharField(max_length = 500, default = "Productos rebajados", db_index=True)  
     discount_in_percent = models.FloatField(validators = [MinValueValidator(limit_value=1)])
     img = models.ImageField(upload_to = "promotions", default = "productos_images/blank.png") 
     active = models.BooleanField(default = True)
@@ -45,8 +45,8 @@ class Promotion(models.Model):
         return self.name
 
 class Producto(models.Model):
-    product_name = models.CharField(max_length=100)
-    product_description = models.CharField(max_length=500, blank=True, null=True, default = "")
+    product_name = models.CharField(max_length=100, db_index=True)
+    product_description = models.CharField(max_length=500, blank=True, null=True, default = "", db_index=True)
     is_active = models.BooleanField(default=True)
     in_stock = models.IntegerField(null=True, blank = True, default = 0, validators = [MinValueValidator(limit_value=0)])
     precio = models.FloatField(default = 0, validators = [MinValueValidator(limit_value=0)])
