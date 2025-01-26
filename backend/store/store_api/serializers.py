@@ -36,8 +36,6 @@ class PromotionSerializer(serializers.ModelSerializer):
 
 class ProductoSerializer(serializers.ModelSerializer):
     precio = serializers.FloatField(required = True)
-    categoria_full_info = CategoriesSerializer(source='categoria', read_only=True)
-    promotion_full_info = PromotionSerializer(source='promotion', read_only=True)
     price_with_discounts = serializers.FloatField(read_only = True)
     created_at = serializers.DateTimeField(read_only=True)
     keywords = serializers.CharField(read_only = True)
@@ -60,8 +58,6 @@ class ProductoSerializer(serializers.ModelSerializer):
                   'product_img1',
                   'product_img2',
                   'product_img3',
-                  "categoria_full_info",
-                  "promotion_full_info",
                   'keywords',
                   "updated_at",
                   "created_at"
