@@ -15,33 +15,22 @@ from django.utils.decorators import method_decorator
 User = get_user_model()
 
 
-@method_decorator(cache_page(60 * 15), name='dispatch')
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class ProductList(generics.ListAPIView):
+    queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['id', 'categoria', 'precio', "recommended", "promotion"] 
     ordering_fields = ["product_name", "precio", "updated_at", "puntuacion",]
-    
-    def get_queryset(self):
-        # queryset adjusted to improve searching
-        queryset = Producto.objects.all()
-        search_query = self.request.query_params.get('search', None)
-        if search_query:
-            queryset = queryset.filter(
-                Q(product_name__icontains=search_query)|
-                Q(product_description__icontains=search_query)|
-                Q(categoria__nombre__icontains=search_query)|
-                Q(promotion__name__icontains=search_query) 
-            )
-        return queryset 
+    search_fields = ['keywords']
 
-@method_decorator(cache_page(60 * 15), name='dispatch')         
+@method_decorator(cache_page(60 * 5), name='dispatch')         
 class GetCategories(generics.ListAPIView):    
     queryset = Categoria.objects.all()
     serializer_class = CategoriesSerializer
     pagination_class = NoPagination
 
-@method_decorator(cache_page(60 * 15), name='dispatch')
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class PromotionList(generics.ListAPIView):
     queryset = Promotion.objects.filter(active = True)  
     serializer_class = PromotionSerializer

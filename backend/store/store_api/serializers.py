@@ -35,12 +35,12 @@ class PromotionSerializer(serializers.ModelSerializer):
         return attrs    
 
 class ProductoSerializer(serializers.ModelSerializer):
-    product_img1 = serializers.ImageField(required = True)
     precio = serializers.FloatField(required = True)
     categoria_full_info = CategoriesSerializer(source='categoria', read_only=True)
     promotion_full_info = PromotionSerializer(source='promotion', read_only=True)
     price_with_discounts = serializers.FloatField(read_only = True)
     created_at = serializers.DateTimeField(read_only=True)
+    keywords = serializers.CharField(read_only = True)
 
     class Meta:
         model = Producto
@@ -62,12 +62,16 @@ class ProductoSerializer(serializers.ModelSerializer):
                   'product_img3',
                   "categoria_full_info",
                   "promotion_full_info",
+                  'keywords',
                   "updated_at",
                   "created_at"
                   ]
     
-    def update(self, instance, validated_data):
-        return super().update(instance, validated_data) 
+    #product_img1 only required on create
+    def validate(self, attrs):
+        if self.instance is None and 'product_img1' not in attrs:
+            raise serializers.ValidationError({"product_img1": "This field is required."})
+        return attrs 
 
 class ScoreSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(read_only=True)

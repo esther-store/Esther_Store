@@ -42,6 +42,7 @@ class ProductoAdmin(ImportExportModelAdmin):
                     "product_img1", 
                     "product_img2", 
                     "product_img3", 
+                    'keywords',
                     "updated_at",
                     "created_at")
     list_filter = ("categoria", "promotion", "recommended")

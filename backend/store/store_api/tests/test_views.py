@@ -47,9 +47,9 @@ class GetCategoriesTest(TestCase):
 class PromotionListTest(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.promotion1 = Promotion.objects.create(name="Summer Sale", discount_in_percent=10, active=True, is_special=True)
-        self.promotion2 = Promotion.objects.create(name="Winter Sale", discount_in_percent=20, active=False, is_special=False)
-        self.promotion3 = Promotion.objects.create(name="Spring Sale", discount_in_percent=15, active=True, is_special=False)
+        self.promotion1 = Promotion.objects.create(name="Summer Sale 1", discount_in_percent=10, active=True, is_special=True)
+        self.promotion2 = Promotion.objects.create(name="Winter Sale 1", discount_in_percent=20, active=False, is_special=False)
+        self.promotion3 = Promotion.objects.create(name="Spring Sale 1", discount_in_percent=15, active=True, is_special=False)
 
     def test_get_promotions(self):
         response = self.client.get(reverse("promotion_list"))
@@ -75,7 +75,7 @@ class ProductListTest(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.category = Categoria.objects.create(nombre="Electronics")
-        self.promotion = Promotion.objects.create(name="Summer Sale", discount_in_percent=10, active=True)
+        self.promotion = Promotion.objects.create(name="Summer Sale 2", discount_in_percent=10, active=True)
         self.product1 = Producto.objects.create(product_name="Laptop", categoria=self.category, promotion=self.promotion, precio=1000, recommended=True)
         self.product2 = Producto.objects.create(product_name="Smartphone", categoria=self.category, promotion=self.promotion, precio=500, recommended=False)
         self.product3 = Producto.objects.create(product_name="Tablet", categoria=self.category, promotion=self.promotion, precio=300, recommended=True)
@@ -135,3 +135,23 @@ class ProductListTest(TestCase):
         data = response.json()
         self.assertEqual(len(data["results"]), 2)
         self.assertEqual(data["count"], 3)
+
+    def test_search_by_product_name(self):
+        response = self.client.get(reverse("product_list"), {'search':"Laptop"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data['results']), 1)  
+
+    def test_search_by_category_name(self):
+        response = self.client.get(reverse("product_list"), {'search':"Electronics"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data['results']), 3) 
+        self.assertEqual(data['results'][0]['product_name'], "Tablet")
+
+    def test_search_by_promotion_name(self):
+        response = self.client.get(reverse("product_list"), {'search':"Summer Sale 2"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data['results']), 3)   
+        self.assertEqual(data['results'][0]['product_name'], "Tablet")
