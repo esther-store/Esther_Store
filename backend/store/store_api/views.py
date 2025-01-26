@@ -34,12 +34,14 @@ class ProductList(generics.ListAPIView):
                 Q(promotion__name__icontains=search_query) 
             )
         return queryset 
-         
+
+@method_decorator(cache_page(60 * 15), name='dispatch')         
 class GetCategories(generics.ListAPIView):    
     queryset = Categoria.objects.all()
     serializer_class = CategoriesSerializer
     pagination_class = NoPagination
 
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class PromotionList(generics.ListAPIView):
     queryset = Promotion.objects.filter(active = True)  
     serializer_class = PromotionSerializer
