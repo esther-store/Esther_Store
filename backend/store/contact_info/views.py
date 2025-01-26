@@ -4,12 +4,14 @@ from .models import ContactInfo
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, DjangoModelPermissionsOrAnonReadOnly
 from rest_framework.response import Response
 from rest_framework import status
+from store_api.paginators import NoPagination
 
 # Create your views here.
 
 class ContactInfoView(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, DjangoModelPermissionsOrAnonReadOnly]
     serializer_class = ContactInfoSerializer
+    pagination_class = NoPagination
     queryset = ContactInfo.objects.all()
     
     def create(self, request, *args, **kwargs):

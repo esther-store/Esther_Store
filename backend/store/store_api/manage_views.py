@@ -18,7 +18,7 @@ class ProductsManagment(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['id', 'categoria', 'precio', "recommended", "is_active", "promotion"] 
-    search_fields = ['product_name',]
+    search_fields = ['keywords', 'id']
     ordering_fields = ["product_name", "precio", "updated_at", "puntuacion",]
     
     def delete(self, request, pk = None):
