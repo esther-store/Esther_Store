@@ -2,12 +2,12 @@ import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import { useGetCategories } from "@/hooks/useGetCategories";
+import { useGetCategoriesToManage } from "@/hooks/useGetCategoriesToManage";
 
 function CategoriesFilter({onCategorySelect = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
   const [category, setCategory] = useState();
-  const {categories} = useGetCategories()
+  const {categories} = useGetCategoriesToManage()
   const categoriesValues = [{name:"Categoría: Todas", code:""}].concat(categories.map(category => ({name:category.nombre, code: category.id})))
   
   //update the category filter value
