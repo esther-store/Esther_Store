@@ -32,7 +32,7 @@ export function useManageProducts({
         filters: searchParams.toString(),
         token: auth.token,
       })},
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 10,
     retry: (failuresCount) => {
       if(failuresCount >= 2) return false
       return true

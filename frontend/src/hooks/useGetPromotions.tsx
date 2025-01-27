@@ -19,7 +19,7 @@ export function useGetPromotions({
   } = useQuery({
     queryKey: ["promotions", searchParams.toString(), auth.token],
     queryFn: () => getPromotions(searchParams.toString(), auth.token),
-    staleTime: 1000 * 60 * 30
+    staleTime: 1000 * 60 * 10
   });
 
   const promotions: PromotionType[] = data || [];

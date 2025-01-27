@@ -27,8 +27,6 @@ export type ProductType = {
   product_name: string;
   categoria?: number;
   promotion?: number;
-  categoria_full_info: CategoryType;
-  promotion_full_info: ProductType;
   puntuacion: number;
   cantidad_puntuaciones: number;
   product_description?: string;
@@ -38,6 +36,7 @@ export type ProductType = {
   recommended: boolean;
   in_stock: number;
   descuento: number;
+  keywords: string;
   product_img1: string;
   product_img2?: string;
   product_img3?: string;

@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { deleteCategories } from "../services/ManageCategories/deleteCategories.js";
 import { createCategory } from "../services/ManageCategories/createCategory.js";
 import { updateCategory } from "../services/ManageCategories/updateCategory.js";
+import { getCategoriesToManage } from "../services/ManageCategories/getCategoriesToManage.js";
 import AuthenticationContext from "../context/authenticationContext.jsx";
 import { showToast } from "@/utils/showToast.js";
 import { useMutation } from "@tanstack/react-query";
-import { useGetCategories } from "./useGetCategories.js";
 import type { CategoryType, CategoryIdType } from "@/Types.js";
+import { useQuery } from "@tanstack/react-query";
 
 export function useManageCategories({
   toastRef,
@@ -15,11 +16,21 @@ export function useManageCategories({
 }) {
   const { auth } = useContext<any>(AuthenticationContext);
   const {
-    categories,
-    loading,
+    data,
+    isLoading: loading,
     isError: errorGettingCategories,
     refetch: refetchCategories,
-  } = useGetCategories();
+  } = useQuery({
+    queryKey: ["categories-to-manage", auth?.token],
+    queryFn: () => getCategoriesToManage({ token: auth?.token }),
+    staleTime: 1000 * 60 * 10,
+    retry: (failuresCount) => {
+      if(failuresCount >= 2) return false
+      return true
+    },
+  });
+
+  const categories: CategoryType[] = data || [];
 
   const { mutate: handleCreateCategory, isPending: creatingCategory } =
     useMutation({
@@ -101,7 +112,7 @@ export function useManageCategories({
         });
       },
       onSuccess: () => {
-        refetchCategories()
+        refetchCategories();
         setSelectedCategories([]);
         setCategoryFormProperties((prev) => ({ ...prev, show: false }));
         showToast({

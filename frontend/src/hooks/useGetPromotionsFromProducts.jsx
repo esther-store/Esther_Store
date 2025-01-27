@@ -9,7 +9,7 @@ export function useGetPromotions() {
   } = useQuery({
     queryKey: ["get-promotions"],
     queryFn:getPromotions,
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 10,
   });
   const promotions = data || []
 
