@@ -8,7 +8,7 @@ import { deletePromotions } from "@/services/ManagePromotions/deletePrmotion";
 import { Toast } from "primereact/toast";
 import { useGetPromotions } from "@/hooks/useGetPromotions";
 import OfertsGrid from "@/components/ManagmentComponents/OfertsManagementComponents/OfertsGrid";
-import PageLoader from "@/components/PageLoader";
+import Loader from "@/components/Loader";
 import DataTableOferts from "@/components/ManagmentComponents/OfertsManagementComponents/DataTableOferts";
 import SearchOferts from "@/components/ManagmentComponents/OfertsManagementComponents/SearchOfertsComponent";
 import DataScrollerOferts from "@/components/ManagmentComponents/OfertsManagementComponents/DataScrollerOferts";
@@ -164,7 +164,20 @@ function ManagementOferts() {
   return (
     
     <section className="management-oferts-container">
-      <PageLoader visible={loading} onHide={()=> null}/>
+      {loading?
+      <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+
+      <Loader/>
+    </div>
+      :null
+      }
       <Toast ref={toast} position="bottom-center"/>
       <ConfirmDialog />
       <InfoPromotion

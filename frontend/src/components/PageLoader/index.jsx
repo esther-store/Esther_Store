@@ -1,12 +1,11 @@
-import { ProgressSpinner } from "primereact/progressspinner";
-import { Dialog } from 'primereact/dialog';
+import Icon from '@/assets/icons/plus-icon.svg'
 import './index.css'
 
-function PageLoader({visible,onHide}) {
+function PageLoader() {
     return(
-        <Dialog className="pageLoader" style={{width:"0px",height:"0px"}} visible={visible} onHide={()=>onHide()}>
-            <ProgressSpinner className="spinner-pageLoader"/>
-        </Dialog>
+        <section className = "page-loader">
+            <img width = {50} height={50} src = {Icon.src}/>
+        </section>
     )
 
 }

@@ -1,89 +1,162 @@
+import PageLoader from "@/components/PageLoader/index.jsx";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Store from "./store_pages/Store.jsx";
-import ManagementProducts from "./store_pages/managment/ManagementProducts.jsx";
-import Home from "./store_pages/Home.jsx";
-import ManagementMenu from "./store_pages/managment/ManagementMenu.jsx";
-import ManagementOferts from "./store_pages/managment/ManagementOferts.jsx";
-import ManagementSecurity from "./store_pages/managment/ManagementSecurity.jsx";
-import ManagementContact from "./store_pages/managment/ManagementContact.jsx";
-import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
-import Login from "./store_pages/Login.jsx";
-import ChangePassword from "./store_pages/ChangePassword.jsx";
-import Bye from "./store_pages/Bye.jsx";
-import { ProductDetailPage } from "@/store_pages/ProductDetailPage.jsx";
-import { Page404 } from "./store_pages/Page404.jsx";
-import ManagementCategories from "./store_pages/managment/ManagementCategories.jsx";
+const ManagementProducts = React.lazy(() =>
+  import("./store_pages/managment/ManagementProducts.jsx")
+);
+const Home = React.lazy(() => import("./store_pages/Home.jsx"));
+const ManagementMenu = React.lazy(() =>
+  import("./store_pages/managment/ManagementMenu.jsx")
+);
+const ManagementOferts = React.lazy(() =>
+  import("./store_pages/managment/ManagementOferts.jsx")
+);
+const ManagementSecurity = React.lazy(() =>
+  import("./store_pages/managment/ManagementSecurity.jsx")
+);
+const ManagementContact = React.lazy(() =>
+  import("./store_pages/managment/ManagementContact.jsx")
+);
+const Login = React.lazy(() => import("./store_pages/Login.jsx"));
+const ChangePassword = React.lazy(() =>
+  import("./store_pages/ChangePassword.jsx")
+);
+const ProductDetailPage = React.lazy(() =>
+  import("@/store_pages/ProductDetailPage.jsx")
+);
+const Page404 = React.lazy(() => import("./store_pages/Page404.jsx"));
+const Bye = React.lazy(() => import("./store_pages/Bye.jsx"));
+const ProtectedRoute = React.lazy(() =>
+  import("./components/ProtectedRoute/index.jsx")
+);
+const ManagementCategories = React.lazy(() =>
+  import("./store_pages/managment/ManagementCategories.jsx")
+);
+const Store = React.lazy(() => import("./store_pages/Store.jsx"));
 
 function AppRoutes() {
-    return ( 
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route
-              path="/store/product/:productId"
-              element={<ProductDetailPage />}
-            />
-            <Route
-              path="/management-menu"
-              element={
-                <ProtectedRoute>
-                  <ManagementMenu />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/management/products"
-              element={
-                <ProtectedRoute>
-                  <ManagementProducts />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/management/categories"
-              element={
-                <ProtectedRoute>
-                  <ManagementCategories />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/management/oferts"
-              element={
-                <ProtectedRoute>
-                  <ManagementOferts />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/management/security"
-              element={
-                <ProtectedRoute>
-                  <ManagementSecurity />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/management/contact"
-              element={
-                <ProtectedRoute>
-                  <ManagementContact />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/change-password"
-              element={
-                <ProtectedRoute>
-                  <ChangePassword />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/bye" element={<Bye />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-     );
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/store"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <Store />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/store/product/:productId"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProductDetailPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management-menu"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementMenu />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management/products"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementProducts />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management/categories"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementCategories />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management/oferts"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementOferts />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management/security"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementSecurity />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/management/contact"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ManagementContact />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <Login />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/change-password"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <ProtectedRoute>
+              <ChangePassword />
+            </ProtectedRoute>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/bye"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <Bye />
+          </Suspense>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<PageLoader/>}>
+            <Page404 />
+          </Suspense>
+        }
+      />
+    </Routes>
+  );
 }
 
 export default AppRoutes;

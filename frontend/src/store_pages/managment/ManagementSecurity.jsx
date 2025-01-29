@@ -6,7 +6,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { deleteUser } from "../../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
 import UsersGrid from "@/components/ManagmentComponents/UserManagementComponents/UserGrid";
-import PageLoader from "../../components/PageLoader";
+import Loader from "../../components/Loader";
 import SearchOferts from "../../components/ManagmentComponents/UserManagementComponents/SearchOfertsComponent";
 import QueryFiltersContext from "../../context/filtersContext";
 import { useGetUsers } from "../../hooks/useGetUsers";
@@ -161,7 +161,20 @@ function ManagementSecurity() {
   return (
     
     <section className="management-oferts-container">
-      <PageLoader visible={loading} onHide={()=> null}/>
+      {loading?
+      <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+
+      <Loader/>
+    </div>
+      :null
+      }
       <Toast ref={toast} position="bottom-center"/>
       <ConfirmDialog />
       <InfoUser
