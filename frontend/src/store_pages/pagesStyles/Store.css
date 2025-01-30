@@ -4,19 +4,15 @@
     min-height: 100vh;
     background-color:rgb(249, 250, 252);
     display:grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 130px auto;
     grid-template-areas: 
-        "aside search search search search"
-        "aside content content content content";
+        "search search search search"
+        "content content content content";
         color: rgb(0, 0, 0);
 
 }
 
-.store-page aside{
-    grid-area: aside;
-    border-right: 1px solid rgba(75, 74, 74, 0.099);
-}
 .store-page search{
     grid-area: search;
 }
@@ -71,7 +67,6 @@
 @media (max-width: 830px) {
     .store-page{
         grid-template-areas: 
-            "aside aside aside aside aside"
             "search search search search search"
             "content content content content content";
         grid-template-rows: 60px 80px auto;

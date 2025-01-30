@@ -8,9 +8,6 @@ import ActiveFilters from "../components/ActiveFilters";
 function Store() {
   return (
     <section className={"store-page"}>
-      <aside>
-        <CategorieSideBar/>
-      </aside>
       <search>
         <section className="search-product">
           <h3>Productos</h3>
