@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import App from '@/App';
+import Footer from "@/components/Footer/index.jsx";
 ---
 
 <Layout>
-	<App client:only="react"/>
+	<main style = "min-height:91vh">
+		<App client:only="react"/>
+	</main>
+	<footer>
+		<Footer />
+	</footer>
 </Layout>
