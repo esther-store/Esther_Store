@@ -10,6 +10,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import React from "react";
 import Loader from "@/components/Loader";
+import { useGetCategoriesToManage } from "@/hooks/useGetCategoriesToManage";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -18,7 +19,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
   handleUpdateProduct,
   loading,
 }) {
-  const { categories, loading: loadingCategories } = useGetCategories();
+  const { categories, loading: loadingCategories } = useGetCategoriesToManage();
   const { promotions, loadingPromotions } = useGetPromotions();
   const {
     categorySelected,

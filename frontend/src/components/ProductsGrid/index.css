@@ -9,7 +9,7 @@
     height: 100%;
     min-height:60vh;
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
     gap: 20px;
     justify-content: center;
     align-items:start;

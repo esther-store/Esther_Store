@@ -77,11 +77,10 @@ class Producto(models.Model):
         # product self discount
         if self.descuento > 0 and self.descuento <= 100:
             priceWithDiscount -= (self.precio * self.descuento/100)
-        
+            
         # discount by promotion 
-        if self.promotion.discount_in_percent > 0 and self.promotion.discount_in_percent <= 100 and self.promotion.active == True:
+        if self.promotion and self.promotion.discount_in_percent > 0 and self.promotion.discount_in_percent <= 100 and self.promotion.active == True:
             priceWithDiscount -= (self.precio * self.promotion.discount_in_percent/100)
-
         return priceWithDiscount   
 
     def update_puntuacion(self, new_puntuacion):

@@ -37,7 +37,7 @@ const ProductCard = React.memo(function ProductCard({
         <p title={product.product_name} className="product-card-name">{product.product_name}</p>
         <ProductPrice precio={product.precio} price_with_discounts={product.price_with_discounts}/>
       </div>
-      <AddToCartButton product = {product}/>
+      
     </section>
   );
 })

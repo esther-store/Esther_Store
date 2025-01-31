@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 User = get_user_model()
 
 
-@method_decorator(cache_page(60 * 5), name='dispatch')
+#@method_decorator(cache_page(60 * 5), name='dispatch')
 class ProductList(generics.ListAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer

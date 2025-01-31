@@ -45,7 +45,7 @@ class ProductsManagment(viewsets.ModelViewSet):
             return Response([], status = status.HTTP_200_OK)
         
         except:
-            return Response([], status = status.HTTP_400_BAD_REQUEST)
+            return Response([], status = status.HTTP_400_BAD_REQUEST)  
 
 class ManageCategories(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminUser]
