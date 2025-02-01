@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "Noto Sans";
-    src: url("../../assets/fonts/NotoSans-Regular.woff2");
-}
-
 .products-management-page{
     min-height: 85.5vh;
     background-color: #fff;

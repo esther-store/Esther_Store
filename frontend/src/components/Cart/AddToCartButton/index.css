@@ -1,0 +1,17 @@
+.add-product-to-cart-button{
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.3s linear;
+}
+
+.add-product-to-cart-button svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

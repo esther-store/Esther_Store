@@ -1,28 +1,22 @@
-@font-face {
-    font-family: "Mulish";
-    src: url('../../assets/fonts/Mulish-Regular.woff2');
-}
-
-@font-face {
-    font-family: "Agency-fb";
-    src: url("../../assets/fonts/AgencyFB-Bold.woff2");
-}
 .product-card{
     width: 100%;
     height: 380px;   
     cursor: pointer;
     background-color: #fff;
-    box-shadow: 2px 5px 5px rgb(202, 201, 201);
-    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgb(202, 201, 201);
     position: relative;
-    padding:10px
+    padding:10px;
+    transition: transform 0.3s linear;
+    transition: box-shadow 0.3s linear;
 }
 
-.in-offert-icon{
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    width:28px
+.product-card:hover{
+    box-shadow: 2px 5px 10px rgb(202, 201, 201);
+    transform: scale(1.01);
+}
+
+.product-card:hover .add-product-to-cart-button{
+    opacity: 1;
 }
 
 .img-container {
@@ -31,7 +25,6 @@
     display: flex;
     align-items: top;
     justify-content: center;
-    border-radius:3px
   }
   
 .img-container img{
@@ -44,102 +37,60 @@
     object-fit: cover;
     mix-blend-mode: multiply;
     background-blend-mode: multiply;
-    border-radius:3px
   }
 
 .name-and-price-container{
     width: 100%;
-    height: 50px;
+    height: auto;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 5px;
     gap:10px;
-    margin-bottom: 10px;
 }
 
 .product-card-name{
     margin:0;
-    color: #5c6475;
-    font-size: 15px;
+    color: #000;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
     line-height: 21.245px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
-    font-family: Noto Sans;
+    font-family: 'Poppins-Medium';
+    letter-spacing: 1.25px;
+    opacity: .8;
 }
 
-
-
-.product-card-mobile-location{
-    height: 250px;   
-    width: 150px !important;
-    min-width: 150px;
-    padding: 10px !important;
-    
-}
-
-.img-container-mobile{
-    height: 145px;
-}
-
-.p-details-mobile{
-    display: flex !important;
-    font-size: 10px !important;
-    gap: 0px !important;
-    margin-block: 0px;
-    flex-direction: row;
- 
-}
-.p-details-mobile span{
-    font-size: 15px !important;
-}
-
-.p-details-mobile p{ 
-    font-size: 11px ;
-}
-
-.add-to-cart-section{
-    width: 100%;
-    height: 30px;
+.product-card .add-to-cart-button-container{
+    position: absolute;
+    top:15px;
+    left:15px;
     display:flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgba(130, 130, 130, 0.19);
-    border-radius:3px;
 }
 
-.add-to-cart-button{
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap:5px;
-    font-family: Noto Sans;
-    color: #5c6475;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 21.245px;
-    border-radius:3px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    
-}
-@media (max-width: 400px) {
-  .add-to-cart-button{
-      font-size: 12px;
+/*Mobile*/
+@media (max-width: 600px) {
+  .product-card{
+    height: 280px;
+  } 
+  .product-card .img-container{
+    height: 200px;
   }
+  .product-card .add-product-to-cart-button{
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (hover: none){
+    .product-card .add-product-to-cart-button{
+        opacity: 1;
+      }
 }
     
 

@@ -1,10 +1,10 @@
-import Icon from '@/assets/icons/plus-icon.svg'
 import './index.css'
+import { PlusIcon } from '@/icons/PlusIcon';
 
 function PageLoader() {
     return(
         <section className = "page-loader">
-            <img width = {50} height={50} src = {Icon.src}/>
+            <PlusIcon/>
         </section>
     )
 

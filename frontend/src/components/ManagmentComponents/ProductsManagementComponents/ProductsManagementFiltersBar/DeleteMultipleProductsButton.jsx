@@ -2,7 +2,7 @@ import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import React, { useState } from "react";
 import CloseIcon from "@/assets/icons/close-icon.svg";
-import CheckIcon from "@/assets/icons/check-icon.svg";
+import {CheckIcon} from "@/icons/CheckIcon";
 
 const DeleteMultipleProductsButton = React.memo(
   function DeleteMultipleProductsButton({
@@ -44,7 +44,7 @@ const DeleteMultipleProductsButton = React.memo(
               className="products-management-filters-bar-button btn-general-styles"
               onClick={() => setShowConfirmDialog(true)}
             >
-              <img src={CheckIcon.src} />
+              <CheckIcon color = {'#fff'}/>
               <span>Confirmar</span>
             </button>
             <button

@@ -1,6 +1,6 @@
 import './index.css'
 import MinusIcon from '@/assets/icons/minus-icon.svg'
-import PlusIcon from '@/assets/icons/plus-icon.svg'
+import {PlusIcon} from '@/icons/PlusIcon'
 import React from 'react';
 
 const ProductQuantityController = React.memo(function ProductQuantityController({item, quantity, add, rest}) {
@@ -11,7 +11,7 @@ const ProductQuantityController = React.memo(function ProductQuantityController(
             </button>
             <span>{quantity}</span>
             <button onClick = {() => add(item)}>
-                <img alt = "plus" src = {PlusIcon.src}/>
+                <PlusIcon/>
             </button>
         </div>
      );

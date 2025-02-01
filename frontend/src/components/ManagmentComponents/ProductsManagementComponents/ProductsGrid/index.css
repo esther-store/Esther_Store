@@ -1,12 +1,4 @@
-@font-face {
-    font-family: "Mulish";
-    src: url('../../assets/fonts/Mulish-Regular.woff2');
-}
 
-@font-face {
-    font-family: "Agency-fb";
-    src: url("../../../assets/fonts/AgencyFB-Bold.woff2");
-}
 .products-management-grid{
     width: 100%;
     height: 100%;

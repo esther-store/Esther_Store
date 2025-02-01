@@ -65,3 +65,14 @@ button:hover{
   cursor: pointer;
 }
 
+#root {
+  margin: 0 auto;  
+  text-align: center;
+}
+
+.main-section-route{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
