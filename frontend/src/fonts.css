@@ -2,3 +2,7 @@
   font-family: "Poppins-Medium";
   src: url("./assets/fonts/Poppins-Medium.woff2");
 }
+@font-face {
+  font-family: "Raleway-Regular";
+  src: url("./assets/fonts/Raleway-Regular.woff2");
+}

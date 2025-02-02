@@ -1,7 +1,7 @@
-export function PlusIcon({
+export function CloseIcon({
   width = 24,
   height = 24,
-  color = "#000",
+  color = "#fff",
   className = "",
 }) {
   return (
@@ -11,9 +11,9 @@ export function PlusIcon({
       width={width}
       height={height}
       viewBox={`0 0 ${width} ${height}`}
-      style={{ fill: color }}
+      style={{fill:color}}
     >
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+      <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
     </svg>
   );
 }

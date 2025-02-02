@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import CloseIcon from "@/assets/icons/close-icon.svg";
+import {CloseIcon} from "@/icons/CloseIcon";
 import { showActiveFilter } from "@/utils/showActiveFilter";
 import "./index.css";
 
@@ -16,7 +16,7 @@ const ActiveFilters = React.memo(function ActiveFilters() {
           <li key={filter.name}>
             <span>{showActiveFilter({name: filter.name, value:filter.value})}</span>
             <button onClick={() => removeFilter(filter.name)}>
-              <img src={CloseIcon.src} alt="close" />
+              <CloseIcon width={22} height={22}/>
             </button>
           </li>
         ))}
