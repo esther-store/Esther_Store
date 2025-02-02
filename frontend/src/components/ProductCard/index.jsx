@@ -3,7 +3,7 @@ import React from "react";
 import AddToCartButton from "../Cart/AddToCartButton";
 import ProductPrice from "./ProductPrice";
 
-const ProductCard = React.memo(function ProductCard({ product, onClick }) {
+const ProductCard = React.memo(function ProductCard({toastRef, product, onClick }) {
   return (
     <article className="product-card">
       <header className="img-container" onClick={onClick}>
@@ -20,7 +20,7 @@ const ProductCard = React.memo(function ProductCard({ product, onClick }) {
         />
       </section>
       <div className="add-to-cart-button-container">
-        <AddToCartButton product={product} />
+        <AddToCartButton product={product} toastRef = {toastRef}/>
       </div>
     </article>
   );

@@ -1,4 +1,3 @@
-import CategorieSideBar from "../components/CategorieSideBar";
 import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
