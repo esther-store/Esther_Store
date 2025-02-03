@@ -5,7 +5,7 @@ import CategorieSideBar from "@/components/CategorieSideBar";
 
 function Store() {
   return (
-    <section className={"store-page"}>
+    <section className="store-page">
       <aside>
         <CategorieSideBar />
       </aside>

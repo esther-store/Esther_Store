@@ -1,10 +1,10 @@
 import './index.css'
-import { PlusIcon } from '@/icons/PlusIcon';
+import { CompanyLogo } from '../NavBar/CompanyLogo';
 
 function PageLoader() {
     return(
         <section className = "page-loader">
-            <PlusIcon/>
+            <CompanyLogo/>
         </section>
     )
 

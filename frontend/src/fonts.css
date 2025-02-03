@@ -6,3 +6,7 @@
   font-family: "Raleway-Regular";
   src: url("./assets/fonts/Raleway-Regular.woff2");
 }
+@font-face {
+  font-family: "Lora-Regular";
+  src: url("./assets/fonts/Lora-Regular.woff2");
+}
