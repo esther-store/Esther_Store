@@ -1,7 +1,7 @@
 import "./index.css";
 import React, { useState, useEffect, useContext } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import SearchIcon from "@/assets/icons/search-icon.svg";
+import {SearchIcon} from "@/icons/SearchIcon";
 
 const Search = React.memo(function Search() {
   const { searchParams, setFilter, getActiveFilter, removeFilter } =
@@ -24,7 +24,7 @@ const Search = React.memo(function Search() {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="search-form">
-      <img src={SearchIcon.src} />
+      <SearchIcon width={15} height={15} color = "rgba(0, 0, 0, 0.7)"/>
       <input
         placeholder="Buscar"
         onChange={(e) => setSearchingValue(e.target.value)}

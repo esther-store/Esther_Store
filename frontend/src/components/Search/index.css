@@ -1,27 +1,23 @@
 .search-form{
     width: 100%;
+    height: 30px;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgba(240, 241, 245);
-    padding:5px;
+    border-radius: 10px;
+    background-color: #d9d9d98f;;
     gap:5px;
-    border-radius: 5px;
     padding:10px;
-}
-
-.search-form img{
-    opacity: 0.5;
-    width: 15px;
 }
    
 .search-form input{
     width: 100%;
     border:0;
     background-color: transparent;
+    opacity: 0.6;
+    font-family: 'Poppins-Medium';
 }
-
 
 .search-form input:focus{
     outline:0;
