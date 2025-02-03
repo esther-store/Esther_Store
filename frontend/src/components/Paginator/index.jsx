@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate";
-import RightArrow from "@/assets/icons/chevron-right-24.svg";
-import LeftArrow from "@/assets/icons/chevron-left-24.svg";
+import {RightChevronIcon} from "@/icons/RightChevronIcon";
+import {LeftChevronIcon} from "@/icons/LeftChevronIcon";
 import QueryFiltersContext from "@/context/filtersContext";
 import React, { useContext } from "react";
 import "./index.css";
@@ -20,8 +20,8 @@ const Paginator = React.memo(function Paginator({count, itemsLength}) {
       breakClassName={"page"}
       pageCount={Math.ceil(count / 14)}
       pageRangeDisplayed={3}
-      previousLabel={<img src={LeftArrow.src} />}
-      nextLabel={<img src={RightArrow.src} />}
+      previousLabel={<LeftChevronIcon color = "#000"/>}
+      nextLabel={<RightChevronIcon color = "#000"/>}
       breakLabel={"..."}
       marginPagesDisplayed={1}
       onPageChange={(page) => {
