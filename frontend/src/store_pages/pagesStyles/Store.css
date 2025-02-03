@@ -4,11 +4,11 @@
     min-height: 100vh;
     background-color:rgb(249, 250, 252);
     display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 130px auto;
     grid-template-areas: 
-        "search search search search"
-        "content content content content";
+        "search search search search search"
+        "aside content content content content";
         color: rgb(0, 0, 0);
 
 }
@@ -16,40 +16,22 @@
 .store-page search{
     grid-area: search;
 }
+.store-page aside{
+    grid-area: aside;
+}
 .store-page main{
     grid-area: content;
     height: auto;
 }
 
-.search-product{
-    width:80%;
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: auto;
-    align-content: end;
-    justify-content: center;
-    gap:20px;
-    padding:10px;
-    border-bottom: 1px solid rgba(211, 207, 207, 0.286);
-    margin: 0 auto;
-}
-
-.search-product h3{
-    color: var(--Dark, #1E293B);
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 137%;
-    letter-spacing: -0.8px;
-}
-
 .search-order-container{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap:10px;
+    margin: 0 auto;
 }
 
 /*active filters container*/
@@ -68,16 +50,8 @@
     .store-page{
         grid-template-areas: 
             "search search search search search"
+            "aside aside aside aside aside"
             "content content content content content";
         grid-template-rows: 60px 80px auto;
-    }
-    .search-product{
-        width: 100%;
-        gap: 5px;
-        grid-template-columns: 1fr;
-        flex-direction: column;
-    }
-    .search-product h3{
-        display: none;
     }
 }
