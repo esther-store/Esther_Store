@@ -28,7 +28,7 @@ function NavBar() {
           
         </li>
         <li className = "navbar-search-container">
-          <Search />
+          <Search redirectToStoreOnSearch = {true}/>
         </li>
         <li className = "navbar-cart-container">
           <Cart/>

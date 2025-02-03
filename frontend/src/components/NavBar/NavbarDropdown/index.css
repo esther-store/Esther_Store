@@ -33,6 +33,10 @@
     filter: brightness(100) saturate(100%) invert(1);
 }
 
+.p-dropdown-panel{
+    margin-top: 10px;
+}
+
 .change-password-button{
     height:auto;
     width:100%;
