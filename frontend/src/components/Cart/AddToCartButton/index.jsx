@@ -42,7 +42,7 @@ const AddToCartButton = React.memo(function AddToCartButton({
         <CheckIcon color={"rgba(255, 255, 255, 0.8)"} />
       </span>
       <span
-        className={productInCart && "display-none"}
+        className={productInCart? "display-none": ''}
         title={`Agregar ${product.product_name} al carrito`}
       >
         <PlusIcon color={"rgba(0, 0, 0, 0.8)"} />
