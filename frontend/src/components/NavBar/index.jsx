@@ -2,9 +2,10 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
-import {CompanyLogo} from "./CompanyLogo";
+import { CompanyLogo } from "./CompanyLogo";
 import Cart from "../Cart";
-import UserNavbarActionsDropdown from "../UserNavbarActions";
+import NavbarDropdown from "./NavbarDropdown";
+import Search from "../Search";
 
 function NavBar() {
   const { pathname } = useLocation();
@@ -12,14 +13,30 @@ function NavBar() {
   return (
     <nav className="navbar">
       <ul>
-        <li>
-          <CompanyLogo/>
+        <li className = "navbar-logo-container">
+          <Link to = "/">
+            <CompanyLogo />
+          </Link>
+        </li>
+        <li className = "navbar-promotions-container">
+          
+        </li>
+        <li className = "navbar-recommended-products-container">
+          
+        </li>
+        <li className = "navbar-categories-container">
+          
+        </li>
+        <li className = "navbar-search-container">
+          <Search />
+        </li>
+        <li className = "navbar-cart-container">
+          <Cart/>
+        </li>
+        <li className = "navbar-dropdown-container">
+          <NavbarDropdown />
         </li>
       </ul>
-      <div className="cart-and-close-session-icons-container">
-        <Cart />
-        <UserNavbarActionsDropdown />
-      </div>
     </nav>
   );
 }

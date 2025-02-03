@@ -2,7 +2,7 @@ import React from "react";
 import ProductsCartList from "@/components/Cart/ProductsCartList";
 import ProductsCartGrid from "@/components/Cart/ProductsCartGrid";
 import { Dialog } from "primereact/dialog";
-import CartIcon from "@/assets/icons/cart-icon.svg";
+import {CartIcon} from "@/icons/CartIcon";
 import "./index.css";
 
 const CartContent = React.memo(function CartContext({
@@ -24,7 +24,7 @@ const CartContent = React.memo(function CartContext({
       style={{ width: "90vw", maxWidth: "850px" }}
       header={
         <div className="cart-title">
-          <img alt="cart" src={CartIcon.src} />
+          <CartIcon color = "#000"/>
           Carrito
         </div>
       }

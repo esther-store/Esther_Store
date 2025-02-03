@@ -1,12 +1,12 @@
 import { Dropdown } from "primereact/dropdown";
-import UserIcon from "@/assets/icons/user-icon.svg";
+import { MenuIcon } from "@/icons/MenuIcon";
 import "./index.css";
 import React, { useContext, useRef, Suspense } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 const ChangePassword = React.lazy(() => import("./ChangePassword"))
 const CloseSession = React.lazy(() => import("./CloseSession"));
 
-function UserNavbarActionsDropdown() {
+function NavbarDropdown() {
   const dropdownRef = useRef(null);
   const { auth } = useContext(AuthenticationContext);
   const options = [
@@ -30,23 +30,19 @@ function UserNavbarActionsDropdown() {
     return option.component;
   };
 
-  return auth.token ? (
-    <section
-      className="user-navbar-actions-dropdown-container"
-      onClick={() => dropdownRef.current.show()}
-    >
-      <img alt="user-icon" src={UserIcon.src} />
+  return (
       <Dropdown
         ref={dropdownRef}
         onChange={(e) => handleChange(e)}
         options={options}
         optionLabel="name"
         placeholder=""
+        dropdownIcon = {<MenuIcon className = "dropdown-icon" width={30} height={30} color = "#D9658F"/>}
+        collapseIcon = {<MenuIcon className = "dropdown-icon" width={30} height={30} color = "#D9658F"/>}
         className="user-navbar-actions-dropdown"
         itemTemplate={itemTemplate}
       />
-    </section>
-  ) : null;
+  )
 }
 
-export default UserNavbarActionsDropdown;
+export default NavbarDropdown;

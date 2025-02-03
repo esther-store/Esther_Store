@@ -1,21 +1,55 @@
 .navbar {
   width: 100%;
   display: flex;
-  height: 50px;
+  justify-content: center;
+  height: 100px;
   z-index: 10;
-  width: 100%;
   position: relative;
 }
 
 .navbar ul{
+  width: 90%;
   list-style: none;
   margin: 0;
-  display: flex;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 50px 50px;
+  grid-template-areas: "logo promotions recommended-products categories search cart dropdown";
+  gap:20px;
   align-items: center;
-  flex-direction: row;
 }
 
-.cart-and-close-session-icons-container{
+.navbar ul li{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
+.navbar .navbar-logo-container{
+  grid-area: logo;
+}
+
+.navbar .navbar-promotions-container{
+  grid-area: promotions;
+}
+
+.navbar .navbar-recommended-products-container{
+  grid-area: recommended-products;
+}
+
+.navbar .navbar-categories-container{
+  grid-area: categories;
+}
+
+.navbar .navbar-search-container{
+  width: 500px;
+  grid-area: search;
+}
+
+.navbar .navbar-cart-container{
+  grid-area: cart;
+}
+
+.navbar .navbar-dropdown-container{
+  grid-area: dropdown;
+}
+

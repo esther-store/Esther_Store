@@ -1,4 +1,4 @@
-import CartIcon from "@/assets/icons/cart-icon.svg";
+import {CartIcon} from "@/icons/CartIcon";
 import CartContext from "@/context/cartContext";
 import React, { useState, useContext, useRef } from "react";
 import { useIsMobileMode } from "@/hooks/useIsMobileMode";
@@ -65,7 +65,7 @@ const Cart = React.memo(function Cart() {
           className="show-cart-button"
           onClick={() => setShowCartContent(true)}
         >
-          <img alt="cart" src={CartIcon.src} />
+          <CartIcon color = "#D9658F" width={30} height={30}/>
           {productsCart.length > 0 ? (
             <span className="cart-products-cont">{productsCart.length}</span>
           ) : null}

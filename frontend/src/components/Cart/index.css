@@ -1,13 +1,14 @@
 .show-cart-button{
     background-color: transparent;
     border: 0;
-    cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.show-cart-button img{
-    width:25px;
-    height: 25px;
+.show-cart-button svg{
+    cursor: pointer;
 }
 
 .empty-cart-message{
@@ -21,11 +22,13 @@
 }
 
 .cart-products-cont{
-    background-color: rgb(209, 0, 0);
+    background-color: #D9658F;
     width: 15px;
     height: 15px;
     border-radius: 50%;
     position: absolute;
+    top:0px;
+    right: 0px;
     color: white;
 }
 
