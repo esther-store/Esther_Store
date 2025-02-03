@@ -1,23 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import QueryFilterContext from "@/context/filtersContext";
-import CategoryIcon from "@/assets/icons/category-icon.svg";
-import CategoriesList from "./CategoriesList";
-import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import PromotionsModal from "../PromotionsModal";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import RetryQueryComponent from "../RetryQueryComponent";
 import "./index.css";
+import Loader from "../Loader";
 
-const CategorieSideBar = React.memo(function CategorieSideBar({
-  forceMobileMode = false,
-}) {
-  const { mobileMode } = useIsMobileMode({ forceMobileMode: forceMobileMode });
-  const [showModal, setShowModal] = useState(false);
+const CategorieSideBar = React.memo(function CategorieSideBar() {
   const [showPromotionsModal, setShowPromotionsModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
-  const { searchParams, setFilter, getActiveFilter, removeFilter } =
+  const { searchParams, setFilter, getActiveFilter } =
     useContext(QueryFilterContext);
   const {
     categories,
@@ -26,11 +20,6 @@ const CategorieSideBar = React.memo(function CategorieSideBar({
     refetch: refetchCategories,
   } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
-
-  function handleSetActiveCategory(category) {
-    setActiveCategory(category);
-    setShowModal(false);
-  }
 
   //everytime the categories change, update the active category
   useEffect(() => {
@@ -54,71 +43,35 @@ const CategorieSideBar = React.memo(function CategorieSideBar({
         promotions={promotions}
         loadingPromotions={loadingPromotions}
       />
-      {forceMobileMode === true || mobileMode === true ? (
-        <section className="mobile-mode-categories-container">
-          <h3 className="h3-title">Productos</h3>
-          <button
-            onClick={() => setShowModal(true)}
-            className="show-categories-modal-button btn-general-styles"
-          >
-            <span>{getActiveCategoryName()}</span>
-            <img src={CategoryIcon.src} />
-          </button>
-          <Dialog
-            contentClassName="categories-mobile-modal-content"
-            visible={showModal}
-            position="top"
-            showHeader={false}
-            draggable={false}
-            resizable={false}
-          >
-            <button
-              className="modal-close-button btn-general-styles"
-              onClick={() => setShowModal(false)}
-            >
-              X
-            </button>
-            {errorGettingCategories ? (
-              <section style={{paddingTop:"50px"}}>
-                <RetryQueryComponent
-                  message={
-                    "Error obteniendo las categorías. Revisa tu conexión a internet"
-                  }
-                  refetch={refetchCategories}
-                />
-              </section>
-            ) : (
-              <CategoriesList
-                categories={categories}
-                loading={loading}
-                setActiveCategory={handleSetActiveCategory}
-                setFilter={setFilter}
-                removeFilter={removeFilter}
-                activeCategory={activeCategory}
-                showPromotionsModal={setShowPromotionsModal}
-                getActiveFilter={getActiveFilter}
-              />
-            )}
-          </Dialog>
-        </section>
-      ) : errorGettingCategories ? (
+      {errorGettingCategories && !loading ? (
         <RetryQueryComponent
           message={
             "Error obteniendo las categorías. Revisa tu conexión a internet"
           }
-          refetchCategories={refetchCategories}
+          refetch={refetchCategories}
         />
       ) : (
-        <CategoriesList
-          categories={categories}
-          loading={loading}
-          setActiveCategory={handleSetActiveCategory}
-          setFilter={setFilter}
-          removeFilter={removeFilter}
-          activeCategory={activeCategory}
-          showPromotionsModal={setShowPromotionsModal}
-          getActiveFilter={getActiveFilter}
-        />
+        <section className="categories-side-bar">
+          <h2>Categorías</h2>
+          <ul>
+            {categories.map((category) => (
+              <li
+                className={
+                  parseInt(category.id) === parseInt(activeCategory)
+                    ? "category-selected"
+                    : null
+                }
+                key={category.id}
+                onClick={() => {
+                  setActiveCategory(category.id);
+                  setFilter({ name: "categoria", value: category.id });
+                }}
+              >
+                <span>{category.nombre}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
     </>
   );

@@ -23,7 +23,7 @@ function ActiveFilters() {
       style={{ display: showActiveFiltersBar ? "flex" : "none" }}
       className="active-filters-container"
     >
-      <h5>Filtros Activos:</h5>
+      <h5>Filtros Activos</h5>
       <ul className="active-filters-list">
         {allActiveFilters.map((filter) =>
           filter.name === "search" ? null : (
