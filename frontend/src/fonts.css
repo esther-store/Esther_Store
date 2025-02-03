@@ -3,6 +3,10 @@
   src: url("./assets/fonts/Poppins-Medium.woff2");
 }
 @font-face {
+  font-family: "Poppins-Regular";
+  src: url("./assets/fonts/Poppins-Regular.woff2");
+}
+@font-face {
   font-family: "Raleway-Regular";
   src: url("./assets/fonts/Raleway-Regular.woff2");
 }

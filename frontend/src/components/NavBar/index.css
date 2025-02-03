@@ -28,6 +28,12 @@
   grid-area: logo;
 }
 
+.navbar .navbar-homepage-link{
+  color: #313131;
+  font-family: "Poppins-Regular";
+  font-size: 16px;
+}
+
 .navbar .navbar-promotions-container{
   grid-area: promotions;
 }
