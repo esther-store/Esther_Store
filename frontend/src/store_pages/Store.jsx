@@ -2,7 +2,7 @@ import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
 import "./pagesStyles/Store.css";
-import ActiveFilters from "../components/ActiveFilters";
+import ActiveFilters from "@/components/ActiveFilters";
 
 function Store() {
   return (

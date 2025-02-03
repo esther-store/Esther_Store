@@ -14,15 +14,13 @@ export function showActiveFilter({
 }) {
   switch (name) {
     case "categoria":
-      return categories.find(category => category.id.toString() == value)?.nombre
+      return categories.find(({id}) => id.toString() == value)?.nombre
     case "ordering":
-      return orderingValues.find(({ code, name }) => code == value)?.name;
+      return orderingValues.find(({ code }) => code == value)?.name;
     case "promotion":
-      return "Promoción";
+      return promotions.find(({id}) => id.toString() == value)?.name;
     case "page":
       return `Página ${value}`;
-    case "search":
-      return `Buscar "${value}"`;
     case "recommended":
       return "Recomendados";
     case "is_active":
