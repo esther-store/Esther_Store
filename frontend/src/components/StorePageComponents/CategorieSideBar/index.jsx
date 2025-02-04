@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import QueryFilterContext from "@/context/filtersContext";
-import PromotionsModal from "../PromotionsModal";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
-import RetryQueryComponent from "../RetryQueryComponent";
+import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
-import Loader from "../Loader";
+import Loader from "@/components/Loader";
 
 const CategorieSideBar = React.memo(function CategorieSideBar() {
-  const [showPromotionsModal, setShowPromotionsModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
   const { searchParams, setFilter, getActiveFilter } =
     useContext(QueryFilterContext);
@@ -30,12 +28,6 @@ const CategorieSideBar = React.memo(function CategorieSideBar() {
 
   return (
     <>
-      <PromotionsModal
-        show={showPromotionsModal}
-        setShow={setShowPromotionsModal}
-        promotions={promotions}
-        loadingPromotions={loadingPromotions}
-      />
       {errorGettingCategories && !loading ? (
         <RetryQueryComponent
           message={

@@ -1,7 +1,7 @@
-import ProductsGrid from "../components/ProductsGrid";
+import ProductsGrid from "../components/StorePageComponents/ProductsGrid";
 import "./pagesStyles/Store.css";
-import ActiveFilters from "@/components/ActiveFilters";
-import CategorieSideBar from "@/components/CategorieSideBar";
+import ActiveFilters from "@/components/StorePageComponents/ActiveFilters";
+import CategorieSideBar from "@/components/StorePageComponents/CategorieSideBar";
 
 function Store() {
   return (

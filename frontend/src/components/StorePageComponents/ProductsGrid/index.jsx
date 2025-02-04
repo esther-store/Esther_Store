@@ -1,12 +1,12 @@
-import Loader from "../Loader";
-import ProductCard from "../ProductCard";
+import Loader from "@/components/Loader";
+import ProductCard from "./ProductCard";
 import React, { useContext, useRef } from "react";
 import "./index.css";
 import QueryFiltersContext from "@/context/filtersContext";
-import Paginator from "../Paginator";
+import Paginator from "@/components/StorePageComponents/Paginator";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useNavigate } from "react-router-dom";
-import RetryQueryComponent from "../RetryQueryComponent";
+import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { Toast } from "primereact/toast";
 
 export const ProductsGrid = React.memo(function ProductsGrid() {

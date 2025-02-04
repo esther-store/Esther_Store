@@ -1,7 +1,7 @@
 import FilterIcon from "@/assets/icons/filter-icon.svg";
 import { Dialog } from "primereact/dialog";
 import React, { useState, useContext, useEffect } from "react";
-import OrderingProducts from "@/components/OrderingProducts";
+import OrderingProducts from "@/components/StorePageComponents/OrderingProducts";
 import CategoriesFilter from "./CategoriesFilter";
 import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";

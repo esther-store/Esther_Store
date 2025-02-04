@@ -6,7 +6,7 @@ import { CompanyLogo } from "./CompanyLogo";
 import Cart from "../Cart";
 import NavbarDropdown from "./NavbarDropdown";
 import Search from "../Search";
-import CategorieSideBar from "../CategorieSideBar";
+import CategorieSideBar from "@/components/StorePageComponents/CategorieSideBar";
 
 function NavBar() {
   const { pathname } = useLocation();

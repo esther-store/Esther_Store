@@ -1,6 +1,6 @@
 import "./index.css";
 import React from "react";
-import AddToCartButton from "../Cart/AddToCartButton";
+import AddToCartButton from "@/components/Cart/AddToCartButton";
 import ProductPrice from "./ProductPrice";
 
 const ProductCard = React.memo(function ProductCard({toastRef, product, onClick }) {
