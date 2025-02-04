@@ -6,6 +6,7 @@ import { CompanyLogo } from "./CompanyLogo";
 import Cart from "../Cart";
 import NavbarDropdown from "./NavbarDropdown";
 import Search from "../Search";
+import CategorieSideBar from "../CategorieSideBar";
 
 function NavBar() {
   const { pathname } = useLocation();
@@ -39,6 +40,9 @@ function NavBar() {
         </li>
         <li className="navbar-dropdown-container">
           <NavbarDropdown />
+        </li>
+        <li className = "navbar-categories-list-container">
+          <CategorieSideBar/>
         </li>
       </ul>
     </nav>

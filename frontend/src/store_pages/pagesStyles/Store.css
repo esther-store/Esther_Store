@@ -25,18 +25,20 @@
     margin: 0 auto;
 }
 
-@media (min-width: 830px){
+@media (min-width: 850px){
     .store-page-active-filters-component-container{
         width: 80%;
         padding-left: 10px;
     }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 850px) {
     .store-page{
         grid-template-areas: 
-            "aside aside aside aside aside"
             "content content content content content";
-        grid-template-rows: 80px auto;
+        grid-template-rows: auto;
+    }
+    .store-page aside{
+        display: none;
     }
 }

@@ -46,7 +46,11 @@
 }
 
 /*Mobile*/
-@media (max-width: 830px){
+@media (max-width: 850px){
+    .products-grid{
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap:10px;
+    }
     .next-page-button{
         margin:0
     }

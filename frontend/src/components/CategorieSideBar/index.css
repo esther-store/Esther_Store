@@ -5,6 +5,7 @@
 }
 
 .categories-side-bar ul{
+    width: 100%;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -31,7 +32,7 @@
     outline:1px solid;
 }
 
-@media (max-width:830px){
+@media (max-width:850px){
     .categories-side-bar h2{
         display: none;
     }

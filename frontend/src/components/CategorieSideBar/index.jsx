@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import QueryFilterContext from "@/context/filtersContext";
-import { useIsMobileMode } from "@/hooks/useIsMobileMode";
 import PromotionsModal from "../PromotionsModal";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import RetryQueryComponent from "../RetryQueryComponent";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import Loader from "../Loader";
 
@@ -20,20 +20,13 @@ const CategorieSideBar = React.memo(function CategorieSideBar() {
     refetch: refetchCategories,
   } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
+  const {pathname} = useLocation()
+  const navigate = useNavigate()
 
   //everytime the categories change, update the active category
   useEffect(() => {
     setActiveCategory(getActiveFilter("categoria"));
   }, [categories, searchParams]);
-
-  function getActiveCategoryName() {
-    const matchedCategory = categories.find(
-      (category) => category.id == getActiveFilter("categoria")
-    );
-    return matchedCategory !== undefined && matchedCategory !== null
-      ? matchedCategory.nombre
-      : "Categorias";
-  }
 
   return (
     <>
@@ -64,6 +57,9 @@ const CategorieSideBar = React.memo(function CategorieSideBar() {
                 key={category.id}
                 onClick={() => {
                   setActiveCategory(category.id);
+                  if(pathname === "/"){
+                    return navigate(`/store?categoria=${category.id}`)
+                  }
                   setFilter({ name: "categoria", value: category.id });
                 }}
               >
