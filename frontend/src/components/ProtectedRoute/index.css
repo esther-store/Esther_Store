@@ -1,7 +1,6 @@
 .protected-route-page{
     min-height: 86vh;
     width: 100%;
-    background-image: url('../../assets/home-background.jpeg');
     display: flex;
     align-items: center;
     justify-content: center;

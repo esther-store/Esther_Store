@@ -1,7 +1,7 @@
 import "./index.css";
 import AddIcon from "@/assets/icons/oferts-management-add.svg";
 import DeleteIcon from "@/assets/icons/oferts-management-delete.svg";
-import SearchIcon from "@/assets/icons/search-icon.svg";
+import {SearchIcon} from "@/icons/SearchIcon";
 import ViewToggleGrid from "@/assets/icons/view-toggle-grid.svg";
 import ViewToggleList from "@/assets/icons/view-toggle-list.svg";
 
@@ -29,7 +29,7 @@ function SearchOferts({
         onSubmit={(event) => event.preventDefault()}
         className="search-oferts-form"
       >
-        <img src={SearchIcon.src} width={"16px"} />
+        <SearchIcon/>
         <input
           placeholder="Buscar"
           type="search"

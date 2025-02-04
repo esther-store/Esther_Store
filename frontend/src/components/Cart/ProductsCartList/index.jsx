@@ -1,6 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import TrashIcon from "@/assets/icons/trash-icon.svg";
+import {TrashIcon} from "@/icons/TrashIcon";
 import BoxIcon from "@/assets/icons/box-icon.svg";
 import ProductQuantityController from "../ProductQuantityController";
 import CartContext from "@/context/cartContext";
@@ -87,12 +87,8 @@ const ProductsCartList = React.memo(function ProductsCartList() {
           <Column
             body={(product) => {
               return (
-                <button className = "delete-product-from-cart-button">
-                  <img
-                    alt="trash"
-                    src={TrashIcon.src}
-                    onClick={() => deleteProductFromCart(product.id)}
-                  />
+                <button onClick={() => deleteProductFromCart(product.id)} className = "delete-product-from-cart-button">
+                  <TrashIcon color = "#000"/>
                 </button>
               );
             }}

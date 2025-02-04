@@ -1,5 +1,5 @@
 import './index.css'
-import TrashIcon from '@/assets/icons/trash-icon.svg'
+import {TrashIcon} from "@/icons/TrashIcon";
 import EyeIcon from '@/assets/icons/eye-icon.svg'
 import EditIcon from '@/assets/icons/edit-icon.svg'
 import { ConfirmDialog } from 'primereact/confirmdialog';
@@ -25,7 +25,7 @@ const ActionButtons = React.memo(function ActionButtons({item, handleDelete, han
                 />
             <button className = "btn-general-styles" onClick={() => handleEdit(item)}><img src = {EditIcon.src}/></button>
             <button className = "btn-general-styles" onClick={() => handleDetail(item)}><img src = {EyeIcon.src}/></button>
-            <button className = "btn-general-styles" onClick={() => setShowConfirmDialog(true)}><img src = {TrashIcon.src}/></button>
+            <button className = "btn-general-styles" onClick={() => setShowConfirmDialog(true)}><TrashIcon/></button>
         </section>
      );
 })

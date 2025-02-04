@@ -14,3 +14,7 @@
   font-family: "Lora-Regular";
   src: url("./assets/fonts/Lora-Regular.woff2");
 }
+@font-face {
+  font-family: "Lora-Medium";
+  src: url("./assets/fonts/Lora-Medium.woff2");
+}

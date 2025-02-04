@@ -1,6 +1,6 @@
 import './index.css' 
 import React, {useState, useEffect} from 'react'
-import SearchIcon from '@/assets/icons/search-icon.svg'
+import {SearchIcon} from "@/icons/SearchIcon";
 
 function SearchProducts({onHandleChange,search}) {
     const [mounted, setMounted] = useState(false)
@@ -19,7 +19,7 @@ function SearchProducts({onHandleChange,search}) {
 
     return (
         <form onSubmit={(e) => e.preventDefault()} className = "search-form">
-        <img src={SearchIcon.src} />
+        <SearchIcon/>
         <input
             placeholder="Buscar"
             onChange={(e) => setSearchInput(e.target.value)}

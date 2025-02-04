@@ -1,7 +1,7 @@
 import "./index.css";
 import AddIcon from "@/assets/icons/oferts-management-add.svg";
-import DeleteIcon from "@/assets/icons/oferts-management-delete.svg";
-import SearchIcon from "@/assets/icons/search-icon.svg";
+import {TrashIcon} from "@/icons/TrashIcon";
+import {SearchIcon} from "@/icons/SearchIcon";
 
 function SearchOferts({
   setSearch,
@@ -25,7 +25,7 @@ function SearchOferts({
         onSubmit={(event) => event.preventDefault()}
         className="search-oferts-form"
       >
-        <img src={SearchIcon.src} width={"16px"} />
+        <SearchIcon width={16} height={16} color = "#000"/>
         <input
           placeholder="Buscar"
           type="search"
@@ -51,7 +51,7 @@ function SearchOferts({
           else show("Debe seleccionar almenos un elemento", "warn");
         }}
       >
-        <img src={DeleteIcon.src} alt="delete" width={"13px"} />
+        <TrashIcon width={20} height={20}/>
         <p>Eliminar</p>
       </button>
     </search>

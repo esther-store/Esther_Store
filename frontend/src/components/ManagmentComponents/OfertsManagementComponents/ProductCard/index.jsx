@@ -1,6 +1,5 @@
 import "./index.css";
 import { Checkbox } from "primereact/checkbox";
-import InOffertIcon from "@/assets/icons/in-offert-icon.svg";
 
 function ProductCardForOfertManagement({
   data,
@@ -12,15 +11,6 @@ function ProductCardForOfertManagement({
       <div className="img-container">
         <img src={data.product_img1} alt={data.product_name} />
       </div>
-      {data.promotion ? (
-        <abbr title="En oferta">
-          <img
-            className="in-offert-icon"
-            src={InOffertIcon.src}
-            alt="En Oferta"
-          />
-        </abbr>
-      ) : null}
       <div className="name-and-price-container">
         <Checkbox
           checked={searchChecked(data.id)}

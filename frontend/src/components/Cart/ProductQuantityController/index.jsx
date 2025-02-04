@@ -11,7 +11,7 @@ const ProductQuantityController = React.memo(function ProductQuantityController(
             </button>
             <span>{quantity}</span>
             <button onClick = {() => add(item)}>
-                <PlusIcon/>
+                <PlusIcon width={40} height={40}/>
             </button>
         </div>
      );

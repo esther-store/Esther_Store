@@ -1,5 +1,5 @@
 import AddProductIcon from "@/assets/icons/add-product-icon.svg";
-import RemoveProductIcon from "@/assets/icons/remove-product-icon.svg";
+import { TrashIcon } from "@/icons/TrashIcon";
 import React, { useState } from "react";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import "./index.css";
@@ -45,7 +45,7 @@ const ButtonsAddAndDelete = React.memo(function ButtonsAddAndDelete({
           className="products-management-filters-bar-button btn-general-styles category-management-buttons"
           onClick={() => setShowConfirmDialog(true)}
         >
-          <img src={RemoveProductIcon.src} />
+          <TrashIcon/>
           <span>Eliminar</span>
         </button>
       </div>

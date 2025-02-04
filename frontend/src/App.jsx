@@ -4,18 +4,16 @@ import "primeicons/primeicons.css";
 import "./index.css";
 import AppRoutes from "./AppRoutes.jsx";
 import Providers from "@/AppProviders.jsx";
-import '@/fonts.css'
+import "@/fonts.css";
 
 function App() {
   return (
     <Providers>
-      <section>
-        <header>
-          <NavBar />
-        </header>
-        <section className="main-section-route">
-          <AppRoutes/>
-        </section>
+      <header>
+        <NavBar />
+      </header>
+      <section className="main-section-route">
+        <AppRoutes />
       </section>
     </Providers>
   );

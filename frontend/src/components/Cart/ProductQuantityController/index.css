@@ -16,6 +16,9 @@
     border: 1px solid gray;
     background-color: transparent;
 }
+.product-quantity-controller button:last-child{
+    padding: 1.5px;
+}
 
 .product-quantity-controller button img{
     width: 14px;

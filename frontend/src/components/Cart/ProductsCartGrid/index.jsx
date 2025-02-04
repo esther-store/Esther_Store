@@ -1,6 +1,6 @@
 import ProductQuantityController from "../ProductQuantityController";
 import CartContext from "@/context/cartContext";
-import TrashIcon from '@/assets/icons/trash-icon.svg'
+import {TrashIcon} from '@/icons/TrashIcon'
 import React, { useContext } from "react";
 import './index.css'
 
@@ -35,7 +35,7 @@ const ProductsCartGridCard = React.memo(
         return(
             <article key = {product.id} className = "products-cart-grid-card">
                     <button className = "remove-product-from-cart-grid-view" onClick = {() => deleteProductFromCart(product.id)}>
-                        <img alt = "trash" src = {TrashIcon.src}/>
+                        <TrashIcon color = "#000"/>
                     </button>
                     <header>
                         <img alt = {product.productName} src = {product.img1}/>

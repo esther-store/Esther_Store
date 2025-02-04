@@ -1,12 +1,11 @@
 import "./pagesStyles/Login.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import Logo from "../assets/BYM logo/B&M-LOGO.svg";
-import LogoPart1 from "../assets/BYM logo/BYM-E-COMMERSE-Leter.svg";
+import { CompanyLogo } from "@/components/NavBar/CompanyLogo";
 import { Toast } from "primereact/toast";
 import { Password } from "primereact/password";
 import React, { useContext, useRef } from "react";
-import AuthenticationContext from "../context/authenticationContext";
+import AuthenticationContext from "@/context/authenticationContext";
 
 function ChangePassword() {
   const { handleChangePassword, loading, auth } = useContext(
@@ -57,8 +56,7 @@ function ChangePassword() {
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
         <div className="logo-container-login">
-          <img src={Logo.src} alt="" width={"80px"} />
-          <img src={LogoPart1.src} alt="" width={"100px"} />
+          <CompanyLogo/>
         </div>
         <form
           action=""

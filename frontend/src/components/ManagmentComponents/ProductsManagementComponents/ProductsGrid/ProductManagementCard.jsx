@@ -1,6 +1,6 @@
 import ActionButtons from "./ActionButtons";
 import { Checkbox } from "primereact/checkbox";
-import ProductPrice from "@/components/ProductCard/ProductPrice";
+import ProductPrice from "@/components/StorePageComponents/ProductsGrid/ProductCard/ProductPrice";
 import React from "react";
 
 const ProductManagementCard = React.memo(function ProductManagementCard({
