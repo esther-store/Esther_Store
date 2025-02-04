@@ -9,12 +9,8 @@ import "@/fonts.css";
 function App() {
   return (
     <Providers>
-      <header>
         <NavBar />
-      </header>
-      <section className="main-section-route">
         <AppRoutes />
-      </section>
     </Providers>
   );
 }

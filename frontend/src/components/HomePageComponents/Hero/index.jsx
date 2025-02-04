@@ -11,7 +11,7 @@ export function Hero() {
         <p>
           Transforma tu closet con prendas elegantes y sofisticadas. Nuestra
           tienda esta diseñada para ayudarte a encontrar todo lo que buscas de
-          forma axecible y eficaz.
+          forma accesible y eficaz.
         </p>
         <footer>
           <Link to = "/store">Ir a la Tienda</Link>
