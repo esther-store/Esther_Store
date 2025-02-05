@@ -24,10 +24,6 @@
     font-weight: bold;
 }
 
-.categories-side-bar li span:hover{
-    outline:1px solid;
-}
-
 .category-selected span{
     outline:1px solid;
 }
