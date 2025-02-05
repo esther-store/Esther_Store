@@ -1,3 +1,4 @@
+import type { PromotionType } from "@/Types";
 import { getPromotions } from "../services/getPromotions";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,7 +12,7 @@ export function useGetPromotions() {
     queryFn:getPromotions,
     staleTime: 1000 * 60 * 10,
   });
-  const promotions = data || []
+  const promotions: PromotionType[] = data || []
 
   return { promotions, loadingPromotions };
 }

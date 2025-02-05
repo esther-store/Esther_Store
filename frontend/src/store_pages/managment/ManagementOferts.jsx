@@ -16,14 +16,14 @@ import QueryFiltersContext from "@/context/filtersContext";
 import AuthenticationContext from "@/context/authenticationContext";
 import { useNavigate } from "react-router-dom";
 
-const heaerTitle =(info) => {
-  return(
-    <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
+const heaerTitle = (info) => {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
       <i className="pi pi-tag "></i>
-      <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
+      <p style={{ marginBlock: "0px", fontSize: "1rem" }}>{info}</p>
     </div>
-  )
-}
+  );
+};
 
 //Management Ofert Component
 function ManagementOferts() {
@@ -36,29 +36,37 @@ function ManagementOferts() {
   const [infoDialogCreate, setInfoDialogCreate] = useState(false);
   const [rowData, setRowData] = useState({});
   const toast = useRef(null);
-  const [mounted, setMounted] = useState(false)
-  const [viewMode,setViewMode] = useState("table")
-  const [numOfOferts, setNumOferts] = useState(0) 
-  const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
-  const [search,setSearch] = useState(getActiveFilter("search"))
+  const [mounted, setMounted] = useState(false);
+  const [viewMode, setViewMode] = useState("table");
+  const [numOfOferts, setNumOferts] = useState(0);
+  const { searchParams, setFilter, getActiveFilter } =
+    useContext(QueryFiltersContext);
+  const [search, setSearch] = useState(getActiveFilter("search"));
   // Useeffect hook for getting ofert data from server
-  const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
-  const {auth} = useContext(AuthenticationContext)
+  const { loading, setLoading } = useGetPromotions({
+    searchParams: searchParams,
+    promotions: dataOferts,
+    setPromotions: setDataOferts,
+    setNumOfPromotions: setNumOferts,
+  });
+  console.log(dataOferts)
+  const { auth } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(mounted){
-        let timeOut = setTimeout(() => setFilter({name: "search", value:search}), 350)  
-        return () => clearTimeout(timeOut)
+    if (mounted) {
+      let timeOut = setTimeout(
+        () => setFilter({ name: "search", value: search }),
+        350
+      );
+      return () => clearTimeout(timeOut);
+    } else {
+      setMounted(true);
     }
-    else{
-        setMounted(true)
-    }
-},[search])
-
+  }, [search]);
 
   //Function for show delete messange when ofert is deleted
-  const show = (detail,severity) => {
+  const show = (detail, severity) => {
     toast.current.show({
       severity: severity,
       summary: "",
@@ -67,40 +75,38 @@ function ManagementOferts() {
   };
 
   //component to display manage icons in one of the table columns
-  
-  const searchChecked = (oferts,id) =>{
-        for(let i = 0; i < oferts.length; i++) {
-            if(oferts[i].id === id){
-                return true;
-            }
-        }
-        return false;
-    };
 
-  const handleOnChangeChecked = (oferts,data) =>{
-       var copyOferts = [] 
-        if(oferts.length > 0){
-        for(let i = 0; i < oferts.length; i++) {
-            if(oferts[i] !== data){
-                copyOferts.push(oferts[i]);
-            }
-        }
-            if(copyOferts.length == oferts.length){ 
-                copyOferts.push(data);
-            }
-            setSelectedOferts(copyOferts);
-        }else{
-            copyOferts.push(data)
-            setSelectedOferts(copyOferts);
-        }
-    };
+  const searchChecked = (oferts, id) => {
+    for (let i = 0; i < oferts.length; i++) {
+      if (oferts[i].id === id) {
+        return true;
+      }
+    }
+    return false;
+  };
 
-    const handelOnChangeView = ()=>{
-      if(viewMode =="table")
-        setViewMode("grid")
-      else
-        setViewMode("table");
-    };
+  const handleOnChangeChecked = (oferts, data) => {
+    var copyOferts = [];
+    if (oferts.length > 0) {
+      for (let i = 0; i < oferts.length; i++) {
+        if (oferts[i] !== data) {
+          copyOferts.push(oferts[i]);
+        }
+      }
+      if (copyOferts.length == oferts.length) {
+        copyOferts.push(data);
+      }
+      setSelectedOferts(copyOferts);
+    } else {
+      copyOferts.push(data);
+      setSelectedOferts(copyOferts);
+    }
+  };
+
+  const handelOnChangeView = () => {
+    if (viewMode == "table") setViewMode("grid");
+    else setViewMode("table");
+  };
   const confirm2 = (id) => {
     confirmDialog({
       message: "Esta seguro que desea eliminar esta promoción?",
@@ -109,45 +115,47 @@ function ManagementOferts() {
       acceptClassName: "p-button-danger",
       accept: () => {
         setLoading(true);
-        deletePromotions({ promotions: [id],token:auth.token }).then(() => {
-          getPromotions("",auth.token,).then((result) => {
-            setDataOferts(result);
+        deletePromotions({ promotions: [id], token: auth.token })
+          .then(() => {
+            getPromotions("", auth.token).then((result) => {
+              setDataOferts(result);
+              setLoading(false);
+              show("Eliminación completada", "success");
+            });
+          })
+          .catch((err) => {
             setLoading(false);
-            show("Eliminación completada","success");
           });
-        }).catch(err => {
-          setLoading(false);
-        });
       },
       reject: () => {},
     });
   };
 
   const confirmAll = (data) => {
-    var dataId=[];
+    var dataId = [];
     for (var i = 0; i < data.length; i++) {
-        dataId.push(data[i].id);
-    } 
+      dataId.push(data[i].id);
+    }
     confirmDialog({
       message: "Esta seguro que desea eliminar?",
       header: "Confirmar Eliminación",
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {
-        deletePromotions({ promotions: dataId,token:auth.token}).then(() => {
-          getPromotions("",auth.token).then((result) => {
+        deletePromotions({ promotions: dataId, token: auth.token }).then(() => {
+          getPromotions("", auth.token).then((result) => {
             setDataOferts(result);
-            show("Eliminación completada","success");
+            show("Eliminación completada", "success");
           });
-          setSelectedOferts([])
-        }); 
+          setSelectedOferts([]);
+        });
       },
       reject: () => {},
     });
   };
 
   const handleOnChangeData = () => {
-    getPromotions("",auth.token).then((promotions) => {
+    getPromotions("", auth.token).then((promotions) => {
       setDataOferts(promotions);
     });
   };
@@ -162,23 +170,20 @@ function ManagementOferts() {
   };
 
   return (
-    
     <section className="management-oferts-container">
-      {loading?
-      <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-
-      <Loader/>
-    </div>
-      :null
-      }
-      <Toast ref={toast} position="bottom-center"/>
+      {loading ? (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Loader />
+        </div>
+      ) : null}
+      <Toast ref={toast} position="bottom-center" />
       <ConfirmDialog />
       <InfoPromotion
         editable={false}
@@ -219,7 +224,7 @@ function ManagementOferts() {
           className="products-management-go-back-button btn-general-styles"
           onClick={() => navigate("/management-menu")}
         >
-          <i className="pi pi-arrow-left" ></i>
+          <i className="pi pi-arrow-left"></i>
         </button>
         <h1>Gestión de Ofertas</h1>
       </header>
@@ -236,8 +241,14 @@ function ManagementOferts() {
         viewMode={viewMode}
       />
       {/* Tabla de ofertas */}
-      <section className={viewMode=="table"?"table-oferts-container":"table-oferts-container not-overfllow-x"}>
-        {!mobileView && viewMode !=="grid"? (
+      <section
+        className={
+          viewMode == "table"
+            ? "table-oferts-container"
+            : "table-oferts-container not-overfllow-x"
+        }
+      >
+        {!mobileView && viewMode !== "grid" ? (
           <DataTableOferts
             dataOferts={dataOferts}
             selectedOferts={selectedOferts}
@@ -247,9 +258,9 @@ function ManagementOferts() {
             setRowData={setRowData}
             handleOnClickInfoButton={handleOnClickInfoButton}
           />
-        ) : viewMode =="grid"?
-          <OfertsGrid 
-            deleteConfirm={confirm2} 
+        ) : viewMode == "grid" ? (
+          <OfertsGrid
+            deleteConfirm={confirm2}
             handleOnChangeChecked={handleOnChangeChecked}
             handleOnClickEditButton={handleOnClickEditButton}
             handleOnClickInfoButton={handleOnClickInfoButton}
@@ -259,7 +270,7 @@ function ManagementOferts() {
             oferts={dataOferts}
             numOfOferts={numOfOferts}
           />
-        :(
+        ) : (
           <DataScrollerOferts
             dataOferts={dataOferts}
             confirm2={confirm2}

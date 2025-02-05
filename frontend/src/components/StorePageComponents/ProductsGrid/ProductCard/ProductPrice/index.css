@@ -2,11 +2,9 @@
     margin: 0;
     text-align: right;
     font-size: 20px;
-    line-height: 40.214px; /* 167.557% */
     letter-spacing: -0.48px;
     display: flex;
     flex-direction: column;
-
     font-family: 'Poppins-Medium';
     letter-spacing: 1.25px;
     opacity: .8;
@@ -21,4 +19,24 @@
     font-size: 13px;
     letter-spacing: 1px;
     opacity: .5;
+}
+
+@media (min-width:500px) and (max-width: 700px){
+    .price {
+        font-size: 18px;
+    }
+
+    .price-with-discount .original-price{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px){
+    .price {
+        font-size: 16px;
+    }
+
+    .price-with-discount .original-price{
+        font-size: 10px;
+    }
 }
