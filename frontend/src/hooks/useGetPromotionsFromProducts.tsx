@@ -7,6 +7,7 @@ export function useGetPromotions() {
     data,
     isLoading: loadingPromotions,
     isError,
+    refetch
   } = useQuery({
     queryKey: ["get-promotions"],
     queryFn:getPromotions,
@@ -14,5 +15,5 @@ export function useGetPromotions() {
   });
   const promotions: PromotionType[] = data || []
 
-  return { promotions, loadingPromotions };
+  return { promotions, loadingPromotions, isError, refetch };
 }

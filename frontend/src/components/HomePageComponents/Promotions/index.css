@@ -3,17 +3,29 @@
     margin-top:50px;
     box-shadow: 0px 0px 5px 0px 5px black;
     height: auto;
+    min-height: 300px;
+    padding-top: 30px;
 }
 
 .homepage-promotions-section > h1{
-    margin: 0;
     text-align: center;
     color: #000;
-    font-family: "Poppins-Medium";
-    font-size: 30px;
-    line-height: 80px; /* 266.667% */
+    font-family: "Poppins-Regular";
+    font-size: 25px;
     letter-spacing: 1.5px;
     opacity: 0.58;
+    margin: 0;
+}
+
+.homepage-promotions-section > h2{
+    color: #DD759B;
+    font-family: "Poppins-Regular";
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 30px;
 }
 
 .homepage-promotions-section .cards-container{
