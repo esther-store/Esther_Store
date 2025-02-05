@@ -1,0 +1,60 @@
+.button-scroll-top{
+    position: fixed;
+    right: 50px;
+    bottom: 40px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 100%;
+    cursor: pointer;
+    z-index: 2;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: show-from-bottom 0.5s ease;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.button-scroll-top svg{
+    transform: rotate(90deg);
+}
+
+.button-scroll-top.hide {
+    animation: hide-to-bottom 0.5s ease forwards
+}
+
+.button-scroll-top img{
+    transition: transform 0.2s ease;
+}
+
+.button-scroll-top:hover img{
+    transform: scale(1.4);
+}
+
+@keyframes show-from-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+
+@keyframes hide-to-bottom {
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+        display: none;
+    }
+}
+
+@media (max-width:500px) {
+    .button-scroll-top{
+        right: 20px;
+        bottom: 30px;
+    }
+}

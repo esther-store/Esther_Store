@@ -57,6 +57,7 @@
 
 .navbar .navbar-dropdown-container{
   grid-area: dropdown;
+  overflow-x: hidden;
 }
 
 .navbar .navbar-categories-list-container{

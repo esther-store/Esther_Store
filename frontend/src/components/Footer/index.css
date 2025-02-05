@@ -4,7 +4,6 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    width: 100%;
     padding:10px;
     background-color:#010101;
     color: var(--Secondary, #ffffff);

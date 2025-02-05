@@ -8,7 +8,6 @@ const CloseSession = React.lazy(() => import("./CloseSession"));
 
 function NavbarDropdown() {
   const dropdownRef = useRef(null);
-  const { auth } = useContext(AuthenticationContext);
   const options = [
     {
       name: "Change Password",
