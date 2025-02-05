@@ -7,3 +7,9 @@ export const orderingValues = [
     {code: "product_name", name : "[A-Z]"},
     {code: "-product_name", name : "[Z-A]"},
 ]
+
+export const pagesTitle = {
+    home: 'Esther Store - Home',
+    store: 'Esther Store - Products',
+    productDetail: (productName) => `Esther Store - ${productName}`
+}

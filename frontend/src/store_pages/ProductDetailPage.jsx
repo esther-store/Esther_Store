@@ -4,6 +4,7 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 import { Page404 } from "./Page404";
 import ProductDetails from "@/components/ProductDetails";
 import Loader from "@/components/Loader";
+import { pagesTitle } from "@/constants";
 
 export function ProductDetailPage({}) {
   const { productId } = useParams();
@@ -12,6 +13,7 @@ export function ProductDetailPage({}) {
   });
   return (
     <main className="product-detail-page">
+      <title>{pagesTitle.productDetail(products[0].product_name)}</title>
       {loading ? (
         <Loader />
       ) : products.length === 0 ? (
