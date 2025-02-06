@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./index.css";
 import useWindowSize from "@/hooks/useWindowSize";
 
-const ImageCarousel = ({ elements }) => {
+const ImageSlider = ({ images }) => {
   const responsive = useWindowSize("max", 600);
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
@@ -33,13 +33,13 @@ const ImageCarousel = ({ elements }) => {
         }
         onScroll={handleScroll}
       >
-        {elements.map((image, index) => (
+        {images.map((image, index) => (
           <img src={image} key={index} alt={`img ${index}`} />
         ))}
       </div>
 
       <div className="selector">
-        {elements.map((_, index) => (
+        {images.map((_, index) => (
           <div
             className={
               currentImage == index
@@ -55,4 +55,4 @@ const ImageCarousel = ({ elements }) => {
   );
 };
 
-export default ImageCarousel;
+export default ImageSlider;

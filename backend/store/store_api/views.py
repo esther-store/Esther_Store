@@ -13,9 +13,14 @@ from django.db.models import Q
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 User = get_user_model()
+from store.settings import DEBUG
 
+if DEBUG:
+    CACHE_TIME = 0
+else:
+    CACHE_TIME = 60 * 5    
 
-#@method_decorator(cache_page(60 * 5), name='dispatch')
+@method_decorator(cache_page(CACHE_TIME), name='dispatch')
 class ProductList(generics.ListAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
@@ -24,13 +29,13 @@ class ProductList(generics.ListAPIView):
     ordering_fields = ["product_name", "precio", "updated_at", "puntuacion",]
     search_fields = ['keywords']
 
-@method_decorator(cache_page(60 * 5), name='dispatch')         
+@method_decorator(cache_page(CACHE_TIME), name='dispatch')         
 class GetCategories(generics.ListAPIView):    
     queryset = Categoria.objects.all()
     serializer_class = CategoriesSerializer
     pagination_class = NoPagination
 
-@method_decorator(cache_page(60 * 5), name='dispatch')
+@method_decorator(cache_page(CACHE_TIME), name='dispatch')
 class PromotionList(generics.ListAPIView):
     queryset = Promotion.objects.filter(active = True)  
     serializer_class = PromotionSerializer
