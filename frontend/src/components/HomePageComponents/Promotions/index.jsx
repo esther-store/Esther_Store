@@ -7,6 +7,7 @@ import { Toast } from "primereact/toast";
 import Loader from "@/components/Loader";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { NavigationPoints } from "./NavigationPoints";
+import { Link } from "react-router-dom";
 
 export function HomePagePromotions() {
   const toastRef = useRef();
@@ -30,15 +31,7 @@ export function HomePagePromotions() {
       <h1>Promociones</h1>
       {loading ? (
         <div
-          style={{
-            width: "100%",
-            minHeight: "200px",
-            position: "absolute",
-            top:"50%",
-            transform:"translateY(-50%)",
-            display: "flex",
-            alignItems: "center",
-          }}
+          style={styles.loaderContainer}
         >
           <Loader />
         </div>
@@ -53,13 +46,14 @@ export function HomePagePromotions() {
           <h2>{currentPromotion?.name}</h2>
           <section className="cards-container">
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                toastRef={toastRef}
-                onClick={() => {}}
-                showAddToCartButton={false}
-              />
+              <Link to = {`/store/product/${product.id}`}>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  toastRef={toastRef}
+                  showAddToCartButton={false}
+                />
+              </Link>
             ))}
           </section>
           <section className="points-container">
@@ -73,4 +67,16 @@ export function HomePagePromotions() {
       )}
     </article>
   );
+}
+
+const styles = {
+  loaderContainer:{
+    width: "100%",
+    minHeight: "200px",
+    position: "absolute",
+    top:"50%",
+    transform:"translateY(-50%)",
+    display: "flex",
+    alignItems: "center",
+  }
 }

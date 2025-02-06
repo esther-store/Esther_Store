@@ -6,7 +6,7 @@ import ProductPrice from "./ProductPrice";
 const ProductCard = React.memo(function ProductCard({
   toastRef,
   product,
-  onClick,
+  onClick = () => {},
   showAddToCartButton = true,
 }) {
   return (

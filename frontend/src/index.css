@@ -1,6 +1,4 @@
-a {
-  text-decoration: inherit;
-}
+a { all: unset}
 
 a:visited{
   color:black

@@ -1,7 +1,7 @@
 .homepage-promotions-section{
     background-color: #F6E6EC;
     margin-top:50px;
-    box-shadow: 0px 0px 5px 0px 5px black;
+    box-shadow: 0px 5px 10px rgba(5, 5, 5, 0.222);
     height: auto;
     min-height: 300px;
     padding: 30px 0px 20px 0px;
@@ -87,7 +87,10 @@
         padding: 0px 5px 20px 5px;
     }
     .homepage-promotions-section > h1{
-        font-size: 25px;
+        font-size: 20px;
+    }
+    .homepage-promotions-section > h2{
+        font-size: 30px;
     }
     .homepage-promotions-section .points-container .point{
         width: 10px;
