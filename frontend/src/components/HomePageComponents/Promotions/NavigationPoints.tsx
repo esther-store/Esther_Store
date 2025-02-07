@@ -1,4 +1,6 @@
-export function NavigationPoints({
+import React from 'react'
+
+export const NavigationPoints = React.memo(function NavigationPoints({
   items,
   currentIndex,
   onChange,
@@ -14,4 +16,5 @@ export function NavigationPoints({
       onClick={() => onChange(index)}
     />
   ));
-}
+})
+

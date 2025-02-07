@@ -40,12 +40,13 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
             <>
               <div className="products-grid">
                 {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    toastRef = {toastRef}
-                    product={product}
-                    onClick={() => navigate(`product/${product.id}`)}
-                  />
+                  <div key={product.id} className = "card-container">
+                    <ProductCard
+                      toastRef = {toastRef}
+                      product={product}
+                      onClick={() => navigate(`product/${product.id}`)}
+                    />
+                  </div>
                 ))}
               </div>
               <Paginator

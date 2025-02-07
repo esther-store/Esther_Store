@@ -7,16 +7,21 @@
   position: relative;
 }
 
+.navbar a{
+  cursor: pointer;
+}
+
 .navbar ul{
   width: 90%;
   list-style: none;
   margin: 0 auto;
   display:grid;
-  grid-template-columns: auto auto 130px auto 1fr 30px 30px;
+  grid-template-columns: auto auto auto auto 1fr 30px 30px;
   grid-template-areas: "logo promotions recommended-products categories search cart dropdown";
   gap:30px;
   align-items: center;
   padding-left: 0;
+  position: relative;
 }
 
 .navbar ul li{

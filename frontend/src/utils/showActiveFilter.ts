@@ -21,6 +21,8 @@ export function showActiveFilter({
       return promotions.find(({id}) => id.toString() == value)?.name;
     case "page":
       return `Página ${value}`;
+    case "search":
+      return `Buscar por: ${value}`;
     case "recommended":
       return "Recomendados";
     case "is_active":

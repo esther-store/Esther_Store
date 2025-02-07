@@ -32,7 +32,7 @@ const ProtectedRoute = React.lazy(() =>
 const ManagementCategories = React.lazy(() =>
   import("./store_pages/managment/ManagementCategories.jsx")
 );
-const Store = React.lazy(() => import("./store_pages/Store.jsx"));
+const Store = React.lazy(() => import("./store_pages/Store"));
 
 function AppRoutes() {
   return (

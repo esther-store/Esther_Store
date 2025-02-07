@@ -66,3 +66,8 @@ export type ProductFormPropertiesType = {
   creatingMode: boolean;
   initialValues: CreateProductType;
 };
+
+export type Filter = {
+  name: string,
+  value: string
+}

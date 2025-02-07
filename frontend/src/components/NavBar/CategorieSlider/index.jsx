@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import Loader from "@/components/Loader";
 
-const CategorieSideBar = React.memo(function CategorieSideBar() {
+const CategorieSlider = React.memo(function CategorieSlider() {
   const [activeCategory, setActiveCategory] = useState(null);
   const { searchParams, setFilter, getActiveFilter } =
     useContext(QueryFilterContext);
@@ -65,4 +65,4 @@ const CategorieSideBar = React.memo(function CategorieSideBar() {
   );
 });
 
-export default CategorieSideBar;
+export default CategorieSlider;

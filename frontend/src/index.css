@@ -1,4 +1,7 @@
-a { all: unset}
+a { 
+  all: unset;
+  cursor: pointer
+}
 
 a:visited{
   color:black

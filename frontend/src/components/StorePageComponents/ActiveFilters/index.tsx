@@ -5,15 +5,16 @@ import { showActiveFilter } from "@/utils/showActiveFilter";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import "./index.css";
+import type { Filter } from "@/Types";
 
-function ActiveFilters() {
+const ActiveFilters = React.memo(function ActiveFilters({excludedFilters = []}:{excludedFilters?:string[]}) {
   const { searchParams, removeFilter, allActiveFilters, getActiveFilter } =
-    useContext(QueryFiltersContext);
+    useContext<any>(QueryFiltersContext);
 
-  //evoid showing active filters bar when searching is the only filter
+  //evoid showing active filters bar when there is only excluded filters
   const showActiveFiltersBar =
     searchParams.size > 0 &&
-    !(searchParams.size === 1 && getActiveFilter('search') !== "");
+    !(searchParams.size <= excludedFilters.length && excludedFilters.some(filter => getActiveFilter(filter) !== ""));
 
   const { categories } = useGetCategories();
   const { promotions } = useGetPromotions();
@@ -25,8 +26,8 @@ function ActiveFilters() {
     >
       <h5>Filtros Activos</h5>
       <ul className="active-filters-list">
-        {allActiveFilters.map((filter) =>
-          filter.name === "search" ? null : (
+        {allActiveFilters.map((filter: Filter) =>
+          excludedFilters.indexOf(filter.name) !== -1 ? null : (
             <li key={filter.name}>
               <span>
                 {showActiveFilter({
@@ -45,6 +46,6 @@ function ActiveFilters() {
       </ul>
     </section>
   );
-}
+})
 
 export default ActiveFilters;
