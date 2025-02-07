@@ -1,23 +1,28 @@
-.products-management-categories-filter-button{
-    height: 50px;
+.navbar-categories-dropdown{
     max-width: 230px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid;
+    border: 0;
     outline: 0;
     align-items: center;
     box-shadow: 0 0 0 transparent;
     background-color: transparent;
 }
-.products-management-categories-filter-button span{
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    background-color: #D9658F;
+    color: white
+}
+
+.navbar-categories-dropdown .p-dropdown-label{
+    color: #313131;
+    font-family: "Poppins-Regular";
+    font-size: 17px;
+    font-weight: 400;
+}
+.navbar-categories-dropdown span{
     color: black;
     font-weight: bold;
 }
 
-/*Mobile*/
-@media (max-width: 830px){
-    .products-management-categories-filter-button span{
-        margin:0;
-        padding: 0;
-    }
+.navbar-categories-dropdown .p-dropdown-trigger{
+    width: 1rem;
 }

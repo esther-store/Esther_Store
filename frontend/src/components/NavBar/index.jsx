@@ -52,7 +52,7 @@ function NavBar() {
             </li>
             <li className="navbar-recommended-products-container">
             </li>
-            <li className="navbar-categories-container">
+            <li className="navbar-categories-container" style = {{position:"relative", right:"20px"}}>
               <Suspense fallback={<div>Loading...</div>}>
                 <CategoriesDropdown onCategorySelect={() => {}}/>
               </Suspense>
