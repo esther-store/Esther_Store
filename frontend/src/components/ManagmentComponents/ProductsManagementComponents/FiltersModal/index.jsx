@@ -1,4 +1,4 @@
-import FilterIcon from "@/assets/icons/filter-icon.svg";
+import {FilterIcon} from "@/icons/FilterIcon";
 import { Dialog } from "primereact/dialog";
 import React, { useState, useContext, useEffect } from "react";
 import OrderingProducts from "@/components/StorePageComponents/OrderingProducts";
@@ -36,7 +36,7 @@ function FiltersModal() {
         className="products-management-filters-bar-button btn-general-styles"
         onClick={() => setShowModal(true)}
       >
-        <img src={FilterIcon.src} />
+        <FilterIcon/>
         <span>Filtros</span>
       </button>
       <Dialog

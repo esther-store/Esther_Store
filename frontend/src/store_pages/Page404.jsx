@@ -2,7 +2,7 @@ import "./pagesStyles/Page404.css";
 import 'primeicons/primeicons.css';
 import { useNavigate } from "react-router-dom";
 
-export function Page404() {
+export default function Page404() {
   const navigate = useNavigate()
   return (
     <section className="page-404">
