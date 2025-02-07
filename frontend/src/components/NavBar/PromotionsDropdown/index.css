@@ -6,6 +6,10 @@
     box-shadow: 0 0 0 transparent;
     background-color: transparent;
 }
+.navbar-promotions-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    background-color: #D9658F;
+    color: white
+}
 .navbar-promotions-dropdown span{
     color: black;
     font-weight: bold;

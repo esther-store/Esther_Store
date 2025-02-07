@@ -36,6 +36,7 @@ function CategoriesDropdown({ onCategorySelect = () => {} }) {
         handleSetCategory(e.value);
         onCategorySelect();
       }}
+      panelClassName="navbar-categories-dropdown-panel"
       options={categoriesValues}
       optionLabel="name"
       placeholder="Categorías"

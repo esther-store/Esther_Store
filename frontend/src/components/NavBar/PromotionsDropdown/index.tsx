@@ -40,6 +40,7 @@ function PromotionsDropdown({ onPromotionSelect = () => {} }) {
         handlesetPromotion(e.value);
         onPromotionSelect();
       }}
+      panelClassName="navbar-promotions-dropdown-panel"
       options={promotionsValues}
       optionLabel="name"
       placeholder="Promociones"
