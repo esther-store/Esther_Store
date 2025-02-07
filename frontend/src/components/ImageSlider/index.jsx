@@ -1,21 +1,19 @@
 import React, { useState, useRef } from "react";
 import "./index.css";
-import useWindowSize from "@/hooks/useWindowSize";
+import { debounce } from "@/utils/debounce";
 
-const ImageSlider = ({ images }) => {
-  const responsive = useWindowSize("max", 600);
+const ImageSlider = ({ images, imagesWidth }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
 
   const handleScroll = () => {
     const scrollLeft = carouselRef.current.scrollLeft;
-    const imageIndex = Math.round(scrollLeft / 250);
+    const imageIndex = Math.round(scrollLeft / carouselRef.current.clientWidth);
     setCurrentImage(imageIndex);
   };
-
   const goToImage = (index) => {
     setCurrentImage(index);
-    const scrollPosition = index * 250;
+    const scrollPosition = index * carouselRef.current.clientWidth;
     if (carouselRef.current) {
       carouselRef.current.scrollTo({
         left: scrollPosition,
@@ -24,17 +22,17 @@ const ImageSlider = ({ images }) => {
     }
   };
 
+  const processScrollChange = debounce(() => handleScroll(), 100)
+
   return (
     <div className="carousel-container">
       <div
         ref={carouselRef}
-        className={
-          responsive ? "pictures-details add-scroll-x" : "pictures-details"
-        }
-        onScroll={handleScroll}
+        className="pictures-details"
+        onScroll={processScrollChange}
       >
-        {images.map((image, index) => (
-          <img src={image} key={index} alt={`img ${index}`} />
+        {images.map((image) => (
+          <img src={image.src} key={image.alt} alt={image.alt} />
         ))}
       </div>
 
@@ -42,7 +40,7 @@ const ImageSlider = ({ images }) => {
         {images.map((_, index) => (
           <div
             className={
-              currentImage == index
+              currentImage === index
                 ? "button-selected active-button-carousel"
                 : "button-selected"
             }

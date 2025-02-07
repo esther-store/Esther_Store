@@ -1,0 +1,6 @@
+.homepage-recommended-products{
+    display: flex;
+    justify-content: center;
+    gap:170px;
+    margin-top: 50px;
+}
