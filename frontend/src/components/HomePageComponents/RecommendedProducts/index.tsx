@@ -1,11 +1,13 @@
 import "./index.css";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ImageSlider from "@/components/ImageSlider";
+import { useNavigate } from "react-router-dom";
 
 export function RecommendedProducts() {
   const { products, loading, isError } = useGetProducts({
     searchParams: "recommended=true&page_size=4",
   });
+  const navigate = useNavigate()
   return (
     <article className="homepage-recommended-products">
       <aside>
@@ -13,7 +15,9 @@ export function RecommendedProducts() {
           images={products.map((product) => ({
             src: product.product_img1,
             alt: product.product_name,
+            id: product.id
           }))}
+          onImageClick={(productId) => navigate(`/store/product/${productId}`)}
         />
       </aside>
       <header>

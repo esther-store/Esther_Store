@@ -1,8 +1,21 @@
 import React, { useState, useRef } from "react";
 import "./index.css";
 import { debounce } from "@/utils/debounce";
+import type { ProductIdType } from "@/Types";
 
-const ImageSlider = ({ images }) => {
+type ImageType = {
+  src: string;
+  alt: string;
+  id: any;
+};
+
+const ImageSlider = ({
+  images,
+  onImageClick = null,
+}: {
+  images: ImageType[];
+  onImageClick: (id: any) => void;
+}) => {
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
 
@@ -11,7 +24,7 @@ const ImageSlider = ({ images }) => {
     const imageIndex = Math.round(scrollLeft / carouselRef.current.clientWidth);
     setCurrentImage(imageIndex);
   };
-  const goToImage = (index) => {
+  const goToImage = (index: number) => {
     setCurrentImage(index);
     const scrollPosition = index * carouselRef.current.clientWidth;
     if (carouselRef.current) {
@@ -22,7 +35,7 @@ const ImageSlider = ({ images }) => {
     }
   };
 
-  const processScrollChange = debounce(() => handleScroll(), 100)
+  const processScrollChange = debounce(() => handleScroll(), 100);
 
   return (
     <div className="carousel-container">
@@ -31,13 +44,21 @@ const ImageSlider = ({ images }) => {
         className="pictures-details"
         onScroll={processScrollChange}
       >
-        {images.map((image) => (
-          <img src={image.src} key={image.alt} alt={image.alt} />
+        {images.map((image: ImageType) => (
+          <img
+            style={onImageClick ? { cursor: "pointer" } : null}
+            src={image.src}
+            key={image.alt}
+            alt={image.alt}
+            onClick={() => {
+              onImageClick ? onImageClick(image.id) : null;
+            }}
+          />
         ))}
       </div>
 
       <div className="selector">
-        {images.map((_, index) => (
+        {images.map((_, index: number) => (
           <div
             className={
               currentImage === index
