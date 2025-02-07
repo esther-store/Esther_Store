@@ -46,9 +46,8 @@ export function HomePagePromotions() {
           <h2>{currentPromotion?.name}</h2>
           <section className="cards-container">
             {products.map((product) => (
-              <Link to = {`/store/product/${product.id}`}>
+              <Link key={product.id} to = {`/store/product/${product.id}`}>
                 <ProductCard
-                  key={product.id}
                   product={product}
                   toastRef={toastRef}
                   showAddToCartButton={false}

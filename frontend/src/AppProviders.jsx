@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {CartContextProvider} from './context/cartContext.jsx'
-import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
+import {QueryFiltersContextProvider} from './context/filtersContext'
 import {AuthenticationContextProvider} from './context/authenticationContext.jsx'
 import { PrimeReactProvider } from 'primereact/api';
 import {HashRouter as Router} from 'react-router-dom'

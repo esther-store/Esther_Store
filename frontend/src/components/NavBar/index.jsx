@@ -6,9 +6,11 @@ import { CompanyLogo } from "./CompanyLogo";
 import Cart from "../Cart";
 import NavbarDropdown from "./NavbarDropdown";
 import Search from "../Search";
-import CategorieSlider from "@/components/NavBar/CategorieSlider";
-import CategoriesDropdown from './CategoriesDropdown'
-import PromotionsDropdown from './PromotionsDropdown'
+import { lazy, Suspense } from 'react';
+
+const CategoriePromotionSlider = lazy(() => import('@/components/NavBar/CategoriePromotionSlider'));
+const CategoriesDropdown = lazy(() => import('./CategoriesDropdown'));
+const PromotionsDropdown = lazy(() => import('./PromotionsDropdown'));
 
 function NavBar() {
   const { pathname } = useLocation();
@@ -44,12 +46,16 @@ function NavBar() {
         ) : 
         <>
             <li className="navbar-promotions-container" style = {{position:"relative", left:"20px"}}>
-              <PromotionsDropdown onPromotionsSelect = {() => {}}/>
+              <Suspense fallback={<div>Loading...</div>}>
+                <PromotionsDropdown onPromotionsSelect = {() => {}}/>
+              </Suspense>
             </li>
             <li className="navbar-recommended-products-container">
             </li>
             <li className="navbar-categories-container">
-              <CategoriesDropdown onCategorySelect={() => {}}/>
+              <Suspense fallback={<div>Loading...</div>}>
+                <CategoriesDropdown onCategorySelect={() => {}}/>
+              </Suspense>
             </li>
           </>}
         <li className="navbar-search-container">
@@ -62,7 +68,9 @@ function NavBar() {
           <NavbarDropdown />
         </li>
         <li className = "navbar-categories-list-container">
-          <CategorieSlider/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CategoriePromotionSlider/>
+          </Suspense>
         </li>
       </ul>
     </nav>

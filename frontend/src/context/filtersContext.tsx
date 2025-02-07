@@ -9,18 +9,44 @@ export function QueryFiltersContextProvider({ children }) {
   function setFilter({ name, value }) {
     /*Recive a filter name and its value, and includes it in the query params of the url*/
     let params = new URLSearchParams(searchParams);
+
     //if the given filter don't exist, it's added
     if (params.get(name) === null) {
       params.append(name, value);
     }
+
     //if the given filter already exists, the value is changed
     else {
       params.set(name, value);
     }
+
     //if the given filter is not pagination and there is a current page active, remove the page filter
     if (name !== "page" && params.get("page") !== null) {
-      params.delete("page")
+      params.delete("page");
     }
+
+    setSearchParams(params);
+  }
+
+  function bulkSetFilters(filters: { name: string; value: string | number }[]) {
+    /*Recive a filter name and its value, and includes it in the query params of the url*/
+    let params = new URLSearchParams(searchParams);
+
+    filters.forEach(({ name, value }) => {
+      //if the given filter don't exist, it's added
+      if (params.get(name) === null) {
+        params.append(name, value.toString());
+      }
+      //if the given filter already exists, the value is changed
+      else {
+        params.set(name, value.toString());
+      }
+      //if the given filter is not pagination and there is a current page active, remove the page filter
+      if (name !== "page" && params.get("page") !== null) {
+        params.delete("page");
+      }
+    });
+
     setSearchParams(params);
   }
 
@@ -29,13 +55,13 @@ export function QueryFiltersContextProvider({ children }) {
     setSearchParams({});
   }
 
-  const removeFilter = function removeFilter(name) {
+  const removeFilter = function removeFilter(name: string) {
     let params = new URLSearchParams(searchParams);
     params.delete(name);
     setSearchParams(params);
-  }
+  };
 
-  function getActiveFilter(name) {
+  function getActiveFilter(name: string) {
     /*get the active value in the url query params of the filter given*/
     let params = new URLSearchParams(searchParams);
     let filterValue = params.get(name);
@@ -45,14 +71,17 @@ export function QueryFiltersContextProvider({ children }) {
     return filterValue;
   }
 
-  const allActiveFilters = useMemo(function getAllFilters() {
-    return searchParams
-      .toString()
-      .split("&")
-      .map((param) => {
-        return { name: param.split("=")[0], value: param.split("=")[1] };
-      });
-  },[searchParams])
+  const allActiveFilters = useMemo(
+    function getAllFilters() {
+      return searchParams
+        .toString()
+        .split("&")
+        .map((param) => {
+          return { name: param.split("=")[0], value: param.split("=")[1] };
+        });
+    },
+    [searchParams]
+  );
 
   return (
     <QueryFiltersContext.Provider
@@ -64,6 +93,7 @@ export function QueryFiltersContextProvider({ children }) {
         removeAllFilters,
         getActiveFilter,
         allActiveFilters,
+        bulkSetFilters
       }}
     >
       {children}
