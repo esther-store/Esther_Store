@@ -14,7 +14,7 @@ const CategoriePromotionSlider = lazy(() =>
 );
 const CategoriesDropdown = lazy(() => import("./CategoriesDropdown"));
 const PromotionsDropdown = lazy(() => import("./PromotionsDropdown"));
-import OrderingProducts from "../StorePageComponents/OrderingProducts";
+const OrderingProducts = lazy(() => import("../StorePageComponents/OrderingProducts")) 
 
 function NavBar() {
   const { pathname } = useLocation();
@@ -89,12 +89,14 @@ function NavBar() {
         <li className="navbar-search-container">
           <Search redirectToStoreOnSearch={true} />
           {pathname == "/store" ? (
-            <OrderingProducts
-              style = {{width:"30px", marginRight:"30px", marginLeft:"-15px"}}
-              placeholder=""
-              fixedPlaceholder={true}
-              dropdownIcon={() => <FilterIcon color="#D9658F" />}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <OrderingProducts
+                style = {{width:"30px", marginRight:"30px", marginLeft:"-15px"}}
+                placeholder=""
+                fixedPlaceholder={true}
+                dropdownIcon={() => <FilterIcon color="#D9658F" />}
+              />
+            </Suspense>
           ) : null}
         </li>
         <li className="navbar-cart-container">

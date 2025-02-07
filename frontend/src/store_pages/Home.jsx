@@ -5,10 +5,12 @@ import { HomePagePromotions } from "@/components/HomePageComponents/Promotions";
 import ButtonGoTop from "@/components/HomePageComponents/ButtonGoTop";
 import { pagesTitle } from "@/constants";
 import { RecommendedProducts } from "@/components/HomePageComponents/RecommendedProducts";
+import NavBar from "@/components/NavBar";
 
 function Home() {
   return (
     <main className = "home-page">
+      <NavBar/>
       <title>{pagesTitle.home}</title>
       <ButtonGoTop/>
       <Hero/>
