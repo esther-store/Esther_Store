@@ -5,16 +5,21 @@ import { showActiveFilter } from "@/utils/showActiveFilter";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import "./index.css";
-import type { Filter } from "@/Types";
+import type { FilterType } from "@/Types";
 
-const ActiveFilters = React.memo(function ActiveFilters({excludedFilters = []}:{excludedFilters?:string[]}) {
-  const { searchParams, removeFilter, allActiveFilters, getActiveFilter } =
+const ActiveFilters = React.memo(function ActiveFilters({
+  excludedFilters = [],
+}: {
+  excludedFilters?: string[];
+}) {
+  const { searchParams, removeFilter, allActiveFilters } =
     useContext<any>(QueryFiltersContext);
 
   //evoid showing active filters bar when there is only excluded filters
   const showActiveFiltersBar =
-    searchParams.size > 0 &&
-    !(searchParams.size <= excludedFilters.length && excludedFilters.some(filter => getActiveFilter(filter) !== ""));
+  searchParams.size > 0 && allActiveFilters.filter(
+      (filter: FilterType) => !excludedFilters.some((i) => i == filter.name)
+    ).length > 0;
 
   const { categories } = useGetCategories();
   const { promotions } = useGetPromotions();
@@ -26,7 +31,7 @@ const ActiveFilters = React.memo(function ActiveFilters({excludedFilters = []}:{
     >
       <h5>Filtros Activos</h5>
       <ul className="active-filters-list">
-        {allActiveFilters.map((filter: Filter) =>
+        {allActiveFilters.map((filter: FilterType) =>
           excludedFilters.indexOf(filter.name) !== -1 ? null : (
             <li key={filter.name}>
               <span>
@@ -46,6 +51,6 @@ const ActiveFilters = React.memo(function ActiveFilters({excludedFilters = []}:{
       </ul>
     </section>
   );
-})
+});
 
 export default ActiveFilters;
