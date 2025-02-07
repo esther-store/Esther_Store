@@ -6,6 +6,7 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import type { CategoryType, PromotionType } from "@/Types";
+import Loader from "@/components/Loader";
 
 const CategoriePromotionSlider = React.memo(
   function CategoriePromotionSlider() {
@@ -25,16 +26,17 @@ const CategoriePromotionSlider = React.memo(
 
     //everytime the categories or promotions change, update the active category
     useEffect(() => {
-      let activeFilter = getActiveFilter("categoria")
-      if(activeFilter !== ""){
+      let activeFilter = getActiveFilter("categoria");
+      if (activeFilter !== "") {
         setActiveItem(getActiveFilter("categoria"));
-      }else{
+      } else {
         setActiveItem(getActiveFilter("promotion"));
       }
     }, [categories, promotions, searchParams]);
 
     return (
       <>
+        {loading ? <Loader /> : null}
         {errorGettingCategories && !loading ? (
           <RetryQueryComponent
             message={
@@ -56,7 +58,10 @@ const CategoriePromotionSlider = React.memo(
                     if (pathname === "/") {
                       return navigate(`/store?categoria=${category.id}`);
                     }
-                    bulkSetFilters([{name: "promotion", value: ""}, { name: "categoria", value: category.id }]);
+                    bulkSetFilters([
+                      { name: "promotion", value: "" },
+                      { name: "categoria", value: category.id },
+                    ]);
                   }}
                 >
                   <span>{category.nombre}</span>
@@ -73,7 +78,10 @@ const CategoriePromotionSlider = React.memo(
                     if (pathname === "/") {
                       return navigate(`/store?promotion=${promotion.id}`);
                     }
-                    bulkSetFilters([{name: "promotion", value: promotion.id}, { name: "categoria", value: "" }]);
+                    bulkSetFilters([
+                      { name: "promotion", value: promotion.id },
+                      { name: "categoria", value: "" },
+                    ]);
                   }}
                 >
                   <span>{promotion.name}</span>

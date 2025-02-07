@@ -91,7 +91,7 @@ function NavBar() {
           {pathname == "/store" ? (
             <Suspense fallback={<div>Loading...</div>}>
               <OrderingProducts
-                style = {{width:"30px", marginRight:"30px", marginLeft:"-15px"}}
+                style = {{width:"30px", display:"flex", justifyContent:"center"}}
                 placeholder=""
                 fixedPlaceholder={true}
                 dropdownIcon={() => <FilterIcon color="#D9658F" />}

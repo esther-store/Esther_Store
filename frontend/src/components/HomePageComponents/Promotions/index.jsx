@@ -36,7 +36,7 @@ export function HomePagePromotions() {
           <Loader />
         </div>
       ) : null}
-      {error ? (
+      {error && !loading? (
         <RetryQueryComponent
           message={"Error obteniendo las Promociones"}
           refetch={refetch}
