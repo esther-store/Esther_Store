@@ -9,16 +9,15 @@
 
 .pictures-details{
     width: 100%;
-    max-width: 350px;
-    height: auto;
+    height: 100%;
     background: rgba(235, 235, 235, 0.38);
     display: flex;
-    gap:50px;
+    justify-content: flex-start;
     align-items: center;
     white-space: nowrap;
-    overflow: auto;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 0px 10px 0px 10px;
+    gap:10px
 }
 
 .pictures-details::-webkit-scrollbar{
@@ -26,8 +25,12 @@
 }
 
 .pictures-details img{
-    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     object-fit: cover;
     mix-blend-mode: multiply;
     background-blend-mode: multiply;
@@ -43,18 +46,17 @@
 }
 
 .button-selected{
-    width: 7px;
-    height: 7px;
-    border-radius: 5px;
-    background-color: rgb(147, 153, 152);
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #999999;
     cursor: pointer;
     border: none;
-    transition: width 150ms ease;
+    transition: width 150ms linear;
 }
 
 .active-button-carousel{
     background-color: rgb(16, 84, 161);
-    width: 9px;
-    height: 9px;
+    transform: scale(1.1);
     border: none;
 }

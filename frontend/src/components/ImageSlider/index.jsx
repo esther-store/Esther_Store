@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./index.css";
 import { debounce } from "@/utils/debounce";
 
-const ImageSlider = ({ images, imagesWidth }) => {
+const ImageSlider = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
 

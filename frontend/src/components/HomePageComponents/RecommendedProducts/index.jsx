@@ -16,11 +16,15 @@ export function RecommendedProducts() {
           }))}
         />
       </aside>
-      <section>
+      <header>
         <h1>Productos Recomendados</h1>
+      </header>
+      <section>
         <p>
-          Lore Ipsum asdasdasd asdasdgdfd fgdj ngd gdjfgdkjfgkld fg dfjgkdfj gdf
-          jgdkf bkdfg k
+          Lorem ipsum dolor sit amet consectetur. Viverra at at lorem sed quam
+          tempor ac donec. Suspendisse nullam dignissim massa dui rhoncus diam
+          egestas urna consectetur. Mauris arcu nulla egestas aliquet fermentum.
+          Ut pretium suspendisse adipiscing eu ac.
         </p>
       </section>
     </article>
