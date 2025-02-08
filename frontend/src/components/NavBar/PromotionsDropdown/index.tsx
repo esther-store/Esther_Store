@@ -4,8 +4,12 @@ import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
 import type { PromotionType } from "@/Types";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 function PromotionsDropdown({ onPromotionSelect = () => {} }) {
+  const {pathname} = useLocation()
+  const navigate = useNavigate()
   const { searchParams, setFilter, getActiveFilter, removeFilter } =
     useContext<any>(QueryFiltersContext);
   const [promotion, setPromotion] = useState<{ name: string; code: string }>();
@@ -19,9 +23,9 @@ function PromotionsDropdown({ onPromotionSelect = () => {} }) {
 
   //update the promotion filter value
   function handlesetPromotion(value: { name: string; code: string }) {
-    value.code == ""
-      ? removeFilter("promotion")
-      : setFilter({ name: "promotion", value: value.code });
+    if(value.code == "") return removeFilter("promotion")
+      if(pathname !== "/store") return navigate(`/store?promotion=${value.code}`)
+      setFilter({ name: "promotion", value: value.code });
   }
 
   //get the currrent promotion filter value from the searchParams context

@@ -3,8 +3,11 @@ import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
 import { useGetCategories } from "@/hooks/useGetCategories";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function CategoriesDropdown({ onCategorySelect = () => {} }) {
+  const {pathname} = useLocation()
+  const navigate = useNavigate()
   const { searchParams, setFilter, getActiveFilter, removeFilter } =
     useContext(QueryFiltersContext);
   const [category, setCategory] = useState();
@@ -15,9 +18,9 @@ function CategoriesDropdown({ onCategorySelect = () => {} }) {
 
   //update the category filter value
   function handleSetCategory(value) {
-    value.code == ""
-      ? removeFilter("categoria")
-      : setFilter({ name: "categoria", value: value.code });
+    if(value.code == "") return removeFilter("categoria")
+    if(pathname !== "/store") return navigate(`/store?categoria=${value.code}`)
+    setFilter({ name: "categoria", value: value.code });
   }
 
   //get the currrent category filter value from the searchParams context

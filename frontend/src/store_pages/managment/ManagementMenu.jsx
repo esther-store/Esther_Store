@@ -3,9 +3,9 @@ import ProductsManagement from "@/assets/icons/products-management.svg";
 import OfertsManagement from "@/assets/icons/oferts-management.svg";
 import SecurityManagement from "@/assets/icons/security-management.svg";
 import ContactsManagement from "@/assets/icons/contacts-management.svg";
-import BackArrow from '@/assets/icons/products-management-back-icon.svg';
 import useWindowSize from "@/hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
+import { LeftArrow } from "@/icons/LeftArrow";
 
 function ManagementMenu (){
     const responsive = useWindowSize("max",400)
@@ -18,7 +18,7 @@ function ManagementMenu (){
                     className="products-management-go-back-button btn-general-styles"
                     onClick={() => navigate("/store")}
                     >
-                    <img src={BackArrow.src} />
+                    <LeftArrow color = "#000"/>
                 </button>
                 <h2>Menú de Gestión</h2>
             </div>

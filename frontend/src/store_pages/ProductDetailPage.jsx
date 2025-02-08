@@ -9,6 +9,7 @@ import NavBar from "@/components/NavBar";
 import { Toast } from "primereact/toast";
 import { ProductDetailsSection } from "@/components/ProductDetailPageComponents/ProductDetailsSection";
 import { useRef } from "react";
+import { LeftArrow } from "@/icons/LeftArrow";
 
 export default function ProductDetailPage({}) {
   const { productId } = useParams();
@@ -36,6 +37,7 @@ export default function ProductDetailPage({}) {
       ) : (
         <>
         <Toast ref = {toastRef} position="bottom-center"/>
+        <button className = "product-detail-page-button-go-back" onClick={() => history.back()}><LeftArrow/></button>
         <ProductDetailsSection product={product} toastRef = {toastRef}/>
         </>
       )}

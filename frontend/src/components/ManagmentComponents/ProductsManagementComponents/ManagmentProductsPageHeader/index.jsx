@@ -1,5 +1,5 @@
+import { LeftArrow } from "@/icons/LeftArrow";
 import { useNavigate } from "react-router-dom";
-import BackArrow from "@/assets/icons/products-management-back-icon.svg";
 
 export function ManagementProductsPageHeader({title = "Gestión de Productos"}) {
     const navigate = useNavigate()
@@ -9,7 +9,7 @@ export function ManagementProductsPageHeader({title = "Gestión de Productos"}) 
           className="products-management-go-back-button btn-general-styles"
           onClick={() => navigate("/management-menu")}
         >
-          <img src={BackArrow.src} />
+          <LeftArrow/>
         </button>
         <h3>{title}</h3>
       </section>
