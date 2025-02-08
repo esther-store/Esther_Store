@@ -89,7 +89,7 @@ function NavBar() {
         <li className="navbar-search-container">
           <Search redirectToStoreOnSearch={true} />
           {pathname == "/store" ? (
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense>
               <OrderingProducts
                 style = {{width:"30px", display:"flex", justifyContent:"center"}}
                 placeholder=""
@@ -106,7 +106,7 @@ function NavBar() {
           <NavbarDropdown />
         </li>
         <li className="navbar-categories-list-container">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense>
             <CategoriePromotionSlider />
           </Suspense>
         </li>

@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Suspense } from "react";
 import QueryFilterContext from "@/context/filtersContext";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
-import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import type { CategoryType, PromotionType } from "@/Types";
-import Loader from "@/components/Loaders/Loader";
+import { Skeleton } from "primereact/skeleton";
 
 const CategoriePromotionSlider = React.memo(
   function CategoriePromotionSlider() {
@@ -16,7 +15,6 @@ const CategoriePromotionSlider = React.memo(
     const {
       categories,
       loading: loadingCategories,
-      isError: errorGettingCategories,
       refetch: refetchCategories,
     } = useGetCategories();
     const { promotions, loadingPromotions } = useGetPromotions();
@@ -35,18 +33,12 @@ const CategoriePromotionSlider = React.memo(
     }, [categories, promotions, searchParams]);
 
     return (
-      <>
-        {loading ? <Loader /> : null}
-        {errorGettingCategories && !loading ? (
-          <RetryQueryComponent
-            message={
-              "Error obteniendo las categorías. Revisa tu conexión a internet"
-            }
-            refetch={refetchCategories}
-          />
-        ) : (
-          <section className="categories-side-bar">
-            <ul>
+      <section className="categories-side-bar">
+        <ul>
+          {loading ? (
+            <CategoriesPromotionsSkeleton />
+          ) : (
+            <>
               {categories.map((category: CategoryType) => (
                 <li
                   className={
@@ -87,12 +79,22 @@ const CategoriePromotionSlider = React.memo(
                   <span>{promotion.name}</span>
                 </li>
               ))}
-            </ul>
-          </section>
-        )}
-      </>
+            </>
+          )}
+        </ul>
+      </section>
     );
   }
 );
 
 export default CategoriePromotionSlider;
+
+const CategoriesPromotionsSkeleton = () => (
+  <>
+    <Skeleton width="100px" height="25px" />
+    <Skeleton width="100px" height="25px" />
+    <Skeleton width="100px" height="25px" />
+    <Skeleton width="100px" height="25px" />
+    <Skeleton width="100px" height="25px" />
+  </>
+);

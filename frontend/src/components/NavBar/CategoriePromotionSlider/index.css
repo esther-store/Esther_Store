@@ -11,9 +11,6 @@
     margin: 0;
 }
 
-.categories-side-bar li{
-    margin-top:10px;
-}
 .categories-side-bar li span{
     cursor: pointer;
     padding:5px;
