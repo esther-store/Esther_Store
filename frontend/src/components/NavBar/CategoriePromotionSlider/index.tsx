@@ -55,7 +55,7 @@ const CategoriePromotionSlider = React.memo(
                   key={category.id}
                   onClick={() => {
                     setActiveItem(category.id);
-                    if (pathname === "/") {
+                    if (pathname !== "/store") {
                       return navigate(`/store?categoria=${category.id}`);
                     }
                     bulkSetFilters([
@@ -75,7 +75,7 @@ const CategoriePromotionSlider = React.memo(
                   key={promotion.id}
                   onClick={() => {
                     setActiveItem(promotion.id);
-                    if (pathname === "/") {
+                    if (pathname !== "/store") {
                       return navigate(`/store?promotion=${promotion.id}`);
                     }
                     bulkSetFilters([

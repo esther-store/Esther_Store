@@ -14,7 +14,7 @@ const ImageSlider = ({
   onImageClick = null,
 }: {
   images: ImageType[];
-  onImageClick: (id: any) => void;
+  onImageClick?: (id: any) => void;
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
@@ -48,7 +48,7 @@ const ImageSlider = ({
           <img
             style={onImageClick ? { cursor: "pointer" } : null}
             src={image.src}
-            key={image.alt}
+            key={image.id}
             alt={image.alt}
             onClick={() => {
               onImageClick ? onImageClick(image.id) : null;
