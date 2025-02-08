@@ -8,6 +8,7 @@ import NavbarDropdown from "./NavbarDropdown";
 import Search from "../Search";
 import { lazy, Suspense } from "react";
 import { FilterIcon } from "@/icons/FilterIcon";
+import { Skeleton } from "primereact/skeleton";
 
 const CategoriePromotionSlider = lazy(() =>
   import("@/components/NavBar/CategoriePromotionSlider")
@@ -71,7 +72,7 @@ function NavBar() {
               className="navbar-promotions-container"
               style={{ position: "relative", left: "20px" }}
             >
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Skeleton width="130px" height="25px" />}>
                 <PromotionsDropdown onPromotionsSelect={() => {}} />
               </Suspense>
             </li>
@@ -80,7 +81,7 @@ function NavBar() {
               className="navbar-categories-container"
               style={{ position: "relative", right: "20px" }}
             >
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Skeleton width="130px" height="25px" />}>
                 <CategoriesDropdown onCategorySelect={() => {}} />
               </Suspense>
             </li>
@@ -89,7 +90,7 @@ function NavBar() {
         <li className="navbar-search-container">
           <Search redirectToStoreOnSearch={true} />
           {pathname == "/store" ? (
-            <Suspense>
+            <Suspense fallback = {<div style={{marginLeft:"10px"}}><Skeleton width="30px" height="30px" /></div>}>
               <OrderingProducts
                 style = {{width:"30px", display:"flex", justifyContent:"center"}}
                 placeholder=""
@@ -106,7 +107,7 @@ function NavBar() {
           <NavbarDropdown />
         </li>
         <li className="navbar-categories-list-container">
-          <Suspense>
+          <Suspense fallback = {<div style = {{width:"90%", margin:"0 auto"}}><Skeleton width="100%" height="30px"/></div>}>
             <CategoriePromotionSlider />
           </Suspense>
         </li>

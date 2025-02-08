@@ -1,13 +1,17 @@
 import Loader from "@/components/Loaders/Loader";
 import ProductCard from "./ProductCard";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, Suspense } from "react";
 import "./index.css";
 import QueryFiltersContext from "@/context/filtersContext";
 import Paginator from "@/components/StorePageComponents/Paginator";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useNavigate } from "react-router-dom";
-import RetryQueryComponent from "@/components/RetryQueryComponent";
+const RetryQueryComponent = React.lazy(() =>
+  import("@/components/RetryQueryComponent")
+);
 import { Toast } from "primereact/toast";
+import { GridSkeleton } from "@/components/Loaders/GridSkeleton";
+import { Skeleton } from "primereact/skeleton";
 
 export const ProductsGrid = React.memo(function ProductsGrid() {
   const { searchParams, getActiveFilter, setFilter, removeFilter } =
@@ -16,22 +20,26 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
     searchParams: searchParams,
   });
   const navigate = useNavigate();
-  const toastRef = useRef()
+  const toastRef = useRef();
 
   return (
     <>
       {loading ? (
-        <Loader />
+        <ProductsGridSkeleton />
       ) : isError ? (
-        <RetryQueryComponent
-          message={
-            "Error obteniendo los productos. Revisa tu conexión a internet"
-          }
-          refetch={refetch}
-        />
+        <Suspense fallback={<ProductsGridSkeleton />}>
+          <div style={styles.container}>
+            <RetryQueryComponent
+              message={
+                "Error obteniendo los productos. Revisa tu conexión a internet"
+              }
+              refetch={refetch}
+            />
+          </div>
+        </Suspense>
       ) : (
         <section className="products-grid-and-paginator-container">
-          <Toast ref = {toastRef} position="bottom-center" />
+          <Toast ref={toastRef} position="bottom-center" />
           {products == null || products?.length === 0 ? (
             <div className="products-grid-not-found-message">
               <strong>No hay productos</strong>
@@ -40,9 +48,9 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
             <>
               <div className="products-grid">
                 {products.map((product) => (
-                  <div key={product.id} className = "card-container">
+                  <div key={product.id} className="card-container">
                     <ProductCard
-                      toastRef = {toastRef}
+                      toastRef={toastRef}
                       product={product}
                       onClick={() => navigate(`product/${product.id}`)}
                     />
@@ -65,3 +73,23 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
 });
 
 export default ProductsGrid;
+
+const ProductsGridSkeleton = () => (
+  <div className="products-grid">
+    {new Array(10).fill("").map(() => (
+      <Skeleton width="100%" height="250px" />
+    ))}
+  </div>
+);
+
+const styles = {
+  container: {
+    width: "100%",
+    minHeight: "200px",
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    display: "flex",
+    alignItems: "center",
+  },
+};
