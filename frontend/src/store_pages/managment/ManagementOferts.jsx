@@ -8,7 +8,7 @@ import { deletePromotions } from "@/services/ManagePromotions/deletePrmotion";
 import { Toast } from "primereact/toast";
 import { useGetPromotions } from "@/hooks/useGetPromotions";
 import OfertsGrid from "@/components/ManagmentComponents/OfertsManagementComponents/OfertsGrid";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import DataTableOferts from "@/components/ManagmentComponents/OfertsManagementComponents/DataTableOferts";
 import SearchOferts from "@/components/ManagmentComponents/OfertsManagementComponents/SearchOfertsComponent";
 import DataScrollerOferts from "@/components/ManagmentComponents/OfertsManagementComponents/DataScrollerOferts";

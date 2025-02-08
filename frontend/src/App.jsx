@@ -4,11 +4,13 @@ import "./index.css";
 import AppRoutes from "./AppRoutes.jsx";
 import Providers from "@/AppProviders.jsx";
 import "@/fonts.css";
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 function App() {
   return (
     <Providers>
         <AppRoutes />
+        <ReactQueryDevtools initialIsOpen={false}/>
     </Providers>
   );
 }

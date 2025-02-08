@@ -3,7 +3,7 @@ import AddIcon from "@/assets/icons/oferts-management-add.svg";
 import EditIcon from "@/assets/icons/edit-icon.svg";
 import DetailIcon from "@/assets/icons/eye-icon.svg";
 import React, {Suspense} from "react";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import "./index.css";
 const ProductFormContent = React.lazy(() => import("./ProductFormContent")) 
 

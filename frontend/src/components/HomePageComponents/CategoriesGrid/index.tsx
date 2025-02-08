@@ -1,8 +1,12 @@
 import "./index.css";
+import React, { Suspense } from "react";
 import { useGetCategories } from "@/hooks/useGetCategories";
-import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { Link } from "react-router-dom";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
+import { GridSkeleton } from "@/components/Loaders/GridSkeleton";
+const RetryQueryComponent = React.lazy(
+  () => import("@/components/RetryQueryComponent")
+);
 
 export function CategoriesGrid() {
   const { categories, loading, isError, refetch } = useGetCategories();
@@ -13,16 +17,22 @@ export function CategoriesGrid() {
         <h3>Encuentra facilmente lo que buscas</h3>
       </header>
       {loading ? (
-        <div
-          style={{ minHeight: "200px", display: "flex", alignItems: "center" }}
-        >
-          <Loader />
-        </div>
+        <LoaderContainer>
+          <GridSkeleton />
+        </LoaderContainer>
       ) : isError ? (
-        <RetryQueryComponent
-          refetch={refetch}
-          message={"Error obteniendo las categorías"}
-        />
+        <Suspense
+          fallback={
+            <LoaderContainer>
+              <Loader />
+            </LoaderContainer>
+          }
+        >
+          <RetryQueryComponent
+            refetch={refetch}
+            message={"Error obteniendo las categorías"}
+          />
+        </Suspense>
       ) : (
         <main className="homepage-categories-grid">
           {categories.map((category) => (
@@ -36,3 +46,9 @@ export function CategoriesGrid() {
     </article>
   );
 }
+
+const LoaderContainer = ({ children }) => (
+  <div style={{ minHeight: "200px", display: "flex", alignItems: "center" }}>
+    {children}
+  </div>
+);

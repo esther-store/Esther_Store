@@ -1,7 +1,7 @@
 import { useManageCategories } from "@/hooks/useManageCategories";
 import { useState, useRef } from "react";
 import { Toast } from "primereact/toast";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import CategoriesForm from "@/components/ManagmentComponents/CategoriesManagement/CategoriesForm";
 import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagement/CategoriesGrid";
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";

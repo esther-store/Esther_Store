@@ -9,7 +9,7 @@ import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";
 import { deleteProductsToPromotion } from "@/services/ManagePromotions/deleteProductsToOfert";
-import Loader from "../../../Loader";
+import Loader from "../../../Loaders/Loader";
 import { getProductsOfert } from "@/services/ManagePromotions/getProductsOfert";
 import AuthenticationContext from "@/context/authenticationContext";
 

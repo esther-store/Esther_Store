@@ -1,4 +1,4 @@
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import "./index.css";
 import UserCard from "../UserCard";
 

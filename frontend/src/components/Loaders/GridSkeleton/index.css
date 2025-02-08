@@ -1,0 +1,8 @@
+.grid-skeleton{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 10rem);
+    gap:20px;
+    justify-content: center;
+    padding: 5px;
+}

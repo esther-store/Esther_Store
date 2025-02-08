@@ -1,4 +1,4 @@
-import Loader from "../../../Loader";
+import Loader from "../../../Loaders/Loader";
 import "./index.css";
 import OfertCard from "../OfertCard";
 

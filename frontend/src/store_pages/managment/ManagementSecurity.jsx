@@ -6,7 +6,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { deleteUser } from "../../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
 import UsersGrid from "@/components/ManagmentComponents/UserManagementComponents/UserGrid";
-import Loader from "../../components/Loader";
+import Loader from "../../components/Loaders/Loader";
 import SearchOferts from "../../components/ManagmentComponents/UserManagementComponents/SearchOfertsComponent";
 import QueryFiltersContext from "../../context/filtersContext";
 import { useGetUsers } from "../../hooks/useGetUsers";

@@ -9,7 +9,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import React from "react";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import { useGetCategoriesToManage } from "@/hooks/useGetCategoriesToManage";
 
 const ProductFormContent = React.memo(function ProductFormContent({

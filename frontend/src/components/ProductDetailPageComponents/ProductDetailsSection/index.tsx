@@ -2,11 +2,11 @@ import type { ProductType } from "@/Types";
 import "./index.css";
 import ImageSlider from "@/components/ImageSlider";
 import ProductPrice from "@/components/StorePageComponents/ProductsGrid/ProductCard/ProductPrice";
-import { useContext, type ReactNode } from "react";
+import React, { useContext, type ReactNode } from "react";
 import CartContext from "@/context/cartContext";
 import { showToast } from "@/utils/showToast";
 
-export function ProductDetailsSection({
+const ProductDetailsSection = React.memo(function ProductDetailsSection({
   product,
   toastRef,
 }: {
@@ -71,4 +71,6 @@ export function ProductDetailsSection({
       </footer>
     </article>
   );
-}
+})
+
+export default ProductDetailsSection

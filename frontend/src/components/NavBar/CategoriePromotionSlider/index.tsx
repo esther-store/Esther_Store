@@ -6,7 +6,7 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import type { CategoryType, PromotionType } from "@/Types";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 
 const CategoriePromotionSlider = React.memo(
   function CategoriePromotionSlider() {

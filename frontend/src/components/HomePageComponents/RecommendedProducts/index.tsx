@@ -2,7 +2,7 @@ import "./index.css";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ImageSlider from "@/components/ImageSlider";
 import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loaders/Loader";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 
 export function RecommendedProducts() {
