@@ -48,10 +48,7 @@ export function ProductDetailsSection({
       </section>
       <main>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Viverra at at lorem sed quam
-          tempor ac donec. Suspendisse nullam dignissim massa dui rhoncus diam
-          egestas urna consectetur. Mauris arcu nulla egestas aliquet fermentum.
-          Ut pretium suspendisse adipiscing eu ac.
+          {product?.product_description}
         </p>
       </main>
       <footer>
