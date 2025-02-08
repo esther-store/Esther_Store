@@ -1,4 +1,3 @@
-import Loader from "@/components/Loaders/Loader";
 import ProductCard from "./ProductCard";
 import React, { useContext, useRef, Suspense } from "react";
 import "./index.css";
@@ -10,7 +9,6 @@ const RetryQueryComponent = React.lazy(() =>
   import("@/components/RetryQueryComponent")
 );
 import { Toast } from "primereact/toast";
-import { GridSkeleton } from "@/components/Loaders/GridSkeleton";
 import { Skeleton } from "primereact/skeleton";
 
 export const ProductsGrid = React.memo(function ProductsGrid() {

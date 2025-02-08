@@ -27,9 +27,7 @@ export default function ProductDetailPage({}) {
     <main className="product-detail-page">
       <NavBar />
       <title>{pagesTitle.productDetail(product?.product_name)}</title>
-      {loading ? (
-        <CustomizedLoader/>
-      ) : isError ? (
+      {isError && !loading? (
         <div style={styles.container}>
           <Suspense
             fallback={
@@ -44,7 +42,7 @@ export default function ProductDetailPage({}) {
             />
           </Suspense>
         </div>
-      ) : product == null ? (
+      ) : product == null && !loading? (
         <Suspense
           fallback={
             <CustomizedLoader/>
@@ -61,7 +59,7 @@ export default function ProductDetailPage({}) {
           >
             <LeftArrow color="rgba(0, 0, 0, 0.8)" />
           </button>
-          <ProductDetailsSection product={product} toastRef={toastRef} />
+          <ProductDetailsSection loading = {loading} product={product} toastRef={toastRef} />
         </>
       )}
     </main>
