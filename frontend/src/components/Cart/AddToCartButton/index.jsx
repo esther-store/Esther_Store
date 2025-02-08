@@ -29,7 +29,7 @@ const AddToCartButton = React.memo(function AddToCartButton({
         showToast({
           severity: "success",
           summary: "Success",
-          detail: `${product.product_name} agregado al carrito`,
+          detail: `Producto agregado al carrito exitosamente`,
           toastRef:toastRef,
           life: 1000
         });

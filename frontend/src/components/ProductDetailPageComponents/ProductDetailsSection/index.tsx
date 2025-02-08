@@ -2,9 +2,18 @@ import type { ProductType } from "@/Types";
 import "./index.css";
 import ImageSlider from "@/components/ImageSlider";
 import ProductPrice from "@/components/StorePageComponents/ProductsGrid/ProductCard/ProductPrice";
+import { useContext, type ReactNode } from "react";
+import CartContext from "@/context/cartContext";
+import { showToast } from "@/utils/showToast";
 
-export function ProductDetailsSection({ product }: { product: ProductType }) {
-  console.log(product);
+export function ProductDetailsSection({
+  product,
+  toastRef,
+}: {
+  product: ProductType;
+  toastRef: ReactNode;
+}) {
+  const { addProductToCart, checkProductInCart } = useContext<any>(CartContext);
   const images = [
     {
       src: product?.product_img1,
@@ -22,6 +31,7 @@ export function ProductDetailsSection({ product }: { product: ProductType }) {
       id: 2,
     },
   ];
+  const productInCart = checkProductInCart(product?.id);
   return (
     <article className="product-details-section">
       <aside>
@@ -45,7 +55,22 @@ export function ProductDetailsSection({ product }: { product: ProductType }) {
         </p>
       </main>
       <footer>
-        <button>Agregar al carrito</button>
+        <button
+          onClick={() => {
+            if (!productInCart) {
+              addProductToCart(product);
+              showToast({
+                toastRef: toastRef,
+                severity: "success",
+                summary: "",
+                life:1000,
+                detail: `Producto agregado correctamente`,
+              });
+            }
+          }}
+        >
+          {productInCart ? "Agregado al carrito" : "Agregar al carrito"}
+        </button>
       </footer>
     </article>
   );

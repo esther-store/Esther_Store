@@ -6,7 +6,9 @@ import Loader from "@/components/Loader";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { pagesTitle } from "@/constants";
 import NavBar from "@/components/NavBar";
+import { Toast } from "primereact/toast";
 import { ProductDetailsSection } from "@/components/ProductDetailPageComponents/ProductDetailsSection";
+import { useRef } from "react";
 
 export default function ProductDetailPage({}) {
   const { productId } = useParams();
@@ -14,6 +16,7 @@ export default function ProductDetailPage({}) {
     searchParams: `id=${productId}`,
   });
   const product = products[0];
+  const toastRef = useRef()
 
   return (
     <main className="product-detail-page">
@@ -31,7 +34,10 @@ export default function ProductDetailPage({}) {
       ) : product == null ? (
         <Page404 />
       ) : (
-        <ProductDetailsSection product={product} />
+        <>
+        <Toast ref = {toastRef} position="bottom-center"/>
+        <ProductDetailsSection product={product} toastRef = {toastRef}/>
+        </>
       )}
     </main>
   );
