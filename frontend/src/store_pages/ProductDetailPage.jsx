@@ -8,6 +8,7 @@ import NavBar from "@/components/NavBar";
 import { Toast } from "primereact/toast";
 import ProductDetailsSection from "@/components/ProductDetailPageComponents/ProductDetailsSection";
 import { LeftArrow } from "@/icons/LeftArrow";
+import { SimilarProductsSection } from "@/components/ProductDetailPageComponents/SimilarProductsSection";
 
 // Importación lazy de los componentes
 const Page404 = React.lazy(() => import("./Page404"));
@@ -22,6 +23,12 @@ export default function ProductDetailPage({}) {
   });
   const product = products[0];
   const toastRef = useRef();
+
+  function getSimilarProductsFilter(){
+    if(product?.categoria != null) return `categoria=${product?.categoria}&page_size=4`
+    if(product?.promotion != null) return `promotion=${product?.promotion}&page_size=4`
+    return "page_size=4"
+  }
 
   return (
     <main className="product-detail-page">
@@ -60,6 +67,7 @@ export default function ProductDetailPage({}) {
             <LeftArrow color="rgba(0, 0, 0, 0.8)" />
           </button>
           <ProductDetailsSection loading = {loading} product={product} toastRef={toastRef} />
+          <SimilarProductsSection filter={getSimilarProductsFilter()} toastRef={toastRef}/>
         </>
       )}
     </main>
