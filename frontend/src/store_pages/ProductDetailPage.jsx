@@ -37,7 +37,7 @@ export default function ProductDetailPage({}) {
       ) : (
         <>
         <Toast ref = {toastRef} position="bottom-center"/>
-        <button className = "product-detail-page-button-go-back" onClick={() => history.back()}><LeftArrow/></button>
+        <button className = "product-detail-page-button-go-back" onClick={() => history.back()}><LeftArrow color = "rgba(0, 0, 0, 0.8)"/></button>
         <ProductDetailsSection product={product} toastRef = {toastRef}/>
         </>
       )}

@@ -4,10 +4,8 @@
 
 .product-detail-page .product-detail-page-button-go-back{
     border-radius: 15px;
-    padding: 5px 20px 5px 20px;
-    background-color: #D9658F;
+    background-color: transparent;
     border: 0;
-    color: #FFF;
     display: flex;
     align-items: center;
     justify-content: center;
