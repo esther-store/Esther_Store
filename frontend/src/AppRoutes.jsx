@@ -1,4 +1,4 @@
-import PageLoader from "@/components/PageLoader/index.jsx";
+import PageLoader from "@/components/Loaders/PageLoader/index.jsx";
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 const ManagementProducts = React.lazy(() =>

@@ -1,5 +1,5 @@
 import './index.css'
-import { CompanyLogo } from '../NavBar/CompanyLogo';
+import { CompanyLogo } from '@/components/NavBar/CompanyLogo';
 
 function PageLoader() {
     return(

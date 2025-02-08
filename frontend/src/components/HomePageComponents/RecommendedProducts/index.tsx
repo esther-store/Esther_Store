@@ -2,8 +2,9 @@ import "./index.css";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ImageSlider from "@/components/ImageSlider";
 import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loaders/Loader";
-import RetryQueryComponent from "@/components/RetryQueryComponent";
+import { Skeleton } from 'primereact/skeleton';
+import { lazy, Suspense } from "react";
+const RetryQueryComponent = lazy(() => import("@/components/RetryQueryComponent"));
 
 export function RecommendedProducts() {
   const { products, loading, isError, refetch } = useGetProducts({
@@ -14,12 +15,12 @@ export function RecommendedProducts() {
     <article className="homepage-recommended-products">
       <aside>
         {loading ? (
-          <section>
-            <Loader />
-          </section>
+          <Skeleton width="100%" height="400px" className="mr-2"/>
         ) : null}
         {isError && !loading ? (
-          <RetryQueryComponent message = "Error obteniendo los productos" refetch = {refetch}/>
+          <Suspense fallback = {<Skeleton width="100%" height="400px" className="mr-2"/>}>
+            <RetryQueryComponent message = "Error obteniendo los productos" refetch = {refetch}/>
+          </Suspense>
         ) : (
           <ImageSlider
             images={products.map((product) => ({
