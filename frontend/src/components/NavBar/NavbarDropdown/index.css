@@ -10,48 +10,14 @@
     display: none;
 }
 
-.close-session-button{
-    width:100%;
-    height:auto;
-    background-color: transparent;
-    border: 0;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap:10px;
-    font-family: Noto Sans;
-    border-radius: 5px;
-    padding:5px;
-}
-
-.close-session-button:hover{
-    background-color:rgba(128, 128, 128, 0.237);
-}
-
-.close-session-button img{
-    filter: brightness(100) saturate(100%) invert(1);
-}
-
-.p-dropdown-panel{
+.user-navbar-actions-dropdown-panel{
     margin-top: 10px;
 }
 
-.change-password-button{
-    height:auto;
-    width:100%;
-    background-color: transparent;
-    border: 0;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
-    font-family: Noto Sans;
-    padding:5px;
-    border-radius: 5px;
+.user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper li{
+    outline: none;
+    cursor: default;
 }
-
-.change-password-button:hover{
-    background-color:rgba(128, 128, 128, 0.237);
+.user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper li.p-focus{
+    background-color: transparent;
 }

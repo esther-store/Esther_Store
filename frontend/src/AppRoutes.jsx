@@ -32,6 +32,7 @@ const ManagementCategories = React.lazy(() =>
   import("./store_pages/managment/ManagementCategories.jsx")
 );
 const Store = React.lazy(() => import("./store_pages/Store"));
+const Contact = React.lazy(() => import("./store_pages/Contact"));
 
 function AppRoutes() {
   return (
@@ -57,6 +58,14 @@ function AppRoutes() {
         element={
           <Suspense>
             <ProductDetailPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <Suspense>
+            <Contact/>
           </Suspense>
         }
       />

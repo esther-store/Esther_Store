@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 import { useNavigate } from "react-router-dom";
-import CloseSessionIcon from "@/assets/icons/close-session-icon.svg";
+import { LeaveIcon } from "@/icons/LeaveIcon";
 import { ConfirmDialog } from "primereact/confirmdialog";
-import "./index.css";
 
 function CloseSession() {
-  const { auth, handleLogout } = useContext(AuthenticationContext);
+  const { handleLogout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
@@ -16,7 +15,7 @@ function CloseSession() {
     });
   }
 
-  return auth.token ? (
+  return (
     <>
       <ConfirmDialog
         visible={showConfirmDialog}
@@ -33,14 +32,35 @@ function CloseSession() {
         style={{ maxWidth: "90%" }}
       />
         <button
-            className="close-session-button"
+            style={styles.closeSessionButton}
             onClick={() => setShowConfirmDialog(true)}
         >
-            <img alt="Close Session" src={CloseSessionIcon.src} />
+            <LeaveIcon color = "rgba(0, 0, 0, 0.7)"/>
             <span>Cerrar Sesión</span>
         </button>
     </>
-  ) : null;
+  );
 }
 
 export default CloseSession;
+
+const styles = {
+  closeSessionButton: {
+    width: '100%',
+    height: 'auto',
+    backgroundColor: 'transparent',
+    padding: '5px',
+    border: '0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: '10px',
+    color:"rgba(0, 0, 0, 0.8)",
+    fontFamily: 'Poppins-Regular',
+    fontSize:'16px'
+  },
+  closeSessionButtonImage: {
+    filter: 'brightness(100%) saturate(100%) invert(1)',
+  },
+};
+
