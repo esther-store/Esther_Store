@@ -90,9 +90,9 @@
         gap:10px;
     }
     .products-grid .card-container{
-        height: 280px;
+        height: 230px;
     }
     .products-grid .card-container img{
-        max-height: 190px;
+        max-height: 150px;
     }
 }
