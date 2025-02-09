@@ -29,11 +29,9 @@ function NavbarDropdown() {
 
   return (
     <Dropdown
-      onChange={(e) => {
-        e;
-      }}
       options={options}
       highlightOnSelect={false}
+      onChange={(e) => e.current.preventDefault()}
       dropdownIcon={
         <MenuIcon
           className="dropdown-icon"
