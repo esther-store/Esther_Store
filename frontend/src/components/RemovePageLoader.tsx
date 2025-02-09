@@ -4,9 +4,9 @@ import {useEffect} from "react"
 export function RemovePageLoader(){
     useEffect(() => {
         const pageLoader = document.getElementById(pageLoaderId)
-        pageLoader.style.display = 'none'
+        if(pageLoader) pageLoader.style.display = 'none'
         return () => {
-            pageLoader.style.display = 'flex'
+            if(pageLoader) pageLoader.style.display = 'flex'
         }
     },[])
 
