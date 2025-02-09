@@ -24,7 +24,7 @@ export function CategoriesGrid() {
         <Suspense
           fallback={
             <LoaderContainer>
-              <Loader />
+              <GridSkeleton />
             </LoaderContainer>
           }
         >

@@ -3,7 +3,7 @@ import './index.css'
 function Footer() {
     return ( 
         <footer className = "footer">
-            B&M.Company.Copyright@2023
+            Esther Store. Todos los derechos reservados
         </footer>
      );
 }

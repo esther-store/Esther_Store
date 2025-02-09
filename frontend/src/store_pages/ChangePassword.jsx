@@ -6,6 +6,7 @@ import { Toast } from "primereact/toast";
 import { Password } from "primereact/password";
 import React, { useContext, useRef } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function ChangePassword() {
   const { handleChangePassword, loading, auth } = useContext(
@@ -53,6 +54,7 @@ function ChangePassword() {
 
   return (
     <section className="login-container">
+      <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
         <div className="logo-container-login">

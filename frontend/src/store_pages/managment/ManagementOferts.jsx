@@ -15,6 +15,7 @@ import DataScrollerOferts from "@/components/ManagmentComponents/OfertsManagemen
 import QueryFiltersContext from "@/context/filtersContext";
 import AuthenticationContext from "@/context/authenticationContext";
 import { useNavigate } from "react-router-dom";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 const heaerTitle = (info) => {
   return (
@@ -49,7 +50,6 @@ function ManagementOferts() {
     setPromotions: setDataOferts,
     setNumOfPromotions: setNumOferts,
   });
-  console.log(dataOferts)
   const { auth } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
@@ -171,6 +171,7 @@ function ManagementOferts() {
 
   return (
     <section className="management-oferts-container">
+      <RemovePageLoader/>
       {loading ? (
         <div
           style={{

@@ -8,6 +8,8 @@ export const orderingValues = [
     {code: "-product_name", name : "[Z-A]"},
 ]
 
+export const pageLoaderId = "page-loader"
+
 export const pagesTitle = {
     home: 'Esther Store - Home',
     store: 'Esther Store - Products',

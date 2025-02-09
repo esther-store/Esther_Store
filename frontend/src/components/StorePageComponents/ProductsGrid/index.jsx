@@ -74,8 +74,8 @@ export default ProductsGrid;
 
 const ProductsGridSkeleton = () => (
   <div className="products-grid">
-    {new Array(10).fill("").map(() => (
-      <Skeleton width="100%" height="250px" />
+    {new Array(10).fill("").map((_, index) => (
+      <Skeleton key = {`card-skeleton-${index}`} width="100%" height="250px" />
     ))}
   </div>
 );

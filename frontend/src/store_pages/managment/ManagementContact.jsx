@@ -13,6 +13,7 @@ import {
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function ManagementContact() {
   const { auth } = useContext(AuthenticationContext);
@@ -71,6 +72,7 @@ function ManagementContact() {
 
   return (
     <article className="mcontact-container">
+      <RemovePageLoader/>
       <Toast ref={toast} position="top-left" />
       <div className="head-contact">
         <Button

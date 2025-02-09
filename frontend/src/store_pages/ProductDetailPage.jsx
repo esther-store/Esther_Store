@@ -9,6 +9,7 @@ import { Toast } from "primereact/toast";
 import ProductDetailsSection from "@/components/ProductDetailPageComponents/ProductDetailsSection";
 import { LeftArrow } from "@/icons/LeftArrow";
 import { SimilarProductsSection } from "@/components/ProductDetailPageComponents/SimilarProductsSection";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 // Importación lazy de los componentes
 const Page404 = React.lazy(() => import("./Page404"));
@@ -32,6 +33,7 @@ export default function ProductDetailPage({}) {
 
   return (
     <main className="product-detail-page">
+      <RemovePageLoader/>
       <NavBar />
       <title>{pagesTitle.productDetail(product?.product_name)}</title>
       {isError && !loading? (

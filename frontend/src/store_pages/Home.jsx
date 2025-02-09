@@ -6,10 +6,12 @@ import ButtonGoTop from "@/components/HomePageComponents/ButtonGoTop";
 import { pagesTitle } from "@/constants";
 import { RecommendedProducts } from "@/components/HomePageComponents/RecommendedProducts";
 import NavBar from "@/components/NavBar";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function Home() {
   return (
     <main className = "home-page">
+      <RemovePageLoader/>
       <NavBar/>
       <title>{pagesTitle.home}</title>
       <ButtonGoTop/>

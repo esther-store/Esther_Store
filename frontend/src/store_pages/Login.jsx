@@ -10,6 +10,7 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useRef } from "react";
 import AuthenticationContext from '../context/authenticationContext'
 import { CompanyLogo } from "@/components/NavBar/CompanyLogo";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function Login() {
   const {handleLogin, loading} = useContext(AuthenticationContext)
@@ -48,6 +49,7 @@ function Login() {
 
   return (
     <section className="login-container">
+      <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
         <div className="logo-container-login">

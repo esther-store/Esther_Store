@@ -13,6 +13,7 @@ import ProductForm from "@/components/ManagmentComponents/ProductsManagementComp
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import DeleteMultipleProductsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleProductsButton";
 import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 
 function ManagementProducts() {
@@ -45,6 +46,7 @@ function ManagementProducts() {
 
   return (
     <section className="products-management-page">
+      <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <ManagementProductsPageHeader />
       {errorGettingProducts ? (

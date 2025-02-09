@@ -9,6 +9,7 @@ import "@/store_pages/pagesStyles/ManagmentCategories.css";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useCategoryFormProperties } from "@/hooks/useCategoryFormProperties";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
+import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -39,6 +40,7 @@ function ManagementCategories() {
 
   return (
     <main style={{ width: "100%", minHeight: "90vh" }}>
+      <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <ManagementProductsPageHeader title="Categories Management" />
       {loadingCategories ? (

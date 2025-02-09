@@ -15,7 +15,9 @@ const CategoriePromotionSlider = lazy(() =>
 );
 const CategoriesDropdown = lazy(() => import("./CategoriesDropdown"));
 const PromotionsDropdown = lazy(() => import("./PromotionsDropdown"));
-const OrderingProducts = lazy(() => import("../StorePageComponents/OrderingProducts")) 
+const OrderingProducts = lazy(() =>
+  import("../StorePageComponents/OrderingProducts")
+);
 
 function NavBar() {
   const { pathname } = useLocation();
@@ -81,7 +83,13 @@ function NavBar() {
               className="navbar-categories-container"
               style={{ position: "relative", right: "20px" }}
             >
-              <Suspense fallback={<Skeleton width="130px" height="25px" />}>
+              <Suspense
+                fallback={
+                  <div style={{ marginLeft: "10px" }}>
+                    <Skeleton width="130px" height="25px" />
+                  </div>
+                }
+              >
                 <CategoriesDropdown onCategorySelect={() => {}} />
               </Suspense>
             </li>
@@ -90,9 +98,19 @@ function NavBar() {
         <li className="navbar-search-container">
           <Search redirectToStoreOnSearch={true} />
           {pathname == "/store" ? (
-            <Suspense fallback = {<div style={{marginLeft:"10px"}}><Skeleton width="30px" height="30px" /></div>}>
+            <Suspense
+              fallback={
+                <div style={{ marginLeft: "10px" }}>
+                  <Skeleton width="30px" height="30px" />
+                </div>
+              }
+            >
               <OrderingProducts
-                style = {{width:"30px", display:"flex", justifyContent:"center"}}
+                style={{
+                  width: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
                 placeholder=""
                 fixedPlaceholder={true}
                 dropdownIcon={() => <FilterIcon color="#D9658F" />}
@@ -107,7 +125,13 @@ function NavBar() {
           <NavbarDropdown />
         </li>
         <li className="navbar-categories-list-container">
-          <Suspense fallback = {<div style = {{width:"90%", margin:"0 auto"}}><Skeleton width="100%" height="30px"/></div>}>
+          <Suspense
+            fallback={
+              <div style={{ width: "90%", margin: "0 auto" }}>
+                <Skeleton width="100%" height="30px" />
+              </div>
+            }
+          >
             <CategoriePromotionSlider />
           </Suspense>
         </li>

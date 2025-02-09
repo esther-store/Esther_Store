@@ -1,4 +1,3 @@
-import PageLoader from "@/components/Loaders/PageLoader/index.jsx";
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 const ManagementProducts = React.lazy(() =>
@@ -40,7 +39,7 @@ function AppRoutes() {
       <Route
         path="/"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <Home />
           </Suspense>
         }
@@ -48,7 +47,7 @@ function AppRoutes() {
       <Route
         path="/store"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <Store />
           </Suspense>
         }
@@ -56,7 +55,7 @@ function AppRoutes() {
       <Route
         path="/store/product/:productId"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProductDetailPage />
           </Suspense>
         }
@@ -64,7 +63,7 @@ function AppRoutes() {
       <Route
         path="/management-menu"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementMenu />
             </ProtectedRoute>
@@ -74,7 +73,7 @@ function AppRoutes() {
       <Route
         path="/management/products"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementProducts />
             </ProtectedRoute>
@@ -84,7 +83,7 @@ function AppRoutes() {
       <Route
         path="/management/categories"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementCategories />
             </ProtectedRoute>
@@ -94,7 +93,7 @@ function AppRoutes() {
       <Route
         path="/management/oferts"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementOferts />
             </ProtectedRoute>
@@ -104,7 +103,7 @@ function AppRoutes() {
       <Route
         path="/management/security"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementSecurity />
             </ProtectedRoute>
@@ -114,7 +113,7 @@ function AppRoutes() {
       <Route
         path="/management/contact"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ManagementContact />
             </ProtectedRoute>
@@ -124,7 +123,7 @@ function AppRoutes() {
       <Route
         path="/login"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <Login />
           </Suspense>
         }
@@ -132,7 +131,7 @@ function AppRoutes() {
       <Route
         path="/change-password"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <ProtectedRoute>
               <ChangePassword />
             </ProtectedRoute>
@@ -142,7 +141,7 @@ function AppRoutes() {
       <Route
         path="/bye"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <Bye />
           </Suspense>
         }
@@ -150,7 +149,7 @@ function AppRoutes() {
       <Route
         path="*"
         element={
-          <Suspense fallback={<PageLoader/>}>
+          <Suspense>
             <Page404 />
           </Suspense>
         }
