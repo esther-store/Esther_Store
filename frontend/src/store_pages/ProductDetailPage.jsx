@@ -25,9 +25,9 @@ export default function ProductDetailPage({}) {
   const toastRef = useRef();
 
   function getSimilarProductsFilter(){
-    if(product?.categoria != null) return `categoria=${product?.categoria}&page_size=4`
-    if(product?.promotion != null) return `promotion=${product?.promotion}&page_size=4`
-    return "page_size=4"
+    if(product?.categoria != null) return `categoria=${product?.categoria}&page_size=5`
+    if(product?.promotion != null) return `promotion=${product?.promotion}&page_size=5`
+    return "page_size=5"
   }
 
   return (
@@ -67,7 +67,7 @@ export default function ProductDetailPage({}) {
             <LeftArrow color="rgba(0, 0, 0, 0.8)" />
           </button>
           <ProductDetailsSection loading = {loading} product={product} toastRef={toastRef} />
-          <SimilarProductsSection filter={getSimilarProductsFilter()} toastRef={toastRef}/>
+          <SimilarProductsSection filter={getSimilarProductsFilter()} toastRef={toastRef} currentProductId={product?.id}/>
         </>
       )}
     </main>

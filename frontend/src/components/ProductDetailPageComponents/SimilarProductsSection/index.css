@@ -1,5 +1,4 @@
 .similar-products-section{
-    width: fit-content;
     margin: 0 auto;
 }
 .similar-products-section > header{
@@ -14,14 +13,24 @@
 }
 .similar-products-section > section{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:20px
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center;
+    gap:20px;
+    padding: 0px 5px 0px 5px;
 }
 
-@media (max-width:550px){
+@media (min-width:570px) and (max-width:750px) {
     .similar-products-section > section{
-        grid-template-columns: repeat(2, 1fr);
-        gap:10px
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))!important;
+        gap:10px;
+    }
+}
+
+@media (max-width:570px){
+    .similar-products-section > section{
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap:10px;
+        padding: 0px 3px 0px 3px;
     }
 
     .similar-products-section > header h1{
