@@ -4,11 +4,10 @@ import "./index.css";
 import React, { useContext, Suspense, useMemo } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 import { Skeleton } from "primereact/skeleton";
+import CloseSession from "./optionsComponents/CloseSession"
+
 const ChangePassword = React.lazy(() =>
   import("./optionsComponents/ChangePassword")
-);
-const CloseSession = React.lazy(() =>
-  import("./optionsComponents/CloseSession")
 );
 const NavigateToContact = React.lazy(() =>
   import("./optionsComponents/NavigateToContact")
@@ -29,6 +28,24 @@ const ManageUsers = React.lazy(() => import("./optionsComponents/ManageUsers"));
 
 function NavbarDropdown() {
   const { auth } = useContext(AuthenticationContext);
+  const {CloseSessionButton, ShowConfirmDialog} = CloseSession()
+
+  const onlyAuthenticatedUsersOptions = [
+    {
+      component: (
+        <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
+          <ChangePassword />
+        </Suspense>
+      ),
+    },
+    {
+      component: (
+        <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
+          <CloseSessionButton />
+        </Suspense>
+      ),
+    },
+  ];
 
   const options = useMemo(() => {
     if (auth?.token && auth?.infoUser?.is_staff == true) {
@@ -45,10 +62,12 @@ function NavbarDropdown() {
   };
 
   return (
+    <>
+    <ShowConfirmDialog/>
     <Dropdown
       options={options}
       highlightOnSelect={false}
-      onChange={(e) => e.current.preventDefault()}
+      onChange={(e) => null}
       dropdownIcon={
         <MenuIcon
           className="dropdown-icon"
@@ -69,35 +88,20 @@ function NavbarDropdown() {
       panelClassName="user-navbar-actions-dropdown-panel"
       itemTemplate={itemTemplate}
     />
+    </>
   );
 }
 
 export default NavbarDropdown;
 
 const skeletonsWidth = 260
+const skeletonsHeight = 30
 
 const basicOptions = [
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <NavigateToContact />
-      </Suspense>
-    ),
-  },
-];
-
-const onlyAuthenticatedUsersOptions = [
-  {
-    component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
-        <ChangePassword />
-      </Suspense>
-    ),
-  },
-  {
-    component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
-        <CloseSession />
       </Suspense>
     ),
   },
@@ -106,35 +110,35 @@ const onlyAuthenticatedUsersOptions = [
 const onlyAdminUsersOptions = [
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageCategories />
       </Suspense>
     ),
   },
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManagePromotions />
       </Suspense>
     ),
   },
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageContactInfo />
       </Suspense>
     ),
   },
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageUsers />
       </Suspense>
     ),
   },
   {
     component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageProducts />
       </Suspense>
     ),

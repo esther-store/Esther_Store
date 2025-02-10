@@ -13,5 +13,6 @@ export const pageLoaderId = "page-loader"
 export const pagesTitle = {
     home: 'Esther Store - Home',
     store: 'Esther Store - Products',
-    productDetail: (productName) => `Esther Store - ${productName}`
+    productDetail: (productName) => `Esther Store - ${productName}`,
+    contact: 'Esther Store - Contact'
 }

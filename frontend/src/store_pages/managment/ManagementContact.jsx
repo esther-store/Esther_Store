@@ -72,6 +72,7 @@ function ManagementContact() {
 
   return (
     <article className="mcontact-container">
+      <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       <Toast ref={toast} position="top-left" />
       <div className="head-contact">

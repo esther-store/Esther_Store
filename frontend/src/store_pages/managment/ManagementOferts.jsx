@@ -171,6 +171,7 @@ function ManagementOferts() {
 
   return (
     <section className="management-oferts-container">
+      <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       {loading ? (
         <div

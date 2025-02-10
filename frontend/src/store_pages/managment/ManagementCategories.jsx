@@ -40,6 +40,7 @@ function ManagementCategories() {
 
   return (
     <main style={{ width: "100%", minHeight: "90vh" }}>
+      <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <ManagementProductsPageHeader title="Categories Management" />

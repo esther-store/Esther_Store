@@ -49,6 +49,7 @@ function Login() {
 
   return (
     <section className="login-container">
+      <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
