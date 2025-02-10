@@ -223,7 +223,7 @@ function ManagementOferts() {
       <header>
         <button
           className="products-management-go-back-button btn-general-styles"
-          onClick={() => navigate("/management-menu")}
+          onClick={() => navigate("/store")}
         >
           <i className="pi pi-arrow-left"></i>
         </button>
