@@ -1,7 +1,7 @@
 import { Dialog } from "primereact/dialog";
 import AddIcon from "@/assets/icons/oferts-management-add.svg";
-import EditIcon from "@/assets/icons/edit-icon.svg";
-import DetailIcon from "@/assets/icons/eye-icon.svg";
+import {EditIcon} from "@/icons/EditIcon";
+import {EyeIcon} from "@/icons/EyeIcon";
 import React, {Suspense} from "react";
 import Loader from "@/components/Loaders/Loader";
 import "./index.css";
@@ -26,12 +26,12 @@ const ProductForm = React.memo(function ProductForm({
           </div>
         ) : productFormProperties.disabled ? (
           <div className="product-form-dialog-title">
-            <img src={DetailIcon.src} />
+            <EyeIcon/>
             <span>Detalle de Producto</span>
           </div>
         ) : (
           <div className="product-form-dialog-title">
-            <img src={EditIcon.src} />
+            <EditIcon/>
             <span>Editar Producto</span>
           </div>
         )

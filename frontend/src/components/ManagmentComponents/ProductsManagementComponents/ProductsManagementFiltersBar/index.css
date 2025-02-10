@@ -1,5 +1,6 @@
 .products-management-filters-bar{
     width: 90%;
+    overflow: hidden;
     display: grid;
     grid-template-columns:6fr 160px repeat(4, 1fr);
     gap:10px;
@@ -9,10 +10,8 @@
     
     color: #FFF;
     text-align: center;
-    font-feature-settings: 'clig' off, 'liga' off;
     font-family: "Noto Sans";
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
     line-height: 125%; /* 15px */
     font-variant: small-caps;    
@@ -104,6 +103,10 @@
         grid-template-areas: 
         "search search search"
         "filters add-products delete-products";
+    }
+
+    .products-management-filters-bar-button span{
+        display: none;
     }
 }
 

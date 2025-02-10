@@ -1,7 +1,7 @@
 import './index.css'
 import {TrashIcon} from "@/icons/TrashIcon";
-import EyeIcon from '@/assets/icons/eye-icon.svg'
-import EditIcon from '@/assets/icons/edit-icon.svg'
+import {EyeIcon} from '@/icons/EyeIcon'
+import {EditIcon} from '@/icons/EditIcon'
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import React, { useState } from 'react'
 
@@ -23,9 +23,9 @@ const ActionButtons = React.memo(function ActionButtons({item, handleDelete, han
                 resizable = {false}
                 style={{maxWidth:"90%"}}
                 />
-            <button className = "btn-general-styles" onClick={() => handleEdit(item)}><img src = {EditIcon.src}/></button>
-            <button className = "btn-general-styles" onClick={() => handleDetail(item)}><img src = {EyeIcon.src}/></button>
-            <button className = "btn-general-styles" onClick={() => setShowConfirmDialog(true)}><TrashIcon/></button>
+            <button title = "Editar Producto" className = "btn-general-styles" onClick={() => handleEdit(item)}><EditIcon width = {22} height={22} color = "rgba(0, 0, 0, 0.6)"/></button>
+            <button title = "Detalle del Producto" className = "btn-general-styles" onClick={() => handleDetail(item)}><EyeIcon width = {23} height={23} color = "rgba(0, 0, 0, 0.6 )"/></button>
+            <button title = "Eliminar Producto" className = "btn-general-styles" onClick={() => setShowConfirmDialog(true)}><TrashIcon width = {22} height={22} color = "rgba(0, 0, 0, 0.5)"/></button>
         </section>
      );
 })

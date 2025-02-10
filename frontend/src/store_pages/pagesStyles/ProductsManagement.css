@@ -18,7 +18,7 @@
 }
 
 .products-management-go-back-button{
-    width: 26px;
+    width: fit-content;
     height: 30px;
     background-color: rgba(84, 84, 84, 1)!important;
     border-radius: 5px;
@@ -26,9 +26,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.products-management-go-back-button img{
-    width:18px
 }
 
 .back-button-title-container h3{
@@ -60,9 +57,6 @@
 }
 
 @media (max-width: 1000px) {
-    .products-management-page{
-        width: 100vw;
-    }
     .back-button-title-container h3{
         font-size: 25px;
     }

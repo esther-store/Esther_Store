@@ -9,7 +9,7 @@ export function ManagementProductsPageHeader({title = "Gestión de Productos"}) 
           className="products-management-go-back-button btn-general-styles"
           onClick={() => navigate("/store")}
         >
-          <LeftArrow/>
+          <LeftArrow width={20}/>
         </button>
         <h3>{title}</h3>
       </section>
