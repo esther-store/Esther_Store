@@ -12,6 +12,15 @@
 
 .user-navbar-actions-dropdown-panel{
     margin-top: 10px;
+    height: 500px;
+}
+
+.user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper{
+    max-height: 500px!important;
+}
+
+.user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper ul{
+    height: auto;
 }
 
 .user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper li{

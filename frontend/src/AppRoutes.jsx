@@ -4,9 +4,7 @@ const ManagementProducts = React.lazy(() =>
   import("./store_pages/managment/ManagementProducts.jsx")
 );
 const Home = React.lazy(() => import("./store_pages/Home.jsx"));
-const ManagementMenu = React.lazy(() =>
-  import("./store_pages/managment/ManagementMenu.jsx")
-);
+
 const ManagementOferts = React.lazy(() =>
   import("./store_pages/managment/ManagementOferts.jsx")
 );
@@ -70,16 +68,6 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/management-menu"
-        element={
-          <Suspense>
-            <ProtectedRoute>
-              <ManagementMenu />
-            </ProtectedRoute>
-          </Suspense>
-        }
-      />
-      <Route
         path="/management/products"
         element={
           <Suspense>
@@ -100,7 +88,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/management/oferts"
+        path="/management/promotions"
         element={
           <Suspense>
             <ProtectedRoute>
@@ -110,7 +98,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/management/security"
+        path="/management/users"
         element={
           <Suspense>
             <ProtectedRoute>

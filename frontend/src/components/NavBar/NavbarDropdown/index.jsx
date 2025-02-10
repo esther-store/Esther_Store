@@ -3,24 +3,41 @@ import { MenuIcon } from "@/icons/MenuIcon";
 import "./index.css";
 import React, { useContext, Suspense, useMemo } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
+import { Skeleton } from "primereact/skeleton";
 const ChangePassword = React.lazy(() =>
   import("./optionsComponents/ChangePassword")
 );
 const CloseSession = React.lazy(() =>
   import("./optionsComponents/CloseSession")
 );
-import { Skeleton } from "primereact/skeleton";
 const NavigateToContact = React.lazy(() =>
   import("./optionsComponents/NavigateToContact")
 );
+const ManageCategories = React.lazy(() =>
+  import("./optionsComponents/ManageCategories")
+);
+const ManageContactInfo = React.lazy(() =>
+  import("./optionsComponents/ManageContactInfo")
+);
+const ManagePromotions = React.lazy(() =>
+  import("./optionsComponents/ManagePromotions")
+);
+const ManageProducts = React.lazy(() =>
+  import("./optionsComponents/ManageProducts")
+);
+const ManageUsers = React.lazy(() => import("./optionsComponents/ManageUsers"));
 
 function NavbarDropdown() {
   const { auth } = useContext(AuthenticationContext);
 
   const options = useMemo(() => {
-    return auth?.token
-      ? basicOptions.concat(onlyAuthenticatedUsersOptions)
-      : basicOptions;
+    if (auth?.token && auth?.infoUser?.is_staff == true) {
+      return basicOptions
+        .concat(onlyAdminUsersOptions)
+        .concat(onlyAuthenticatedUsersOptions);
+    }
+    if (auth?.token) return basicOptions.concat(onlyAuthenticatedUsersOptions);
+    return basicOptions;
   });
 
   const itemTemplate = (option) => {
@@ -57,10 +74,12 @@ function NavbarDropdown() {
 
 export default NavbarDropdown;
 
+const skeletonsWidth = 260
+
 const basicOptions = [
   {
     component: (
-      <Suspense fallback={<Skeleton width="200px" />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
         <NavigateToContact />
       </Suspense>
     ),
@@ -70,15 +89,53 @@ const basicOptions = [
 const onlyAuthenticatedUsersOptions = [
   {
     component: (
-      <Suspense fallback={<Skeleton width="200px" />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
         <ChangePassword />
       </Suspense>
     ),
   },
   {
     component: (
-      <Suspense fallback={<Skeleton width="200px" />}>
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
         <CloseSession />
+      </Suspense>
+    ),
+  },
+];
+
+const onlyAdminUsersOptions = [
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+        <ManageCategories />
+      </Suspense>
+    ),
+  },
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+        <ManagePromotions />
+      </Suspense>
+    ),
+  },
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+        <ManageContactInfo />
+      </Suspense>
+    ),
+  },
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+        <ManageUsers />
+      </Suspense>
+    ),
+  },
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} />}>
+        <ManageProducts />
       </Suspense>
     ),
   },
