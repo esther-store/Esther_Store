@@ -111,6 +111,13 @@ const onlyAdminUsersOptions = [
   {
     component: (
       <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
+        <ManageProducts />
+      </Suspense>
+    ),
+  },
+  {
+    component: (
+      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageCategories />
       </Suspense>
     ),
@@ -133,13 +140,6 @@ const onlyAdminUsersOptions = [
     component: (
       <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
         <ManageUsers />
-      </Suspense>
-    ),
-  },
-  {
-    component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
-        <ManageProducts />
       </Suspense>
     ),
   },
