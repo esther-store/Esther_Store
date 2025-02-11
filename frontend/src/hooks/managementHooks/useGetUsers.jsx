@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import { getUsers } from "../services/ManageUser/getUsers.js";
-import AuthenticationContext from "../context/authenticationContext.jsx";
+import { getUsers } from "@/services/ManageUser/getUsers.js";
+import AuthenticationContext from "@/context/authenticationContext.jsx";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetUsers({ searchParams, setUsers }) {

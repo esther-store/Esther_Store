@@ -1,36 +1,20 @@
-import React, { useEffect, useContext } from "react";
-import { getPromotions } from "../services/ManagePromotions/getPromotions.js";
-import AuthenticationContext from "../context/authenticationContext.jsx";
+import type { PromotionType } from "@/Types";
+import { getPromotions } from "../services/getPromotions";
 import { useQuery } from "@tanstack/react-query";
-import type { PromotionType } from "@/Types.js";
 
-export function useGetPromotions({
-  searchParams,
-  setNumOfPromotions,
-  setPromotions,
-}) {
-
-  const { auth } = useContext(AuthenticationContext);
-
+export function useGetPromotions({searchParams = ""}:{searchParams?:string}) {
+  
   const {
     data,
-    isLoading: loading,
+    isLoading: loadingPromotions,
     isError,
+    refetch
   } = useQuery({
-    queryKey: ["promotions", searchParams.toString(), auth.token],
-    queryFn: () => getPromotions(searchParams.toString(), auth.token),
-    staleTime: 1000 * 60 * 10
+    queryKey: ["get-promotions", searchParams],
+    queryFn:() => getPromotions({searchParams:searchParams}),
+    staleTime: 1000 * 60 * 10,
   });
+  const promotions: PromotionType[] = data || []
 
-  const promotions: PromotionType[] = data || [];
-
-  //get promotions of store
-  useEffect(() => {
-    if (data) {
-      setPromotions(data);
-      setNumOfPromotions(data.count);
-    }
-  }, [data]);
-
-  return { promotions, loading, setLoading: () => {} };
+  return { promotions, loadingPromotions, isError, refetch };
 }

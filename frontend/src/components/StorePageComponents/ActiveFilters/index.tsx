@@ -3,7 +3,7 @@ import QueryFiltersContext from "@/context/filtersContext";
 import { CloseIcon } from "@/icons/CloseIcon";
 import { showActiveFilter } from "@/utils/showActiveFilter";
 import { useGetCategories } from "@/hooks/useGetCategories";
-import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import { useGetPromotions } from "@/hooks/useGetPromotions";
 import "./index.css";
 import type { FilterType } from "@/Types";
 
@@ -22,7 +22,7 @@ const ActiveFilters = React.memo(function ActiveFilters({
     ).length > 0;
 
   const { categories } = useGetCategories();
-  const { promotions } = useGetPromotions();
+  const { promotions } = useGetPromotions({});
 
   return (
     <section

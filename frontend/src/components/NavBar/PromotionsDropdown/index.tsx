@@ -2,7 +2,7 @@ import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import { useGetPromotions } from "@/hooks/useGetPromotions";
 import type { PromotionType } from "@/Types";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function PromotionsDropdown({ onPromotionSelect = () => {} }) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } =
     useContext<any>(QueryFiltersContext);
   const [promotion, setPromotion] = useState<{ name: string; code: string }>();
-  const { promotions } = useGetPromotions();
+  const { promotions } = useGetPromotions({});
   const promotionsValues = [{ name: "Promociones", code: "" }].concat(
     promotions.map((promotion: PromotionType) => ({
       name: promotion.name,

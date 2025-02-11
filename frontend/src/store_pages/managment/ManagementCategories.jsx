@@ -1,4 +1,4 @@
-import { useManageCategories } from "@/hooks/useManageCategories";
+import { useManageCategories } from "@/hooks/managementHooks/useManageCategories";
 import { useState, useRef } from "react";
 import { Toast } from "primereact/toast";
 import Loader from "@/components/Loaders/Loader";
@@ -7,7 +7,7 @@ import CategoriesGrid from "@/components/ManagmentComponents/CategoriesManagemen
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
 import "@/store_pages/pagesStyles/ManagmentCategories.css";
 import RetryQueryComponent from "@/components/RetryQueryComponent";
-import { useCategoryFormProperties } from "@/hooks/useCategoryFormProperties";
+import { useCategoryFormProperties } from "@/hooks/managementHooks/useCategoryFormProperties";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
 
@@ -46,18 +46,7 @@ function ManagementCategories() {
       <ManagementProductsPageHeader title="Categories Management" />
       {loadingCategories ? (
         <section
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            zIndex: 1,
-            backdropFilter: "blur(10px)",
-            display: "flex",
-            alignItems: "center",
-          }}
+          style={styles.loaderContainer}
         >
           <Loader />
         </section>
@@ -105,3 +94,18 @@ function ManagementCategories() {
 }
 
 export default ManagementCategories;
+
+const styles = {
+  loaderContainer:{
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 1,
+    backdropFilter: "blur(10px)",
+    display: "flex",
+    alignItems: "center",
+  }
+}

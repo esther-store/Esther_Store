@@ -3,7 +3,7 @@ import { UserIcon } from "@/icons/UserIcon";
 
 function ManageUsers() {
   return (
-    <Link to="/management/user">
+    <Link to="/management/users">
       <div style={styles.flexContainer}>
         <UserIcon color="rgba(0, 0, 0, 0.7)" />
         <span>Administrar Usuarios</span>

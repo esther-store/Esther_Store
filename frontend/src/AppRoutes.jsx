@@ -5,8 +5,8 @@ const ManagementProducts = React.lazy(() =>
 );
 const Home = React.lazy(() => import("./store_pages/Home.jsx"));
 
-const ManagementOferts = React.lazy(() =>
-  import("./store_pages/managment/ManagementOferts.jsx")
+const ManagementPromotions = React.lazy(() =>
+  import("./store_pages/managment/ManagementPromotions.jsx")
 );
 const ManagementSecurity = React.lazy(() =>
   import("./store_pages/managment/ManagementSecurity.jsx")
@@ -92,7 +92,7 @@ function AppRoutes() {
         element={
           <Suspense>
             <ProtectedRoute>
-              <ManagementOferts />
+              <ManagementPromotions />
             </ProtectedRoute>
           </Suspense>
         }

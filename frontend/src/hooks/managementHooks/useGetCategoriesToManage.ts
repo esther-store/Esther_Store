@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCategoriesToManage } from "../services/ManageCategories/getCategoriesToManage.js";
-import AuthenticationContext from "../context/authenticationContext.jsx";
+import { getCategoriesToManage } from "@/services/ManageCategories/getCategoriesToManage.js";
+import AuthenticationContext from "@/context/authenticationContext.jsx";
 import React, { useContext } from "react";
 import type { CategoryType } from "@/Types.js";
 

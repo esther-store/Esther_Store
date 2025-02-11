@@ -1,11 +1,11 @@
-import { deleteCategories } from "../services/ManageCategories/deleteCategories.js";
-import { createCategory } from "../services/ManageCategories/createCategory.js";
-import { updateCategory } from "../services/ManageCategories/updateCategory.js";
+import { deleteCategories } from "@/services/ManageCategories/deleteCategories.js";
+import { createCategory } from "@/services/ManageCategories/createCategory.js";
+import { updateCategory } from "@/services/ManageCategories/updateCategory.js";
 import { showToast } from "@/utils/showToast.js";
 import { useMutation } from "@tanstack/react-query";
 import type { CategoryType, CategoryIdType } from "@/Types.js";
 import { useGetCategoriesToManage } from "./useGetCategoriesToManage.js";
-import AuthenticationContext from "../context/authenticationContext.jsx";
+import AuthenticationContext from "@/context/authenticationContext.jsx";
 import React, { useContext } from "react";
 
 export function useManageCategories({

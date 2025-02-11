@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, Suspense } from "react";
 import QueryFilterContext from "@/context/filtersContext";
 import { useGetCategories } from "@/hooks/useGetCategories";
-import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import { useGetPromotions } from "@/hooks/useGetPromotions";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import type { CategoryType, PromotionType } from "@/Types";
@@ -17,7 +17,7 @@ const CategoriePromotionSlider = React.memo(
       loading: loadingCategories,
       refetch: refetchCategories,
     } = useGetCategories();
-    const { promotions, loadingPromotions } = useGetPromotions();
+    const { promotions, loadingPromotions } = useGetPromotions({});
     const loading = loadingCategories || loadingPromotions;
     const { pathname } = useLocation();
     const navigate = useNavigate();

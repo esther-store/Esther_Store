@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
-import { deleteProducts } from "../services/ManageProducts/deleteProducts";
-import { createProduct } from "../services/ManageProducts/createProduct";
-import { updateProduct } from "../services/ManageProducts/updateProduct";
-import AuthenticationContext from "../context/authenticationContext.jsx";
+import { getProductsToManage } from "@/services/ManageProducts/getProductsToManage";
+import { deleteProducts } from "@/services/ManageProducts/deleteProducts";
+import { createProduct } from "@/services/ManageProducts/createProduct";
+import { updateProduct } from "@/services/ManageProducts/updateProduct";
+import AuthenticationContext from "@/context/authenticationContext.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import QueryFiltersContext from "@/context/filtersContext";
 import { showToast } from "@/utils/showToast.ts";

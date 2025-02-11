@@ -2,7 +2,7 @@ import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import { useGetCategoriesToManage } from "@/hooks/useGetCategoriesToManage";
+import { useGetCategoriesToManage } from "@/hooks/managementHooks/useGetCategoriesToManage";
 
 function CategoriesFilter({onCategorySelect = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);

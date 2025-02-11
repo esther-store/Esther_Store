@@ -1,5 +1,5 @@
 import "./index.css";
-import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import { useGetPromotions } from "@/hooks/useGetPromotions";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductCard from "@/components/StorePageComponents/ProductsGrid/ProductCard";
 import React, { useRef, useState, Suspense } from "react";
@@ -7,14 +7,15 @@ import { Toast } from "primereact/toast";
 import { NavigationPoints } from "./NavigationPoints";
 import { Link } from "react-router-dom";
 import { Skeleton } from "primereact/skeleton";
-const RetryQueryComponent = React.lazy(() =>
-  import("@/components/RetryQueryComponent")
+const RetryQueryComponent = React.lazy(
+  () => import("@/components/RetryQueryComponent")
 );
 
 export function HomePagePromotions() {
-  const toastRef = useRef();
-  const { promotions, loadingPromotions, isError, refetch } =
-    useGetPromotions();
+  const toastRef = useRef(null);
+  const { promotions, loadingPromotions, isError, refetch } = useGetPromotions({
+    searchParams: "is_special=true",
+  });
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentPromotion = promotions[currentIndex];
   const {
@@ -22,7 +23,7 @@ export function HomePagePromotions() {
     loading: loadingProducts,
     isError: errorGettingProducts,
   } = useGetProducts({
-    searchParams: `promotion=${currentPromotion?.id}&page_size=3`,
+    searchParams: currentPromotion?.id? `promotion=${currentPromotion?.id}&page_size=3`:'page_size=0',
   });
   const error = isError || errorGettingProducts;
   const loading = loadingProducts || loadingPromotions;
@@ -41,13 +42,9 @@ export function HomePagePromotions() {
         <h2>{currentPromotion?.name}</h2>
       ) : null}
       {loading ? (
-        <CardsSkeleton/>
+        <CardsSkeleton />
       ) : error ? (
-        <Suspense
-          fallback={
-            <CardsSkeleton/>
-          }
-        >
+        <Suspense fallback={<CardsSkeleton />}>
           <div style={styles.loaderContainer}>
             <RetryQueryComponent
               message={"Error obteniendo las Promociones"}
@@ -55,6 +52,13 @@ export function HomePagePromotions() {
             />
           </div>
         </Suspense>
+      ) : promotions.length === 0 ? (
+        <div style={styles.loaderContainer}>
+          <RetryQueryComponent
+            message={"No hay promociones para mostrar"}
+            refetch={refetch}
+          />
+        </div>
       ) : (
         <section className="cards-container">
           {products.map((product) => (

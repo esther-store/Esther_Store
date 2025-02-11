@@ -2,7 +2,7 @@ import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import { useGetPromotions } from "@/hooks/useGetPromotionsFromProducts";
+import { useGetPromotions } from "@/hooks/useGetPromotions";
 
 function PromotionsFilter({onPromotionSelect = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
