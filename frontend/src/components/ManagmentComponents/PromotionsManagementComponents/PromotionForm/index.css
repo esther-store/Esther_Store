@@ -61,21 +61,25 @@
 }
 
 /*ACTIVE CHECKBOX*/
-.promotion-form-active-checkbox{
+.promotion-form-checkbox{
     display: flex;
     flex-direction: row;
-    gap:80px;
+    gap:5px;
     align-items: center;
     margin-top: 10px;
 }
 
+.promotion-form-checkbox label{
+    width: 100px;
+}
+
 /*cambio el color del checkbox a gris*/
-.promotion-form-active-checkbox .p-highlight{
+.promotion-form-checkbox .p-highlight{
     background-color: rgba(84, 84, 84, 1);
     border:0
 }
 /*Cambio estilos del borde del checkbox*/
-.promotion-form-active-checkbox .p-checkbox .p-checkbox-box{
+.promotion-form-checkbox .p-checkbox .p-checkbox-box{
     border: 1.5px solid gray;
 }
 
@@ -86,5 +90,13 @@
     .promotion-image-field img{
         width: 50%;
         height: auto;
+    }
+
+    .promotion-form-field{
+        flex-direction: column;
+    }
+    .promotion-form-field label{
+        width: 100%;
+        text-align: start;
     }
 }

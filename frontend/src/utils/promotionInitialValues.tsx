@@ -21,3 +21,7 @@ export function createPromotionValues({promotion}:{promotion:PromotionType}){
         is_special: promotion.is_special,
   })
 }
+
+export function validatePromotionValues({promotion}:{promotion:PromotionType}){
+    return true
+}

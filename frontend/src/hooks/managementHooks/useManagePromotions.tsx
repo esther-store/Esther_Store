@@ -1,29 +1,37 @@
 import { deletePromotions } from "@/services/ManagePromotions/deletePromotions.js";
-import { createCategory } from "@/services/ManageCategories/createCategory.js";
 import { updateCategory } from "@/services/ManageCategories/updateCategory.js";
 import { showToast } from "@/utils/showToast.js";
 import { useMutation } from "@tanstack/react-query";
-import type { CategoryType, CategoryIdType, PromotionType } from "@/Types.js";
+import type { CategoryIdType, PromotionType } from "@/Types.js";
 import AuthenticationContext from "@/context/authenticationContext.jsx";
 import React, { useContext } from "react";
 import { useGetPromotionsToManage } from "./useGetPromotionsToManage.js";
+import { validatePromotionValues } from "@/utils/promotionInitialValues.js";
+import { createPromotion } from "@/services/ManagePromotions/createPromotion.js";
 
 export function useManagePromotions({
   toastRef,
   setSelectedPromotions,
   setPromotionFormProperties,
 }) {
-  
   const { auth } = useContext<any>(AuthenticationContext);
-  const {promotions, loading, errorGettingPromotions, refetchPromotions} = useGetPromotionsToManage()
+  const { promotions, loading, errorGettingPromotions, refetchPromotions } =
+    useGetPromotionsToManage();
 
-  const { mutate: handleCreateCategory, isPending: creatingPromotion } =
+  const { mutate: handleCreatePromotion, isPending: creatingPromotion } =
     useMutation({
-      mutationFn: ({ name, img }: { name: string; img: string }) => {
-        if (name == null || name === "") {
-          throw new Error("Debes ingresar un nombre");
+      mutationFn: (promotion: PromotionType) => {
+        if(validatePromotionValues({ promotion: promotion })){
+          return createPromotion({
+            name: promotion.name,
+            description: promotion.description,
+            active: promotion.active,
+            img: promotion.img,
+            discount_in_percent: promotion.discount_in_percent,
+            is_special: promotion.is_special,
+            token: auth.token,
+          });
         }
-        return createCategory({ name: name, img: img, token: auth.token });
       },
       onSuccess: () => {
         setSelectedPromotions([]);
@@ -53,7 +61,10 @@ export function useManagePromotions({
           throw new Error("Debes seleccionar alguna promoción");
         }
         const promotionIds = promotions.map((promotion) => promotion.id);
-        return deletePromotions({ promotions: promotionIds, token: auth.token });
+        return deletePromotions({
+          promotions: promotionIds,
+          token: auth.token,
+        });
       },
       onSuccess: () => {
         setSelectedPromotions([]);
@@ -126,7 +137,7 @@ export function useManagePromotions({
     errorGettingPromotions,
     refetchPromotions,
     handleDeletePromotions,
-    handleCreateCategory,
+    handleCreatePromotion,
     handleUpdateCategory,
   };
 }

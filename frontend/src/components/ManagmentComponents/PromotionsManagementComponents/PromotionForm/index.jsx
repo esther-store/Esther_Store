@@ -24,15 +24,27 @@ const PromotionForm = React.memo(function PromotionForm({
 
   function createpromotion(e) {
     e.preventDefault();
-    let name = e.target["name"].value;
-    let img = e.target["image"].files;
-    handleCreatePromotion({ name: name, img: img[0] });
+    const name = e.target["name"].value;
+    const description = e.target["description"].value;
+    const discount_in_percent = e.target["discount"].value;
+    const img = e.target["image"].files;
+    const is_special = specialStatusChecked;
+    const active = activeStatusChecked;
+    const promotion = {
+      name: name,
+      img: img[0],
+      description: description,
+      discount_in_percent: discount_in_percent,
+      is_special: is_special,
+      active: active,
+    }
+    handleCreatePromotion(promotion);
   }
 
   function updatepromotion(e) {
     e.preventDefault();
-    let name = e.target["name"].value;
-    let img = e.target["image"].files;
+    const name = e.target["name"].value;
+    const img = e.target["image"].files;
     handleUpdatePromotion({
       id: promotionFormProperties.initialValues.id,
       name: name,
@@ -82,6 +94,7 @@ const PromotionForm = React.memo(function PromotionForm({
         }}
         encType="multipart/form-data"
       >
+        {/*Name*/}
         <div className="promotion-form-field">
           <label htmlFor="name">Nombre</label>
           <InputText
@@ -135,7 +148,7 @@ const PromotionForm = React.memo(function PromotionForm({
         </div>
 
         {/*active*/}
-        <div className="promotion-form-active-checkbox">
+        <div className="promotion-form-checkbox">
           <label htmlFor="active">Activa:</label>
           <Checkbox
             id="active"
@@ -147,8 +160,8 @@ const PromotionForm = React.memo(function PromotionForm({
         </div>
 
         {/*special*/}
-        <div className="promotion-form-active-checkbox">
-          <label htmlFor="active">Especial:</label>
+        <div className="promotion-form-checkbox">
+          <label htmlFor="special">Especial:</label>
           <Checkbox
             id="special"
             aria-describedby="special-help"

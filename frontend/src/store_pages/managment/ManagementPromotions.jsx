@@ -23,10 +23,10 @@ export default function ManagementPromotions() {
     processDetailPromotion,
   } = usePromotionFormProperties();
 
-  const { promotions, loadingPromotions, handleDeletePromotions } =
+  const { promotions, loadingPromotions, handleDeletePromotions, handleCreatePromotion } =
     useManagePromotions({
       toastRef: toast,
-      setPromotionFormProperties: () => {},
+      setPromotionFormProperties: setPromotionFormProperties,
       setSelectedPromotions: setSelectedPromotions,
     });
   return (
@@ -36,7 +36,7 @@ export default function ManagementPromotions() {
       <PromotionForm
         promotionFormProperties={promotionFormProperties}
         setPromotionFormProperties={setPromotionFormProperties}
-        handleCreatePromotion={() => {}}
+        handleCreatePromotion={handleCreatePromotion}
         handleUpdatePromotion={() => {}}
         loading={loadingPromotions}
       />
