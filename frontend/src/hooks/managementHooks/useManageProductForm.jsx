@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { normalizeProductFormInfo } from "../utils/productInitialValues";
+import { normalizeProductFormInfo } from "@/utils/productInitialValues";
 
 export function useManageProductForm({
   productFormProperties,

@@ -1,5 +1,5 @@
-import { useGetPromotions } from "@/hooks/useGetPromotions";
-import { useManageProductForm } from "@/hooks/useManageProductForm";
+import { useGetPromotionsToManage } from "@/hooks/managementHooks/useGetPromotionsToManage";
+import { useManageProductForm } from "@/hooks/managementHooks/useManageProductForm";
 import { useImagePreview } from "@/hooks/managementHooks/useImagePreview";
 import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";
 import { InputText } from "primereact/inputtext";
@@ -9,7 +9,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import React from "react";
 import Loader from "@/components/Loaders/Loader";
-import { useGetCategoriesToManage } from "@/hooks/useGetCategoriesToManage";
+import { useGetCategoriesToManage } from "@/hooks/managementHooks/useGetCategoriesToManage";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -19,7 +19,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
   loading,
 }) {
   const { categories, loading: loadingCategories } = useGetCategoriesToManage();
-  const { promotions, loadingPromotions } = useGetPromotions();
+  const { promotions, loadingPromotions } = useGetPromotionsToManage();
   const {
     categorySelected,
     categoriesOptions,
