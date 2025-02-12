@@ -8,15 +8,18 @@ export default function PromotionsGrid({
   showCheckboxes,
   selectedPromotions,
   setSelectedPromotions,
-  handleDeletePromotions
+  handleDeletePromotions,
+  processUpdatePromotion,
+  processDetailPromotion,
 }: {
-  promotions:PromotionType[];
+  promotions: PromotionType[];
   showCheckboxes: boolean;
   selectedPromotions: PromotionType[];
   setSelectedPromotions: (prev) => void;
-  handleDeletePromotions: (promotions:PromotionType[]) => void
+  handleDeletePromotions: (promotions: PromotionType[]) => void;
+  processUpdatePromotion: (promotion: PromotionType) => {};
+  processDetailPromotion: (promotion: PromotionType) => {};
 }) {
-
   function handleCheckPromotion({ checked, promotion }) {
     // Si el checkbox está marcado, agregar la promocion al array de seleccionados
     if (checked) {
@@ -60,7 +63,12 @@ export default function PromotionsGrid({
             </div>
           </section>
           <footer>
-            <ActionButtons item = {promo} handleDelete = {handleDeletePromotions}/>
+            <ActionButtons
+              item={promo}
+              handleDelete={handleDeletePromotions}
+              handleUpdate={processUpdatePromotion}
+              handleDetail={processDetailPromotion}
+            />
           </footer>
         </article>
       ))}

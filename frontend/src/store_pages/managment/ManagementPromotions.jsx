@@ -7,23 +7,42 @@ import { useState, useRef } from "react";
 import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
 import { useManagePromotions } from "@/hooks/managementHooks/useManagePromotions";
 import { Toast } from "primereact/toast";
+import { usePromotionFormProperties } from "@/hooks/managementHooks/usePromotionFormProperties";
+import PromotionForm from "@/components/ManagmentComponents/PromotionsManagementComponents/PromotionForm";
 
 export default function ManagementPromotions() {
   const toast = useRef(null);
   const [selectedPromotions, setSelectedPromotions] = useState([]);
   const [showCheckboxes, setShowCheckboxes] = useState(false);
-  const { promotions, handleDeletePromotions } = useManagePromotions({
-    toastRef: toast,
-    setPromotionFormProperties: () => {},
-    setSelectedPromotions: setSelectedPromotions,
-  });
+
+  //promotion form properties
+  const {
+    promotionFormProperties,
+    setPromotionFormProperties,
+    processUpdatePromotion,
+    processDetailPromotion,
+  } = usePromotionFormProperties();
+
+  const { promotions, loadingPromotions, handleDeletePromotions } =
+    useManagePromotions({
+      toastRef: toast,
+      setPromotionFormProperties: () => {},
+      setSelectedPromotions: setSelectedPromotions,
+    });
   return (
     <article>
       <meta name="robots" content="noindex"></meta>
       <Toast ref={toast} position="bottom-center" />
+      <PromotionForm
+        promotionFormProperties={promotionFormProperties}
+        setPromotionFormProperties={setPromotionFormProperties}
+        handleCreatePromotion={() => {}}
+        handleUpdatePromotion={() => {}}
+        loading={loadingPromotions}
+      />
       <RemovePageLoader />
       <ManagementProductsPageHeader title="Administrar Promociones" />
-      <ButtonsAddAndDelete setCategoryFormProperties={(props) => {}}>
+      <ButtonsAddAndDelete setCategoryFormProperties={setPromotionFormProperties}>
         <DeleteMultipleElementsButton
           selectedItems={selectedPromotions}
           setSelectedItems={setSelectedPromotions}
@@ -35,9 +54,11 @@ export default function ManagementPromotions() {
       <PromotionsGrid
         promotions={promotions}
         setSelectedPromotions={setSelectedPromotions}
+        processUpdatePromotion = {processUpdatePromotion}
+        processDetailPromotion = {processDetailPromotion}
         showCheckboxes={showCheckboxes}
         selectedPromotions={selectedPromotions}
-        handleDeletePromotions = {handleDeletePromotions}
+        handleDeletePromotions={handleDeletePromotions}
       />
     </article>
   );
