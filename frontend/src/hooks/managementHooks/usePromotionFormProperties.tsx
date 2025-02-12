@@ -1,41 +1,42 @@
+import type { PromotionType } from "@/Types";
+import {
+  createPromotionValues,
+  getPromotionFormInitialValues,
+} from "@/utils/promotionInitialValues";
 import { useState } from "react";
 
 export function usePromotionFormProperties() {
-  
   const [promotionFormProperties, setPromotionFormProperties] = useState({
     show: false,
-    initialValues: null,
+    initialValues: getPromotionFormInitialValues(),
     disabled: false,
     creatingMode: true,
   });
-  
-  function processUpdatePromotion({ id, nombre, img }) {
+
+  function processUpdatePromotion(promotion: PromotionType) {
     setPromotionFormProperties((prev) => ({
       ...prev,
       show: true,
       creatingMode: false,
-      initialValues: {
-        id: id,
-        name: nombre,
-        img: img,
-      },
+      initialValues: createPromotionValues({ promotion: promotion }),
       disabled: false,
     }));
   }
 
-  function processDetailPromotion({ id, nombre, img }) {
+  function processDetailPromotion(promotion: PromotionType) {
     setPromotionFormProperties((prev) => ({
       ...prev,
       show: true,
       creatingMode: false,
-      initialValues: {
-        id: id,
-        name: nombre,
-        img: img,
-      },
+      initialValues: createPromotionValues({ promotion: promotion }),
       disabled: true,
     }));
   }
 
-  return {promotionFormProperties, setPromotionFormProperties, processUpdatePromotion, processDetailPromotion}
+  return {
+    promotionFormProperties,
+    setPromotionFormProperties,
+    processUpdatePromotion,
+    processDetailPromotion,
+  };
 }

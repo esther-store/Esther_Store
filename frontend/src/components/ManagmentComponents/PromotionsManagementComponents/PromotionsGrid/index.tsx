@@ -66,7 +66,7 @@ export default function PromotionsGrid({
             <ActionButtons
               item={promo}
               handleDelete={handleDeletePromotions}
-              handleUpdate={processUpdatePromotion}
+              handleEdit={processUpdatePromotion}
               handleDetail={processDetailPromotion}
             />
           </footer>
