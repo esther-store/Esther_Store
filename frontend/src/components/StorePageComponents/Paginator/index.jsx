@@ -5,7 +5,7 @@ import QueryFiltersContext from "@/context/filtersContext";
 import React, { useContext } from "react";
 import "./index.css";
 
-const Paginator = React.memo(function Paginator({count, itemsLength}) {
+const Paginator = React.memo(function Paginator({count, itemsLength, pageSize = 14}) {
   const { removeFilter, setFilter, getActiveFilter } = useContext(QueryFiltersContext);
   const filterPageValue = getActiveFilter("page");
   const currentPage = filterPageValue === "" ? 1 : parseInt(filterPageValue);
@@ -18,7 +18,7 @@ const Paginator = React.memo(function Paginator({count, itemsLength}) {
       nextLinkClassName={"next-page-button"}
       previousLinkClassName={"previous-page-button"}
       breakClassName={"page"}
-      pageCount={Math.ceil(count / 14)}
+      pageCount={Math.ceil(count / pageSize)}
       pageRangeDisplayed={3}
       previousLabel={<LeftChevronIcon color = "#000"/>}
       nextLabel={<RightChevronIcon color = "#000"/>}

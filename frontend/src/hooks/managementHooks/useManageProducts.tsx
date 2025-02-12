@@ -9,6 +9,7 @@ import QueryFiltersContext from "@/context/filtersContext";
 import { showToast } from "@/utils/showToast.ts";
 import { isProductInfoValid } from "@/utils/isProductInfoValid.ts";
 import { type ProductType, type CreateProductType, type ProductIdType } from "@/Types.js";
+import { productsToManagePageSize } from "@/constants";
 
 export function useManageProducts({
   toastRef,
@@ -19,6 +20,8 @@ export function useManageProducts({
   const queryClient = useQueryClient();
   const { searchParams } = useContext<any>(QueryFiltersContext);
 
+  const pageSize = `&page_size=${productsToManagePageSize}`
+
   //get products to manage
   const {
     data,
@@ -26,10 +29,10 @@ export function useManageProducts({
     isError: errorGettingProducts,
     refetch: refetchProducts,
   } = useQuery({
-    queryKey: ["products-to-manage", searchParams.toString(), auth.token],
+    queryKey: ["products-to-manage", searchParams.toString() + pageSize, auth.token],
     queryFn: () =>{
       return getProductsToManage({
-        filters: searchParams.toString(),
+        filters: searchParams.toString() + pageSize,
         token: auth.token,
       })},
     staleTime: 1000 * 60 * 10,

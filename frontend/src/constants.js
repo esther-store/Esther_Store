@@ -16,3 +16,5 @@ export const pagesTitle = {
     productDetail: (productName) => `Esther Store - ${productName}`,
     contact: 'Esther Store - Contact'
 }
+
+export const productsToManagePageSize = 20

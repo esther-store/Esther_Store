@@ -14,6 +14,7 @@ import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/P
 import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
 import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
 import { RemovePageLoader } from "@/components/RemovePageLoader";
+import { productsToManagePageSize } from "@/constants";
 
 
 function ManagementProducts() {
@@ -102,7 +103,7 @@ function ManagementProducts() {
             processDetailProduct={processDetailProduct}
             processUpdateProduct={processUpdateProduct}
           />
-          <Paginator count={numOfProducts} itemsLength={products.length} />
+          <Paginator count={numOfProducts} itemsLength={products.length} pageSize = {productsToManagePageSize}/>
         </>
       )}
     </section>
