@@ -124,6 +124,7 @@ const PromotionForm = React.memo(function PromotionForm({
             max={100}
             disabled={promotionFormProperties.disabled}
             type="number"
+            required
             defaultValue={
               promotionFormProperties.creatingMode
                 ? ""
