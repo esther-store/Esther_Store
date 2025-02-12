@@ -1,19 +1,21 @@
-import { useGetPromotionsToManage } from "@/hooks/managementHooks/useGetPromotionsToManage";
 import "./index.css";
 import type { PromotionType } from "@/Types";
 import ActionButtons from "../../ProductsManagementComponents/ProductsGrid/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
 
 export default function PromotionsGrid({
+  promotions,
   showCheckboxes,
   selectedPromotions,
   setSelectedPromotions,
+  handleDeletePromotions
 }: {
+  promotions:PromotionType[];
   showCheckboxes: boolean;
   selectedPromotions: PromotionType[];
   setSelectedPromotions: (prev) => void;
+  handleDeletePromotions: (promotions:PromotionType[]) => void
 }) {
-  const { promotions } = useGetPromotionsToManage();
 
   function handleCheckPromotion({ checked, promotion }) {
     // Si el checkbox está marcado, agregar la promocion al array de seleccionados
@@ -58,7 +60,7 @@ export default function PromotionsGrid({
             </div>
           </section>
           <footer>
-            <ActionButtons />
+            <ActionButtons item = {promo} handleDelete = {handleDeletePromotions}/>
           </footer>
         </article>
       ))}

@@ -33,9 +33,11 @@ export default function ManagementPromotions() {
         />
       </ButtonsAddAndDelete>
       <PromotionsGrid
+        promotions={promotions}
         setSelectedPromotions={setSelectedPromotions}
         showCheckboxes={showCheckboxes}
         selectedPromotions={selectedPromotions}
+        handleDeletePromotions = {handleDeletePromotions}
       />
     </article>
   );
