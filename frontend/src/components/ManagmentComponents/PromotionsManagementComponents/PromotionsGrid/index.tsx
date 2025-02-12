@@ -1,18 +1,20 @@
 import { useGetPromotionsToManage } from "@/hooks/managementHooks/useGetPromotionsToManage";
 import "./index.css";
-import type { PromotionType } from "@/Types";
+import type { PromotionIdType, PromotionType } from "@/Types";
 import ActionButtons from "../../ProductsManagementComponents/ProductsGrid/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
 
-export default function PromotionsGrid() {
+export default function PromotionsGrid({showCheckboxes, selectedPromotions}:{showCheckboxes:boolean, selectedPromotions:PromotionIdType[]}) {
   const { promotions } = useGetPromotionsToManage();
 
   return (
     <main className="promotions-management-grid">
       {promotions.map((promo: PromotionType) => (
-        <article className="promotion-management-card">
+        <article key = {promo.id} className="promotion-management-card">
             <header>
-                <Checkbox checked = {false}/>
+                {showCheckboxes?
+                    <Checkbox checked = {selectedPromotions.some(promoId => promoId == promo.id)}/>
+                :null}
             </header>
             <aside>
                 <img alt = {promo.name} src = {promo.img}/>

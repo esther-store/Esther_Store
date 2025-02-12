@@ -46,52 +46,6 @@
     height: 35px;
     grid-area: add-products;
 }
-.remove-product-button-container{
-    height: 35px;
-    grid-area: delete-products;
-}
-
-.confirm-cancel-multiple-products-deletion-container{
-    position: fixed;
-    left: 50%;
-    bottom: 50px;
-    z-index: 1;
-    flex-direction: row;
-    gap: 10px;    
-    display: none;
-}
-  
-.confirm-cancel-multiple-products-deletion-container.show {
-    display: flex;
-    animation: show 0.3s 0s forwards ;
-}
-.confirm-cancel-multiple-products-deletion-container.hide {
-    animation: hide 0.3s forwards ;
-}
-
-@keyframes hide {
-    from{
-        display: flex;
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-    to{
-        opacity: 0;
-        transform: translate(-50%, 100%);
-        display: none;
-    }
-}
-
-@keyframes show {
-    from{
-        opacity: 0;
-        transform: translate(-50%, 100%);
-    }
-    to{
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
 
 @media (max-width: 600px) {
     .products-management-filters-bar-button img{

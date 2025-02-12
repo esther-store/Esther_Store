@@ -11,7 +11,7 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import CreateProductButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/CreateProductButton";
 import ProductForm from "@/components/ManagmentComponents/ProductsManagementComponents/ProductForm";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
-import DeleteMultipleProductsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleProductsButton";
+import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
 import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
 import { RemovePageLoader } from "@/components/RemovePageLoader";
 
@@ -73,10 +73,10 @@ function ManagementProducts() {
               />
             }
             DeleteMultipleProductsButton={
-              <DeleteMultipleProductsButton
-                handleDeleteMultipleProducts={handleDeleteProduct}
-                selectedProducts={selectedProducts}
-                setSelectedProducts = {setSelectedProducts}
+              <DeleteMultipleElementsButton
+                handleDeleteMultiple={handleDeleteProduct}
+                selectedItems={selectedProducts}
+                setSelectedItems = {setSelectedProducts}
                 showCheckboxes = {showCheckboxes}
                 setShowCheckboxes = {setShowCheckboxes}
               />

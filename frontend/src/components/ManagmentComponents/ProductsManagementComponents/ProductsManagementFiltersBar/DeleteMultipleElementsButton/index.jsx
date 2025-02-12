@@ -3,12 +3,13 @@ import { ConfirmDialog } from "primereact/confirmdialog";
 import React, { useState } from "react";
 import {CloseIcon} from "@/icons/CloseIcon";
 import {CheckIcon} from "@/icons/CheckIcon";
+import './index.css'
 
-const DeleteMultipleProductsButton = React.memo(
+const DeleteMultipleElementsButton = React.memo(
   function DeleteMultipleProductsButton({
-    selectedProducts,
-    setSelectedProducts,
-    handleDeleteMultipleProducts,
+    selectedItems,
+    setSelectedItems,
+    handleDeleteMultiple,
     showCheckboxes,
     setShowCheckboxes,
   }) {
@@ -26,7 +27,7 @@ const DeleteMultipleProductsButton = React.memo(
           message="Deseas continuar con la operación?"
           header="Confirmación"
           icon="pi pi-exclamation-triangle"
-          accept={() => handleDeleteMultipleProducts(selectedProducts)}
+          accept={() => handleDeleteMultiple(selectedItems)}
           style={{ maxWidth: "90%" }}
         />
         <div className="remove-product-button-container">
@@ -51,7 +52,7 @@ const DeleteMultipleProductsButton = React.memo(
               className="products-management-filters-bar-button btn-general-styles"
               onClick={() => {
                 setShowCheckboxes(false);
-                setSelectedProducts([]);
+                setSelectedItems([]);
               }}
             >
               <CloseIcon/>
@@ -64,4 +65,4 @@ const DeleteMultipleProductsButton = React.memo(
   }
 );
 
-export default DeleteMultipleProductsButton;
+export default DeleteMultipleElementsButton;

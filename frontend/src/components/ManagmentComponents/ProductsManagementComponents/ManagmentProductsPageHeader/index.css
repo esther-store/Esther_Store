@@ -1,0 +1,35 @@
+.back-button-title-container{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: center;
+    padding: 10px;
+    padding-left: 0;
+    margin: 0 auto
+}
+
+.products-management-go-back-button{
+    width: fit-content;
+    height: 30px;
+    background-color: rgba(84, 84, 84, 1)!important;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button-title-container h3{
+    color: #464646;
+    text-align: center;
+    font-family: 'Noto Sans';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 137%; /* 54.8px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    margin:0;
+}

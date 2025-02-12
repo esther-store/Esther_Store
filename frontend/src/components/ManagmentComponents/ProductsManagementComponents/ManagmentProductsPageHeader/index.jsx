@@ -1,5 +1,6 @@
 import { LeftArrow } from "@/icons/LeftArrow";
 import { useNavigate } from "react-router-dom";
+import './index.css'
 
 export function ManagementProductsPageHeader({title = "Gestión de Productos"}) {
     const navigate = useNavigate()
