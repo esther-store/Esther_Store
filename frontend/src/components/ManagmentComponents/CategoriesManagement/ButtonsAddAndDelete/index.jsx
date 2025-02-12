@@ -25,7 +25,7 @@ const ButtonsAddAndDelete = React.memo(function ButtonsAddAndDelete({
           <span>Agregar</span>
         </button>
       </div>
-      <div className="remove-product-button-container">
+      <div>
         {children}
       </div>
     </div>

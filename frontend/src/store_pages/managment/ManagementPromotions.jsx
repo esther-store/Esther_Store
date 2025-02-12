@@ -11,9 +11,10 @@ export default function ManagementPromotions() {
   const [showCheckboxes, setShowCheckboxes] = useState(false);
   return (
     <article>
+      <meta name="robots" content="noindex"></meta>
       <RemovePageLoader />
       <ManagementProductsPageHeader title="Administrar Promociones" />
-      <ButtonsAddAndDelete setCategoryFormProperties={(propr) => {}}>
+      <ButtonsAddAndDelete setCategoryFormProperties={(props) => {}}>
         <DeleteMultipleElementsButton
           selectedItems={selectedPromotions}
           setSelectedItems={setSelectedPromotions}

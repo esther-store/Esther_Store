@@ -6,6 +6,7 @@ import './index.css'
 const CategoriesGrid = React.memo(function CategoriesGrid({
   categories,
   selectedCategories,
+  showCheckboxes,
   setSelectedCategories,
   handleDeleteCategories,
   processUpdateCategory,
@@ -35,6 +36,7 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
                 alt={category.nombre}
               />
               <div className = "checkbox-container">
+                {showCheckboxes?
                 <Checkbox
                   checked={selectedCategories.some(
                     (selectedCategory) => category.id === selectedCategory.id
@@ -43,6 +45,7 @@ const CategoriesGrid = React.memo(function CategoriesGrid({
                     handleCheckCategory({ checked: e.checked, category: category })
                   }
                 />
+                :null}
               </div>
             </div>
             <div className="namecontainer">

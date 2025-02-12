@@ -10,9 +10,11 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useCategoryFormProperties } from "@/hooks/managementHooks/useCategoryFormProperties";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
+import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
 
 function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [showCheckboxes, setShowCheckboxes] = useState(false)
   const toast = useRef(null);
 
   //category form properties
@@ -41,13 +43,11 @@ function ManagementCategories() {
   return (
     <main style={{ width: "100%", minHeight: "90vh" }}>
       <meta name="robots" content="noindex"></meta>
-      <RemovePageLoader/>
+      <RemovePageLoader />
       <Toast ref={toast} position="bottom-center" />
       <ManagementProductsPageHeader title="Categories Management" />
       {loadingCategories ? (
-        <section
-          style={styles.loaderContainer}
-        >
+        <section style={styles.loaderContainer}>
           <Loader />
         </section>
       ) : null}
@@ -78,8 +78,17 @@ function ManagementCategories() {
             setCategoryFormProperties={setCategoryFormProperties}
             handleDeleteMultipleCategories={handleDeleteCategories}
             selectedCategories={selectedCategories}
-          />
+          >
+            <DeleteMultipleElementsButton 
+            selectedItems = {selectedCategories}
+            setSelectedItems = {setSelectedCategories}
+            handleDeleteMultiple = {handleDeleteCategories}
+            showCheckboxes = {showCheckboxes}
+            setShowCheckboxes = {setShowCheckboxes}
+            />
+          </ButtonsAddAndDelete>
           <CategoriesGrid
+            showCheckboxes = {showCheckboxes}
             categories={categories}
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
@@ -96,7 +105,7 @@ function ManagementCategories() {
 export default ManagementCategories;
 
 const styles = {
-  loaderContainer:{
+  loaderContainer: {
     width: "100%",
     height: "100%",
     position: "absolute",
@@ -107,5 +116,5 @@ const styles = {
     backdropFilter: "blur(10px)",
     display: "flex",
     alignItems: "center",
-  }
-}
+  },
+};

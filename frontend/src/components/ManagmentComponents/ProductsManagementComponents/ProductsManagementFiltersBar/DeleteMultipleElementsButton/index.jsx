@@ -1,9 +1,9 @@
-import {TrashIcon} from "@/icons/TrashIcon";
+import { TrashIcon } from "@/icons/TrashIcon";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import React, { useState } from "react";
-import {CloseIcon} from "@/icons/CloseIcon";
-import {CheckIcon} from "@/icons/CheckIcon";
-import './index.css'
+import { CloseIcon } from "@/icons/CloseIcon";
+import { CheckIcon } from "@/icons/CheckIcon";
+import "./index.css";
 
 const DeleteMultipleElementsButton = React.memo(
   function DeleteMultipleProductsButton({
@@ -35,17 +35,19 @@ const DeleteMultipleElementsButton = React.memo(
             className="products-management-filters-bar-button btn-general-styles"
             onClick={() => setShowCheckboxes(true)}
           >
-            <TrashIcon/>
+            <TrashIcon />
             <span>Eliminar</span>
           </button>
           <section
-            className={`confirm-cancel-multiple-products-deletion-container ${showCheckboxes ? 'show' : 'hide'}`}
+            className={`confirm-cancel-multiple-products-deletion-container ${
+              showCheckboxes ? "show-buttons" : "hide-buttons"
+            }`}
           >
             <button
               className="products-management-filters-bar-button btn-general-styles"
               onClick={() => setShowConfirmDialog(true)}
             >
-              <CheckIcon color = {'#fff'}/>
+              <CheckIcon color={"#fff"} />
               <span>Confirmar</span>
             </button>
             <button
@@ -55,7 +57,7 @@ const DeleteMultipleElementsButton = React.memo(
                 setSelectedItems([]);
               }}
             >
-              <CloseIcon/>
+              <CloseIcon />
               <span>Cancelar</span>
             </button>
           </section>
