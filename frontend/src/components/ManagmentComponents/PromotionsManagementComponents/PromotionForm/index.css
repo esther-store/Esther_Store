@@ -43,6 +43,42 @@
     background: rgba(234, 229, 229, 0.17);
 }
 
+.promotion-form input:focus{
+    box-shadow: 0 0 0 0.05rem #525252;
+}
+
+.promotion-form .p-focus{
+    box-shadow: 0 0 0 0.05rem #525252!important;
+}
+
+.promotion-form .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus{
+    box-shadow: 0 0 0 0.05rem #525252!important;
+    border: 1px solid gray;
+}
+
+.promotion-description-field textarea:focus{
+    box-shadow: 0 0 0 0.05rem #525252;
+}
+
+/*ACTIVE CHECKBOX*/
+.promotion-form-active-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:80px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*cambio el color del checkbox a gris*/
+.promotion-form-active-checkbox .p-highlight{
+    background-color: rgba(84, 84, 84, 1);
+    border:0
+}
+/*Cambio estilos del borde del checkbox*/
+.promotion-form-active-checkbox .p-checkbox .p-checkbox-box{
+    border: 1.5px solid gray;
+}
+
 @media (max-width : 500px) {
     .promotion-image-field{
         flex-direction: column;

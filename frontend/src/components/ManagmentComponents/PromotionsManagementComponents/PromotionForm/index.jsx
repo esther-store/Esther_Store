@@ -3,7 +3,8 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useImagePreview } from "@/hooks/managementHooks/useImagePreview";
 import { InputTextarea } from "primereact/inputtextarea";
-import React from "react";
+import { Checkbox } from "primereact/checkbox";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 const PromotionForm = React.memo(function PromotionForm({
@@ -13,9 +14,12 @@ const PromotionForm = React.memo(function PromotionForm({
   handleUpdatePromotion,
   loading,
 }) {
+  const [activeStatusChecked, setActiveStatusChecked] = useState(false);
+  const [specialStatusChecked, setSpecialStatusChecked] = useState(false);
+
   const { imagesPreview, handleSetImagePreview } = useImagePreview({
     formProperties: promotionFormProperties,
-    isProductForm: false,
+    ispromotionForm: false,
   });
 
   function createpromotion(e) {
@@ -35,6 +39,17 @@ const PromotionForm = React.memo(function PromotionForm({
       img: img[0],
     });
   }
+
+  //update promotion active and special status
+  useEffect(() => {
+    if (promotionFormProperties.creatingMode == false) {
+      setActiveStatusChecked(promotionFormProperties.initialValues.active);
+      setSpecialStatusChecked(promotionFormProperties.initialValues.is_special);
+    } else {
+      setActiveStatusChecked(true);
+      setSpecialStatusChecked(false);
+    }
+  }, [promotionFormProperties]);
 
   return (
     <Dialog
@@ -84,7 +99,7 @@ const PromotionForm = React.memo(function PromotionForm({
             }
           />
         </div>
-        
+
         {/*Discount*/}
         <div className="promotion-form-field">
           <label htmlFor="discount">Descuento (%) </label>
@@ -116,6 +131,30 @@ const PromotionForm = React.memo(function PromotionForm({
                 ? ""
                 : promotionFormProperties.initialValues.description
             }
+          />
+        </div>
+
+        {/*active*/}
+        <div className="promotion-form-active-checkbox">
+          <label htmlFor="active">Activa:</label>
+          <Checkbox
+            id="active"
+            aria-describedby="active-help"
+            disabled={promotionFormProperties.disabled}
+            checked={activeStatusChecked}
+            onChange={(e) => setActiveStatusChecked(e.checked)}
+          />
+        </div>
+
+        {/*special*/}
+        <div className="promotion-form-active-checkbox">
+          <label htmlFor="active">Especial:</label>
+          <Checkbox
+            id="special"
+            aria-describedby="special-help"
+            disabled={promotionFormProperties.disabled}
+            checked={specialStatusChecked}
+            onChange={(e) => setSpecialStatusChecked(e.checked)}
           />
         </div>
 
