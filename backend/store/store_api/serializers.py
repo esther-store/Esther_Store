@@ -21,6 +21,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 class PromotionSerializer(serializers.ModelSerializer):
     cantidad_products = serializers.IntegerField(read_only = True)
+    description = serializers.CharField(required=False, default = "")
     img = serializers.ImageField(required=False)
     created_at = serializers.DateTimeField(read_only=True)
     

@@ -2,6 +2,7 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useImagePreview } from "@/hooks/managementHooks/useImagePreview";
+import { InputTextarea } from "primereact/inputtextarea";
 import React from "react";
 import "./index.css";
 
@@ -17,14 +18,14 @@ const PromotionForm = React.memo(function PromotionForm({
     isProductForm: false,
   });
 
-  function createCategory(e) {
+  function createpromotion(e) {
     e.preventDefault();
     let name = e.target["name"].value;
     let img = e.target["image"].files;
     handleCreatePromotion({ name: name, img: img[0] });
   }
 
-  function updateCategory(e) {
+  function updatepromotion(e) {
     e.preventDefault();
     let name = e.target["name"].value;
     let img = e.target["image"].files;
@@ -61,12 +62,12 @@ const PromotionForm = React.memo(function PromotionForm({
         className="categories-form"
         onSubmit={(e) => {
           promotionFormProperties.creatingMode == true
-            ? createCategory(e)
-            : updateCategory(e);
+            ? createpromotion(e)
+            : updatepromotion(e);
         }}
         encType="multipart/form-data"
       >
-        <div className="category-form-field">
+        <div className="promotion-form-field">
           <label htmlFor="name">Nombre</label>
           <InputText
             id="name"
@@ -83,8 +84,44 @@ const PromotionForm = React.memo(function PromotionForm({
             }
           />
         </div>
-        <div className="category-form-field category-image-field">
-          <div className="category-form-field">
+        
+        {/*Discount*/}
+        <div className="promotion-form-field">
+          <label htmlFor="discount">Descuento (%) </label>
+          <InputText
+            id="discount"
+            aria-describedby="discount-help"
+            className=".p-inputtext-sm"
+            min={0}
+            max={100}
+            disabled={promotionFormProperties.disabled}
+            type="number"
+            defaultValue={
+              promotionFormProperties.creatingMode
+                ? ""
+                : promotionFormProperties.initialValues.discount_in_percent
+            }
+          />
+        </div>
+
+        {/*description*/}
+        <div className="promotion-description-field">
+          <label htmlFor="description">Descripción</label>
+          <InputTextarea
+            id="description"
+            aria-describedby="description-help"
+            disabled={promotionFormProperties.disabled}
+            defaultValue={
+              promotionFormProperties.creatingMode
+                ? ""
+                : promotionFormProperties.initialValues.description
+            }
+          />
+        </div>
+
+        {/*Image*/}
+        <div className="promotion-form-field promotion-image-field">
+          <div className="promotion-form-field">
             <label htmlFor="image">Imagen</label>
             <InputText
               id="image"

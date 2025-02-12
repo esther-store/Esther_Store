@@ -1,5 +1,4 @@
 import { useGetPromotions } from "@/hooks/useGetPromotions";
-import { useGetCategories } from "@/hooks/useGetCategories";
 import { useManageProductForm } from "@/hooks/useManageProductForm";
 import { useImagePreview } from "@/hooks/managementHooks/useImagePreview";
 import ImagePlaceholder from "@/assets/icons/product_form_img_placeholder.png";

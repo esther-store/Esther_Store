@@ -28,7 +28,7 @@ class Categoria(models.Model):
 
 class Promotion(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
-    description = models.CharField(max_length = 500, default = "Productos rebajados")  
+    description = models.CharField(max_length = 500, default = "")  
     discount_in_percent = models.FloatField(validators = [MinValueValidator(limit_value=1)])
     img = models.ImageField(upload_to = "promotions", default = "productos_images/blank.png") 
     active = models.BooleanField(default = True, db_index=True)
