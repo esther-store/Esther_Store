@@ -13,6 +13,7 @@ export function getPromotionFormInitialValues(){
 
 export function createPromotionValues({promotion}:{promotion:PromotionType}){
     return ({
+        id: promotion.id,
         name: promotion.name,
         description: promotion.description,
         discount_in_percent: promotion.discount_in_percent,

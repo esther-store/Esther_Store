@@ -23,7 +23,7 @@ export default function ManagementPromotions() {
     processDetailPromotion,
   } = usePromotionFormProperties();
 
-  const { promotions, loadingPromotions, handleDeletePromotions, handleCreatePromotion } =
+  const { promotions, loadingPromotions, handleDeletePromotions, handleCreatePromotion, handleUpdatePromotion } =
     useManagePromotions({
       toastRef: toast,
       setPromotionFormProperties: setPromotionFormProperties,
@@ -37,7 +37,7 @@ export default function ManagementPromotions() {
         promotionFormProperties={promotionFormProperties}
         setPromotionFormProperties={setPromotionFormProperties}
         handleCreatePromotion={handleCreatePromotion}
-        handleUpdatePromotion={() => {}}
+        handleUpdatePromotion={handleUpdatePromotion}
         loading={loadingPromotions}
       />
       <RemovePageLoader />

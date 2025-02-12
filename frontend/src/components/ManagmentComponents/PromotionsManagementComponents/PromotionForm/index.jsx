@@ -44,11 +44,22 @@ const PromotionForm = React.memo(function PromotionForm({
   function updatepromotion(e) {
     e.preventDefault();
     const name = e.target["name"].value;
+    const description = e.target["description"].value;
+    const discount_in_percent = e.target["discount"].value;
     const img = e.target["image"].files;
-    handleUpdatePromotion({
-      id: promotionFormProperties.initialValues.id,
+    const is_special = specialStatusChecked;
+    const active = activeStatusChecked;
+    const promotion = {
       name: name,
       img: img[0],
+      description: description,
+      discount_in_percent: discount_in_percent,
+      is_special: is_special,
+      active: active,
+    }
+    handleUpdatePromotion({
+      id: promotionFormProperties.initialValues.id,
+      promotion: promotion
     });
   }
 

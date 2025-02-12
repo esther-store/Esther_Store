@@ -2,12 +2,13 @@ import { deletePromotions } from "@/services/ManagePromotions/deletePromotions.j
 import { updateCategory } from "@/services/ManageCategories/updateCategory.js";
 import { showToast } from "@/utils/showToast.js";
 import { useMutation } from "@tanstack/react-query";
-import type { CategoryIdType, PromotionType } from "@/Types.js";
+import type { CategoryIdType, PromotionIdType, PromotionType } from "@/Types.js";
 import AuthenticationContext from "@/context/authenticationContext.jsx";
 import React, { useContext } from "react";
 import { useGetPromotionsToManage } from "./useGetPromotionsToManage.js";
 import { validatePromotionValues } from "@/utils/promotionInitialValues.js";
 import { createPromotion } from "@/services/ManagePromotions/createPromotion.js";
+import { updatePromotion } from "@/services/ManagePromotions/updatePromotion.js";
 
 export function useManagePromotions({
   toastRef,
@@ -86,26 +87,27 @@ export function useManagePromotions({
       },
     });
 
-  const { mutate: handleUpdateCategory, isPending: updatingPromotion } =
+  const { mutate: handleUpdatePromotion, isPending: updatingPromotion } =
     useMutation({
       mutationFn: ({
         id,
-        name,
-        img,
+        promotion
       }: {
-        id: CategoryIdType;
-        name: string;
-        img: string;
+        id: PromotionIdType;
+        promotion: PromotionType
       }) => {
-        if (name == null || name === "") {
-          throw new Error("Debes ingresar un nombre");
+        if(validatePromotionValues({promotion:promotion})){
+          return updatePromotion({
+            id: id,
+            name: promotion.name,
+            img: promotion.img,
+            description:promotion.description,
+            discount_in_percent:promotion.discount_in_percent,
+            active:promotion.active,
+            is_special:promotion.is_special,
+            token: auth.token,
+          });
         }
-        return updateCategory({
-          id: id,
-          name: name,
-          img: img,
-          token: auth.token,
-        });
       },
       onSuccess: () => {
         refetchPromotions();
@@ -138,6 +140,6 @@ export function useManagePromotions({
     refetchPromotions,
     handleDeletePromotions,
     handleCreatePromotion,
-    handleUpdateCategory,
+    handleUpdatePromotion,
   };
 }
