@@ -1,7 +1,7 @@
-import { URL_MANAGE_PROMOTIONS } from "../../settings"
+import { URL_MANAGE_PROMOTIONS } from "@/settings"
 
-export function getPromotions(filters='',token) {
-  return fetch(`${URL_MANAGE_PROMOTIONS}?${filters}`,{
+export function getPromotions({token}) {
+  return fetch(`${URL_MANAGE_PROMOTIONS}`,{
     method: "GET",
     headers: {
       'Content-Type': "application/json",

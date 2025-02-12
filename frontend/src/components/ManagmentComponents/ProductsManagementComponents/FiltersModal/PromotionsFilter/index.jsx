@@ -2,12 +2,12 @@ import "./index.css";
 import { Dropdown } from "primereact/dropdown";
 import React, { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "@/context/filtersContext";
-import { useGetPromotions } from "@/hooks/useGetPromotions";
+import { useGetPromotionsToManage } from "@/hooks/managementHooks/useGetPromotionsToManage";
 
 function PromotionsFilter({onPromotionSelect = () => {}}) {
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
   const [promotion, setPromotion] = useState();
-  const {promotions} = useGetPromotions()
+  const {promotions} = useGetPromotionsToManage()
   const promotionsValues = [{name:"Promoción: Todas", code:""}].concat(promotions.map(promotion => ({name:promotion.name, code: promotion.id})))
   
   //update the promotion filter value
