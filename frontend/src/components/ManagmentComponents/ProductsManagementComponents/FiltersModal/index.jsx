@@ -1,12 +1,13 @@
 import {FilterIcon} from "@/icons/FilterIcon";
 import { Dialog } from "primereact/dialog";
-import React, { useState, useContext, useEffect } from "react";
-import OrderingProducts from "@/components/StorePageComponents/OrderingProducts";
-import CategoriesFilter from "./CategoriesFilter";
+import React, { useState, useContext, useEffect, Suspense } from "react";
 import {Checkbox} from 'primereact/checkbox'
 import QueryFiltersContext from "@/context/filtersContext";
 import "./index.css";
-import PromotionsFilter from "./PromotionsFilter";
+import { Skeleton } from "primereact/skeleton";
+const OrderingProducts = React.lazy(() => import("@/components/StorePageComponents/OrderingProducts")) 
+const CategoriesFilter = React.lazy(() => import("./CategoriesFilter")) 
+const PromotionsFilter = React.lazy(() => import("./PromotionsFilter"))
 
 function FiltersModal() {
   const [showModal, setShowModal] = useState(false);
@@ -53,11 +54,17 @@ function FiltersModal() {
         >
           X
         </button>
-        <OrderingProducts onOrdering = {() => setShowModal(false)}/>
+        <Suspense fallback = {<Skeleton width="150px" height = "50px"/>}>
+          <OrderingProducts onOrdering = {() => setShowModal(false)}/>
+        </Suspense>
         <div style = {{height:"10px"}}/>
-        <CategoriesFilter onCategorySelect={() => setShowModal(false)}/>
+        <Suspense fallback = {<Skeleton width="150px" height = "50px"/>}>
+          <CategoriesFilter onCategorySelect={() => setShowModal(false)}/>
+        </Suspense>
         <div style = {{height:"10px"}}/>
-        <PromotionsFilter onPromotionSelect={() => setShowModal(false)}/>
+        <Suspense fallback = {<Skeleton width="150px" height = "50px"/>}>
+          <PromotionsFilter onPromotionSelect={() => setShowModal(false)}/>
+        </Suspense>
         {/*products recommended filter*/}
         <div className="recommended-products-checkbox">
           <Checkbox

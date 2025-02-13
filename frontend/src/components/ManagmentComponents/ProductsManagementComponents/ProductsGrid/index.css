@@ -5,7 +5,7 @@
     height: 100%;
     min-height: 52vh;
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap:10px;
     justify-content: center;
     align-items:center;
@@ -97,6 +97,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
+    text-align: start;
 }
 
 .product-management-card .price{
@@ -129,5 +130,11 @@
 @media (width > 1300px){
     .products-management-grid-loader-container{
         left: 40vw;
+    }
+}
+
+@media (max-width:500px){
+    .products-management-grid{
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     }
 }

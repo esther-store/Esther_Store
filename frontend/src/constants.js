@@ -17,4 +17,4 @@ export const pagesTitle = {
     contact: 'Esther Store - Contact'
 }
 
-export const productsToManagePageSize = 20
+export const productsToManagePageSize = 14
