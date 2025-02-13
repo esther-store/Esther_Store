@@ -10,11 +10,12 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import { useCategoryFormProperties } from "@/hooks/managementHooks/useCategoryFormProperties";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
-import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
+import PerformMultipleButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/PerformMultipleButton";
 
 function ManagementCategories() {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [showCheckboxes, setShowCheckboxes] = useState(false)
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const { confirmMultiple, performMultipleButton } = PerformMultipleButton();
   const toast = useRef(null);
 
   //category form properties
@@ -79,16 +80,18 @@ function ManagementCategories() {
             handleDeleteMultipleCategories={handleDeleteCategories}
             selectedCategories={selectedCategories}
           >
-            <DeleteMultipleElementsButton 
-            selectedItems = {selectedCategories}
-            setSelectedItems = {setSelectedCategories}
-            handleDeleteMultiple = {handleDeleteCategories}
-            showCheckboxes = {showCheckboxes}
-            setShowCheckboxes = {setShowCheckboxes}
-            />
+            {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
+            {confirmMultiple({
+              showConfirmButtons: showCheckboxes,
+              onCancel: () => {
+                setShowCheckboxes(false);
+                setSelectedCategories([]);
+              },
+              onConfirm:() => {handleDeleteCategories(selectedCategories)}
+            })}
           </ButtonsAddAndDelete>
           <CategoriesGrid
-            showCheckboxes = {showCheckboxes}
+            showCheckboxes={showCheckboxes}
             categories={categories}
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}

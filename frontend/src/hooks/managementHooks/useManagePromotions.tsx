@@ -77,12 +77,12 @@ export function useManagePromotions({
           detail: "Operación Exitosa",
         });
       },
-      onError: () => {
+      onError: (err) => {
         showToast({
           toastRef: toastRef,
           severity: "error",
           summary: "Error",
-          detail: "Fallo en la Operación",
+          detail: err.message,
         });
       },
     });

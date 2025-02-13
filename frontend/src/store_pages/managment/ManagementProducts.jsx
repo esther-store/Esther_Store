@@ -11,17 +11,22 @@ import RetryQueryComponent from "@/components/RetryQueryComponent";
 import CreateProductButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/CreateProductButton";
 import ProductForm from "@/components/ManagmentComponents/ProductsManagementComponents/ProductForm";
 import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
-import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
-import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
+import PerformMultipleButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/PerformMultipleButton";
+import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
 import { productsToManagePageSize } from "@/constants";
 import { AddProductsToCategory } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToCategory";
 import { AddProductsToPromotion } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToPromotion";
+import { showToast } from "@/utils/showToast";
 
 function ManagementProducts() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [showCheckboxes, setShowCheckboxes] = useState(false)
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const {
+    confirmMultiple: confirmMultipleProductDeletion,
+    performMultipleButton: deleteMultipleProducts,
+  } = PerformMultipleButton();
   const {
     productFormProperties,
     setProductFormProperties,
@@ -49,7 +54,7 @@ function ManagementProducts() {
   return (
     <section className="products-management-page">
       <meta name="robots" content="noindex"></meta>
-      <RemovePageLoader/>
+      <RemovePageLoader />
       <Toast ref={toast} position="bottom-center" />
       <ManagementProductsPageHeader />
       {errorGettingProducts ? (
@@ -68,27 +73,46 @@ function ManagementProducts() {
         </section>
       ) : (
         <>
+          {confirmMultipleProductDeletion({
+            showConfirmButtons: showCheckboxes,
+            onCancel: () => {
+              setShowCheckboxes(false);
+              setSelectedProducts([]);
+            },
+            onConfirm: () => {
+              handleDeleteProduct(selectedProducts);
+            },
+          })}
           <ProductsManagementFiltersBar
             CreateProductButton={
               <CreateProductButton
                 setProductFormProperties={setProductFormProperties}
               />
             }
-            DeleteMultipleProductsButton={
-              <DeleteMultipleElementsButton
-                handleDeleteMultiple={handleDeleteProduct}
-                selectedItems={selectedProducts}
-                setSelectedItems = {setSelectedProducts}
-                showCheckboxes = {showCheckboxes}
-                setShowCheckboxes = {setShowCheckboxes}
+            AddProductsToCategory={
+              <AddProductsToCategory
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
+                showCheckboxes={showCheckboxes}
+                setShowCheckboxes={setShowCheckboxes}
+                toastRef={toast}
               />
             }
-            AddProductsToCategory = {
-              <AddProductsToCategory/>
-            }
-            AddProductsToPromotion = {
-              <AddProductsToPromotion/>
-            }
+            AddProductsToPromotion={<AddProductsToPromotion />}
+            DeleteMultipleProductsButton={deleteMultipleProducts({
+              onPress: () => {
+                if (showCheckboxes) {
+                  return showToast({
+                    toastRef: toast,
+                    summary: "Error",
+                    detail: "Ya hay una acción en proceso",
+                    severity: "error",
+                    life: 1000,
+                  });
+                }
+                setShowCheckboxes(true);
+              },
+            })}
           />
           <ProductForm
             productFormProperties={productFormProperties}
@@ -104,13 +128,17 @@ function ManagementProducts() {
             products={products}
             loading={loadingProducts}
             selectedProducts={selectedProducts}
-            showCheckboxes = {showCheckboxes}
+            showCheckboxes={showCheckboxes}
             setSelectedProducts={setSelectedProducts}
             handleDeleteProduct={handleDeleteProduct}
             processDetailProduct={processDetailProduct}
             processUpdateProduct={processUpdateProduct}
           />
-          <Paginator count={numOfProducts} itemsLength={products.length} pageSize = {productsToManagePageSize}/>
+          <Paginator
+            count={numOfProducts}
+            itemsLength={products.length}
+            pageSize={productsToManagePageSize}
+          />
         </>
       )}
     </section>

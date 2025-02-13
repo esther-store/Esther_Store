@@ -1,8 +1,8 @@
-import {URL_ADD_PRODUCTS_PROMOTION} from "../../settings"
+import {URL_MANAGE_CATEGORIES} from "@/settings"
 
-export function addProductsToPromotion({products,id, token}){
+export function addProductsToCategory({products, id, token}){
     return(
-        fetch(`${URL_ADD_PRODUCTS_PROMOTION}${id}/add_products_to_promotion/`,{
+        fetch(`${URL_MANAGE_CATEGORIES}${id}/add_products_to_category/`,{
             method: 'POST',
             headers: {
                 Authorization: `Token ${token}`,

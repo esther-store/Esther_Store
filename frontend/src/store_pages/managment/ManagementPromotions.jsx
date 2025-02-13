@@ -4,7 +4,7 @@ import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/P
 import PromotionsGrid from "@/components/ManagmentComponents/PromotionsManagementComponents/PromotionsGrid";
 import ButtonsAddAndDelete from "@/components/ManagmentComponents/CategoriesManagement/ButtonsAddAndDelete";
 import { useState, useRef } from "react";
-import DeleteMultipleElementsButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/DeleteMultipleElementsButton";
+import PerformMultipleButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/PerformMultipleButton";
 import { useManagePromotions } from "@/hooks/managementHooks/useManagePromotions";
 import { Toast } from "primereact/toast";
 import { usePromotionFormProperties } from "@/hooks/managementHooks/usePromotionFormProperties";
@@ -14,6 +14,7 @@ export default function ManagementPromotions() {
   const toast = useRef(null);
   const [selectedPromotions, setSelectedPromotions] = useState([]);
   const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const { confirmMultiple, performMultipleButton } = PerformMultipleButton();
 
   //promotion form properties
   const {
@@ -43,13 +44,15 @@ export default function ManagementPromotions() {
       <RemovePageLoader />
       <ManagementProductsPageHeader title="Administrar Promociones" />
       <ButtonsAddAndDelete setCategoryFormProperties={setPromotionFormProperties}>
-        <DeleteMultipleElementsButton
-          selectedItems={selectedPromotions}
-          setSelectedItems={setSelectedPromotions}
-          handleDeleteMultiple={handleDeletePromotions}
-          showCheckboxes={showCheckboxes}
-          setShowCheckboxes={setShowCheckboxes}
-        />
+      {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
+            {confirmMultiple({
+              showConfirmButtons: showCheckboxes,
+              onCancel: () => {
+                setShowCheckboxes(false);
+                setSelectedPromotions([]);
+              },
+              onConfirm:() => {handleDeletePromotions(selectedPromotions)}
+            })}
       </ButtonsAddAndDelete>
       <PromotionsGrid
         promotions={promotions}
