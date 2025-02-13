@@ -2,11 +2,11 @@
     width: 90%;
     overflow: hidden;
     display: grid;
-    grid-template-columns:6fr 160px repeat(4, 1fr);
+    grid-template-columns:1fr repeat(5, auto);
     gap:10px;
     margin: 0 auto;
     grid-template-areas: 
-        "search search search filters add-products delete-products";
+        "search filters add-products add-product-to-category add-product-to-promotion delete-products";
     
     color: #FFF;
     text-align: center;
@@ -46,17 +46,36 @@
     height: 35px;
     grid-area: add-products;
 }
+.products-management-filters-bar .add-products-to-category-button-container{
+    grid-area:add-product-to-category
+}
+.products-management-filters-bar .add-products-to-promotion-button-container{
+    grid-area:add-product-to-promotion
+}
+.products-management-filters-bar .delete-products-container{
+    grid-area: delete-products;
+}
 
-@media (max-width: 600px) {
+@media (max-width:1000px){
+    .products-management-filters-bar{
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-areas: 
+        "search search search search search"
+        "filters add-products add-product-to-category add-product-to-promotion delete-products";
+    }
+}
+
+@media (max-width: 700px) {
     .products-management-filters-bar-button img{
         width:18px;
         height:20px;
     }
     .products-management-filters-bar{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, auto);
         grid-template-areas: 
         "search search search"
-        "filters add-products delete-products";
+        "filters add-products delete-products"
+        "add-product-to-category add-product-to-promotion add-product-to-promotion";
     }
 
     .products-management-filters-bar-button span{

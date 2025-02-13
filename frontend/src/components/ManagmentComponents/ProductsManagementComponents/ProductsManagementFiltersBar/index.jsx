@@ -6,11 +6,12 @@ import FiltersModal from "../FiltersModal";
 const ProductsManagementFiltersBar = React.memo(
   function ProductsManagementFiltersBar({
     DeleteMultipleProductsButton,
-    CreateProductButton
+    CreateProductButton,
+    AddProductsToCategory,
+    AddProductsToPromotion
   }) {
     return (
       <section className="products-management-filters-bar">
-        
         <div className="search-container">
           <Search />
         </div>
@@ -18,11 +19,18 @@ const ProductsManagementFiltersBar = React.memo(
         <div className="filters-modal-button-container">
           <FiltersModal />
         </div>
-
-        {CreateProductButton}
-
-        {DeleteMultipleProductsButton}
-        
+        <div className="add-product-button-container">
+          {CreateProductButton}
+        </div>
+        <div className = "delete-products-container">
+          {DeleteMultipleProductsButton}
+        </div>
+        <div className = "add-products-to-category-button-container">
+          {AddProductsToCategory}
+        </div>
+        <div className = "add-products-to-promotion-button-container">
+          {AddProductsToPromotion}
+        </div>
       </section>
     );
   }

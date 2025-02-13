@@ -12,6 +12,7 @@ const DeleteMultipleElementsButton = React.memo(
     handleDeleteMultiple,
     showCheckboxes,
     setShowCheckboxes,
+    buttonText = "Eliminar"
   }) {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
     return (
@@ -36,7 +37,7 @@ const DeleteMultipleElementsButton = React.memo(
             onClick={() => setShowCheckboxes(true)}
           >
             <TrashIcon />
-            <span>Eliminar</span>
+            <span>{buttonText}</span>
           </button>
           <section
             className={`confirm-cancel-multiple-products-deletion-container ${

@@ -15,7 +15,8 @@ import DeleteMultipleElementsButton from "@/components/ManagmentComponents/Produ
 import ProductsGrid from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsGrid/index"
 import { RemovePageLoader } from "@/components/RemovePageLoader";
 import { productsToManagePageSize } from "@/constants";
-
+import { AddProductsToCategory } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToCategory";
+import { AddProductsToPromotion } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToPromotion";
 
 function ManagementProducts() {
   const toast = useRef(null);
@@ -81,6 +82,12 @@ function ManagementProducts() {
                 showCheckboxes = {showCheckboxes}
                 setShowCheckboxes = {setShowCheckboxes}
               />
+            }
+            AddProductsToCategory = {
+              <AddProductsToCategory/>
+            }
+            AddProductsToPromotion = {
+              <AddProductsToPromotion/>
             }
           />
           <ProductForm

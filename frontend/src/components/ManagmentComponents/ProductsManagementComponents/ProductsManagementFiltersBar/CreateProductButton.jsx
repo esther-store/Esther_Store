@@ -3,7 +3,6 @@ import React from "react";
 
 const CreateProductButton = React.memo(function CreateProductButton({setProductFormProperties}) {
   return (
-    <div className="add-product-button-container">
       <button
         className="products-management-filters-bar-button btn-general-styles"
         onClick={() =>
@@ -11,9 +10,8 @@ const CreateProductButton = React.memo(function CreateProductButton({setProductF
         }
       >
         <img src={AddProductIcon.src} />
-        <span>Agregar</span>
+        <span>Crear Producto</span>
       </button>
-    </div>
   );
 })
 
