@@ -37,6 +37,7 @@
     color: #fff;
     gap:10px;
     padding:5px 10px!important;
+    outline: none;
 }
 .filters-modal-button-container{
     height: 35px;
