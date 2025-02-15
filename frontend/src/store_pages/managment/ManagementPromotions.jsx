@@ -46,12 +46,14 @@ export default function ManagementPromotions() {
       <ButtonsAddAndDelete setCategoryFormProperties={setPromotionFormProperties}>
       {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
             {confirmMultiple({
-              showConfirmButtons: showCheckboxes,
               onCancel: () => {
                 setShowCheckboxes(false);
                 setSelectedPromotions([]);
               },
-              onConfirm:() => {handleDeletePromotions(selectedPromotions)}
+              onConfirm:() => {
+                handleDeletePromotions(selectedPromotions)
+                setShowCheckboxes(false)
+              }
             })}
       </ButtonsAddAndDelete>
       <PromotionsGrid

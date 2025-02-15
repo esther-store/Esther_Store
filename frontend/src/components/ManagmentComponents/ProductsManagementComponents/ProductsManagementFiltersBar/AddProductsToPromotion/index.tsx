@@ -25,7 +25,6 @@ export function AddProductsToPromotion({
   return (
     <>
       {confirmMultiple({
-        showConfirmButtons: showCheckboxes && selectedPromotion != null,
         onCancel: () => {
           setShowCheckboxes(false);
           setSelectedPromotion(null);
@@ -96,7 +95,7 @@ export function AddProductsToPromotion({
       >
         Agregar a
         {selectedPromotion && showModal === false ? (
-          <span style={{ color: "red" }}>{selectedPromotion.name}</span>
+          <span style={{ color: "red", display:'block' }}>{selectedPromotion.name}</span>
         ) : (
           " Promoción"
         )}

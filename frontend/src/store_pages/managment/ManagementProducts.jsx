@@ -28,6 +28,14 @@ function ManagementProducts() {
     performMultipleButton: deleteMultipleProducts,
   } = PerformMultipleButton();
   const {
+    confirmMultiple: confirmMultipleProductsCategoryDeletion,
+    performMultipleButton: multipleProductsCategoryDeletionButton,
+  } = PerformMultipleButton();
+  const {
+    confirmMultiple: confirmMultipleProductsPromotionDeletion,
+    performMultipleButton: multipleProductsPromotionDeletionButton,
+  } = PerformMultipleButton();
+  const {
     productFormProperties,
     setProductFormProperties,
     resetProductFormProperties,
@@ -74,13 +82,33 @@ function ManagementProducts() {
       ) : (
         <>
           {confirmMultipleProductDeletion({
-            showConfirmButtons: showCheckboxes,
             onCancel: () => {
               setShowCheckboxes(false);
               setSelectedProducts([]);
             },
             onConfirm: () => {
+              setShowCheckboxes(false);
               handleDeleteProduct(selectedProducts);
+            },
+          })}
+          {confirmMultipleProductsCategoryDeletion({
+            onCancel: () => {
+              setShowCheckboxes(false);
+              setSelectedProducts([]);
+            },
+            onConfirm: () => {
+              setShowCheckboxes(false);
+              alert("Delete category");
+            },
+          })}
+          {confirmMultipleProductsPromotionDeletion({
+            onCancel: () => {
+              setShowCheckboxes(false);
+              setSelectedProducts([]);
+            },
+            onConfirm: () => {
+              setShowCheckboxes(false);
+              alert("delete promotion");
             },
           })}
           <ProductsManagementFiltersBar
@@ -110,13 +138,25 @@ function ManagementProducts() {
             DeleteMultipleProductsButton={deleteMultipleProducts({
               onPress: () => {
                 if (showCheckboxes) {
-                  return showToast({
-                    toastRef: toast,
-                    summary: "Error",
-                    detail: "Ya hay una acción en proceso",
-                    severity: "error",
-                    life: 1000,
-                  });
+                  return otherActiveActionError();
+                }
+                setShowCheckboxes(true);
+              },
+            })}
+            RemoveProductsCategory={multipleProductsCategoryDeletionButton({
+              buttonText: "Eliminar Categoría",
+              onPress: () => {
+                if (showCheckboxes) {
+                  return otherActiveActionError();
+                }
+                setShowCheckboxes(true);
+              },
+            })}
+            RemoveProductsPromotion={multipleProductsPromotionDeletionButton({
+              buttonText: "Eliminar Promoción",
+              onPress: () => {
+                if (showCheckboxes) {
+                  return otherActiveActionError();
                 }
                 setShowCheckboxes(true);
               },
@@ -154,3 +194,12 @@ function ManagementProducts() {
 }
 
 export default ManagementProducts;
+
+const otherActiveActionError = (toast) =>
+  showToast({
+    toastRef: toast,
+    summary: "Error",
+    detail: "Ya hay una acción en proceso",
+    severity: "error",
+    life: 1000,
+  });

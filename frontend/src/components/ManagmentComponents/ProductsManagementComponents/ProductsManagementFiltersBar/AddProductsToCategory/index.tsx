@@ -25,7 +25,6 @@ export function AddProductsToCategory({
   return (
     <>
       {confirmMultiple({
-        showConfirmButtons: showCheckboxes && selectedCategory != null,
         onCancel: () => {
           setShowCheckboxes(false);
           setSelectedCategory(null);
@@ -96,7 +95,7 @@ export function AddProductsToCategory({
       >
         Agregar a
         {selectedCategory && showModal === false ? (
-          <span style={{ color: "red" }}>{selectedCategory.nombre}</span>
+          <span style={{ color: "red", display:'block' }}>{selectedCategory.nombre}</span>
         ) : (
           " Categoría"
         )}

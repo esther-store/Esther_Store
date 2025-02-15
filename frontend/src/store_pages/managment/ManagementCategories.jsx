@@ -82,12 +82,14 @@ function ManagementCategories() {
           >
             {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
             {confirmMultiple({
-              showConfirmButtons: showCheckboxes,
               onCancel: () => {
                 setShowCheckboxes(false);
                 setSelectedCategories([]);
               },
-              onConfirm:() => {handleDeleteCategories(selectedCategories)}
+              onConfirm:() => {
+                handleDeleteCategories(selectedCategories)
+                setShowCheckboxes(false)
+              }
             })}
           </ButtonsAddAndDelete>
           <CategoriesGrid

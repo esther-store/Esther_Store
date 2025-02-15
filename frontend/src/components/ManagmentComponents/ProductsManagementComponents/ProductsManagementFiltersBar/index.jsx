@@ -8,7 +8,9 @@ const ProductsManagementFiltersBar = React.memo(
     DeleteMultipleProductsButton,
     CreateProductButton,
     AddProductsToCategory,
-    AddProductsToPromotion
+    AddProductsToPromotion,
+    RemoveProductsCategory,
+    RemoveProductsPromotion
   }) {
     return (
       <section className="products-management-filters-bar">
@@ -30,6 +32,12 @@ const ProductsManagementFiltersBar = React.memo(
         </div>
         <div className = "add-products-to-promotion-button-container">
           {AddProductsToPromotion}
+        </div>
+        <div className = "remove-products-category">
+          {RemoveProductsCategory}
+        </div>
+        <div className = "remove-products-promotion">
+          {RemoveProductsPromotion}
         </div>
       </section>
     );

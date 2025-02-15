@@ -7,6 +7,7 @@ import "./index.css";
 
 function PerformMultipleButton() {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [showConfirmButtons, setShowConfirmButtons] = useState(false)
 
   const performMultipleButton = ({
     buttonText = "Eliminar",
@@ -15,7 +16,10 @@ function PerformMultipleButton() {
   }) => (
     <button
       className="products-management-filters-bar-button btn-general-styles"
-      onClick={onPress}
+      onClick={() =>  {
+        setShowConfirmButtons(true)
+        onPress()
+      }}
     >
       {Icon}
       <span>{buttonText}</span>
@@ -23,7 +27,6 @@ function PerformMultipleButton() {
   );
 
   const confirmMultiple = ({
-    showConfirmButtons = false,
     onConfirm = () => {},
     onCancel = () => {},
   }) => (
@@ -39,7 +42,10 @@ function PerformMultipleButton() {
         message="Deseas continuar con la operación?"
         header="Confirmación"
         icon="pi pi-exclamation-triangle"
-        accept={onConfirm}
+        accept={() => {
+          onConfirm()
+          setShowConfirmButtons(false)
+        }}
         style={{ maxWidth: "90%" }}
       />
       <section
@@ -56,7 +62,10 @@ function PerformMultipleButton() {
         </button>
         <button
           className="products-management-filters-bar-button btn-general-styles"
-          onClick={onCancel}
+          onClick={() => {
+            setShowConfirmButtons(false)
+            onCancel()
+          }}
         >
           <CloseIcon />
           <span>Cancelar</span>
