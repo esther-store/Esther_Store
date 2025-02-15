@@ -38,7 +38,10 @@ export function AddProductsToCategory({
       })}
       <Dialog
         visible={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={() => {
+          setShowModal(false)
+          setSelectedCategory(null)
+        }}
         position="center"
         draggable={false}
         resizable={false}

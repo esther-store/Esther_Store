@@ -38,7 +38,10 @@ export function AddProductsToPromotion({
       })}
       <Dialog
         visible={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={() => {
+          setShowModal(false)
+          setSelectedPromotion(null)
+        }}
         position="center"
         draggable={false}
         resizable={false}

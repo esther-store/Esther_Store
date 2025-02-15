@@ -17,7 +17,8 @@ import { RemovePageLoader } from "@/components/RemovePageLoader";
 import { productsToManagePageSize } from "@/constants";
 import { AddProductsToCategory } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToCategory";
 import { AddProductsToPromotion } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/AddProductsToPromotion";
-import { showToast } from "@/utils/showToast";
+import { RemoveProductsCategory } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/RemoveProductsCategory";
+import { RemoveProductsPromotion } from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/RemoveProductsPromotion";
 
 function ManagementProducts() {
   const toast = useRef(null);
@@ -27,14 +28,7 @@ function ManagementProducts() {
     confirmMultiple: confirmMultipleProductDeletion,
     performMultipleButton: deleteMultipleProducts,
   } = PerformMultipleButton();
-  const {
-    confirmMultiple: confirmMultipleProductsCategoryDeletion,
-    performMultipleButton: multipleProductsCategoryDeletionButton,
-  } = PerformMultipleButton();
-  const {
-    confirmMultiple: confirmMultipleProductsPromotionDeletion,
-    performMultipleButton: multipleProductsPromotionDeletionButton,
-  } = PerformMultipleButton();
+
   const {
     productFormProperties,
     setProductFormProperties,
@@ -91,26 +85,7 @@ function ManagementProducts() {
               handleDeleteProduct(selectedProducts);
             },
           })}
-          {confirmMultipleProductsCategoryDeletion({
-            onCancel: () => {
-              setShowCheckboxes(false);
-              setSelectedProducts([]);
-            },
-            onConfirm: () => {
-              setShowCheckboxes(false);
-              alert("Delete category");
-            },
-          })}
-          {confirmMultipleProductsPromotionDeletion({
-            onCancel: () => {
-              setShowCheckboxes(false);
-              setSelectedProducts([]);
-            },
-            onConfirm: () => {
-              setShowCheckboxes(false);
-              alert("delete promotion");
-            },
-          })}
+
           <ProductsManagementFiltersBar
             CreateProductButton={
               <CreateProductButton
@@ -143,24 +118,22 @@ function ManagementProducts() {
                 setShowCheckboxes(true);
               },
             })}
-            RemoveProductsCategory={multipleProductsCategoryDeletionButton({
-              buttonText: "Eliminar Categoría",
-              onPress: () => {
-                if (showCheckboxes) {
-                  return otherActiveActionError();
-                }
-                setShowCheckboxes(true);
-              },
-            })}
-            RemoveProductsPromotion={multipleProductsPromotionDeletionButton({
-              buttonText: "Eliminar Promoción",
-              onPress: () => {
-                if (showCheckboxes) {
-                  return otherActiveActionError();
-                }
-                setShowCheckboxes(true);
-              },
-            })}
+            RemoveProductsCategory={
+              <RemoveProductsCategory
+                showCheckboxes={showCheckboxes}
+                setShowCheckboxes={setShowCheckboxes}
+                setSelectedProducts={setSelectedProducts}
+                toast={toast}
+              />
+            }
+            RemoveProductsPromotion={
+              <RemoveProductsPromotion
+                showCheckboxes={showCheckboxes}
+                setShowCheckboxes={setShowCheckboxes}
+                setSelectedProducts={setSelectedProducts}
+                toast={toast}
+              />
+            }
           />
           <ProductForm
             productFormProperties={productFormProperties}
@@ -194,12 +167,3 @@ function ManagementProducts() {
 }
 
 export default ManagementProducts;
-
-const otherActiveActionError = (toast) =>
-  showToast({
-    toastRef: toast,
-    summary: "Error",
-    detail: "Ya hay una acción en proceso",
-    severity: "error",
-    life: 1000,
-  });

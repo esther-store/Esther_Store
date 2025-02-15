@@ -18,3 +18,12 @@ export const showToast = ({
       life: life,
     });
   };
+
+  export const otherActiveActionError = (toast) =>
+    showToast({
+      toastRef: toast,
+      summary: "Error",
+      detail: "Ya hay una acción en proceso",
+      severity: "error",
+      life: 1000,
+    });
