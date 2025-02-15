@@ -1,6 +1,6 @@
 import {URL_MANAGE_PROMOTIONS} from "../../settings"
 
-export function deleteProductsToPromotion({products,id, token}){
+export function deleteProductsFromPromotion({products,id, token}){
     return(
         fetch(`${URL_MANAGE_PROMOTIONS}${id}/remove_products_from_promotion/`,{
             method: 'POST',
