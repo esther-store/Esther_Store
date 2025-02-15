@@ -98,7 +98,15 @@ function ManagementProducts() {
                 toastRef={toast}
               />
             }
-            AddProductsToPromotion={<AddProductsToPromotion />}
+            AddProductsToPromotion={
+              <AddProductsToPromotion
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
+                showCheckboxes={showCheckboxes}
+                setShowCheckboxes={setShowCheckboxes}
+                toastRef={toast}
+              />
+            }
             DeleteMultipleProductsButton={deleteMultipleProducts({
               onPress: () => {
                 if (showCheckboxes) {

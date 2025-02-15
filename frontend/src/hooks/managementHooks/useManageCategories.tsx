@@ -136,7 +136,7 @@ export function useManageCategories({
           throw new Error("La categoría no es válida");
         }
         if (products == null || products.length === 0) {
-          throw new Error("Debes seleccionar algun producto");
+          throw new Error("Debes seleccionar algún producto");
         }
         const productIds = products.map((product: ProductType) => product.id)
         return addProductsToCategory({

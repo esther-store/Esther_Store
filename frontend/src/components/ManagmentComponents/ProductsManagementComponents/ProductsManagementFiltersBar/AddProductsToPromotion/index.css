@@ -1,0 +1,16 @@
+.add-product-to-promotion-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+
+.add-product-to-promotion-list li{
+    border: 1px solid rgba(0, 0, 0, 0.595);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
