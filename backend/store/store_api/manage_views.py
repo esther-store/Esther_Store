@@ -46,6 +46,40 @@ class ProductsManagment(viewsets.ModelViewSet):
         
         except:
             return Response([], status = status.HTTP_400_BAD_REQUEST)  
+    
+    @action(methods=["post"], detail=False)
+    def quit_products_category(self, request):
+        if request.data == {}:
+            return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+
+        products = request.data["products"]
+        
+        if not all(isinstance(product_id, int) for product_id in products):
+            return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            updated_count = Producto.objects.filter(id__in=products).update(promotion = None)
+            if updated_count == 0:
+                return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response([], status = status.HTTP_200_OK)     
+        except:
+            return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)   
+          
+    @action(methods=["post"], detail=False)
+    def quit_products_promotion(self, request):
+        if request.data == {}:
+            return Response({"message":"missing 'products' in query body"}, status = status.HTTP_400_BAD_REQUEST)
+
+        products = request.data["products"]
+        
+        if not all(isinstance(product_id, int) for product_id in products):
+            return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            updated_count = Producto.objects.filter(id__in=products).update(promotion = None)
+            if updated_count == 0:
+                return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response([], status = status.HTTP_200_OK)     
+        except:
+            return Response([], status = status.HTTP_500_INTERNAL_SERVER_ERROR)     
 
 class ManageCategories(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminUser]
@@ -109,7 +143,7 @@ class ManageCategories(viewsets.ModelViewSet):
             return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            updated_count = Producto.objects.filter(id__in=products).update(categoria = None)
+            updated_count = Producto.objects.filter(id__in=products, categoria=pk).update(categoria = None)
             if updated_count == 0:
                 return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
             return Response([], status = status.HTTP_200_OK)    
@@ -177,7 +211,7 @@ class PromotionsManagment(viewsets.ModelViewSet):
         if not all(isinstance(product_id, int) for product_id in products):
             return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
         try:
-            updated_count = Producto.objects.filter(id__in=products).update(promotion = None)
+            updated_count = Producto.objects.filter(id__in=products, promotion=pk).update(promotion = None)
             if updated_count == 0:
                 return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
             return Response([], status = status.HTTP_200_OK)     
