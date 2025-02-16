@@ -28,13 +28,15 @@ export function createPromotion({
       return response.json();
     } else {
       return response.json().then((res) => {
-        console.log(res)
         if (res["nombre"]) {
           throw new Error("Ya existe una oferta con ese nombre");
         }
         if (res["img"]) {
           throw new Error("El formato de imagen no es correcto");
-        } else {
+        } if(res['message'] == 'Maximun number of special promotions reached'){
+          throw new Error("Máximo de Promociones especiales alcanzado(4)");
+        }
+        else {
           throw new Error("Error al crear la oferta");
         }
       });

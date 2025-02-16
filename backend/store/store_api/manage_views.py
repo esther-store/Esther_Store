@@ -161,6 +161,8 @@ class PromotionsManagment(viewsets.ModelViewSet):
     def create(self, request):
         if Promotion.objects.all().count() >= 24:
             return Response({"data":[], "message":"Maximun number of promotions reached"}, status = status.HTTP_403_FORBIDDEN)
+        if Promotion.objects.filter(is_special=True).count() >= 4:
+            return Response({"data":[], "message":"Maximun number of special promotions reached"}, status = status.HTTP_403_FORBIDDEN)
         return super().create(request)  
 
     def delete(self, request):

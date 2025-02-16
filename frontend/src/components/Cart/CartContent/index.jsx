@@ -18,7 +18,7 @@ const CartContent = React.memo(function CartContext({
     <Dialog
       visible={show}
       onHide={() => setShow(false)}
-      position="top"
+      position="center"
       draggable={false}
       resizable={false}
       style={{ width: "90vw", maxWidth: "850px" }}
