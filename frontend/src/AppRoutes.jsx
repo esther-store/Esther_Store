@@ -24,7 +24,7 @@ const ProductDetailPage = React.lazy(() =>
 const Page404 = React.lazy(() => import("./store_pages/Page404.jsx"));
 const Bye = React.lazy(() => import("./store_pages/Bye.jsx"));
 const ProtectedRoute = React.lazy(() =>
-  import("./components/ProtectedRoute/index.jsx")
+  import("./components/ProtectedRoute.tsx")
 );
 const ManagementCategories = React.lazy(() =>
   import("./store_pages/managment/ManagementCategories.jsx")

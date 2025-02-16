@@ -12,6 +12,7 @@
 
 .user-navbar-actions-dropdown-panel{
     margin-top: 10px;
+    min-width: 300px!important;
     height: auto;
 }
 
@@ -26,6 +27,7 @@
 .user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper li{
     outline: none;
     cursor: default;
+    justify-content: center;
 }
 .user-navbar-actions-dropdown-panel .p-dropdown-items-wrapper li.p-focus{
     background-color: transparent;
