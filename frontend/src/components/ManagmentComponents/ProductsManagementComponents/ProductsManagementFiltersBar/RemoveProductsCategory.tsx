@@ -2,7 +2,7 @@ import PerformMultipleButton from "@/components/ManagmentComponents/ProductsMana
 import { TagXIcon } from "@/icons/TagXIcon";
 import { otherActiveActionError } from "@/utils/showToast";
 
-export function RemoveProductsCategory({showCheckboxes, setShowCheckboxes, setSelectedProducts, toast}){
+export function RemoveProductsCategory({showCheckboxes, setShowCheckboxes, selectedProducts, setSelectedProducts, toast, handleQuitProductsCategory}){
     const {
         confirmMultiple: confirmMultipleProductsCategoryDeletion,
         performMultipleButton: multipleProductsCategoryDeletionButton,
@@ -16,7 +16,7 @@ export function RemoveProductsCategory({showCheckboxes, setShowCheckboxes, setSe
             },
             onConfirm: () => {
               setShowCheckboxes(false);
-              alert("Delete category");
+              handleQuitProductsCategory(selectedProducts)
             },
           })}
           {multipleProductsCategoryDeletionButton({

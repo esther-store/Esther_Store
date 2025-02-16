@@ -10,6 +10,8 @@ import { showToast } from "@/utils/showToast.ts";
 import { isProductInfoValid } from "@/utils/isProductInfoValid.ts";
 import { type ProductType, type CreateProductType, type ProductIdType } from "@/Types.js";
 import { productsToManagePageSize } from "@/constants";
+import { bulkRemoveProductsCategory } from "@/services/ManageProducts/bulkRemoveProductsCategory";
+import { bulkRemoveProductsPromotion } from "@/services/ManageProducts/bulkRemoveProductsPromotion";
 
 export function useManageProducts({
   toastRef,
@@ -131,6 +133,68 @@ export function useManageProducts({
         });
       },
     });
+  
+  //bulk remove product's category
+  const { mutate: handleQuitProductsCategory, isPending: quittingProductsCategory } =
+    useMutation({
+      mutationFn: (products:ProductType[] = []) => {
+        if (products.length > 0) {
+          const productsId = products.map((product) => product.id);
+          return bulkRemoveProductsCategory({ products: productsId, token: auth.token });
+        } else {
+          throw new Error("Debes seleccionar algun producto");
+        }
+      },
+      onSuccess: () => {
+        setSelectedProducts([]);
+        queryClient.invalidateQueries({ queryKey: ["products-to-manage"] });
+        showToast({
+          toastRef: toastRef,
+          severity: "success",
+          summary: "Éxito",
+          detail: "Operación Exitosa",
+        });
+      },
+      onError: (err) => {
+        showToast({
+          toastRef: toastRef,
+          severity: "error",
+          summary: "Error",
+          detail: err.message,
+        });
+      },
+    });
+
+    //bulk remove product's promotion
+  const { mutate: handleQuitProductsPromotion, isPending: quittingProductsPromotion } =
+  useMutation({
+    mutationFn: (products:ProductType[] = []) => {
+      if (products.length > 0) {
+        const productsId = products.map((product) => product.id);
+        return bulkRemoveProductsPromotion({ products: productsId, token: auth.token });
+      } else {
+        throw new Error("Debes seleccionar algun producto");
+      }
+    },
+    onSuccess: () => {
+      setSelectedProducts([]);
+      queryClient.invalidateQueries({ queryKey: ["products-to-manage"] });
+      showToast({
+        toastRef: toastRef,
+        severity: "success",
+        summary: "Éxito",
+        detail: "Operación Exitosa",
+      });
+    },
+    onError: (err) => {
+      showToast({
+        toastRef: toastRef,
+        severity: "error",
+        summary: "Error",
+        detail: err.message,
+      });
+    },
+  });
 
   const products: ProductType[] = data?.results || [];
   const numOfProducts: number = data?.count || 0;
@@ -138,7 +202,9 @@ export function useManageProducts({
     isLoading ||
     loadingCreateProduct ||
     loadingEditProduct ||
-    loadingDeleteProduct;
+    loadingDeleteProduct || 
+    quittingProductsCategory ||
+    quittingProductsPromotion;
 
   return {
     products,
@@ -150,5 +216,7 @@ export function useManageProducts({
     handleDeleteProduct,
     handleUpdateProduct,
     handleCreateProduct,
+    handleQuitProductsCategory,
+    handleQuitProductsPromotion
   };
 }

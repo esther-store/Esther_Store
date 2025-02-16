@@ -1,7 +1,7 @@
 import PerformMultipleButton from "@/components/ManagmentComponents/ProductsManagementComponents/ProductsManagementFiltersBar/PerformMultipleButton";
 import { otherActiveActionError } from "@/utils/showToast";
 
-export function RemoveProductsPromotion({showCheckboxes, setShowCheckboxes, setSelectedProducts, toast}){
+export function RemoveProductsPromotion({showCheckboxes, setShowCheckboxes, setSelectedProducts, selectedProducts, handleQuitProductsPromotion, toast}){
     const {
         confirmMultiple: confirmMultipleProductsPromotionDeletion,
         performMultipleButton: multipleProductsPromotionDeletionButton,
@@ -15,7 +15,7 @@ export function RemoveProductsPromotion({showCheckboxes, setShowCheckboxes, setS
             },
             onConfirm: () => {
               setShowCheckboxes(false);
-              alert("delete promotion");
+              handleQuitProductsPromotion(selectedProducts)
             },
           })}
           {multipleProductsPromotionDeletionButton({

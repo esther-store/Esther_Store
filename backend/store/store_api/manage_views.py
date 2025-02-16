@@ -57,7 +57,7 @@ class ProductsManagment(viewsets.ModelViewSet):
         if not all(isinstance(product_id, int) for product_id in products):
             return Response({"message": "Invalid product IDs."}, status=status.HTTP_400_BAD_REQUEST)
         try:
-            updated_count = Producto.objects.filter(id__in=products).update(promotion = None)
+            updated_count = Producto.objects.filter(id__in=products).update(categoria = None)
             if updated_count == 0:
                 return Response({"message": "No products were removed. Check if the product IDs are correct."}, status=status.HTTP_400_BAD_REQUEST)
             return Response([], status = status.HTTP_200_OK)     

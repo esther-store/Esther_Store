@@ -47,6 +47,8 @@ function ManagementProducts() {
     refetchProducts,
     handleUpdateProduct,
     handleCreateProduct,
+    handleQuitProductsCategory,
+    handleQuitProductsPromotion,
   } = useManageProducts({
     toastRef: toast,
     setSelectedProducts: setSelectedProducts,
@@ -122,6 +124,8 @@ function ManagementProducts() {
               <RemoveProductsCategory
                 showCheckboxes={showCheckboxes}
                 setShowCheckboxes={setShowCheckboxes}
+                selectedProducts={selectedProducts}
+                handleQuitProductsCategory={handleQuitProductsCategory}
                 setSelectedProducts={setSelectedProducts}
                 toast={toast}
               />
@@ -132,6 +136,8 @@ function ManagementProducts() {
                 setShowCheckboxes={setShowCheckboxes}
                 setSelectedProducts={setSelectedProducts}
                 toast={toast}
+                selectedProducts={selectedProducts}
+                handleQuitProductsPromotion={handleQuitProductsPromotion}
               />
             }
           />
