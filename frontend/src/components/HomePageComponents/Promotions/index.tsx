@@ -23,7 +23,9 @@ export function HomePagePromotions() {
     loading: loadingProducts,
     isError: errorGettingProducts,
   } = useGetProducts({
-    searchParams: currentPromotion?.id? `promotion=${currentPromotion?.id}&page_size=3`:'page_size=0',
+    searchParams: currentPromotion?.id
+      ? `promotion=${currentPromotion?.id}&page_size=3`
+      : "page_size=0",
   });
   const error = isError || errorGettingProducts;
   const loading = loadingProducts || loadingPromotions;
@@ -61,15 +63,19 @@ export function HomePagePromotions() {
         </div>
       ) : (
         <section className="cards-container">
-          {products.map((product) => (
-            <Link key={product.id} to={`/store/product/${product.id}`}>
-              <ProductCard
-                product={product}
-                toastRef={toastRef}
-                showAddToCartButton={false}
-              />
-            </Link>
-          ))}
+          {products.length > 0 ? (
+            products.map((product) => (
+              <Link key={product.id} to={`/store/product/${product.id}`}>
+                <ProductCard
+                  product={product}
+                  toastRef={toastRef}
+                  showAddToCartButton={false}
+                />
+              </Link>
+            ))
+          ) : (
+            <div style={styles.noProductsCard}>No hay productos en esta promoción</div>
+          )}
         </section>
       )}
       {loadingPromotions || isError ? null : (
@@ -102,5 +108,14 @@ const styles = {
     transform: "translateY(-50%)",
     display: "flex",
     alignItems: "center",
+  },
+  noProductsCard: {
+    backgroundColor: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    fontFamily:'Poppins-Regular',
+    boxShadow:" 1px 1px 3px rgb(202, 201, 201)"
   },
 };
