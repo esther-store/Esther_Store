@@ -1,19 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 import { Link } from "react-router-dom";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
 
 function ProtectedRoute({ children }) {
   const { auth } = useContext<any>(AuthenticationContext);
-  const [showChildren, setShowChildren] = useState(false);
 
-  useEffect(() => {
-    if (auth.token) {
-      setShowChildren(true);
-    }
-  }, [auth]);
-
-  return showChildren ? (
+  return auth.token ? (
     auth.infoUser?.is_staff?children:
     <section>
       <RemovePageLoader/>

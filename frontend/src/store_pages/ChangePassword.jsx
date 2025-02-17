@@ -7,6 +7,8 @@ import { Password } from "primereact/password";
 import React, { useContext, useRef } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
+import { showToast } from "@/utils/showToast";
+import { Link } from "react-router-dom";
 
 function ChangePassword() {
   const { handleChangePassword, loading, auth } = useContext(
@@ -23,12 +25,14 @@ function ChangePassword() {
       callback: (success) => {
         if (success == "ok") {
           showToast({
+            toastRef:toast,
             severity: "success",
             summary: "Éxito",
             detail: "Contraseña cambiada correctamente.",
           });
         } else {
           showToast({
+            toastRef:toast,
             severity: "error",
             summary: "Error",
             detail: `${success}`,
@@ -38,29 +42,18 @@ function ChangePassword() {
     });
   }
 
-  const showToast = ({
-    severity = "success",
-    summary = "Éxito",
-    detail = "Operación Exitosa",
-    life = 3000,
-  }) => {
-    toast.current.show({
-      severity: severity,
-      summary: summary,
-      detail: detail,
-      life: life,
-    });
-  };
-
   return (
     <section className="login-container">
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
-        <div className="logo-container-login">
-          <CompanyLogo/>
-        </div>
+        <Link to = "/">
+          <div className="logo-container-login">
+            <CompanyLogo/>
+          </div>
+        </Link>
+        <h1>Cambiar Contraseña</h1>
         <form
           action=""
           className="form-login"

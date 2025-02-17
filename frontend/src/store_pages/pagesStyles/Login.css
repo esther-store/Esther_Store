@@ -1,52 +1,43 @@
 .login-container {
   width: 100%;
   min-height: 88vh;
-  font-family: Noto Sans;
+  font-family: 'Lora-Regular';
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 5rem 0;
 }
 
 .login-section {
-  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-color: rgba(1, 1, 1, 0.78);
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 5px 0 black;
   color: white;
-  padding: 1.5rem;
-  border-radius: 7px;
 }
-
 
 .login-section p {
   font-size: 2rem;
   margin: 0.5rem;
-  font-family: Noto Sans;
+  font-family: 'Lora-Regular';
 }
 
-.login-container {
-  background-repeat: no-repeat;
-  background-size: cover;
+.login-section h1{
+  margin: 0;
+  color:#00000087;
+  font-family: 'Lora-Regular';
+  font-size: 30px
 }
 
 .form-login {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-}
-.form-login span {
-  margin-top: 0.5rem;
+  gap: 30px;
 }
 
 .logo-container-login{
@@ -55,46 +46,35 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-
 .form-login input {
-  width: 100%;
-  min-width: 150px;
-  max-width: 225px;
+  width: 300px;
   border-radius: 7px;
   background-color: rgba(104, 102, 102, 0.16);
-  border: 2px solid rgba(255, 255, 255, 0.021);
-  color: white;
-  padding-left: 10px;
+  border: 0;
   margin: 0 !important;
 }
 
-.form-login input::placeholder {
-  color: white;
-  font-size: 0.8rem;
+.form-login input:focus{
+  outline: none;
+  border:0;
+  box-shadow: none;
 }
+
+.form-login input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0px 1000px rgba(104, 102, 102, 0.223) inset;
+}   
 
 .form-login button {
+  width: 100%;
+  height: 45px;
   color: white;
   text-transform: uppercase;
-  max-width: 225px;
   font-size: 0.8rem;
-  width: 100%;
-  min-height: 45px;
-  border-radius: 3px !important;
-  background-color: rgba(0, 0, 0, 0.781);
-  border: none !important;
-  
-  border-width: 1px !important;
-  border-top-style: solid !important;
-  border-bottom-style: solid !important;
-  border-image: linear-gradient(to right,transparent, #cccccc4b , transparent ) 1 0.1 !important;
-
-}
-
-@media (max-width: 500px) {
-  .login-section {
-    width: 80%;
-  }
+  background-color: #D9658F;
+  border: 0;
+  border-radius: 3px;
+  font-family: 'Lora-Regular'
 }

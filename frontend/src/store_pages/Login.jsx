@@ -1,7 +1,7 @@
 import "./pagesStyles/Login.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 
 import { Toast } from "primereact/toast";
 import { Password } from "primereact/password";
@@ -11,6 +11,7 @@ import React, { useContext, useRef } from "react";
 import AuthenticationContext from '../context/authenticationContext'
 import { CompanyLogo } from "@/components/NavBar/CompanyLogo";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
+import { showToast } from "@/utils/showToast";
 
 function Login() {
   const {handleLogin, loading} = useContext(AuthenticationContext)
@@ -25,6 +26,7 @@ function Login() {
       }
       else{
         showToast({
+          toastRef:toast,
           severity: "error",
           summary: "Error",
           detail: `${success}`,
@@ -33,29 +35,18 @@ function Login() {
     }})
   }
 
-  const showToast = ({
-    severity = "success",
-    summary = "Éxito",
-    detail = "Operación Exitosa",
-    life = 3000,
-  }) => {
-    toast.current.show({
-      severity: severity,
-      summary: summary,
-      detail: detail,
-      life: life,
-    });
-  };
-
   return (
     <section className="login-container">
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader/>
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
-        <div className="logo-container-login">
-          <CompanyLogo/>
-        </div>
+        <Link to = "/">
+          <div className="logo-container-login">
+            <CompanyLogo/>
+          </div>
+        </Link>
+        <h1>Iniciar Sesión</h1>
         <form action="" className="form-login" onSubmit = {(e) => login(e)}>
           <span className="p-float-label">
             <InputText
