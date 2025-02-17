@@ -1,15 +1,15 @@
 .product-details-section{
     width: 100%;
     display: grid;
-    grid-template-columns: minmax(150px, 450px) 50%;
+    grid-template-columns: minmax(150px, 500px) 50%;
     grid-template-areas: 
     "image title"
     "image price"
     "image description"
     "image add-to-cart-button";
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap:0px 50px;
+    gap:0px 100px;
     padding: 20px;
 }
 
@@ -22,7 +22,7 @@
 }
 .product-details-section > main{
     grid-area: description;
-    align-self: flex-start;
+    align-self: center;
 }
 .product-details-section > section{
     grid-area: price;
@@ -30,8 +30,9 @@
 }
 .product-details-section > footer{
     grid-area: add-to-cart-button;
-    align-self: flex-start;
+    align-self: flex-end;
     height: 60px;
+    margin-bottom: 30px;
 }
 
 /*START Price container overriding styles*/
@@ -80,7 +81,7 @@
 .product-details-section > main > p{
     color: #313131;
     font-family: "Poppins-Regular";
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 300;
     letter-spacing: 3px;
     text-wrap: pretty;
@@ -104,6 +105,7 @@
 .product-details-section > aside .pictures-details{
     border-radius: 15px;
     background-color: transparent;
+    height: 500px;
 }
 .product-details-section > aside img{
     border-radius: 15px;
@@ -168,6 +170,9 @@
 }
 
 @media (max-width: 500px){
+    .product-details-section{
+        padding: 0 20px 20px 20px;
+    }
     .product-details-section > aside{
         width: 100%;
         margin: auto;
@@ -199,5 +204,8 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 0px;
+    }
+    .product-details-section > aside .pictures-details{
+        height: 300px;
     }
 }

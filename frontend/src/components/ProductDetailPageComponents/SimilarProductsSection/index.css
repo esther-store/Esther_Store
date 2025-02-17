@@ -1,6 +1,7 @@
 .similar-products-section{
     margin: 0 auto;
     position: relative;
+    margin-bottom: 50px;
 }
 .similar-products-section > header{
     text-align: center;
