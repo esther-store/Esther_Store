@@ -18,7 +18,7 @@ export const LOGIN_URL = `${BASE_URL}/authentication/login/`
 export const CHANGE_PASSWORD_URL = `${BASE_URL}/authentication/password/change/`
 
 //contact info
-export const CONTACT_INFO_URL = `${BASE_URL}/contact_info/`
+export const CONTACT_INFO_URL = `${BASE_URL}/contact-info/`
 
 //user profile
 export const USER_PROFILE_URL = `${BASE_URL}/authentication/user/`

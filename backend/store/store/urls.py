@@ -15,7 +15,7 @@ urlpatterns = [
     path('store/', include(store_urls)),
     path('pedido/', include(pedido_urls)),
     path("user/", include(user_profile_urls)),
-    path("contact_info/", include(contact_info_url)),
+    path("contact-info/", include(contact_info_url)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

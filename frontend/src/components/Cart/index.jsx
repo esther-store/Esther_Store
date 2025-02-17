@@ -92,7 +92,7 @@ const Cart = React.memo(function Cart() {
           handleSendPedido={handleSendPedido}
           total={total}
         >
-          <Suspense fallback={<Skeleton width="300px" height="30px" />}>
+          <Suspense fallback={<Skeleton width="200px" height="40px" />}>
             <DeliveryInfo
               deliveryInfo={deliveryInfo}
               setDeliveryInfo={setDeliveryInfo}

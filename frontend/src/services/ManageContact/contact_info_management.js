@@ -1,4 +1,4 @@
-import {CONTACT_INFO_URL} from '../../settings'
+import {CONTACT_INFO_URL} from '@/settings'
 
 export function getContactInfo(){
     return fetch(CONTACT_INFO_URL, {
@@ -10,7 +10,7 @@ export function getContactInfo(){
     .then(response => {
         if(response.status == 200){
             return response.json()
-            .then(data => {return data.results[0]})
+            .then(data => {return data[0]})
         }else{
             throw new Error('Error al obtener la info de contacto')
         }
