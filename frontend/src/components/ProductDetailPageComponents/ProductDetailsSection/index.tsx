@@ -77,7 +77,12 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
           <button
             onClick={() => {
               if (!productInCart) {
-                addProductToCart(product);
+                addProductToCart({
+                  id: product?.id,
+                  img1: product?.product_img1,
+                  price: product.price_with_discounts,
+                  productName: product.product_name,
+                });
                 showToast({
                   toastRef: toastRef,
                   severity: "success",

@@ -1,69 +1,55 @@
-import React from "react";
-import ProductsCartList from "@/components/Cart/ProductsCartList";
-import ProductsCartGrid from "@/components/Cart/ProductsCartGrid";
-import { Dialog } from "primereact/dialog";
-import {CartIcon} from "@/icons/CartIcon";
+import React, { Suspense } from "react";
+const ProductsCartGrid = React.lazy(() =>
+  import("@/components/Cart/ProductsCartGrid")
+);
+import { Skeleton } from "primereact/skeleton";
 import "./index.css";
 
 const CartContent = React.memo(function CartContext({
-  show,
-  setShow,
-  mobileMode,
-  cleanCart,
-  productsCart,
   handleSendPedido,
-  children
+  children,
+  total,
 }) {
   return (
-    <Dialog
-      visible={show}
-      onHide={() => setShow(false)}
-      position="center"
-      draggable={false}
-      resizable={false}
-      style={{ width: "90vw", maxWidth: "850px" }}
-      header={
-        <div className="cart-title">
-          <CartIcon color = "#000"/>
-          Carrito
-        </div>
-      }
-      contentClassName="cart-modal-content"
-    >
-      {productsCart.length > 0 ? (
-        <>
-          <div className="table-grid-container">
-            {!mobileMode ? <ProductsCartList /> : <ProductsCartGrid />}
-            <div className="cart-delivery-info-container">
-              {children}
-            </div>
-          </div>
-          <section className="cart-action-buttons">
-            <button className="btn-general-styles" onClick={() => cleanCart()}>
-              <i className="pi pi-trash"></i>
-              Vaciar Carrito
-            </button>
-            <button
-              className="btn-general-styles"
-              onClick={() => setShow(false)}
-            >
-              <i className="pi pi-times"></i>
-              Cancelar
-            </button>
-            <button
-              className="btn-general-styles"
-              onClick={() => handleSendPedido()}
-            >
-              <i className="pi pi-check"></i>
-              Procesar Pedido
-            </button>
-          </section>
-        </>
-      ) : (
-        <div className="empty-cart-message">Tu carrito esta vacio</div>
-      )}
-    </Dialog>
+    <>
+      <div className="table-grid-container">
+        <Suspense fallback={<GridSkeleton />}>
+          <ProductsCartGrid />
+        </Suspense>
+      </div>
+      <footer className="cart-footer">
+        <section className = "price-container">
+          <span>Total:</span> <span>${total?.toFixed(2)}</span>
+        </section>
+        <section className="buttons-container">
+          <div>{children}</div>
+          <button
+            className="btn-general-styles"
+            onClick={() => handleSendPedido()}
+          >
+            Procesar Pedido
+          </button>
+        </section>
+      </footer>
+    </>
   );
-})
+});
 
 export default CartContent;
+
+const GridSkeleton = () => (
+  <section style={styles.gridSkeletonContainer}>
+    <Skeleton width="100%" height="40px" />
+    <Skeleton width="100%" height="40px" />
+    <Skeleton width="100%" height="40px" />
+    <Skeleton width="100%" height="40px" />
+  </section>
+);
+
+const styles = {
+  gridSkeletonContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+};

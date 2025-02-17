@@ -71,3 +71,12 @@ export type FilterType = {
   name: string,
   value: string
 }
+
+export type CartProductType = {
+  id: ProductIdType,
+  img1: string,
+  price: number,
+  productName: string,
+  quantity?: number,
+  subtotal?: number
+}

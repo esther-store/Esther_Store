@@ -6,7 +6,7 @@ import React from 'react';
 const ProductQuantityController = React.memo(function ProductQuantityController({item, quantity, add, rest}) {
     return ( 
         <div className = "product-quantity-controller">
-            <button onClick = {() => rest(item)}>
+            <button onClick = {() => rest(item.id)}>
                 <img alt = "minus" src = {MinusIcon.src}/>
             </button>
             <span>{quantity}</span>

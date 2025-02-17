@@ -26,9 +26,9 @@
 
 .login-section h1{
   margin: 0;
-  color:#00000087;
-  font-family: 'Lora-Regular';
-  font-size: 30px
+  color:#00000077;
+  font-family: 'Poppins-Regular';
+  font-size: 25px
 }
 
 .form-login {
@@ -46,7 +46,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 }
 
 .form-login input {
@@ -76,5 +76,6 @@
   background-color: #D9658F;
   border: 0;
   border-radius: 3px;
-  font-family: 'Lora-Regular'
+  font-family: 'Poppins-Regular';
+  font-weight: bold;
 }

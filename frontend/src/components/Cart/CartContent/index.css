@@ -1,0 +1,31 @@
+.cart-footer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding: 0 1.5rem 0 1.5rem;
+}
+
+.cart-footer .price-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-footer .buttons-container{
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+}
+
+.cart-footer .buttons-container > button{
+    max-width: 500px;
+    flex-grow: 1;
+    background-color: pink;
+}
+
+.cart-grid-view-total{
+    width: 100%;
+    text-align: end;
+    padding: 8px;
+}

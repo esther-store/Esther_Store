@@ -1,7 +1,7 @@
-import {CartIcon} from "@/icons/CartIcon";
+import { CartIcon } from "@/icons/CartIcon";
 import CartContext from "@/context/cartContext";
-import React, { useState, useContext, useRef } from "react";
-import { useIsMobileMode } from "@/hooks/useIsMobileMode";
+import { Skeleton } from "primereact/skeleton";
+import React, { useState, useContext, useRef, Suspense } from "react";
 import {
   sendWhatsappMessage,
   prepareProductsCartToBeSentByWhatsapp,
@@ -9,12 +9,12 @@ import {
 import { useGetContactInfo } from "@/hooks/useGetContactInfo";
 import "./index.css";
 import CartContent from "@/components/Cart/CartContent";
-import DeliveryInfo from "@/components/Cart/DeliveryInfo";
+const DeliveryInfo = React.lazy(() => import("@/components/Cart/DeliveryInfo"));
+import { Dialog } from "primereact/dialog";
 
 const Cart = React.memo(function Cart() {
   const [showCartContent, setShowCartContent] = useState(false);
-  const { productsCart, cleanCart, total } = useContext(CartContext);
-  const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
+  const { productsCart, total } = useContext(CartContext);
   const { contactInfo } = useGetContactInfo();
   const deliveryInfoButtonRef = useRef(null);
   const [deliveryInfo, setDeliveryInfo] = useState({
@@ -59,35 +59,50 @@ const Cart = React.memo(function Cart() {
   }
 
   return (
-    <section className="cart">
-      <div className="show-cart-button-container">
-        <button
-          className="show-cart-button"
-          onClick={() => setShowCartContent(true)}
-        >
-          <CartIcon color = "#D9658F" width={30} height={30}/>
-          {productsCart.length > 0 ? (
-            <span className="cart-products-cont">{productsCart.length}</span>
-          ) : null}
-        </button>
-      </div>
-      <CartContent
-        show={showCartContent}
-        setShow={setShowCartContent}
-        mobileMode={mobileMode}
-        productsCart={productsCart}
-        cleanCart={cleanCart}
-        handleSendPedido={handleSendPedido}
+    <>
+      <button
+        className="show-cart-button"
+        onClick={() => setShowCartContent(true)}
       >
-        <DeliveryInfo
-          deliveryInfo={deliveryInfo}
-          setDeliveryInfo={setDeliveryInfo}
-          showErrorDeliveryInfo={showErrorDeliveryInfo}
-          setShowErrorDeliveryInfo={setShowErrorDeliveryInfo}
-          deliveryInfoButtonRef={deliveryInfoButtonRef}
-        />
-      </CartContent>
-    </section>
+        <CartIcon color="#D9658F" width={30} height={30} />
+        {productsCart.length > 0 ? (
+          <span className="cart-products-cont">{productsCart.length}</span>
+        ) : null}
+      </button>
+      <Dialog
+        visible={showCartContent}
+        onHide={() => setShowCartContent(false)}
+        position="center"
+        draggable={false}
+        resizable={false}
+        style={{ width: "90vw", maxWidth: "850px" }}
+        header={
+          <div className="cart-title">
+            <CartIcon color="#000" />
+            Carrito
+          </div>
+        }
+        contentClassName="cart-modal-content"
+      >
+        {productsCart.length > 0?
+        <CartContent
+          handleSendPedido={handleSendPedido}
+          total={total}
+        >
+          <Suspense fallback={<Skeleton width="300px" height="30px" />}>
+            <DeliveryInfo
+              deliveryInfo={deliveryInfo}
+              setDeliveryInfo={setDeliveryInfo}
+              showErrorDeliveryInfo={showErrorDeliveryInfo}
+              setShowErrorDeliveryInfo={setShowErrorDeliveryInfo}
+              deliveryInfoButtonRef={deliveryInfoButtonRef}
+            />
+          </Suspense>
+        </CartContent>
+        : <div className="empty-cart-message">Tu carrito está vacio</div>
+        }
+      </Dialog>
+    </>
   );
 });
 

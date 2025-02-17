@@ -10,7 +10,6 @@ const ProductsCartGrid = React.memo(function ProductsCartGrid() {
         addProductToCart,
         restProductFromCart,
         deleteProductFromCart,
-        total
       } = useContext(CartContext);
     return ( 
         <>
@@ -25,7 +24,6 @@ const ProductsCartGrid = React.memo(function ProductsCartGrid() {
                 />
             )}
             </section>
-            <div className = "cart-grid-view-total">Total: ${total.toFixed(2)}</div>
         </>
      );
 })
@@ -42,8 +40,8 @@ const ProductsCartGridCard = React.memo(
                     </header>
                     <section>
                         <p>{product.productName}</p>
-                        <div>${product.price.toFixed(2)}</div>
-                        <h4>${product.subtotal.toFixed(2)}</h4>
+                        <div>${product?.price?.toFixed(2)}</div>
+                        <h4>${product?.subtotal?.toFixed(2)}</h4>
                     </section>
                     <footer>
                         <ProductQuantityController item = {product} quantity={product.quantity} add = {addProductToCart} rest={restProductFromCart}/>
