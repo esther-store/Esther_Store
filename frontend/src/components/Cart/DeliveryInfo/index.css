@@ -1,17 +1,36 @@
 .cart-button-add-delivery-info{
-    border: 1px solid black!important;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:5px
+    gap:5px;
+    border-radius: 15px;
+    background: #c5c5c58b;
 }
 
-.cart-delivery-info-error{
-    border: 2px solid red!important;
+.cart-button-add-delivery-info span{
+    color: #333333b6;
+    font-family: "Poppins-Regular";
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .cart-button-add-delivery-info i{
-    margin-bottom: 3px;
+    transition: transform 0.1s linear;
+    opacity: 0.7;
+    transform: scale(1.2);
+}
+
+.cart-button-add-delivery-info:hover i{
+    transform: scale(1.4);
+}
+
+.cart-delivery-info-error{
+    outline: 2px solid rgba(195, 41, 41, 0.912)!important;
+}
+
+.cart-delivery-info-error i{
+    animation: jump 1s linear infinite;
 }
 
 .cart-delivery-info-form{
@@ -29,37 +48,73 @@
     width: 100%;
 }
 
-.cart-delivery-info-form span input{
+.cart-delivery-info-form span input {
     width: 100%;
-}
-.cart-delivery-info-form span input:focus{
+    border-radius: 7px;
+    background-color: rgba(104, 102, 102, 0.16);
+    border: 0;
+    margin: 0 !important;
+  }
+  
+  .cart-delivery-info-form span input:focus{
     outline: none;
+    border:0;
     box-shadow: none;
-    border-color: black;
-}
-.cart-delivery-info-form span input:hover{
-    border-color: black;
-}
+  }
+  
+  .cart-delivery-info-form span input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px rgba(104, 102, 102, 0.223) inset;
+  }   
 
 .cart-delivery-info-form span textarea{
     min-width: 100%;
     max-width: 100%;
     max-height: 300px;
+    border-radius: 7px;
+    background-color: rgba(104, 102, 102, 0.16);
+    border: 0;
+    margin: 0 !important;
 }
 
 .cart-delivery-info-form span textarea:focus{
     outline: none;
+    border:0;
     box-shadow: none;
-    border-color: black;
 }
 .cart-delivery-info-form span textarea:hover{
     border-color: black;
 }
 
-.cart-delivery-info-form button{
-    border: 1px solid black!important;
+.cart-delivery-info-form span textarea:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px rgba(104, 102, 102, 0.223) inset;
+  }   
+
+.cart-delivery-info-form .save-btn{
+    color: #fff;
+    border: 0;
+    background-color: #D9658F;
 }
 
-.save-btn{
-    color: rgb(0, 0, 0) !important;
+@keyframes jump {
+    0%{
+        transform: translateY(0px) scale(1.2);
+    }
+    25%{
+        transform: translateY(-3px) scale(1.2);
+    }
+    50%{
+        transform: translateY(-5px) scale(1.2);
+    }
+    75%{
+        transform: translateY(3px) scale(1.2);
+    }
+    100%{
+        transform: translateY(0px) scale(1.2);
+    }
+}
+
+@media (max-width:500px){
+    .cart-button-add-delivery-info span{
+        display: none;
+    }
 }

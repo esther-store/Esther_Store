@@ -20,16 +20,18 @@ const Cart = React.memo(function Cart() {
   const [deliveryInfo, setDeliveryInfo] = useState({
     name: null,
     phone: null,
+    email:null,
     address: null,
   });
   const [showErrorDeliveryInfo, setShowErrorDeliveryInfo] = useState(false);
 
   //function to send the pedido
   function handleSendPedido() {
-    if (productsCart.length > 0 && contactInfo !== null) {
+    if (productsCart.length > 0 && contactInfo != null) {
       if (
         deliveryInfo.name == null ||
         deliveryInfo.phone == null ||
+        deliveryInfo.email == null ||
         deliveryInfo.address == null
       ) {
         showErrorEmptyDeliveryInfo(true);
@@ -38,7 +40,7 @@ const Cart = React.memo(function Cart() {
           phone: contactInfo.whatsapp,
           message: prepareProductsCartToBeSentByWhatsapp({
             productsCart: productsCart,
-            total: total.toFixed(2),
+            total: total?.toFixed(2),
             deliveryInfo: deliveryInfo,
           }),
         });
@@ -75,13 +77,14 @@ const Cart = React.memo(function Cart() {
         position="center"
         draggable={false}
         resizable={false}
-        style={{ width: "95%", maxWidth: "700px" }}
+        style={{ width: "95%", maxWidth: "500px" }}
         header={
           <div className="cart-title">
             <CartIcon color="#000" />
             Carrito
           </div>
         }
+        headerStyle={{ padding:"1rem"}}
         contentClassName="cart-modal-content"
       >
         {productsCart.length > 0?

@@ -1,7 +1,7 @@
-import { TrashIcon } from "@/icons/TrashIcon";
 import ProductQuantityController from "../ProductQuantityController";
 import React from "react";
 import type { CartProductType, ProductIdType } from "@/Types";
+import { CloseIcon } from "@/icons/CloseIcon";
 
 const ProductCard = React.memo(function ProductCard({
   product,
@@ -20,7 +20,7 @@ const ProductCard = React.memo(function ProductCard({
         className="remove-product-from-cart"
         onClick={() => deleteProductFromCart(product.id)}
       >
-        <TrashIcon color="#000" />
+        <CloseIcon color="rgba(0, 0, 0, 0.6)" />
       </button>
       <header>
         <img alt={product.productName} src={product.img1} />

@@ -21,6 +21,7 @@ export function prepareProductsCartToBeSentByWhatsapp({productsCart, total, deli
     message += `\n\nDetalles de Envío:\n`
     message += `-----------------------------------\nNombre: ${deliveryInfo.name}\n`
     message +=`\nTeléfono: ${deliveryInfo.phone}\n`
+    message +=`\nEmail: ${deliveryInfo.email}\n`
     message += `\nDirección: ${deliveryInfo.address}`
 
     return message

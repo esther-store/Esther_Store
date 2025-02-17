@@ -25,16 +25,16 @@ const DeliveryInfo = React.memo(function DeliveryInfo({
         }}
       >
         <i className="pi pi-map-marker"></i>
-        <span>Agregar Detalles de Envío</span>
+        <span>Detalles de Envío</span>
       </button>
       <Dialog
         visible={show}
         onHide={() => setShow(false)}
-        position="top"
+        position="center"
         draggable={false}
         resizable={false}
         header="Detalles de Envío"
-        style={{ width: "85%" }}
+        style={{ width: "95%", maxWidth:"400px" }}
       >
         <form
           action=""
@@ -45,6 +45,7 @@ const DeliveryInfo = React.memo(function DeliveryInfo({
               ...prev,
               name: e.target["name"].value,
               phone: e.target["phone"].value,
+              email: e.target["email"].value,
               address: e.target["address"].value,
             }));
             setShow(false);
@@ -67,12 +68,21 @@ const DeliveryInfo = React.memo(function DeliveryInfo({
             <label htmlFor="phone">Teléfono</label>
           </span>
           <span className="p-float-label">
+            <InputText
+              id="email"
+              defaultValue={deliveryInfo.email}
+              required={true}
+              type="email"
+            />
+            <label htmlFor="email">Email</label>
+          </span>
+          <span className="p-float-label">
             <InputTextarea
               id="address"
               defaultValue={deliveryInfo.address}
               required={true}
             />
-            <label htmlFor="address">Dirección</label>
+            <label htmlFor="address">Dirección y Pto. de Referencia</label>
           </span>
           <button className="btn-general-styles save-btn" type="submit">
             Guardar
