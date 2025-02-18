@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./index.css";
 import { debounce } from "@/utils/debounce";
-import type { ProductIdType } from "@/Types";
+import NullImagePlaceholder from "@/assets/null-image-placeholder.webp";
 
 type ImageType = {
   src: string;
@@ -47,7 +47,7 @@ const ImageSlider = ({
         {images.map((image: ImageType) => (
           <img
             style={onImageClick ? { cursor: "pointer" } : null}
-            src={image.src}
+            src={image.src == null ? NullImagePlaceholder.src : image.src}
             key={image.id}
             alt={image.alt}
             onClick={() => {

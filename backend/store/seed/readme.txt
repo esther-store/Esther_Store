@@ -1,0 +1,2 @@
+- Hacer un script para al crear la base de datos copiar productos_images/blank.webp dentro de media/productos_images
+- Hacer un llenado base de la base de datos

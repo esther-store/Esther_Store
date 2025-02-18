@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from store_api import utils
+import os
 
 User = get_user_model()
 
@@ -57,9 +58,9 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, blank=True, null=True)
     promotion = models.ForeignKey(Promotion, on_delete= models.SET_NULL, null=True, blank=True)
     recommended = models.BooleanField(default = False, db_index=True)
-    product_img1 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.png")
-    product_img2 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.png", blank = True, null = True)
-    product_img3 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.png", blank = True, null = True)
+    product_img1 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp")
+    product_img2 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp", blank = True, null = True)
+    product_img3 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp", blank = True, null = True)
     keywords = models.TextField(blank=True, default="", db_index=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now_add = True, db_index=True)
@@ -127,3 +128,13 @@ def regenerate_keywords_for_products_with_promotion(instance, **kwargs):
 @receiver(pre_save, sender=Producto)
 def generate_product_keywords(instance, **kwargs):
     instance.keywords = utils.generate_product_keywords(instance)        
+
+#Delete related images on product delete
+@receiver(post_delete, sender=Producto)
+def eliminar_imagenes(sender, instance, **kwargs):
+    for attr in ['product_img1', 'product_img2', 'product_img3']:
+        img = getattr(instance, attr)
+        if img and img != 'productos_images/blank.webp':
+            img_path = img.path
+            if os.path.exists(img_path):
+                os.remove(img_path)
