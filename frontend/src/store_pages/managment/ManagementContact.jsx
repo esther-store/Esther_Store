@@ -73,7 +73,7 @@ function ManagementContact() {
   return (
     <article className="mcontact-container">
       <meta name="robots" content="noindex"></meta>
-      <RemovePageLoader/>
+      <RemovePageLoader />
       <Toast ref={toast} position="top-left" />
       <div className="head-contact">
         <Button
@@ -229,10 +229,9 @@ function ManagementContact() {
                   />
                 </div>
               </div>
-              
             </li>
             <li>
-            <div className="element-contact last">
+              <div className="element-contact last">
                 <div className="p-inputgroup">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-truck"></i>

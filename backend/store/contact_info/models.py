@@ -8,8 +8,6 @@ class ContactInfo(models.Model):
     email1 = models.EmailField(max_length = 100, blank = True, null = True)
     email2 = models.EmailField(max_length = 100, blank = True, null = True)
     location = models.CharField(max_length = 1000, blank = True, null = True)
-    remesas = models.CharField(max_length = 1000, blank = True, null = True)
-    envios = models.CharField(max_length = 1000, blank = True, null = True)
     facebook = models.CharField(max_length = 1000, blank = True, null = True)
     instagram = models.CharField(max_length = 1000, blank = True, null = True)
     telegram = models.CharField(max_length = 1000, blank = True, null = True)
