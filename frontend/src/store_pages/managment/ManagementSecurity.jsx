@@ -15,6 +15,7 @@ import DataTableUsers from "@/components/ManagmentComponents/UserManagementCompo
 import AuthenticationContext from "@/context/authenticationContext";
 import { useNavigate } from "react-router-dom";
 import { RemovePageLoader } from "@/components/RemovePageLoader";
+import { ManagementProductsPageHeader } from "@/components/ManagmentComponents/ProductsManagementComponents/ManagmentProductsPageHeader";
 
 const heaerTitle = (info) => {
   return (
@@ -216,16 +217,7 @@ function ManagementSecurity() {
         show={show}
         mobileSize={responsive}
       />
-      {/* Titulo de la pagina*/}
-      <header>
-        <button
-          className="products-management-go-back-button btn-general-styles"
-          onClick={() => navigate("/store")}
-        >
-          <i className="pi pi-arrow-left"></i>
-        </button>
-        <h1 className="management-user-title">Gestión de Usuarios</h1>
-      </header>
+      <ManagementProductsPageHeader title="Gestión de Usuarios" />
       {/* Seccion de la barra de busqueda */}
       <SearchOferts
         confirmAll={confirmAll}
