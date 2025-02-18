@@ -17,7 +17,7 @@ const ProductForm = React.memo(function ProductForm({
 }) {
   return (
     <Dialog
-      position="right"
+      position="center"
       header={
         productFormProperties.creatingMode == true ? (
           <div className="product-form-dialog-title">

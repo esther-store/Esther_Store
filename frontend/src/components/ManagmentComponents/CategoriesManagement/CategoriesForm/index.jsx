@@ -39,7 +39,7 @@ const CategoriesForm = React.memo(function CategoriesForm({
         !loading?setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} })):null
       }
       }
-      position="top"
+      position="center"
       draggable={false}
       resizable={false}
       header={

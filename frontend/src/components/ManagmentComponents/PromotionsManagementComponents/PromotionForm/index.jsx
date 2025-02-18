@@ -87,7 +87,7 @@ const PromotionForm = React.memo(function PromotionForm({
             }))
           : null;
       }}
-      position="top"
+      position="center"
       draggable={false}
       resizable={false}
       header={
