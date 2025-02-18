@@ -206,19 +206,6 @@ function ManagementContact() {
               <div className="element-contact">
                 <div className="p-inputgroup">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-money-bill"></i>
-                  </span>
-                  <InputText
-                    name="remesas"
-                    defaultValue={contact.remesas}
-                    style={{ minWidth: "160px", maxWidth: "15rem" }}
-                    onChange={handleInput}
-                  />
-                </div>
-              </div>
-              <div className="element-contact">
-                <div className="p-inputgroup">
-                  <span className="p-inputgroup-addon">
                     <i className="pi pi-arrow-right-arrow-left"></i>
                   </span>
                   <InputText
@@ -226,21 +213,6 @@ function ManagementContact() {
                     defaultValue={contact.phone2}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
-                  />
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="element-contact last">
-                <div className="p-inputgroup">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-truck"></i>
-                  </span>
-                  <InputText
-                    defaultValue={contact.envios}
-                    style={{ minWidth: "160px", maxWidth: "15rem" }}
-                    onChange={handleInput}
-                    name="envios"
                   />
                 </div>
               </div>

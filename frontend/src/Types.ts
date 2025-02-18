@@ -80,3 +80,15 @@ export type CartProductType = {
   quantity?: number,
   subtotal?: number
 }
+
+export type ContactInfoType = {
+  phone1?: string 
+  phone2?:string 
+  whatsapp: string
+  email1?: string 
+  email2?: string 
+  location?: string 
+  facebook?: string 
+  instagram?: string 
+  telegram?: string 
+}
