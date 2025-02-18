@@ -10,6 +10,9 @@
     background-color: #D9658F;
     color: white
 }
+.navbar-promotions-dropdown-panel .p-dropdown-items li{
+    outline:0!important
+}
 .navbar-promotions-dropdown span{
     color: black;
     font-weight: bold;
@@ -23,3 +26,15 @@
 .navbar-promotions-dropdown .p-dropdown-trigger{
     width: 1rem;
 }
+
+/*Scrollbar styles*/
+.navbar-promotions-dropdown-panel .p-dropdown-items-wrapper::-webkit-scrollbar{ 
+    background-color: transparent;
+    width: 10px;
+}
+.navbar-promotions-dropdown-panel .p-dropdown-items-wrapper::-webkit-scrollbar-thumb {
+    background-color: #00000060; 
+    border-radius: 20px;
+    border: 3px solid #fff;
+}
+

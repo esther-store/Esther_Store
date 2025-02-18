@@ -12,6 +12,10 @@
     color: white
 }
 
+.navbar-categories-dropdown-panel .p-dropdown-items li{
+    outline:0!important
+}
+
 .navbar-categories-dropdown .p-dropdown-label{
     color: #313131;
     font-family: "Poppins-Regular";
@@ -25,4 +29,15 @@
 
 .navbar-categories-dropdown .p-dropdown-trigger{
     width: 1rem;
+}
+
+/*Scrollbar styles*/
+.navbar-categories-dropdown-panel .p-dropdown-items-wrapper::-webkit-scrollbar{ 
+    background-color: transparent;
+    width: 10px;
+}
+.navbar-categories-dropdown-panel .p-dropdown-items-wrapper::-webkit-scrollbar-thumb {
+    background-color: #00000060; 
+    border-radius: 20px;
+    border: 3px solid #fff;
 }
