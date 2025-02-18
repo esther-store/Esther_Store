@@ -42,7 +42,7 @@ export default function ManagementPromotions() {
         loading={loadingPromotions}
       />
       <RemovePageLoader />
-      <ManagementProductsPageHeader title="Administrar Promociones" />
+      <ManagementProductsPageHeader title="Administrar Promociones" justifyContent="center"/>
       <ButtonsAddAndDelete setCategoryFormProperties={setPromotionFormProperties}>
       {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
             {confirmMultiple({

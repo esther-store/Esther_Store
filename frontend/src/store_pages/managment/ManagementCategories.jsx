@@ -46,7 +46,7 @@ function ManagementCategories() {
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader />
       <Toast ref={toast} position="bottom-center" />
-      <ManagementProductsPageHeader title="Categories Management" />
+      <ManagementProductsPageHeader title="Categories Management" justifyContent="center"/>
       {loadingCategories ? (
         <section style={styles.loaderContainer}>
           <Loader />

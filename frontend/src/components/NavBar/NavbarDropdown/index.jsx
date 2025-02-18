@@ -26,7 +26,7 @@ const ManageProducts = React.lazy(() =>
 );
 const ManageUsers = React.lazy(() => import("./optionsComponents/ManageUsers"));
 
-function NavbarDropdown() {
+function NavbarDropdown({iconColor = "#D9658F"}) {
   const { auth } = useContext(AuthenticationContext);
   const {CloseSessionButton, ShowConfirmDialog} = CloseSession()
 
@@ -73,7 +73,7 @@ function NavbarDropdown() {
           className="dropdown-icon"
           width={30}
           height={30}
-          color="#D9658F"
+          color={iconColor}
         />
       }
       collapseIcon={
@@ -81,7 +81,7 @@ function NavbarDropdown() {
           className="dropdown-icon"
           width={30}
           height={30}
-          color="#D9658F"
+          color={iconColor}
         />
       }
       className="user-navbar-actions-dropdown"

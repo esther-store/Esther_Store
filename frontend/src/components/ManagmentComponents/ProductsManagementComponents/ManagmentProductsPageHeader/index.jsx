@@ -1,6 +1,7 @@
 import { LeftArrow } from "@/icons/LeftArrow";
 import { Link } from "react-router-dom";
 import "./index.css";
+import NavbarDropdown from "@/components/NavBar/NavbarDropdown";
 
 export function ManagementProductsPageHeader({
   title = "Gestión de Productos",
@@ -19,6 +20,7 @@ export function ManagementProductsPageHeader({
         <LeftArrow width={20} />
       </Link>
       <h3>{title}</h3>
+      <NavbarDropdown iconColor="#000"/>
     </section>
   );
 }
