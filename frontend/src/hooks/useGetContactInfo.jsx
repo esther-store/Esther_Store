@@ -1,4 +1,4 @@
-import { getContactInfo } from "../services/ManageContact/contact_info_management";
+import { getContactInfo } from "../services/getContactInfo";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetContactInfo() {

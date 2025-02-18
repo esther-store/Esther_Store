@@ -1,6 +1,7 @@
 export type ProductIdType = number;
 export type CategoryIdType = number;
 export type PromotionIdType = number;
+export type ContactInfoIdType = number;
 
 export type CategoryType = {
   readonly id: CategoryIdType;
@@ -82,11 +83,10 @@ export type CartProductType = {
 }
 
 export type ContactInfoType = {
-  phone1?: string 
-  phone2?:string 
+  readonly id?: ContactInfoIdType;
+  phone: string 
   whatsapp: string
-  email1?: string 
-  email2?: string 
+  email?: string 
   location?: string 
   facebook?: string 
   instagram?: string 

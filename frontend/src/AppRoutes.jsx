@@ -12,7 +12,7 @@ const ManagementSecurity = React.lazy(() =>
   import("./store_pages/managment/ManagementSecurity.jsx")
 );
 const ManagementContact = React.lazy(() =>
-  import("./store_pages/managment/ManagementContact.jsx")
+  import("./store_pages/managment/ManagementContact.tsx")
 );
 const Login = React.lazy(() => import("./store_pages/Login.jsx"));
 const ChangePassword = React.lazy(() =>
