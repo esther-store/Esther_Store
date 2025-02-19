@@ -8,5 +8,5 @@
       "@/*": ["*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/setupTest.ts"]
 }
