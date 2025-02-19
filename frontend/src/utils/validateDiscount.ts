@@ -9,7 +9,9 @@ export const validateDiscount = ({
 }) => {
   if (promotionDiscount && promotionDiscount == 100) {
     const choice = window.confirm(
-      "El descuento aplicado conllevará a precio 0. Verifica que el descuento por producto y por promoción sean los deseados. Desea continuar de todas formas?"
+`⚠️ El descuento aplicado conllevará a precio 0 ⚠️. 
+Verifica que el descuento por producto y promoción sean los deseados. 
+Desea continuar de todas formas?`
     );
     if (!choice) {
       return;
@@ -18,7 +20,9 @@ export const validateDiscount = ({
   }
   if (productDiscount && productDiscount == 100) {
     const choice = window.confirm(
-      "El descuento aplicado conllevará a precio 0. Verifica que el descuento por producto y por promoción sean los deseados. Desea continuar de todas formas?"
+`⚠️ El descuento aplicado conllevará a precio 0 ⚠️. 
+Verifica que el descuento por producto y promoción sean los deseados. 
+Desea continuar de todas formas?`
     );
     if (!choice) {
       return;
@@ -31,7 +35,9 @@ export const validateDiscount = ({
     promotionDiscount + productDiscount == 100
   ) {
     const choice = window.confirm(
-      "El descuento aplicado conllevará a precio 0. Verifica que el descuento por producto y por promoción sean los deseados. Desea continuar de todas formas?"
+`⚠️ El descuento aplicado conllevará a precio 0 ⚠️. 
+Verifica que el descuento por producto y promoción sean los deseados. 
+Desea continuar de todas formas?`
     );
     if (!choice) {
       return;
