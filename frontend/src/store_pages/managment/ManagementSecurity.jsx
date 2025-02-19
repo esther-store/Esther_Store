@@ -217,7 +217,7 @@ function ManagementSecurity() {
         show={show}
         mobileSize={responsive}
       />
-      <ManagementProductsPageHeader title="Gestión de Usuarios" />
+      <ManagementProductsPageHeader title="Gestión de Usuarios" justifyContent="center"/>
       {/* Seccion de la barra de busqueda */}
       <SearchOferts
         confirmAll={confirmAll}
