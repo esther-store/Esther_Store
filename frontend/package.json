@@ -28,6 +28,7 @@
     "@tanstack/query-devtools": "^5.62.16",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
+    "@vitest/coverage-v8": "^2.1.9",
     "jsdom": "^26.0.0",
     "vitest": "^2.1.9"
   }
