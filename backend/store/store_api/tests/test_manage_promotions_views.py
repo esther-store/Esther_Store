@@ -109,6 +109,13 @@ class ManagePromotionsTests(TestCase):
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response.data["message"], "Maximun number of promotions reached")
 
+    def test_create_special_promotions_max_limit(self):
+        for i in range(4):
+            Promotion.objects.create(name=f"Promotion {i}", description="Test description", discount_in_percent=10, img=self.test_image, is_special=True)
+        response = self.client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST), {"name": "New Promotion", "description": "New description", "discount_in_percent": 10, "img": self.test_image, "is_special":True}, format='multipart')
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.data["message"], "Maximun number of special promotions reached")
+
     def test_create_promotion_invalid_data_types(self):
         response = self.client.post(reverse(self.PROMOTIONS_MANAGEMENT_URL_NAME_LIST), {"name": "Invalid Data", "discount_in_percent": "ten"}, format='json')
         self.assertEqual(response.status_code, 400)    

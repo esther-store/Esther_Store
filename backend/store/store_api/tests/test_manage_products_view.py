@@ -203,3 +203,83 @@ class ProductsManagmentTests(TestCase):
             "precio": -50,
         }, format='multipart')
         self.assertEqual(response.status_code, 400)
+
+    def test_quit_products_category(self):
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, categoria=self.category)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, categoria=self.category)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 200)
+        product1.refresh_from_db()
+        product2.refresh_from_db()
+        self.assertIsNone(product1.categoria)
+        self.assertIsNone(product2.categoria)
+
+    def test_quit_products_category_with_invalid_data(self):
+         response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': ["invalid"]}, format="json")
+         self.assertEqual(response.status_code, 400)
+
+    def test_quit_products_category_with_empty_products_array(self):
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': []}, format="json")
+        self.assertEqual(response.status_code, 400)
+    
+    def test_quit_products_category_with_non_existent_product(self):
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': [9999]}, format="json")
+        self.assertEqual(response.status_code, 400)
+    
+    def test_quit_products_category_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, categoria=self.category)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, categoria=self.category)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 403)
+
+    def test_quit_products_category_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, categoria=self.category)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, categoria=self.category)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_category/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 403)
+
+    def test_quit_products_promotion(self):
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, promotion=self.promotion)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, promotion=self.promotion)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 200)
+        product1.refresh_from_db()
+        product2.refresh_from_db()
+        self.assertIsNone(product1.promotion)
+        self.assertIsNone(product2.promotion)
+
+    def test_quit_products_promotion_with_invalid_data(self):
+         response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': ["invalid"]}, format="json")
+         self.assertEqual(response.status_code, 400)
+
+    def test_quit_products_promotion_with_empty_products_array(self):
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': []}, format="json")
+        self.assertEqual(response.status_code, 400)
+    
+    def test_quit_products_promotion_with_non_existent_product(self):
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': [9999]}, format="json")
+        self.assertEqual(response.status_code, 400)
+
+    def test_quit_products_promotion_unauthenticated(self):
+        self.client.force_authenticate(user=None)
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, promotion=self.promotion)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, promotion=self.promotion)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 403)
+    
+    def test_quit_products_promotion_non_admin(self):
+        non_admin_user = User.objects.create(username="user", email="user@example.com", password="userpass", is_staff=False)
+        self.client.force_authenticate(user=non_admin_user)
+        product1 = Producto.objects.create(product_name="Product 1", precio=100, product_img1=self.test_image, promotion=self.promotion)
+        product2 = Producto.objects.create(product_name="Product 2", precio=200, product_img1=self.test_image, promotion=self.promotion)
+        products_to_quit = [product1.id, product2.id]
+        response = self.client.post(reverse(self.PRODUCTS_MANAGEMENT_URL_NAME_LIST) + 'quit_products_promotion/', {'products': products_to_quit}, format="json")
+        self.assertEqual(response.status_code, 403)
