@@ -10,7 +10,7 @@ import { Dropdown } from "primereact/dropdown";
 import React from "react";
 import Loader from "@/components/Loaders/Loader";
 import { useGetCategoriesToManage } from "@/hooks/managementHooks/useGetCategoriesToManage";
-import { validateProductDiscount } from "@/utils/validateDiscount";
+import { validateDiscount } from "@/utils/validateDiscount";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -50,7 +50,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
       className="product-form"
       encType="multipart/form-data"
       onSubmit={(e) => {
-        validateProductDiscount({
+        validateDiscount({
           productDiscount: e.target["discount"]?.value,
           promotionDiscount: promotions.find(
             (promo) => promo.id == promotionSelected.code

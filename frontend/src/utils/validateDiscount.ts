@@ -1,4 +1,4 @@
-export const validateProductDiscount = ({
+export const validateDiscount = ({
   productDiscount,
   promotionDiscount,
   onOk,
@@ -38,4 +38,5 @@ export const validateProductDiscount = ({
     }
     return onOk();
   }
+  return onOk()
 };

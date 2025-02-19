@@ -5,6 +5,7 @@ import { useImagePreview } from "@/hooks/managementHooks/useImagePreview";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import React, { useState, useEffect } from "react";
+import { validateDiscount } from "@/utils/validateDiscount";
 import "./index.css";
 
 const PromotionForm = React.memo(function PromotionForm({
@@ -37,8 +38,12 @@ const PromotionForm = React.memo(function PromotionForm({
       discount_in_percent: discount_in_percent,
       is_special: is_special,
       active: active,
-    }
-    handleCreatePromotion(promotion);
+    };
+    validateDiscount({
+      promotionDiscount: discount_in_percent,
+      onOk: () =>
+        handleCreatePromotion(promotion),
+    });
   }
 
   function updatepromotion(e) {
@@ -56,10 +61,14 @@ const PromotionForm = React.memo(function PromotionForm({
       discount_in_percent: discount_in_percent,
       is_special: is_special,
       active: active,
-    }
-    handleUpdatePromotion({
-      id: promotionFormProperties.initialValues.id,
-      promotion: promotion
+    };
+    validateDiscount({
+      promotionDiscount: discount_in_percent,
+      onOk: () =>
+        handleUpdatePromotion({
+          id: promotionFormProperties.initialValues.id,
+          promotion: promotion,
+        }),
     });
   }
 
