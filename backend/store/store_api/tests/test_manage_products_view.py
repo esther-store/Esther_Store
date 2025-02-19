@@ -1,9 +1,13 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from ..models import Producto, Categoria, Promotion, User
 from store_api.utils import get_image
+from django.test import TestCase, override_settings
+from django.conf import settings
+import shutil
+import os
 
+@override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test_images'))
 class ProductsManagmentTests(TestCase):
     PRODUCTS_MANAGEMENT_URL_NAME_LIST = 'products-managment-list'
     PRODUCTS_MANAGEMENT_URL_NAME_DETAIL = 'products-managment-detail'
@@ -16,6 +20,14 @@ class ProductsManagmentTests(TestCase):
         self.client.force_authenticate(user=self.user)
         self.category = Categoria.objects.create(nombre="Test Category", img=self.test_image)
         self.promotion = Promotion.objects.create(name="Test Promotion", description="Test description", discount_in_percent=10, img=self.test_image)
+
+    # Delete created images during testing
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        media_root = os.path.join(settings.BASE_DIR, 'test_images')
+        if os.path.exists(media_root):
+            shutil.rmtree(media_root)
 
     def test_list_products_unauthenticated(self):
         self.client.force_authenticate(user=None)

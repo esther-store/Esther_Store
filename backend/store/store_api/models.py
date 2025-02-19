@@ -12,7 +12,7 @@ User = get_user_model()
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length= 50, unique=True, db_index=True)
-    img = models.ImageField(upload_to = "categories_images", default = "productos_images/blank.png")
+    img = models.ImageField(upload_to = "categories_images")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
@@ -31,7 +31,7 @@ class Promotion(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
     description = models.CharField(max_length = 500, default = "")  
     discount_in_percent = models.FloatField(validators = [MinValueValidator(limit_value=1)])
-    img = models.ImageField(upload_to = "promotions", default = "productos_images/blank.png") 
+    img = models.ImageField(upload_to = "promotions") 
     active = models.BooleanField(default = True, db_index=True)
     is_special = models.BooleanField(default = False, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True) 
@@ -131,10 +131,28 @@ def generate_product_keywords(instance, **kwargs):
 
 #Delete related images on product delete
 @receiver(post_delete, sender=Producto)
-def eliminar_imagenes(sender, instance, **kwargs):
+def delete_product_images(sender, instance, **kwargs):
     for attr in ['product_img1', 'product_img2', 'product_img3']:
         img = getattr(instance, attr)
         if img and img != 'productos_images/blank.webp':
             img_path = img.path
             if os.path.exists(img_path):
                 os.remove(img_path)
+
+#Delete related image on category delete
+@receiver(post_delete, sender=Categoria)
+def delete_category_image(sender, instance, **kwargs):
+    img = getattr(instance, 'img')
+    if img:
+        img_path = img.path
+        if os.path.exists(img_path):
+            os.remove(img_path)
+
+#Delete related image on promotion delete
+@receiver(post_delete, sender=Promotion)
+def delete_promotion_image(sender, instance, **kwargs):
+    img = getattr(instance, 'img')
+    if img:
+        img_path = img.path
+        if os.path.exists(img_path):
+            os.remove(img_path)
