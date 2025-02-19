@@ -10,6 +10,7 @@ import { Dropdown } from "primereact/dropdown";
 import React from "react";
 import Loader from "@/components/Loaders/Loader";
 import { useGetCategoriesToManage } from "@/hooks/managementHooks/useGetCategoriesToManage";
+import { validateProductDiscount } from "@/utils/validateDiscount";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -49,9 +50,16 @@ const ProductFormContent = React.memo(function ProductFormContent({
       className="product-form"
       encType="multipart/form-data"
       onSubmit={(e) => {
-        productFormProperties.creatingMode == true
-          ? createProduct(e)
-          : updateProduct(e);
+        validateProductDiscount({
+          productDiscount: e.target["discount"]?.value,
+          promotionDiscount: promotions.find(
+            (promo) => promo.id == promotionSelected.code
+          )?.discount_in_percent,
+          onOk: () =>
+            productFormProperties.creatingMode == true
+              ? createProduct(e)
+              : updateProduct(e),
+        });
       }}
     >
       {/*name*/}
@@ -62,7 +70,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
           aria-describedby="name-help"
           className=".p-inputtext-sm"
           disabled={productFormProperties.disabled}
-          required = {true}
+          required={true}
           style={{ minWidth: "70%" }}
           defaultValue={
             productFormProperties.creatingMode
@@ -78,7 +86,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
           id="price"
           aria-describedby="price-help"
           className=".p-inputtext-sm"
-          required = {true}
+          required={true}
           min={0}
           disabled={productFormProperties.disabled}
           type="number"
