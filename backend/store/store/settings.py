@@ -14,7 +14,8 @@ SECRET_KEY = 'django-insecure-x*7=_1q3&&=5@c=g5ab%033zt8t_5x*p_qhb+nfp0tqib_8j0-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','192.168.137.1','localhost', '192.168.1.246', 'bmcompanybackend.pythonanywhere.com', "192.168.1.229"]
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.137.1', 'localhost',
+                 '192.168.1.246', 'bmcompanybackend.pythonanywhere.com', "192.168.1.229"]
 
 # Application definition
 
@@ -25,31 +26,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    #rest framework
+
+    # rest framework
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    
-    #allauth to register users
+
+    # allauth to register users
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    
-    #rest_auth to login users
+
+    # rest_auth to login users
     'dj_rest_auth',
-    
-    #Cors Headers to recive requests in ours APIs
+
+    # Cors Headers to recive requests in ours APIs
     'corsheaders',
-    
-    #local apps
+
+    # local apps
     'store_api',
     'authentication_api',
     'pedido_api',
-    'user_profile_api',  
+    'user_profile_api',
     'contact_info',
-    'import_export', 
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -87,41 +88,39 @@ ASGI_APPLICATION = "store.asgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if config('USE_DEBUG_DATABASE') == '0':
-    DATABASES = {
-        'default': {
-            'ENGINE':'django.db.backends.postgresql_psycopg2',
-            'NAME':config("POSTGRES_DATABASE_NAME"),
-            'USER':config("POSTGRES_DATABASE_USER"),
-            'PASSWORD':config("POSTGRES_DATABASE_PASS"), 
-            'HOST':config("POSTGRES_DATABASE_HOST"),
-            'DATABASE_PORT': config("POSTGRES_DATABASE_PORT"),
-        }
-    }
-else:
+if config('USE_DEBUG_DATABASE') == '1':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
-    }   
 
-
-#Cache
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f"redis://{config("REDIS_USERNAME")}:{config("REDIS_PASSWORD")}@{config("REDIS_HOST")}:{config("REDIS_PORT")}",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config("POSTGRES_DATABASE_NAME"),
+            'USER': config("POSTGRES_DATABASE_USER"),
+            'PASSWORD': config("POSTGRES_DATABASE_PASS"),
+            'HOST': config("POSTGRES_DATABASE_HOST"),
+            'DATABASE_PORT': config("POSTGRES_DATABASE_PORT"),
         }
     }
-}
+
+# Cache
+if config('USE_CACHE') == '1':
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": f"redis://{config("REDIS_USERNAME")}:{config("REDIS_PASSWORD")}@{config("REDIS_HOST")}:{config("REDIS_PORT")}",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            }
+        }
+    }
 
 # Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -165,20 +164,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_PROFILE_MODULE = "user_profile.models.UserProfile"
 
-#configurations of rest_framework
+# configurations of rest_framework
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':[],
-    'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework.authentication.SessionAuthentication',
-                                      'rest_framework.authentication.TokenAuthentication',],
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.SessionAuthentication',
+                                       'rest_framework.authentication.TokenAuthentication',],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'store_api.paginators.MyCustomPagination',
 }
-#configuration for dj_rest_auth
+# configuration for dj_rest_auth
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'authentication_api.login_serializer.LoginSerializer',
-    'USER_DETAILS_SERIALIZER':'user_profile_api.serializers.UserProfileSerializer',
+    'USER_DETAILS_SERIALIZER': 'user_profile_api.serializers.UserProfileSerializer',
 }
-#configuration for allauth(register of users)
+# configuration for allauth(register of users)
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
@@ -186,7 +185,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 
-#email backend config
+# email backend config
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -198,9 +197,9 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
-) 
+)
 
-#configuration for corsheaders
+# configuration for corsheaders
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000",]
 

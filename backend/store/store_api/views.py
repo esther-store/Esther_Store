@@ -13,9 +13,9 @@ from django.db.models import Q
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 User = get_user_model()
-from store.settings import DEBUG
+from decouple import config
 
-if DEBUG:
+if config('USE_CACHE') == '0':
     CACHE_TIME = 0
 else:
     CACHE_TIME = 60 * 5    
@@ -64,7 +64,6 @@ class RateProduct(APIView):
                     return Response([],status = status.HTTP_200_OK)
                 return Response(status = status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            print(e)
             return Response(status = status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #check if the user already rate a product
