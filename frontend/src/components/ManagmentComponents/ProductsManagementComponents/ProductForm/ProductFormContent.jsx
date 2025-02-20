@@ -50,6 +50,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
       className="product-form"
       encType="multipart/form-data"
       onSubmit={(e) => {
+        e.preventDefault()
         validateDiscount({
           productDiscount: e.target["discount"]?.value,
           promotionDiscount: promotions.find(
