@@ -33,7 +33,20 @@ export function CategoriesGrid() {
             message={"Error obteniendo las categorías"}
           />
         </Suspense>
-      ) : (
+      ) : categories.length === 0?
+      <Suspense
+          fallback={
+            <LoaderContainer>
+              <GridSkeleton />
+            </LoaderContainer>
+          }
+        >
+          <RetryQueryComponent
+            refetch={refetch}
+            message={"No hay categorías para mostrar"}
+          />
+        </Suspense>
+      :(
         <main className="homepage-categories-grid">
           {categories.map((category) => (
             <Link key={category.id} to={`/store?categoria=${category.id}`}>

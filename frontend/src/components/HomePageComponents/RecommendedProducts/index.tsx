@@ -21,7 +21,11 @@ export function RecommendedProducts() {
           <Suspense fallback = {<Skeleton width="100%" height="400px" className="mr-2"/>}>
             <RetryQueryComponent message = "Error obteniendo los productos" refetch = {refetch}/>
           </Suspense>
-        ) : (
+        ) : products.length === 0?
+        <Suspense fallback = {<Skeleton width="100%" height="400px" className="mr-2"/>}>
+            <RetryQueryComponent message = "No hay productos recomendados" refetch = {refetch}/>
+          </Suspense>
+        :(
           <ImageSlider
             images={products.map((product) => ({
               src: product.product_img1,

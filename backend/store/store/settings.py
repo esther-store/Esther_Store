@@ -17,11 +17,11 @@ if config('DEBUG_SERVER') == '1':
 else:
     DEBUG = False    
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.137.1', 'localhost',
-                 '192.168.1.246', 'bmcompanybackend.pythonanywhere.com', "192.168.1.229"]
+
+ALLOWED_HOSTS = ['127.0.0.1', config('PRODUCTION_HOST')]
+
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -202,8 +202,9 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-# configuration for corsheaders
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000",]
-
 AUTH_USER_MODEL = 'authentication_api.UserProfile'
+
+# configuration for corsheaders
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = ["http://localhost:4321", config('FRONTEND_ORIGIN')]
+

@@ -10,7 +10,9 @@ export function getContactInfo(){
     .then(response => {
         if(response.status == 200){
             return response.json()
-            .then(data => {return data[0]})
+            .then(data => {
+                return data[0]? data[0]: {}
+            })
         }else{
             throw new Error('Error al obtener la info de contacto')
         }
