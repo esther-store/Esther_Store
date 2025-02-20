@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esther Store</title>
 </head>
+
 <body>
-    Esther Store Backend
+    <section class="page-loader">
+        <section>
+            <div class = "container">
+                <h1>Esther Backend</h1>
+            </div>
+        </section>
+    </section>
 </body>
+<style>
+    .page-loader {
+        position: absolute;
+        width: 95%;
+        height: 95%;
+        background-color: #fff;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px
+    }
+
+    h1 {
+        margin: 0;
+        color: #D9658F;
+        letter-spacing: 2px;
+        font-size: 35px
+    }
+
+    @keyframes palpitar {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
 </html>
