@@ -5,7 +5,7 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Search = React.memo(function Search() {
-  const { searchParams, setFilter, getActiveFilter, removeFilter, allActiveFilters } =
+  const { searchParams, setFilter, getActiveFilter, removeFilter } =
     useContext(QueryFiltersContext);
   const [searchingValue, setSearchingValue] = useState("");
   const navigate = useNavigate();

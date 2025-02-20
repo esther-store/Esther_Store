@@ -19,7 +19,6 @@ export function updateCategory({id, name, img, token}){
             else{
                 return response.json()
                 .then(res => {
-                    console.log(res)
                     if (res["nombre"]){
                         throw new Error("Ya existe una categoría con ese nombre")
                     }

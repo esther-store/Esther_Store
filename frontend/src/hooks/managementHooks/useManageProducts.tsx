@@ -93,7 +93,6 @@ export function useManageProducts({
         });
       },
       onError: (err) => {
-        console.log;
         showToast({
           toastRef: toastRef,
           severity: "error",
