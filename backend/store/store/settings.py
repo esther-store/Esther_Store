@@ -69,7 +69,7 @@ ROOT_URLCONF = 'store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath("static/frontend"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
