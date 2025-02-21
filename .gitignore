@@ -36,3 +36,6 @@ wsl_env
 # Visual Studio Code
 .vscode/
 
+# test coverage
+coverage
+
