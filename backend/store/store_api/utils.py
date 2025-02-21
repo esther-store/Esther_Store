@@ -12,6 +12,9 @@ def get_image(img_url):
 def generate_product_keywords(product):
     keywords = []
 
+    if product.id:
+        keywords.extend(product.id)
+
     if product.product_name:
         keywords.extend(product.product_name.lower().split())
 
