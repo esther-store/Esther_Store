@@ -17,6 +17,7 @@ const ProductManagementCard = React.memo(function ProductManagementCard({
       <div className="img-container">
         <img src={product.product_img1} alt={product.product_name} />
       </div>
+      <div className = "product-id">ID: {product.id}</div>
       <div className="name-and-price-container">
         <p className="product-card-name">{product.product_name}</p>
         <ProductPrice precio={product.precio} price_with_discounts={product.price_with_discounts}/>

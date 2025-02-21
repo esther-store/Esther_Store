@@ -6,14 +6,10 @@ def get_image(img_url):
                 img_content = img_file.read()
                 return SimpleUploadedFile(name='test_image.png', content=img_content, content_type='image/png')
         except Exception as e:
-            print(e)
             return "" 
 
 def generate_product_keywords(product):
     keywords = []
-
-    if product.id:
-        keywords.extend(product.id)
 
     if product.product_name:
         keywords.extend(product.product_name.lower().split())
