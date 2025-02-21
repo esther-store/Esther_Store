@@ -38,7 +38,12 @@ export function createProduct({values, token}){
                 return response
             }
             else{
-                throw new Error("Error al crear el producto")
+                return response.json().then(data => {
+                    if(data?.product_name){
+                        throw new Error("Ya existe un producto con ese nombre")
+                    }
+                    throw new Error("Error al crear el producto")
+                })
             }
         })
     )
