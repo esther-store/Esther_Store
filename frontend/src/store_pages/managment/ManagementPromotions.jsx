@@ -56,6 +56,9 @@ export default function ManagementPromotions() {
               }
             })}
       </ButtonsAddAndDelete>
+      {promotions.length === 0?
+      <div style = {{textAlign:"center", marginTop:"100px", fontFamily:"Poppins-Regular"}}>No hay Promociones</div>
+      :
       <PromotionsGrid
         promotions={promotions}
         setSelectedPromotions={setSelectedPromotions}
@@ -65,6 +68,7 @@ export default function ManagementPromotions() {
         selectedPromotions={selectedPromotions}
         handleDeletePromotions={handleDeletePromotions}
       />
+      }
     </article>
   );
 }

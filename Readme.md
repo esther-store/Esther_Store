@@ -105,7 +105,12 @@ Este proyecto es una tienda online de ropa que utiliza Astro + React para el fro
    python manage.py migrate
    ```
 
-7. Iniciar el servidor de Django:
+7. Cargar la data inicial:
+```
+python manage.py load_initial_data
+```
+
+8. Iniciar el servidor de Django:
    ```
    python manage.py runserver
    ```

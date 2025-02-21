@@ -6,13 +6,14 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from store_api import utils
 import os
+from store_api.constants import PRODUCTS_MEDIA_FOLDER, CATEGORIES_MEDIA_FOLDER, PROMOTIONS_MEDIA_FOLDER
 
 User = get_user_model()
 
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length= 50, unique=True, db_index=True)
-    img = models.ImageField(upload_to = "categories_images")
+    img = models.ImageField(upload_to = CATEGORIES_MEDIA_FOLDER)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
@@ -31,7 +32,7 @@ class Promotion(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
     description = models.CharField(max_length = 500, default = "")  
     discount_in_percent = models.FloatField(validators = [MinValueValidator(limit_value=1)])
-    img = models.ImageField(upload_to = "promotions") 
+    img = models.ImageField(upload_to = PROMOTIONS_MEDIA_FOLDER) 
     active = models.BooleanField(default = True, db_index=True)
     is_special = models.BooleanField(default = False, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True) 
@@ -58,9 +59,9 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, blank=True, null=True)
     promotion = models.ForeignKey(Promotion, on_delete= models.SET_NULL, null=True, blank=True)
     recommended = models.BooleanField(default = False, db_index=True)
-    product_img1 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp", max_length=255)
-    product_img2 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp", blank = True, null = True, max_length=255)
-    product_img3 = models.ImageField(upload_to = "productos_images", default = "productos_images/blank.webp", blank = True, null = True, max_length=255)
+    product_img1 = models.ImageField(upload_to = PRODUCTS_MEDIA_FOLDER, default = f"{PRODUCTS_MEDIA_FOLDER}/blank.webp", max_length=255)
+    product_img2 = models.ImageField(upload_to = PRODUCTS_MEDIA_FOLDER, default = f"{PRODUCTS_MEDIA_FOLDER}/blank.webp", blank = True, null = True, max_length=255)
+    product_img3 = models.ImageField(upload_to = PRODUCTS_MEDIA_FOLDER, default = f"{PRODUCTS_MEDIA_FOLDER}/blank.webp", blank = True, null = True, max_length=255)
     keywords = models.TextField(blank=True, default="", db_index=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now_add = True, db_index=True)

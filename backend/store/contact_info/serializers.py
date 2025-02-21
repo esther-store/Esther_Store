@@ -13,9 +13,11 @@ class ContactInfoSerializer(serializers.ModelSerializer):
         try:
             whatsapp = data["whatsapp"]
             if whatsapp.startswith("+") == False:
-                raise ValidationError(message="Country code most be included")
+                raise ValidationError(message="Country code must be included")
             if ' ' in whatsapp:
                 raise ValidationError(message="Number can't include spaces")
+            if len(whatsapp) < 11:
+                raise ValidationError(message="Whatsapp number not valid")
         except ValidationError as e:
             raise serializers.ValidationError({"whatsapp":e.message}) 
         except:

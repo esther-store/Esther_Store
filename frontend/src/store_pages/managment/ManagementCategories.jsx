@@ -92,6 +92,9 @@ function ManagementCategories() {
               }
             })}
           </ButtonsAddAndDelete>
+          {categories.length === 0?
+          <div style = {{textAlign:"center", marginTop:"100px", fontFamily:"Poppins-Regular"}}>No hay Categorías</div>
+          :
           <CategoriesGrid
             showCheckboxes={showCheckboxes}
             categories={categories}
@@ -101,6 +104,7 @@ function ManagementCategories() {
             processUpdateCategory={processUpdateCategory}
             processDetailCategory={processDetailCategory}
           />
+          }
         </section>
       )}
     </main>

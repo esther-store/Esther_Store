@@ -129,6 +129,7 @@ function ManagementContact() {
               <InputText
                 disabled={edittingContactInfo === true}
                 name="whatsapp"
+                required
                 defaultValue={contact.whatsapp}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />

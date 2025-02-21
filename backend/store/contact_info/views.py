@@ -32,3 +32,4 @@ class ManageContactInfo(ModelViewSet):
         if ContactInfo.objects.exists():
             return Response({"message":"Can't create more than one contact info"} , status = status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
+    

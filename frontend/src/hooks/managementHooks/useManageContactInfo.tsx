@@ -40,9 +40,9 @@ export function useManageContactInfo({ toast }) {
     onError: (err) => {
       showToast({
         toastRef: toast,
-        detail: "Error",
+        detail: err.message,
         severity: "error",
-        summary: err.message,
+        summary: 'Error',
         life: 3000,
       });
     },
@@ -50,9 +50,9 @@ export function useManageContactInfo({ toast }) {
       refetch();
       showToast({
         toastRef: toast,
-        detail: "Éxito",
+        detail: "Operación Exitosa",
         severity: "success",
-        summary: "Operación Exitosa",
+        summary: "Éxito",
         life: 3000,
       });
     },

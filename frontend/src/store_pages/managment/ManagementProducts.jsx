@@ -151,6 +151,10 @@ function ManagementProducts() {
           <div className="products-management-page-active-filter-component-container">
             <ActiveFilters />
           </div>
+          {products.length === 0?
+          <div style = {{textAlign:"center", marginTop:"100px", fontFamily:"Poppins-Regular"}}>No hay Productos</div>
+          :
+          <>
           <ProductsGrid
             products={products}
             loading={loadingProducts}
@@ -166,6 +170,8 @@ function ManagementProducts() {
             itemsLength={products.length}
             pageSize={productsToManagePageSize}
           />
+          </>
+          }
         </>
       )}
     </section>

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'user_profile_api',
     'contact_info',
     'import_export',
+    'seed'
 ]
 
 MIDDLEWARE = [

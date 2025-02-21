@@ -10,7 +10,7 @@ export function getContactInfo({ token }) {
   }).then((response) => {
     if (response.status == 200) {
       return response.json().then((data) => {
-        return data[0];
+        return data[0]? data[0]: {};
       });
     } else {
       throw new Error("Error al obtener la info de contacto");
@@ -32,7 +32,17 @@ export function editContactInfo({ id, info, token }) {
         return data;
       });
     } else {
-      throw new Error("Error al editar la info de contacto");
+      return res.json().then((data) => {
+        if(data?.whatsapp == 'Country code must be included'){
+          throw new Error("El # de Whatsapp debe incluir el código de país")
+        }else if(data?.whatsapp == "Number can't include spaces"){
+          throw new Error("El # de Whatsapp no puede tener espacios en blanco")
+        }else if(data?.whatsapp){
+          throw new Error(data?.whatsapp)
+        }else{
+          throw new Error("Error al editar la info de contacto");
+        }
+      });
     }
   });
 }
