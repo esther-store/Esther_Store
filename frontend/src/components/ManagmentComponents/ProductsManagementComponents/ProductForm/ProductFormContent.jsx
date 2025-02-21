@@ -192,7 +192,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
           type="number"
           defaultValue={
             productFormProperties.creatingMode
-              ? ""
+              ? 0
               : productFormProperties.initialValues.descuento
           }
         />

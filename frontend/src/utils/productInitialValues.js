@@ -44,7 +44,7 @@ export function normalizeProductFormInfo({e, categorySelected, promotionSelected
         is_active: activeStatusChecked,
         recommended:recommendedCheck,
         in_stock: e.target["stock"].value,
-        descuento: e.target["discount"].value,
+        descuento: e.target["discount"].value === ""? 0: e.target["discount"].value,
         product_img1: e.target["img1"].files[0],
         product_img2: e.target["img2"].files[0],
         product_img3: e.target["img3"].files[0],
