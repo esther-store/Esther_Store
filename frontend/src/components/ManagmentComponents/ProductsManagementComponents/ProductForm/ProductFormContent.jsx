@@ -11,6 +11,7 @@ import React from "react";
 import Loader from "@/components/Loaders/Loader";
 import { useGetCategoriesToManage } from "@/hooks/managementHooks/useGetCategoriesToManage";
 import { validateDiscount } from "@/utils/validateDiscount";
+import { InputNumber } from "primereact/inputnumber";
 
 const ProductFormContent = React.memo(function ProductFormContent({
   productFormProperties,
@@ -34,6 +35,10 @@ const ProductFormContent = React.memo(function ProductFormContent({
     createProduct,
     recommendedCheck,
     setRecommendedCheck,
+    discount,
+    setDiscount,
+    price,
+    setPrice
   } = useManageProductForm({
     productFormProperties: productFormProperties,
     handleCreateProduct: handleCreateProduct,
@@ -52,7 +57,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
       onSubmit={(e) => {
         e.preventDefault()
         validateDiscount({
-          productDiscount: e.target["discount"]?.value,
+          productDiscount: discount,
           promotionDiscount: promotions.find(
             (promo) => promo.id == promotionSelected.code
           )?.discount_in_percent,
@@ -83,19 +88,15 @@ const ProductFormContent = React.memo(function ProductFormContent({
       {/*price*/}
       <div className="product-form-field">
         <label htmlFor="price">Precio * </label>
-        <InputText
+        <InputNumber
           id="price"
           aria-describedby="price-help"
           className=".p-inputtext-sm"
           required={true}
           min={0}
           disabled={productFormProperties.disabled}
-          type="number"
-          defaultValue={
-            productFormProperties.creatingMode
-              ? ""
-              : productFormProperties.initialValues.precio
-          }
+          value={price}
+          onChange={e => setPrice(e.value)}
         />
       </div>
       {/*category*/}
@@ -182,19 +183,15 @@ const ProductFormContent = React.memo(function ProductFormContent({
       {/*Discount*/}
       <div className="product-form-field">
         <label htmlFor="discount">Descuento (%) </label>
-        <InputText
+        <InputNumber
           id="discount"
           aria-describedby="discount-help"
           className=".p-inputtext-sm"
           min={0}
           max={100}
           disabled={productFormProperties.disabled}
-          type="number"
-          defaultValue={
-            productFormProperties.creatingMode
-              ? 0
-              : productFormProperties.initialValues.descuento
-          }
+          value={discount}
+          onChange={e => setDiscount(e.value)}
         />
       </div>
       <hr />

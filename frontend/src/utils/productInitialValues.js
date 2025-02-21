@@ -26,7 +26,7 @@ export function getInitialValues(){
         promotion:null,
         is_active: true,
         recommended:false,
-        in_stock: 0,
+        in_stock: 1,
         descuento: 0,
         product_img1: null,
         product_img2: null,
@@ -34,17 +34,17 @@ export function getInitialValues(){
       }
 }
 
-export function normalizeProductFormInfo({e, categorySelected, promotionSelected, activeStatusChecked, recommendedCheck}){
+export function normalizeProductFormInfo({e, discount, precio, categorySelected, promotionSelected, activeStatusChecked, recommendedCheck}){
   return {
         product_name: e.target["name"].value,
         product_description: e.target["description"].value,
-        precio: e.target["price"].value,
+        precio: precio,
         categoria: categorySelected?.code || '',
         promotion: promotionSelected?.code || '',
         is_active: activeStatusChecked,
         recommended:recommendedCheck,
-        in_stock: e.target["stock"].value,
-        descuento: e.target["discount"].value === ""? 0: e.target["discount"].value,
+        in_stock: e.target["stock"].value === ""? 1: e.target["stock"].value,
+        descuento: discount == null || discount == ""? 0: discount,
         product_img1: e.target["img1"].files[0],
         product_img2: e.target["img2"].files[0],
         product_img3: e.target["img3"].files[0],

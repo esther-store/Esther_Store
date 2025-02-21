@@ -1,12 +1,12 @@
-import {URL_MANAGE_PRODUCTS} from "../../settings"
+import {URL_MANAGE_PRODUCTS} from "@/settings"
 
 export function updateProduct({id, values, token}){
     let formData = new FormData()
     formData.append('product_name', values.product_name)
     formData.append('product_description', values.product_description)
-    formData.append('precio', values.precio)
-    formData.append('descuento', values.descuento)
-    formData.append('in_stock', values.in_stock)
+    formData.append('precio', parseFloat(values.precio).toFixed(2))
+    formData.append('descuento', parseFloat(values.descuento).toFixed(2))
+    formData.append('in_stock', parseInt(values.in_stock))
     formData.append('is_active', values.is_active) 
     formData.append('recommended', values.recommended) 
     formData.append('categoria', values.categoria)

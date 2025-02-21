@@ -12,7 +12,7 @@ export function createPromotion({
   let formData = new FormData();
   formData.append("name", name);
   formData.append("description", description);
-  formData.append("discount_in_percent", discount_in_percent);
+  formData.append("discount_in_percent", parseFloat(discount_in_percent).toFixed(2));
   active !== undefined ? formData.append("active", active) : false;
   is_special !== undefined ? formData.append("is_special", is_special) : false;
   img !== undefined ? formData.append("img", img) : null;

@@ -10,6 +10,8 @@ export function useManageProductForm({
 }) {
   const [activeStatusChecked, setChecked] = useState(true);
   const [recommendedCheck, setRecommendedCheck] = useState(false);
+  const [discount, setDiscount] = useState(productFormProperties.initialValues.descuento)
+  const [price, setPrice] = useState(productFormProperties.initialValues.precio)
 
   const categoriesOptions = [{ name: "Ninguna", code: '' }].concat(
     categories.map((category) => ({
@@ -67,6 +69,8 @@ export function useManageProductForm({
     e.preventDefault();
     const values = normalizeProductFormInfo({
       e: e,
+      discount:discount,
+      precio:price,
       categorySelected: categorySelected,
       promotionSelected: promotionSelected,
       activeStatusChecked: activeStatusChecked,
@@ -79,6 +83,8 @@ export function useManageProductForm({
     e.preventDefault();
     const values = normalizeProductFormInfo({
       e: e,
+      discount:discount,
+      precio:price,
       categorySelected: categorySelected,
       promotionSelected: promotionSelected,
       activeStatusChecked: activeStatusChecked,
@@ -89,6 +95,7 @@ export function useManageProductForm({
       values: values,
     });
   }
+
   return {
     createProduct,
     updateProduct,
@@ -102,5 +109,9 @@ export function useManageProductForm({
     setChecked,
     recommendedCheck, 
     setRecommendedCheck,
+    discount,
+    setDiscount,
+    price,
+    setPrice
   };
 }

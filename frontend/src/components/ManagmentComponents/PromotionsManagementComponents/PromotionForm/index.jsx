@@ -7,6 +7,7 @@ import { Checkbox } from "primereact/checkbox";
 import React, { useState, useEffect } from "react";
 import { validateDiscount } from "@/utils/validateDiscount";
 import "./index.css";
+import { InputNumber } from "primereact/inputnumber";
 
 const PromotionForm = React.memo(function PromotionForm({
   promotionFormProperties,
@@ -17,6 +18,7 @@ const PromotionForm = React.memo(function PromotionForm({
 }) {
   const [activeStatusChecked, setActiveStatusChecked] = useState(false);
   const [specialStatusChecked, setSpecialStatusChecked] = useState(false);
+  const [discount, setDiscount] = useState(promotionFormProperties.initialValues.discount_in_percent)
 
   const { imagesPreview, handleSetImagePreview } = useImagePreview({
     formProperties: promotionFormProperties,
@@ -27,7 +29,6 @@ const PromotionForm = React.memo(function PromotionForm({
     e.preventDefault();
     const name = e.target["name"].value;
     const description = e.target["description"].value;
-    const discount_in_percent = e.target["discount"].value;
     const img = e.target["image"].files;
     const is_special = specialStatusChecked;
     const active = activeStatusChecked;
@@ -35,12 +36,12 @@ const PromotionForm = React.memo(function PromotionForm({
       name: name,
       img: img[0],
       description: description,
-      discount_in_percent: discount_in_percent,
+      discount_in_percent: discount,
       is_special: is_special,
       active: active,
     };
     validateDiscount({
-      promotionDiscount: discount_in_percent,
+      promotionDiscount: discount,
       onOk: () =>
         handleCreatePromotion(promotion),
     });
@@ -50,7 +51,6 @@ const PromotionForm = React.memo(function PromotionForm({
     e.preventDefault();
     const name = e.target["name"].value;
     const description = e.target["description"].value;
-    const discount_in_percent = e.target["discount"].value;
     const img = e.target["image"].files;
     const is_special = specialStatusChecked;
     const active = activeStatusChecked;
@@ -58,12 +58,12 @@ const PromotionForm = React.memo(function PromotionForm({
       name: name,
       img: img[0],
       description: description,
-      discount_in_percent: discount_in_percent,
+      discount_in_percent: discount,
       is_special: is_special,
       active: active,
     };
     validateDiscount({
-      promotionDiscount: discount_in_percent,
+      promotionDiscount: discount,
       onOk: () =>
         handleUpdatePromotion({
           id: promotionFormProperties.initialValues.id,
@@ -136,20 +136,16 @@ const PromotionForm = React.memo(function PromotionForm({
         {/*Discount*/}
         <div className="promotion-form-field">
           <label htmlFor="discount">Descuento (%) </label>
-          <InputText
+          <InputNumber
             id="discount"
             aria-describedby="discount-help"
             className=".p-inputtext-sm"
             min={0}
             max={100}
             disabled={promotionFormProperties.disabled}
-            type="number"
             required
-            defaultValue={
-              promotionFormProperties.creatingMode
-                ? ""
-                : promotionFormProperties.initialValues.discount_in_percent
-            }
+            value={discount}
+            onChange={e => setDiscount(e.value)}
           />
         </div>
 
