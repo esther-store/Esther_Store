@@ -8,7 +8,7 @@ export function useGetCategories() {
     queryFn: () => {
       return getCategories()
     },
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
     retry: (failuresCount) => {
       if(failuresCount >= 2) return false
       return true

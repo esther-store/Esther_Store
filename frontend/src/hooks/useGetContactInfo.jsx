@@ -5,7 +5,7 @@ export function useGetContactInfo() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["contact-info"],
     queryFn: () => getContactInfo(),
-    staleTime: 1000 * 60 * 30
+    staleTime: 1000 * 60 * 15
   });
   const contactInfo = data || [];
 

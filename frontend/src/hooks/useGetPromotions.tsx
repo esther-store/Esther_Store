@@ -12,7 +12,7 @@ export function useGetPromotions({searchParams = ""}:{searchParams?:string}) {
   } = useQuery({
     queryKey: ["get-promotions", searchParams],
     queryFn:() => getPromotions({searchParams:searchParams}),
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
   const promotions: PromotionType[] = data || []
 

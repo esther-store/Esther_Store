@@ -6,7 +6,7 @@ export function useGetProducts({searchParams, updateProductList = false}) {
     const { data, isLoading: loading, isError, refetch } = useQuery({
         queryKey: ["products", searchParams?.toString(), updateProductList], // Include searchParams in the queryKey to refetch when it changes
         queryFn: () => getProducts(searchParams?.toString()),
-        staleTime: 1000 * 60 * 10,
+        staleTime: 1000 * 60 * 5,
         retry: (failuresCount) => {
             if(failuresCount >= 2) return false
             return true
