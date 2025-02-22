@@ -19,8 +19,12 @@ const CategoriePromotionSlider = React.memo(
       type: "category" | "promotion";
       value: PromotionIdType | CategoryIdType;
     }>({ type: null, value: null });
-    const { searchParams, getActiveFilter, bulkSetFilters, removeFilter, setFilter } =
-      useContext<any>(QueryFilterContext);
+    const {
+      searchParams,
+      getActiveFilter,
+      bulkSetFilters,
+      removeFilter,
+    } = useContext<any>(QueryFilterContext);
     const {
       categories,
       loading: loadingCategories,
@@ -33,16 +37,18 @@ const CategoriePromotionSlider = React.memo(
 
     //everytime the categories or promotions change, update the active category or promotion
     useEffect(() => {
-      if ((categories.length > 0 || promotions.length > 0) && searchParams.size > 0) {
+      if (
+        searchParams.size > 0 && !loading
+      ) {
         const activeCategory = getActiveFilter("categoria");
         const activePromotion = getActiveFilter("promotion");
 
-        if (activeCategory !== "" && activeCategory != null) {
+        if (activeCategory !== "" ) {
           setActiveItem({
             type: "category",
             value: activeCategory,
           });
-        } else if (activePromotion !== "" && activePromotion != null) {
+        } else if (activePromotion !== "" ) {
           setActiveItem({
             type: "promotion",
             value: activePromotion,
@@ -54,7 +60,7 @@ const CategoriePromotionSlider = React.memo(
           });
         }
       }
-    }, [categories, promotions, searchParams]);
+    }, [searchParams]);
 
     return (
       <section className="categories-side-bar">
@@ -72,15 +78,6 @@ const CategoriePromotionSlider = React.memo(
                       : null
                   }
                   key={category.id}
-                  onClick={() => {
-                    if (pathname !== "/store") {
-                      return navigate(`/store?categoria=${category.id}`);
-                    }
-                    bulkSetFilters([
-                      { name: "promotion", value: "" },
-                      { name: "categoria", value: category.id },
-                    ]);
-                  }}
                 >
                   {category.id == activeItem.value &&
                   activeItem.type === "category" ? (
@@ -91,7 +88,19 @@ const CategoriePromotionSlider = React.memo(
                       <CloseIcon color="#000" />
                     </button>
                   ) : null}
-                  <span>{category.nombre}</span>
+                  <span
+                    onClick={() => {
+                      if (pathname !== "/store") {
+                        return navigate(`/store?categoria=${category.id}`);
+                      }
+                      bulkSetFilters([
+                        { name: "promotion", value: "" },
+                        { name: "categoria", value: category.id },
+                      ]);
+                    }}
+                  >
+                    {category.nombre}
+                  </span>
                 </li>
               ))}
               {promotions.map((promotion: PromotionType) => (
@@ -103,15 +112,6 @@ const CategoriePromotionSlider = React.memo(
                       : null
                   }
                   key={promotion.id}
-                  onClick={() => {
-                    if (pathname !== "/store") {
-                      return navigate(`/store?promotion=${promotion.id}`);
-                    }
-                    bulkSetFilters([
-                      { name: "promotion", value: promotion.id },
-                      { name: "categoria", value: "" },
-                    ]);
-                  }}
                 >
                   {promotion.id == activeItem.value &&
                   activeItem.type === "promotion" ? (
@@ -122,7 +122,19 @@ const CategoriePromotionSlider = React.memo(
                       <CloseIcon color="#000" />
                     </button>
                   ) : null}
-                  <span>{promotion.name}</span>
+                  <span
+                    onClick={() => {
+                      if (pathname !== "/store") {
+                        return navigate(`/store?promotion=${promotion.id}`);
+                      }
+                      bulkSetFilters([
+                        { name: "promotion", value: promotion.id },
+                        { name: "categoria", value: "" },
+                      ]);
+                    }}
+                  >
+                    {promotion.name}
+                  </span>
                 </li>
               ))}
             </>

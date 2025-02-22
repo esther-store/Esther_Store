@@ -56,7 +56,6 @@ export function QueryFiltersContextProvider({ children }) {
   }
 
   function removeFilter(name: string) {
-    console.log(name)
     let params = new URLSearchParams(searchParams);
     params.delete(name);
     setSearchParams(params);
