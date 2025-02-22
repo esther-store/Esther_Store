@@ -19,17 +19,9 @@ const CategoriePromotionSlider = React.memo(
       type: "category" | "promotion";
       value: PromotionIdType | CategoryIdType;
     }>({ type: null, value: null });
-    const {
-      searchParams,
-      getActiveFilter,
-      bulkSetFilters,
-      removeFilter,
-    } = useContext<any>(QueryFilterContext);
-    const {
-      categories,
-      loading: loadingCategories,
-      refetch: refetchCategories,
-    } = useGetCategories();
+    const { searchParams, getActiveFilter, bulkSetFilters, removeFilter } =
+      useContext<any>(QueryFilterContext);
+    const { categories, loading: loadingCategories } = useGetCategories();
     const { promotions, loadingPromotions } = useGetPromotions({});
     const loading = loadingCategories || loadingPromotions;
     const { pathname } = useLocation();
@@ -37,28 +29,24 @@ const CategoriePromotionSlider = React.memo(
 
     //everytime the categories or promotions change, update the active category or promotion
     useEffect(() => {
-      if (
-        searchParams.size > 0 && !loading
-      ) {
-        const activeCategory = getActiveFilter("categoria");
-        const activePromotion = getActiveFilter("promotion");
+      const activeCategory = getActiveFilter("categoria");
+      const activePromotion = getActiveFilter("promotion");
 
-        if (activeCategory !== "" ) {
-          setActiveItem({
-            type: "category",
-            value: activeCategory,
-          });
-        } else if (activePromotion !== "" ) {
-          setActiveItem({
-            type: "promotion",
-            value: activePromotion,
-          });
-        } else {
-          setActiveItem({
-            type: null,
-            value: null,
-          });
-        }
+      if (activeCategory !== "") {
+        setActiveItem({
+          type: "category",
+          value: activeCategory,
+        });
+      } else if (activePromotion !== "") {
+        setActiveItem({
+          type: "promotion",
+          value: activePromotion,
+        });
+      } else {
+        setActiveItem({
+          type: null,
+          value: null,
+        });
       }
     }, [searchParams]);
 
