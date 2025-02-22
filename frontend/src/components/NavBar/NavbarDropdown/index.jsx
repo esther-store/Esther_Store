@@ -55,7 +55,7 @@ function NavbarDropdown({iconColor = "#D9658F"}) {
     }
     if (auth?.token) return basicOptions.concat(onlyAuthenticatedUsersOptions);
     return basicOptions;
-  });
+  }, [auth]);
 
   const itemTemplate = (option) => {
     return option.component;
