@@ -8,10 +8,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 function CategoriesDropdown({ onCategorySelect = () => {} }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { searchParams, setFilter, getActiveFilter, removeFilter } =
-    useContext(QueryFiltersContext);
   const [category, setCategory] = useState();
   const { categories, loading: loadingCategories } = useGetCategories();
+  const { searchParams, setFilter, getActiveFilter, removeFilter } =
+    useContext(QueryFiltersContext);
+
   const categoriesValues = loadingCategories
     ? [{ name: "Cargando ...", code: null }]
     : [{ name: "Categorías", code: "" }].concat(
