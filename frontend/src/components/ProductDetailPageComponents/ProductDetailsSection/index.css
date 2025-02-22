@@ -208,4 +208,8 @@
     .product-details-section > aside .pictures-details{
         height: 300px;
     }
+    .product-details-section > header > h1{
+        width: 93%;
+        float: right;
+    }
 }
