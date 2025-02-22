@@ -33,6 +33,11 @@
   color: rgb(87, 86, 86);
 }
 
+.manage-contact-page .element-contact input{
+  outline:none;
+  box-shadow: none;
+}
+
 .manage-contact-page .buttons-container{
   display: flex;
   justify-content: center;
