@@ -92,3 +92,10 @@ export type ContactInfoType = {
   instagram?: string 
   telegram?: string 
 }
+
+export type DeliveryInfoType = {
+  name: string,
+  phone: string,
+  email:string,
+  address: string,
+}

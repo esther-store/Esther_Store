@@ -14,7 +14,7 @@ export function prepareProductsCartToBeSentByWhatsapp({productsCart, total, deli
 
     productsCart.forEach(product => {
         message += 
-        `-----------------------------------\n${product.productName}\n${product.quantity} x $${product.price.toFixed(2)}\nSubtotal: $${product.subtotal.toFixed(2)}\n`
+        `-----------------------------------\n${product.productName}\nID de Producto: ${product.id}\n${product.quantity} x $${product.price.toFixed(2)}\nSubtotal: $${product.subtotal.toFixed(2)}\n`
     })
 
     message += `-----------------------------------\nTotal: $${total}\n`

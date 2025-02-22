@@ -3,6 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import React, { useState } from "react";
 import "./index.css";
+import { saveDeliveryInfoInLocalStorage } from "@/utils/deliveryInfo";
 
 const DeliveryInfo = React.memo(function DeliveryInfo({
   deliveryInfo,
@@ -41,14 +42,23 @@ const DeliveryInfo = React.memo(function DeliveryInfo({
           className="cart-delivery-info-form"
           onSubmit={(e) => {
             e.preventDefault();
-            setDeliveryInfo((prev) => ({
-              ...prev,
+            const formDeliveryInfo = {
               name: e.target["name"].value,
               phone: e.target["phone"].value,
               email: e.target["email"].value,
-              address: e.target["address"].value,
+              address: e.target["address"].value
+            } 
+            setDeliveryInfo((prev) => ({
+              ...prev,
+              name: formDeliveryInfo.name,
+              phone: formDeliveryInfo.phone,
+              email: formDeliveryInfo.email,
+              address: formDeliveryInfo.address
             }));
             setShow(false);
+            try{
+              saveDeliveryInfoInLocalStorage(formDeliveryInfo)
+            }catch{}
           }}
         >
           <span className="p-float-label">

@@ -11,18 +11,15 @@ import "./index.css";
 import CartContent from "@/components/Cart/CartContent";
 const DeliveryInfo = React.lazy(() => import("@/components/Cart/DeliveryInfo"));
 import { Dialog } from "primereact/dialog";
+import type { DeliveryInfoType } from "@/Types";
+import { getDeliveryInfoFromLocalStorage } from "@/utils/deliveryInfo";
 
 const Cart = React.memo(function Cart() {
   const [showCartContent, setShowCartContent] = useState(false);
-  const { productsCart, total } = useContext(CartContext);
+  const { productsCart, total } = useContext<any>(CartContext);
   const { contactInfo } = useGetContactInfo();
   const deliveryInfoButtonRef = useRef(null);
-  const [deliveryInfo, setDeliveryInfo] = useState({
-    name: null,
-    phone: null,
-    email:null,
-    address: null,
-  });
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfoType>(getDeliveryInfoFromLocalStorage());
   const [showErrorDeliveryInfo, setShowErrorDeliveryInfo] = useState(false);
 
   //function to send the pedido
@@ -34,7 +31,7 @@ const Cart = React.memo(function Cart() {
         deliveryInfo.email == null ||
         deliveryInfo.address == null
       ) {
-        showErrorEmptyDeliveryInfo(true);
+        showErrorEmptyDeliveryInfo();
       } else {
         sendWhatsappMessage({
           phone: contactInfo.whatsapp,
