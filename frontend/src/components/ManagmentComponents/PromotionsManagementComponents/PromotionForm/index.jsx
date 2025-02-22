@@ -99,14 +99,15 @@ const PromotionForm = React.memo(function PromotionForm({
       position="center"
       draggable={false}
       resizable={false}
+      className="promotions-form-dialog"
       header={
         promotionFormProperties.creatingMode
-          ? "Crear Categoria"
-          : "Editar Categoria"
+          ? "Crear Promoción"
+          : "Editar Promoción"
       }
     >
       <form
-        className="categories-form"
+        className="promotions-form"
         onSubmit={(e) => {
           promotionFormProperties.creatingMode == true
             ? createpromotion(e)

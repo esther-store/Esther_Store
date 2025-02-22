@@ -28,6 +28,9 @@
 }
 
 @media (max-width : 500px) {
+    .categories-form-dialog{
+        width: 95%;
+    }
     .category-image-field{
         flex-direction: column;
     }

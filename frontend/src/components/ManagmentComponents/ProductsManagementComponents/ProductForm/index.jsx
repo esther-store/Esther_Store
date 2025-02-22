@@ -43,6 +43,7 @@ const ProductForm = React.memo(function ProductForm({
       style={{ minHeight: "95vh", minWidth: "50vw", maxWidth: "98vw" }}
       headerClassName="product-form-dialog-header"
       className="product-form-dialog"
+      contentClassName="product-form-dialog-content"
     >
       <Suspense
               fallback={

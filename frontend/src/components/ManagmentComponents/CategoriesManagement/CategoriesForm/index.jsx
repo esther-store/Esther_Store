@@ -47,6 +47,7 @@ const CategoriesForm = React.memo(function CategoriesForm({
           ? "Crear Categoria"
           : "Editar Categoria"
       }
+      className="categories-form-dialog"
     >
       <form
         className="categories-form"

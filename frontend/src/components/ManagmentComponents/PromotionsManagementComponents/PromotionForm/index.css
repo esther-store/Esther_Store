@@ -1,4 +1,4 @@
-.categories-form{
+.promotions-form{
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.categories-form button{
+.promotions-form button{
     margin-top:10px;
     background:rgba(84, 84, 84, 1);
 }
@@ -84,6 +84,12 @@
 }
 
 @media (max-width : 500px) {
+    .promotions-form-dialog{
+        width: 95%;
+    }
+    .promotions-form{
+        padding: 10px 0px 0px 0px;
+    }
     .promotion-image-field{
         flex-direction: column;
     }
@@ -98,5 +104,8 @@
     .promotion-form-field label{
         width: 100%;
         text-align: start;
+    }
+    .promotion-form-field > span{
+        width: 100%;
     }
 }

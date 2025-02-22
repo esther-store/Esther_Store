@@ -173,11 +173,7 @@ const ProductFormContent = React.memo(function ProductFormContent({
           className=".p-inputtext-sm"
           disabled={productFormProperties.disabled}
           type="number"
-          defaultValue={
-            productFormProperties.creatingMode
-              ? ""
-              : productFormProperties.initialValues.in_stock
-          }
+          defaultValue={productFormProperties.initialValues.in_stock}
         />
       </div>
       {/*Discount*/}

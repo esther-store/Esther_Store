@@ -186,6 +186,10 @@
 @media (max-width: 540px) {
     .product-form-dialog{
         margin-top: 30px;
+        width: 95%;
+    }
+    .product-form-dialog-content{
+        padding: 10px 5px 10px 5px
     }
     .product-image-field{
         flex-direction: column;
@@ -202,6 +206,12 @@
         justify-content: flex-start;
         align-items: flex-start;
     }
+    .product-form-field > div{
+        width: 100%;
+    }
+    .product-form-field span{
+        width: 100%;
+    }
     .product-form-field input{
         width: 100%;
     }
@@ -215,6 +225,12 @@
         grid-template-columns: repeat(3, 1fr);
         justify-content: center;
         align-items: center;
+    }
+    .product-description-field{
+        gap:10px
+    }
+    .product-form-action-buttons-container{
+        justify-content: center;
     }
 }
 
