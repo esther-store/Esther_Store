@@ -4,12 +4,21 @@ import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotions";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
-import type { CategoryType, PromotionType } from "@/Types";
+import type {
+  CategoryIdType,
+  CategoryType,
+  PromotionIdType,
+  PromotionType,
+} from "@/Types";
 import { Skeleton } from "primereact/skeleton";
+import { CloseIcon } from "@/icons/CloseIcon";
 
 const CategoriePromotionSlider = React.memo(
   function CategoriePromotionSlider() {
-    const [activeItem, setActiveItem] = useState(null);
+    const [activeItem, setActiveItem] = useState<{
+      type: "category" | "promotion";
+      value: PromotionIdType | CategoryIdType;
+    }>(null);
     const { searchParams, getActiveFilter, bulkSetFilters } =
       useContext<any>(QueryFilterContext);
     const {
@@ -26,9 +35,15 @@ const CategoriePromotionSlider = React.memo(
     useEffect(() => {
       let activeFilter = getActiveFilter("categoria");
       if (activeFilter !== "") {
-        setActiveItem(getActiveFilter("categoria"));
+        setActiveItem({
+          type: "category",
+          value: getActiveFilter("categoria"),
+        });
       } else {
-        setActiveItem(getActiveFilter("promotion"));
+        setActiveItem({
+          type: "promotion",
+          value: getActiveFilter("promotion"),
+        });
       }
     }, [categories, promotions, searchParams]);
 
@@ -42,11 +57,14 @@ const CategoriePromotionSlider = React.memo(
               {categories.map((category: CategoryType) => (
                 <li
                   className={
-                    category.id == activeItem ? "category-selected" : null
+                    category.id == activeItem.value &&
+                    activeItem.type === "category"
+                      ? "item-selected"
+                      : null
                   }
                   key={category.id}
                   onClick={() => {
-                    setActiveItem(category.id);
+                    setActiveItem({ type: "category", value: category.id });
                     if (pathname !== "/store") {
                       return navigate(`/store?categoria=${category.id}`);
                     }
@@ -56,17 +74,26 @@ const CategoriePromotionSlider = React.memo(
                     ]);
                   }}
                 >
+                  {category.id == activeItem.value &&
+                  activeItem.type === "category" ? (
+                    <button className = "quit-active-item-button">
+                      <CloseIcon color="#000"/>
+                    </button>
+                  ) : null}
                   <span>{category.nombre}</span>
                 </li>
               ))}
               {promotions.map((promotion: PromotionType) => (
                 <li
                   className={
-                    promotion.id == activeItem ? "category-selected" : null
+                    promotion.id == activeItem.value &&
+                    activeItem.type === "promotion"
+                      ? "item-selected"
+                      : null
                   }
                   key={promotion.id}
                   onClick={() => {
-                    setActiveItem(promotion.id);
+                    setActiveItem({ type: "promotion", value: promotion.id });
                     if (pathname !== "/store") {
                       return navigate(`/store?promotion=${promotion.id}`);
                     }
@@ -76,6 +103,12 @@ const CategoriePromotionSlider = React.memo(
                     ]);
                   }}
                 >
+                  {promotion.id == activeItem.value &&
+                  activeItem.type === "promotion" ? (
+                    <button className = "quit-active-item-button">
+                      <CloseIcon color="#000"/>
+                    </button>
+                  ) : null}
                   <span>{promotion.name}</span>
                 </li>
               ))}

@@ -12,12 +12,15 @@
   flex-direction: row;
   gap: 10px;
   overflow-x: auto;
-  padding: 5px 5px 20px 5px;
+  padding: 10px 5px 20px 5px;
   font-family: "Poppins-Regular";
 }
 
 .categories-side-bar ul::-webkit-scrollbar {
   display: none;
+}
+.categories-side-bar ul li{
+  position: relative;
 }
 
 .categories-side-bar li span {
@@ -30,6 +33,17 @@
   white-space: nowrap;
 }
 
-.category-selected span {
+.item-selected span {
   outline: 1px solid;
+}
+
+.quit-active-item-button{
+  width: 24px;
+  height: 24px;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: -5px;
+  top:-10px;
+  border-radius: 100%;
 }

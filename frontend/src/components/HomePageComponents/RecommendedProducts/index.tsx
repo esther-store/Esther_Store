@@ -28,7 +28,7 @@ export function RecommendedProducts() {
               refetch={refetch}
             />
           </Suspense>
-        ) : products.length === 0 ? (
+        ) : products.length === 0 && !loading && !isError ? (
           <Suspense
             fallback={<Skeleton width="100%" height="400px" className="mr-2" />}
           >
