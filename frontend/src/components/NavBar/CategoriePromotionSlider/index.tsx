@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Suspense } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import QueryFilterContext from "@/context/filtersContext";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useGetPromotions } from "@/hooks/useGetPromotions";
@@ -18,8 +18,8 @@ const CategoriePromotionSlider = React.memo(
     const [activeItem, setActiveItem] = useState<{
       type: "category" | "promotion";
       value: PromotionIdType | CategoryIdType;
-    }>(null);
-    const { searchParams, getActiveFilter, bulkSetFilters } =
+    }>({ type: null, value: null });
+    const { searchParams, getActiveFilter, bulkSetFilters, removeFilter, setFilter } =
       useContext<any>(QueryFilterContext);
     const {
       categories,
@@ -31,19 +31,28 @@ const CategoriePromotionSlider = React.memo(
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    //everytime the categories or promotions change, update the active category
+    //everytime the categories or promotions change, update the active category or promotion
     useEffect(() => {
-      let activeFilter = getActiveFilter("categoria");
-      if (activeFilter !== "") {
-        setActiveItem({
-          type: "category",
-          value: getActiveFilter("categoria"),
-        });
-      } else {
-        setActiveItem({
-          type: "promotion",
-          value: getActiveFilter("promotion"),
-        });
+      if ((categories.length > 0 || promotions.length > 0) && searchParams.size > 0) {
+        const activeCategory = getActiveFilter("categoria");
+        const activePromotion = getActiveFilter("promotion");
+
+        if (activeCategory !== "" && activeCategory != null) {
+          setActiveItem({
+            type: "category",
+            value: activeCategory,
+          });
+        } else if (activePromotion !== "" && activePromotion != null) {
+          setActiveItem({
+            type: "promotion",
+            value: activePromotion,
+          });
+        } else {
+          setActiveItem({
+            type: null,
+            value: null,
+          });
+        }
       }
     }, [categories, promotions, searchParams]);
 
@@ -57,14 +66,13 @@ const CategoriePromotionSlider = React.memo(
               {categories.map((category: CategoryType) => (
                 <li
                   className={
-                    category.id == activeItem.value &&
-                    activeItem.type === "category"
+                    category?.id == activeItem?.value &&
+                    activeItem?.type === "category"
                       ? "item-selected"
                       : null
                   }
                   key={category.id}
                   onClick={() => {
-                    setActiveItem({ type: "category", value: category.id });
                     if (pathname !== "/store") {
                       return navigate(`/store?categoria=${category.id}`);
                     }
@@ -76,8 +84,11 @@ const CategoriePromotionSlider = React.memo(
                 >
                   {category.id == activeItem.value &&
                   activeItem.type === "category" ? (
-                    <button className = "quit-active-item-button">
-                      <CloseIcon color="#000"/>
+                    <button
+                      className="quit-active-item-button"
+                      onClick={() => removeFilter("categoria")}
+                    >
+                      <CloseIcon color="#000" />
                     </button>
                   ) : null}
                   <span>{category.nombre}</span>
@@ -86,14 +97,13 @@ const CategoriePromotionSlider = React.memo(
               {promotions.map((promotion: PromotionType) => (
                 <li
                   className={
-                    promotion.id == activeItem.value &&
-                    activeItem.type === "promotion"
+                    promotion.id == activeItem?.value &&
+                    activeItem?.type === "promotion"
                       ? "item-selected"
                       : null
                   }
                   key={promotion.id}
                   onClick={() => {
-                    setActiveItem({ type: "promotion", value: promotion.id });
                     if (pathname !== "/store") {
                       return navigate(`/store?promotion=${promotion.id}`);
                     }
@@ -105,8 +115,11 @@ const CategoriePromotionSlider = React.memo(
                 >
                   {promotion.id == activeItem.value &&
                   activeItem.type === "promotion" ? (
-                    <button className = "quit-active-item-button">
-                      <CloseIcon color="#000"/>
+                    <button
+                      className="quit-active-item-button"
+                      onClick={() => removeFilter("promotion")}
+                    >
+                      <CloseIcon color="#000" />
                     </button>
                   ) : null}
                   <span>{promotion.name}</span>

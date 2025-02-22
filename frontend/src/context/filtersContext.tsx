@@ -55,13 +55,14 @@ export function QueryFiltersContextProvider({ children }) {
     setSearchParams({});
   }
 
-  const removeFilter = function removeFilter(name: string) {
+  function removeFilter(name: string) {
+    console.log(name)
     let params = new URLSearchParams(searchParams);
     params.delete(name);
     setSearchParams(params);
   };
 
-  function getActiveFilter(name: string) {
+  function getActiveFilter(name: string): string {
     /*get the active value in the url query params of the filter given*/
     let params = new URLSearchParams(searchParams);
     let filterValue = params.get(name);
