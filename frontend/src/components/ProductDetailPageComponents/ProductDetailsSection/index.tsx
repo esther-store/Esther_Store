@@ -45,11 +45,13 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
         )}
       </aside>
       <header>
+        <h1>
         {loading ? (
-          <Skeleton width="100%" height="25px" />
+          <Skeleton width="100%" height="25px"/>
         ) : (
-          <h1>{product?.product_name}</h1>
+          product?.product_name
         )}
+        </h1>
       </header>
       <section>
         {loading ? (
