@@ -48,11 +48,11 @@ describe('Search Component', () => {
     expect(input).toHaveValue('test search');
   });
 
-  it('navigates to store page with search query when on home page', async () => {
+  it('navigates to store page with search query when on home page or product detail page', async () => {
     render(
       <BrowserRouter>
         <QueryFiltersContextProvider>
-          <Search />
+          <Search redirectToStoreOnSearch = {true}/>
         </QueryFiltersContextProvider>
       </BrowserRouter>
     );
@@ -65,4 +65,5 @@ describe('Search Component', () => {
 
     expect(mockNavigate).toHaveBeenCalledWith('/store?search=test+search');
   });
+
 });
