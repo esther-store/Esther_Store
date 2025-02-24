@@ -22,7 +22,7 @@ function Login() {
     e.preventDefault();
     handleLogin({email:e.target["email"].value, pass:e.target["password"].value, callback:(success) => {
       if(success == 'ok'){
-        navigate(-1)
+        navigate("/")
       }
       else{
         showToast({
