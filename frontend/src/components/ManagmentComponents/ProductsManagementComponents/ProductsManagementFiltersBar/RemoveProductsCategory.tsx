@@ -20,7 +20,7 @@ export function RemoveProductsCategory({showCheckboxes, setShowCheckboxes, selec
             },
           })}
           {multipleProductsCategoryDeletionButton({
-              buttonText: "Eliminar Categoría",
+              buttonText: "Quitar Categoría",
               onPress: () => {
                 if (showCheckboxes) {
                   return otherActiveActionError(toast);

@@ -13,6 +13,7 @@ function PerformMultipleButton() {
     buttonText = "Eliminar",
     Icon = <TrashIcon />,
     onPress = () => {},
+    evoidHideSpanOnMobile = false
   }) => (
     <button
       className="products-management-filters-bar-button btn-general-styles"
@@ -22,7 +23,7 @@ function PerformMultipleButton() {
       }}
     >
       {Icon}
-      <span>{buttonText}</span>
+      <span style = {evoidHideSpanOnMobile?{display:"block"}:null}>{buttonText}</span>
     </button>
   );
 
