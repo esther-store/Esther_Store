@@ -2,8 +2,7 @@ import "./index.css";
 import { useGetPromotions } from "@/hooks/useGetPromotions";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductCard from "@/components/StorePageComponents/ProductsGrid/ProductCard";
-import React, { useRef, useState, Suspense } from "react";
-import { Toast } from "primereact/toast";
+import React, { useState, Suspense } from "react";
 import { NavigationPoints } from "./NavigationPoints";
 import { Link } from "react-router-dom";
 import { Skeleton } from "primereact/skeleton";
@@ -12,7 +11,6 @@ const RetryQueryComponent = React.lazy(
 );
 
 export function HomePagePromotions() {
-  const toastRef = useRef(null);
   const { promotions, loadingPromotions, isError, refetch } = useGetPromotions({
     searchParams: "is_special=true",
   });
@@ -32,7 +30,6 @@ export function HomePagePromotions() {
 
   return (
     <article className="homepage-promotions-section">
-      <Toast ref={toastRef} position="bottom-center" />
       <h1>Promociones</h1>
       {loadingPromotions ? (
         <div
@@ -68,7 +65,7 @@ export function HomePagePromotions() {
               <Link key={product.id} to={`/store/product/${product.id}`}>
                 <ProductCard
                   product={product}
-                  toastRef={toastRef}
+                  toastRef={null}
                   showAddToCartButton={false}
                 />
               </Link>

@@ -61,7 +61,7 @@ export default function ProductDetailPage({}) {
         </Suspense>
       ) : (
         <>
-          <Toast ref={toastRef} position="bottom-center" />
+          <Toast ref={toastRef} position="bottom-center" style={{zIndex:"999"}} className="toast-mobile-styles"/>
           <button
             className="product-detail-page-button-go-back"
             onClick={() => history.back()}

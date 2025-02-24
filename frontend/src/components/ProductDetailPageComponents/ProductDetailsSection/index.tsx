@@ -16,7 +16,7 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
   loading: boolean;
   toastRef: ReactNode;
 }) {
-  const { addProductToCart, checkProductInCart } = useContext<any>(CartContext);
+  const { addProductToCart } = useContext<any>(CartContext);
   const images = [
     {
       src: product?.product_img1,
@@ -34,7 +34,6 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
       id: 2,
     },
   ];
-  const productInCart = checkProductInCart(product?.id);
   return (
     <article className="product-details-section">
       <aside>
@@ -78,24 +77,22 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
         ) : (
           <button
             onClick={() => {
-              if (!productInCart) {
-                addProductToCart({
-                  id: product?.id,
-                  img1: product?.product_img1,
-                  price: product.price_with_discounts,
-                  productName: product.product_name,
-                });
-                showToast({
-                  toastRef: toastRef,
-                  severity: "success",
-                  summary: "",
-                  life: 1000,
-                  detail: `Producto agregado correctamente`,
-                });
-              }
+              addProductToCart({
+                id: product?.id,
+                img1: product?.product_img1,
+                price: product.price_with_discounts,
+                productName: product.product_name,
+              });
+              showToast({
+                toastRef: toastRef,
+                severity: "success",
+                summary: "",
+                life: 800,
+                detail: `Producto agregado correctamente`,
+              });
             }}
           >
-            {productInCart ? "Agregado al carrito" : "Agregar al carrito"}
+            Agregar al carrito
           </button>
         )}
       </footer>

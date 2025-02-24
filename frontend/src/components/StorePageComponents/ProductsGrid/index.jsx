@@ -37,7 +37,7 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
         </Suspense>
       ) : (
         <section className="products-grid-and-paginator-container">
-          <Toast ref={toastRef} position="bottom-center" style={{zIndex:"999"}}/>
+          <Toast ref={toastRef} position="bottom-center" className="toast-mobile-styles" style={{zIndex:"999"}}/>
           {products == null || products?.length === 0 ? (
             <div className="products-grid-not-found-message">
               <strong>No hay productos</strong>

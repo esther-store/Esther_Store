@@ -1,7 +1,7 @@
 import type { CartProductType, ProductIdType } from "@/Types";
 import React, { useState, useCallback, useMemo } from "react";
 
-const CartContext = React.createContext([]);
+const CartContext = React.createContext<any>([]);
 
 export function CartContextProvider({ children }) {
   const [productsCart, setProductCart] = useState([]);

@@ -26,4 +26,19 @@ button:hover{
   background-color: transparent;
 }
 
+@media (max-width:500px){
+  .toast-mobile-styles{
+    width: 250px;
+    font-size: 14px;
+}
+.toast-mobile-styles .p-toast-message-content{
+    align-items: center;
+    padding: 5px;
+}
+.toast-mobile-styles svg{
+    width: 15px;
+    height: 15px;
+}
+}
+
 

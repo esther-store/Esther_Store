@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const QueryFiltersContext = React.createContext("");
+const QueryFiltersContext = React.createContext<any>("");
 
 export function QueryFiltersContextProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();

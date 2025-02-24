@@ -9,7 +9,7 @@ export const showToast = ({
     severity: "success" | "error",
     summary: string,
     detail: string,
-    life?: 1000 | 3000 | 5000
+    life?: 800 | 1000 | 3000 | 5000
   }) => {
     toastRef.current.show({
       severity: severity,
