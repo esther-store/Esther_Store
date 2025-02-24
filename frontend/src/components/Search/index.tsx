@@ -5,7 +5,7 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { useNavigate, useLocation } from "react-router-dom";
 import { debounce } from "@/utils/debounce";
 
-const Search = React.memo(function Search() {
+const Search = React.memo(function Search({redirectToStoreOnSearch = false}:{redirectToStoreOnSearch?:boolean}) {
   const { setFilter, getActiveFilter, removeFilter } =
     useContext<any>(QueryFiltersContext);
   const [searchingValue, setSearchingValue] = useState<string>("");
@@ -20,7 +20,7 @@ const Search = React.memo(function Search() {
       ) {
         return removeFilter("search");
       }
-      if (pathname === "/") {
+      if (redirectToStoreOnSearch) {
         return navigate(`/store?search=${searchValue.split(" ").join("+")}`);
       }
       return setFilter({ name: "search", value: searchValue });
