@@ -172,6 +172,7 @@
 @media (max-width: 500px){
     .product-details-section{
         padding: 0 20px 20px 20px;
+        margin-top: 20px;
     }
     .product-details-section > aside{
         width: 100%;
