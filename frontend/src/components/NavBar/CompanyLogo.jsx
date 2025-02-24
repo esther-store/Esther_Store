@@ -1,8 +1,8 @@
 import Logo from "@/assets/Logo.webp"
 
-export function CompanyLogo(){
+export function CompanyLogo({style = null}){
     return(
-        <div style = {styles.container}>
+        <div style = {style?style:styles.container}>
             <img src={Logo.src} width={50} height={40}></img>
             <h1 style = {styles.h1}>Esther</h1>
         </div>
