@@ -80,7 +80,7 @@ function ManagementCategories() {
             handleDeleteMultipleCategories={handleDeleteCategories}
             selectedCategories={selectedCategories}
           >
-            {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
+            {performMultipleButton({ onPress: () => setShowCheckboxes(true), evoidHideSpanOnMobile: true })}
             {confirmMultiple({
               onCancel: () => {
                 setShowCheckboxes(false);

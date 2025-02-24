@@ -149,7 +149,7 @@ function ManagementProducts() {
             loading={loadingProducts}
           />
           <div className="products-management-page-active-filter-component-container">
-            <ActiveFilters />
+            <ActiveFilters excludedFilters={["search"]}/>
           </div>
           {products.length === 0 && !loadingProducts && !errorGettingProducts?
           <div style = {{textAlign:"center", marginTop:"100px", fontFamily:"Poppins-Regular"}}>No hay Productos</div>

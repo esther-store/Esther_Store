@@ -44,7 +44,7 @@ export default function ManagementPromotions() {
       <RemovePageLoader />
       <ManagementProductsPageHeader title="Administrar Promociones" justifyContent="center"/>
       <ButtonsAddAndDelete setCategoryFormProperties={setPromotionFormProperties}>
-      {performMultipleButton({ onPress: () => setShowCheckboxes(true) })}
+      {performMultipleButton({ onPress: () => setShowCheckboxes(true), evoidHideSpanOnMobile:true })}
             {confirmMultiple({
               onCancel: () => {
                 setShowCheckboxes(false);
