@@ -1,27 +1,68 @@
 from django.forms import ValidationError
 from rest_framework import serializers
 from .models import ContactInfo
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError as DjangoValidationError
+import re
 
 class ContactInfoSerializer(serializers.ModelSerializer):
     whatsapp = serializers.CharField(required=True)
-    email = serializers.CharField(required=True)
+    email = serializers.EmailField(required=True)
+    
     class Meta:
         model = ContactInfo
         fields = "__all__"
     
-    #validate if whatsapp number starts with country code and have not blank spaces
     def validate(self, data):
-        try:
-            whatsapp = data["whatsapp"]
-            if whatsapp.startswith("+") == False:
-                raise ValidationError(message="Country code must be included")
-            if ' ' in whatsapp:
-                raise ValidationError(message="Number can't include spaces")
-            if len(whatsapp) < 11:
-                raise ValidationError(message="Whatsapp number not valid")
-        except ValidationError as e:
-            raise serializers.ValidationError({"whatsapp":e.message}) 
-        except:
-            pass  
+        errors = {}
+        
+        # Email
+        if 'email' in data and not data['email']:
+            errors['email'] = "Debes ingresar un email válido"
+        
+        # WhatsApp
+        if 'whatsapp' in data:
+            try:
+                self.validate_phone_number(data['whatsapp'], 'WhatsApp')
+            except ValidationError as e:
+                errors['whatsapp'] = str(e)
+        
+        # Phone
+        if 'phone' in data:
+            try:
+                self.validate_phone_number(data['phone'], 'Teléfono')
+            except ValidationError as e:
+                errors['phone'] = str(e)
+        
+        # Facebook
+        if 'facebook' in data:
+            try:
+                self.validate_url(data['facebook'], 'Facebook')
+            except ValidationError as e:
+                errors['facebook'] = str(e)
+        
+        # Instagram
+        if 'instagram' in data:
+            try:
+                self.validate_url(data['instagram'], 'Instagram')
+            except ValidationError as e:
+                errors['instagram'] = str(e)
+
+        if errors:
+            raise serializers.ValidationError(errors)
         return data
-           
+    
+    def validate_phone_number(self, number, field):
+        if len(number) != 11:
+            raise ValidationError(f"El número de {field} no es válido")
+        patron = r'^(\+?1?)?(\d{10}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4}|\(\d{3}\)[-.\s]?\d{3}[-.\s]?\d{4})$'
+        if not re.match(patron, number):
+            raise ValidationError(f"Debes ingresar un número de {field} válido. Ej: +5354535170")
+
+    def validate_url(self, url, field_name):
+        if url:
+            try:
+                URLValidator()(url)
+            except DjangoValidationError:
+                raise ValidationError(f"La URL de {field_name} no es correcta")
+

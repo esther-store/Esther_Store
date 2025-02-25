@@ -103,6 +103,7 @@ function ManagementContact() {
               <InputText
                 disabled={edittingContactInfo === true}
                 name="email"
+                type="email"
                 required
                 defaultValue={contact.email}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}

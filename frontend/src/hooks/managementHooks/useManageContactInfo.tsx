@@ -7,6 +7,7 @@ import { useContext } from "react";
 import AuthenticationContext from "@/context/authenticationContext";
 import type { ContactInfoIdType, ContactInfoType } from "@/Types";
 import { showToast } from "@/utils/showToast";
+import { validateContactInfo } from "@/utils/validateContactInfo";
 
 export function useManageContactInfo({ toast }) {
   const { auth } = useContext<any>(AuthenticationContext);
@@ -35,6 +36,7 @@ export function useManageContactInfo({ toast }) {
       id: ContactInfoIdType;
       info: ContactInfoType;
     }) => {
+      validateContactInfo(info)
       return editContactInfo({ id: id, info: info, token: auth?.token });
     },
     onError: (err) => {

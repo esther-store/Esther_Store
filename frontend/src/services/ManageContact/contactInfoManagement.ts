@@ -33,13 +33,19 @@ export function editContactInfo({ id, info, token }) {
       });
     } else {
       return res.json().then((data) => {
-        if(data?.whatsapp == 'Country code must be included'){
-          throw new Error("El # de Whatsapp debe incluir el código de país")
-        }else if(data?.whatsapp == "Number can't include spaces"){
-          throw new Error("El # de Whatsapp no puede tener espacios en blanco")
-        }else if(data?.whatsapp){
-          throw new Error(data?.whatsapp)
-        }else{
+        if (data.whatsapp) {
+          throw new Error(data.whatsapp);
+        } else if (data.phone) {
+          throw new Error(`Teléfono: ${data.phone}`);
+        } else if (data.email) {
+          throw new Error(`Email: ${data.email}`);
+        } else if (data.facebook) {
+          throw new Error(`Facebook: ${data.facebook}`);
+        } else if (data.instagram) {
+          throw new Error(`Instagram: ${data.instagram}`);
+        } else if (data.detail) {
+          throw new Error(data.detail);
+        } else {
           throw new Error("Error al editar la info de contacto");
         }
       });
