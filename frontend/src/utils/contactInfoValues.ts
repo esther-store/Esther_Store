@@ -6,7 +6,6 @@ export function createContactInfoToEdit(e){
         location: e?.target["location"]?.value,
         facebook: e?.target["facebook"]?.value,
         instagram: e?.target["instagram"]?.value,
-        telegram: e?.target["telegram"]?.value,
       };
     return info  
 }

@@ -4,6 +4,7 @@ from .models import ContactInfo
 
 class ContactInfoSerializer(serializers.ModelSerializer):
     whatsapp = serializers.CharField(required=True)
+    email = serializers.CharField(required=True)
     class Meta:
         model = ContactInfo
         fields = "__all__"

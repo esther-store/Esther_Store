@@ -78,19 +78,6 @@ function ManagementContact() {
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </li>
-
-            {/*Telegram*/}
-            <li className="element-contact p-inputgroup">
-              <span className="p-inputgroup-addon">
-                <i className="pi pi-telegram"></i>
-              </span>
-              <InputText
-                disabled={edittingContactInfo === true}
-                name="telegram"
-                defaultValue={contact.telegram}
-                style={{ minWidth: "160px", maxWidth: "15rem" }}
-              />
-            </li>
           </ul>
 
           <h2>Información de Contacto</h2>
@@ -116,6 +103,7 @@ function ManagementContact() {
               <InputText
                 disabled={edittingContactInfo === true}
                 name="email"
+                required
                 defaultValue={contact.email}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />

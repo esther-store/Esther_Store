@@ -55,10 +55,9 @@ export function RecommendedProducts() {
       </header>
       <section>
         <p>
-          Te presentamos lo mejor valorado, más buscado y comprado de nuestra tienda. 
-          Aquí encontrarás las últimas tendencias en moda, seleccionadas
-          cuidadosamente para satisfacer tus gustos y necesidades.  Desde prendas básicas hasta accesorios únicos,
-          cada artículo ha sido elegido por su originalidad y popularidad entre
+          Te presentamos lo <strong>mejor valorado, más buscado y comprado</strong> de nuestra tienda. 
+          Desde prendas básicas hasta accesorios únicos,
+          <strong> cada artículo ha sido elegido por su originalidad</strong> y popularidad entre
           nuestros clientes. <strong>¡Comienza a comprar ahora mismo!</strong>
         </p>
       </section>

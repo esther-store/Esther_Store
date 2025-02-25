@@ -84,13 +84,12 @@ export type CartProductType = {
 
 export type ContactInfoType = {
   readonly id?: ContactInfoIdType;
-  phone: string 
+  phone?: string 
   whatsapp: string
-  email?: string 
+  email: string 
   location?: string 
   facebook?: string 
   instagram?: string 
-  telegram?: string 
 }
 
 export type DeliveryInfoType = {

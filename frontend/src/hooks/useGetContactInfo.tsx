@@ -1,3 +1,4 @@
+import type { ContactInfoType } from "@/Types";
 import { getContactInfo } from "../services/getContactInfo";
 import { useQuery } from "@tanstack/react-query";
 
@@ -7,7 +8,7 @@ export function useGetContactInfo() {
     queryFn: () => getContactInfo(),
     staleTime: 1000 * 60 * 15
   });
-  const contactInfo = data || [];
+  const contactInfo: ContactInfoType = data || [];
 
   return { contactInfo };
 }
