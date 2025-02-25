@@ -4,12 +4,13 @@ import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
 import { CompanyLogo } from "./CompanyLogo";
 import Cart from "../Cart";
-import NavbarDropdown from "./NavbarDropdown";
 import Search from "../Search";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { FilterIcon } from "@/icons/FilterIcon";
 import { Skeleton } from "primereact/skeleton";
+import AuthenticationContext from "@/context/authenticationContext";
 
+const NavbarDropdown = lazy(() => import("./NavbarDropdown"));
 const CategoriePromotionSlider = lazy(() =>
   import("@/components/NavBar/CategoriePromotionSlider")
 );
@@ -21,6 +22,7 @@ const OrderingProducts = lazy(() =>
 
 function NavBar() {
   const { pathname } = useLocation();
+  const { auth } = useContext(AuthenticationContext);
 
   function scrollToElement(id) {
     document.getElementById(id).scrollIntoView({
@@ -78,7 +80,6 @@ function NavBar() {
                 <PromotionsDropdown onPromotionsSelect={() => {}} />
               </Suspense>
             </li>
-            <li className="navbar-recommended-products-container"></li>
             <li
               className="navbar-categories-container"
               style={{ position: "relative", right: "20px" }}
@@ -107,9 +108,9 @@ function NavBar() {
             >
               <OrderingProducts
                 style={{
-                  width: "30px",
+                  width: "40px",
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "flex-end",
                 }}
                 placeholder=""
                 fixedPlaceholder={true}
@@ -122,7 +123,11 @@ function NavBar() {
           <Cart />
         </li>
         <li className="navbar-dropdown-container">
-          <NavbarDropdown />
+        {auth?.token ? (
+            <Suspense fallback={<Skeleton width="100%" height="25px" />}>
+              <NavbarDropdown />
+            </Suspense>
+        ) : null}
         </li>
         <li className="navbar-categories-list-container">
           <Suspense

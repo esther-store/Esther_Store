@@ -9,9 +9,6 @@ import CloseSession from "./optionsComponents/CloseSession"
 const ChangePassword = React.lazy(() =>
   import("./optionsComponents/ChangePassword")
 );
-const NavigateToContact = React.lazy(() =>
-  import("./optionsComponents/NavigateToContact")
-);
 const ManageCategories = React.lazy(() =>
   import("./optionsComponents/ManageCategories")
 );
@@ -97,15 +94,7 @@ export default NavbarDropdown;
 const skeletonsWidth = 260
 const skeletonsHeight = 30
 
-const basicOptions = [
-  {
-    component: (
-      <Suspense fallback={<Skeleton width={skeletonsWidth} height={skeletonsHeight} />}>
-        <NavigateToContact />
-      </Suspense>
-    ),
-  },
-];
+const basicOptions = [];
 
 const onlyAdminUsersOptions = [
   {

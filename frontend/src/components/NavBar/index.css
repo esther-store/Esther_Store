@@ -5,6 +5,7 @@
   height: 100px;
   z-index: 10;
   position: relative;
+  overflow: hidden;
 }
 
 .navbar a{
@@ -16,7 +17,7 @@
   list-style: none;
   margin: 0 auto;
   display:grid;
-  grid-template-columns: auto auto auto auto 1fr 30px 30px;
+  grid-template-columns: auto auto auto auto 1fr auto auto;
   grid-template-areas: "logo promotions recommended-products categories search cart dropdown";
   gap:30px;
   align-items: center;
@@ -42,14 +43,17 @@
 
 .navbar .navbar-promotions-container{
   grid-area: promotions;
+  width: 130px;
 }
 
 .navbar .navbar-recommended-products-container{
   grid-area: recommended-products;
+  width: 130px;
 }
 
 .navbar .navbar-categories-container{
   grid-area: categories;
+  width: 130px;
 }
 
 .navbar .navbar-search-container{
@@ -58,11 +62,16 @@
 
 .navbar .navbar-cart-container{
   grid-area: cart;
+  width: 30px;
 }
 
 .navbar .navbar-dropdown-container{
   grid-area: dropdown;
   overflow-x: hidden;
+  width: 30px;
+}
+.navbar .navbar-dropdown-container:empty{
+  display: none;
 }
 
 .navbar .navbar-categories-list-container{
@@ -70,10 +79,10 @@
   display: none;
 }
 
-@media (min-width:850px) and (max-width:1100px) {
+@media (min-width:900px) and (max-width:1100px) {
   .navbar ul{
     width: 98%;
-    gap:20px;
+    gap:30px;
   }
   .navbar .navbar-homepage-link{
     font-size: 14px;
@@ -83,7 +92,7 @@
   }
 }
 
-@media (max-width:850px){
+@media (max-width:900px){
   .navbar{
     height: auto;
   }
@@ -98,19 +107,18 @@
   }
   .navbar .navbar-categories-list-container{
     display: block;
-    width: 110%;
-    margin-left: -5%;
+    width: 100%;
   }
   .navbar ul{
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 1fr 20px 20px;
+    width: 95%;
+    grid-template-columns: 1fr auto auto;
     grid-template-areas: 
     "logo logo logo"
     "search cart dropdown"
     "categories-list categories-list categories-list"
     ;
     padding-top: 20px;
-    gap:10px 30px 
+    gap:10px 20px;
   }
 }
 
