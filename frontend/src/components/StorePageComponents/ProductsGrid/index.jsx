@@ -50,7 +50,7 @@ export const ProductsGrid = React.memo(function ProductsGrid() {
                     <ProductCard
                       toastRef={toastRef}
                       product={product}
-                      onClick={() => navigate(`product/${product.id}`)}
+                      to = {`product/${product.id}`}
                     />
                   </div>
                 ))}

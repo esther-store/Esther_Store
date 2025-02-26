@@ -4,7 +4,6 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductCard from "@/components/StorePageComponents/ProductsGrid/ProductCard";
 import React, { useState, Suspense } from "react";
 import { NavigationPoints } from "./NavigationPoints";
-import { Link } from "react-router-dom";
 import { Skeleton } from "primereact/skeleton";
 const RetryQueryComponent = React.lazy(
   () => import("@/components/RetryQueryComponent")
@@ -62,16 +61,18 @@ export function HomePagePromotions() {
         <section className="cards-container">
           {products.length > 0 ? (
             products.map((product) => (
-              <Link key={product.id} to={`/store/product/${product.id}`}>
-                <ProductCard
-                  product={product}
-                  toastRef={null}
-                  showAddToCartButton={false}
-                />
-              </Link>
+              <ProductCard
+                key={product.id}
+                product={product}
+                toastRef={null}
+                showAddToCartButton={false}
+                to={`/store/product/${product.id}`}
+              />
             ))
           ) : (
-            <div style={styles.noProductsCard}>No hay productos en esta promoción</div>
+            <div style={styles.noProductsCard}>
+              No hay productos en esta promoción
+            </div>
           )}
         </section>
       )}
@@ -112,7 +113,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    fontFamily:'Poppins-Regular',
-    boxShadow:" 1px 1px 3px rgb(202, 201, 201)"
+    fontFamily: "Poppins-Regular",
+    boxShadow: " 1px 1px 3px rgb(202, 201, 201)",
   },
 };
