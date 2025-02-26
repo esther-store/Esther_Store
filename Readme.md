@@ -33,7 +33,7 @@ Este proyecto es una tienda online de ropa que utiliza Astro + React para el fro
 
 1. Clonar el repositorio:
    ```
-   git clone https://github.com/lazaroah02/Esther_Store.git
+   git clone https://github.com/esther-store/Esther_Store.git
    ```
 
 2. Navegar al directorio del frontend:
