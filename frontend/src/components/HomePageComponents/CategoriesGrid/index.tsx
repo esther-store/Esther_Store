@@ -50,7 +50,7 @@ export function CategoriesGrid() {
         <main className="homepage-categories-grid">
           {categories.map((category) => (
             <Link key={category.id} to={`/store?categoria=${category.id}`}>
-              <img src={category.img} />
+              <img src={category.img} alt = {category.nombre}/>
               <div>{category.nombre}</div>
             </Link>
           ))}

@@ -3,7 +3,7 @@ import Logo from "@/assets/Logo.webp"
 export function CompanyLogo({style = null}){
     return(
         <div style = {style?style:styles.container}>
-            <img src={Logo.src} width={50} height={40}></img>
+            <img src={Logo.src} width={50} height={40} alt = "Esther Store Logo"></img>
             <h1 style = {styles.h1}>Esther</h1>
         </div>
     )
