@@ -43,31 +43,31 @@ function NavBar() {
         {pathname === "/" ? (
           <>
             <li className="navbar-promotions-container">
-              <a
+              <span
                 className="navbar-homepage-link"
                 onClick={() => scrollToElement("promotions")}
               >
                 Promociones
-              </a>
+              </span>
             </li>
             <li
               className="navbar-recommended-products-container"
               style={{ maxWidth: "130px" }}
             >
-              <a
+              <span
                 className="navbar-homepage-link"
                 onClick={() => scrollToElement("recommended-products")}
               >
                 Productos Recomendados
-              </a>
+              </span>
             </li>
             <li className="navbar-categories-container ">
-              <a
+              <span
                 className="navbar-homepage-link"
                 onClick={() => scrollToElement("categories")}
               >
                 Categorías
-              </a>
+              </span>
             </li>
           </>
         ) : (
