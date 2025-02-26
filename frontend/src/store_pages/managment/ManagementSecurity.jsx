@@ -182,7 +182,7 @@ function ManagementSecurity() {
           <Loader />
         </div>
       ) : null}
-      <Toast ref={toast} position="bottom-center" />
+      <Toast ref={toast} position="bottom-center" className = "toast-mobile-styles"/>
       <ConfirmDialog />
       <InfoUser
         editable={false}

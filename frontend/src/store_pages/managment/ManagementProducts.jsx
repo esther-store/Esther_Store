@@ -59,7 +59,7 @@ function ManagementProducts() {
     <section className="products-management-page">
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader />
-      <Toast ref={toast} position="bottom-center" style = {{zIndex:"999"}}/>
+      <Toast ref={toast} position="bottom-center" style = {{zIndex:"999"}} className = "toast-mobile-styles"/>
       <ManagementProductsPageHeader />
       {errorGettingProducts ? (
         <section

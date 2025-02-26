@@ -25,7 +25,7 @@ function ManagementContact() {
     <main className="manage-contact-page">
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader />
-      <Toast ref={toast} position="top-left" />
+      <Toast ref={toast} position="bottom-center" className = "toast-mobile-styles"/>
       <ManagementProductsPageHeader
         title="Gestión de Contacto"
         justifyContent="center"

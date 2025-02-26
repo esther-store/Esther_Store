@@ -45,7 +45,7 @@ export function useManageContactInfo({ toast }) {
         detail: err.message,
         severity: "error",
         summary: 'Error',
-        life: 3000,
+        life: 1000,
       });
     },
     onSuccess: () => {
@@ -55,7 +55,7 @@ export function useManageContactInfo({ toast }) {
         detail: "Operación Exitosa",
         severity: "success",
         summary: "Éxito",
-        life: 3000,
+        life: 1000,
       });
     },
   });

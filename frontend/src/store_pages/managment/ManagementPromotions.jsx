@@ -33,7 +33,7 @@ export default function ManagementPromotions() {
   return (
     <article>
       <meta name="robots" content="noindex"></meta>
-      <Toast ref={toast} position="bottom-center" />
+      <Toast ref={toast} position="bottom-center" className = "toast-mobile-styles"/>
       <PromotionForm
         promotionFormProperties={promotionFormProperties}
         setPromotionFormProperties={setPromotionFormProperties}

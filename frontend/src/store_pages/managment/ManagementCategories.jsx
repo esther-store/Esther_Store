@@ -45,7 +45,7 @@ function ManagementCategories() {
     <main style={{ width: "100%", minHeight: "90vh" }}>
       <meta name="robots" content="noindex"></meta>
       <RemovePageLoader />
-      <Toast ref={toast} position="bottom-center" />
+      <Toast ref={toast} position="bottom-center" className = "toast-mobile-styles"/>
       <ManagementProductsPageHeader title="Categories Management" justifyContent="center"/>
       {loadingCategories ? (
         <section style={styles.loaderContainer}>
