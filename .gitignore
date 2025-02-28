@@ -39,3 +39,6 @@ wsl_env
 # test coverage
 coverage
 
+#cache
+django_cache
+

@@ -113,7 +113,7 @@ else:
     }
 
 # Cache
-if config('USE_CACHE') == '1':
+if config('USE_REDIS_CACHE') == '1':
     CACHES = {
         "default": {
             "BACKEND": "django_redis.cache.RedisCache",
@@ -123,6 +123,23 @@ if config('USE_CACHE') == '1':
             }
         }
     }
+elif config('USE_FILE_BASED_CACHE') == '1':
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+            'LOCATION': os.path.join(BASE_DIR, 'django_cache')
+        }
+    }
+elif config('USE_MEMORY_BASED_CACHE') == '1':   
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',
+        }
+    }
+else:
+    pass
+        
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
