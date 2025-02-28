@@ -76,18 +76,26 @@ Este proyecto es una tienda online de ropa que utiliza Astro + React para el fro
 
 4. Configurar .env file
     ```
+    # This first variables are for configuration purpose. Must be 1 or 0
+
+    #Define wheter use Postgres Database (0) or sqlite3 database (1)
+    USE_DEBUG_DATABASE = 0
+
+    DEBUG_SERVER = 1
+
+    USE_REDIS_CACHE = 0
+    USE_FILE_BASED_CACHE = 0
+    USE_MEMORY_BASED_CACHE = 0
+
     #Email backend configuration
     EMAIL_HOST_USERNAME = ''
     EMAIL_HOST_PASSWORD = ''
 
-    #Chache configuration
+    #Redis Chache configuration
     REDIS_HOST = ""
     REDIS_PORT = 
     REDIS_USERNAME = ''
     REDIS_PASSWORD = ''
-
-    #Define wheter use Postgres Database (0) or sqlite3 database (1)
-    USE_DEBUG_DATABASE = 0
 
     POSTGRES_DATABASE_NAME = ''
     POSTGRES_DATABASE_HOST = ''
