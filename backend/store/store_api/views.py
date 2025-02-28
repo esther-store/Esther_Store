@@ -12,10 +12,11 @@ from .paginators import NoPagination
 from django.db.models import Q
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
-User = get_user_model()
 from decouple import config
+from store.settings import DEBUG
+User = get_user_model()
 
-if config('USE_CACHE') == '0':
+if DEBUG == True:
     CACHE_TIME = 0
 else:
     CACHE_TIME = 60 * 5    
