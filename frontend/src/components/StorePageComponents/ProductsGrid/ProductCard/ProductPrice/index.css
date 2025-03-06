@@ -8,10 +8,12 @@
     font-family: 'Poppins-Medium';
     letter-spacing: 1.25px;
     opacity: .8;
+    white-space: nowrap;
 }
 
 .price span{
     max-height: 24px;
+    white-space: nowrap;
 }
 
 .price-with-discount .original-price{
@@ -19,6 +21,7 @@
     font-size: 13px;
     letter-spacing: 1px;
     opacity: .5;
+    white-space: nowrap;
 }
 
 @media (min-width:500px) and (max-width: 700px){
