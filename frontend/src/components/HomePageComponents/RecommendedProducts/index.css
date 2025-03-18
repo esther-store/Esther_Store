@@ -51,6 +51,8 @@
 .homepage-recommended-products > aside .pictures-details{
     border-radius: 15px;
     background-color: transparent;
+    max-height: 500px;
+    overflow-y: hidden;
 }
 .homepage-recommended-products > aside img{
     border-radius: 15px;

@@ -4,6 +4,7 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductCard from "@/components/StorePageComponents/ProductsGrid/ProductCard";
 import React, { useState, Suspense } from "react";
 import { NavigationPoints } from "./NavigationPoints";
+import { Link } from "react-router-dom";
 import { Skeleton } from "primereact/skeleton";
 const RetryQueryComponent = React.lazy(
   () => import("@/components/RetryQueryComponent")
@@ -37,7 +38,7 @@ export function HomePagePromotions() {
           <Skeleton width="150px" height="25px" />
         </div>
       ) : !isError ? (
-        <h2>{currentPromotion?.name}</h2>
+        <Link to = {`/store?promotion=${currentPromotion?.id}`}><h2>{currentPromotion?.name}</h2></Link>
       ) : null}
       {loading ? (
         <CardsSkeleton />
