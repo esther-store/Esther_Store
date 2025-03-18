@@ -93,11 +93,14 @@
     .homepage-promotions-section > h1{
         font-size: 20px;
     }
-    .homepage-promotions-section > h2{
-        font-size: 30px;
+    .homepage-promotions-section > a h2{
+        font-size: 35px;
     }
     .homepage-promotions-section .points-container .point{
         width: 10px;
         height: 12px;
+    }
+    .homepage-promotions-section .cards-container .img-container{
+        max-height: 150px;
     }
 }

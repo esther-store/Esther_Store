@@ -27,11 +27,11 @@
 
 .img-container {
     width: 100%;
-    flex-grow: 1;
     max-height: 330px;
     display: flex;
     align-items: top;
     justify-content: center;
+    flex-grow: 1;
   }
 
 .img-container a{
@@ -127,9 +127,6 @@
 @media (max-width:500px) {
   .product-card-name{
     font-size: 14px;
-  }
-  .img-container {
-    max-height: 150px;
   }
 }
 
