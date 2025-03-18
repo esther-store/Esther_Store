@@ -12,7 +12,8 @@
     transition: box-shadow 0.3s linear;
     display:flex;
     flex-direction: column;
-    gap:10px
+    gap:10px;
+    margin: 0 auto
 }
 
 .product-card:hover{
@@ -27,7 +28,7 @@
 .img-container {
     width: 100%;
     flex-grow: 1;
-    max-height: 86%;
+    max-height: 330px;
     display: flex;
     align-items: top;
     justify-content: center;
@@ -117,11 +118,18 @@
   .product-card{
     padding: 8px;
   }
+
+  .img-container {
+    max-height: 200px;
+  }
 }
 
 @media (max-width:500px) {
   .product-card-name{
     font-size: 14px;
+  }
+  .img-container {
+    max-height: 150px;
   }
 }
 
