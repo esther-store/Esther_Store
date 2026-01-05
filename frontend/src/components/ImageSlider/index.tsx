@@ -1,7 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./index.css";
 import { debounce } from "@/utils/debounce";
-import NullImagePlaceholder from "@/assets/null-image-placeholder.webp";
 
 type ImageType = {
   src: string;
@@ -17,25 +16,42 @@ const ImageSlider = ({
   onImageClick?: (id: any) => void;
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
-  const carouselRef = useRef(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = () => {
+    if (!carouselRef.current) return;
     const scrollLeft = carouselRef.current.scrollLeft;
-    const imageIndex = Math.round(scrollLeft / carouselRef.current.clientWidth);
+    const imageIndex = Math.round(
+      scrollLeft / carouselRef.current.clientWidth
+    );
     setCurrentImage(imageIndex);
   };
+
   const goToImage = (index: number) => {
+    if (!carouselRef.current) return;
     setCurrentImage(index);
     const scrollPosition = index * carouselRef.current.clientWidth;
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: scrollPosition,
-        behavior: "smooth",
-      });
-    }
+
+    carouselRef.current.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
   };
 
   const processScrollChange = debounce(() => handleScroll(), 100);
+
+  // 🔹 Cerrar modal con ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPreviewImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="carousel-container">
@@ -44,17 +60,22 @@ const ImageSlider = ({
         className="pictures-details"
         onScroll={processScrollChange}
       >
-        {images.map((image: ImageType) => (
-          <img
-            style={onImageClick ? { cursor: "pointer" } : null}
-            src={image.src == null ? NullImagePlaceholder.src : image.src}
-            key={image.id}
-            alt={image.alt}
-            onClick={() => {
-              onImageClick ? onImageClick(image.id) : null;
-            }}
-          />
-        ))}
+        {images.map((image: ImageType) => {
+          const imageSrc =
+            image.src;
+
+          return (
+            <img
+              key={image.id}
+              src={imageSrc}
+              alt={image.alt}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                onImageClick ? onImageClick(image.id) : setPreviewImage(imageSrc);
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="selector">
@@ -70,6 +91,30 @@ const ImageSlider = ({
           ></div>
         ))}
       </div>
+
+      {/* 🔥 MODAL DE IMAGEN */}
+      {previewImage && (
+        <div
+          className="image-modal"
+          onClick={() => setPreviewImage(null)}
+        >
+          {/* ❌ Botón cerrar */}
+          <button
+            className="image-modal-close"
+            onClick={() => setPreviewImage(null)}
+            aria-label="Cerrar imagen"
+          >
+            ✕
+          </button>
+
+          <img
+            src={previewImage}
+            alt="Vista ampliada"
+            className="image-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };

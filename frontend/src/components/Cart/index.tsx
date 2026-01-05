@@ -33,13 +33,14 @@ const Cart = React.memo(function Cart() {
       ) {
         showErrorEmptyDeliveryInfo();
       } else {
-        sendWhatsappMessage({
-          phone: contactInfo.whatsapp,
-          message: prepareProductsCartToBeSentByWhatsapp({
+        const message = prepareProductsCartToBeSentByWhatsapp({
             productsCart: productsCart,
             total: total?.toFixed(2),
             deliveryInfo: deliveryInfo,
-          }),
+          })
+        sendWhatsappMessage({
+          phone: contactInfo.whatsapp,
+          message: message
         });
       }
     }

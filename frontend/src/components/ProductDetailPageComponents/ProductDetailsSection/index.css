@@ -183,7 +183,7 @@
     }
     .product-details-section > footer button{
         font-size: 15px;
-        height: 40px;
+        height: auto;
         padding-left: 0px 10px 0px 10px;
     }
     .product-details-section > section{

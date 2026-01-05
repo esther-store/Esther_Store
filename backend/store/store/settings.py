@@ -12,14 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x*7=_1q3&&=5@c=g5ab%033zt8t_5x*p_qhb+nfp0tqib_8j0-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if config('DEBUG_SERVER') == '1':
-    DEBUG = True
-else:
-    DEBUG = False    
-
+DEBUG = config('DEBUG_SERVER', default=False, cast=bool)    
 
 ALLOWED_HOSTS = ['127.0.0.1', config('PRODUCTION_HOST')]
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -223,6 +218,6 @@ AUTHENTICATION_BACKENDS = (
 AUTH_USER_MODEL = 'authentication_api.UserProfile'
 
 # configuration for corsheaders
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = ["http://localhost:4321", config('FRONTEND_ORIGIN')]
+CORS_ALLOW_ALL_ORIGINS = config('ALLOW_ALL_ORIGINS', default=False, cast=bool)
+CORS_ALLOWED_ORIGINS = [config('FRONTEND_ORIGIN')]
 

@@ -91,7 +91,7 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
                 detail: `Producto agregado correctamente`,
               });
             }}
-          >
+            >
             Agregar al carrito
           </button>
         )}
