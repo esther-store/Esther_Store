@@ -3,7 +3,7 @@ import { URL_MANAGEMENT_USERS } from "../../settings";
 export function updateUser({id,info,token
 }) {
   return fetch(`${URL_MANAGEMENT_USERS}${id}/`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Token ${token}`,

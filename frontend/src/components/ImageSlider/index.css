@@ -1,5 +1,4 @@
-
-.carousel-container{
+.carousel-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,7 +6,7 @@
     flex-direction: column;
 }
 
-.pictures-details{
+.pictures-details {
     width: 100%;
     height: 100%;
     background: rgba(235, 235, 235, 0.38);
@@ -17,14 +16,14 @@
     white-space: nowrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap:10px
+    gap: 10px
 }
 
-.pictures-details::-webkit-scrollbar{
+.pictures-details::-webkit-scrollbar {
     display: none;
 }
 
-.pictures-details img{
+.pictures-details img {
     min-width: 100%;
     max-width: 100%;
     height: 100%;
@@ -37,7 +36,7 @@
     scroll-snap-align: center;
 }
 
-.selector{
+.selector {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,7 +44,7 @@
     margin-bottom: 10px;
 }
 
-.button-selected{
+.button-selected {
     width: 8px;
     height: 8px;
     border-radius: 100%;
@@ -55,8 +54,47 @@
     transition: width 150ms linear;
 }
 
-.active-button-carousel{
+.active-button-carousel {
     background-color: rgb(16, 84, 161);
     transform: scale(1.1);
     border: none;
+}
+
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.image-modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* ❌ Botón cerrar */
+.image-modal-close {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #fff;
+    padding-bottom:2px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 100%;
+    z-index: 10000;
+    text-align: center;
+}
+
+.image-modal-close:hover {
+    background: rgba(0, 0, 0, 0.85);
 }
