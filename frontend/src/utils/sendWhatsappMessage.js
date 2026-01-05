@@ -5,7 +5,7 @@ export function sendWhatsappMessage({phone, message}) {
 }
 
 export function prepareProductsCartToBeSentByWhatsapp({productsCart, total, deliveryInfo}){
-    let message = "Pedido:\n"
+    let message = "*Gracias por realizar su pedido en Esther Store. Le responderemos en breve.*\n\n*Pedido:*\n"
 
     productsCart.forEach(product => {
         message += 
@@ -13,11 +13,13 @@ export function prepareProductsCartToBeSentByWhatsapp({productsCart, total, deli
     })
 
     message += `-----------------------------------\nTotal: $${total}\n`
-    message += `\n\nDetalles de Envío:\n`
-    message += `-----------------------------------\nNombre: ${deliveryInfo.name}\n`
-    message +=`\nTeléfono: ${deliveryInfo.phone}\n`
-    message +=`\nEmail: ${deliveryInfo.email}\n`
-    message += `\nDirección: ${deliveryInfo.address}`
+    message += `\n\n*Detalles de Envío:*\n`
+    message += `-----------------------------------\n`
+    message +=`Nombre: ${deliveryInfo.name}\n`
+    message +=`Teléfono: ${deliveryInfo.phone}\n`
+    message +=`Email: ${deliveryInfo.email}\n`
+    message += `Dirección: ${deliveryInfo.address}`
+    message += `\n\nNota: El costo del envío dependerá de la distancia.`
 
     return message
 }
