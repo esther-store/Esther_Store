@@ -64,7 +64,7 @@ const Cart = React.memo(function Cart() {
         className="show-cart-button"
         onClick={() => setShowCartContent(true)}
       >
-        <CartIcon color="#D9658F" width={30} height={30} />
+        <CartIcon color="#d763aeff" width={30} height={30} />
         {productsCart.length > 0 ? (
           <span className="cart-products-cont">{productsCart.length}</span>
         ) : null}

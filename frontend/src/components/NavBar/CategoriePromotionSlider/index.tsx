@@ -63,7 +63,7 @@ const CategoriePromotionSlider = React.memo(
                     category?.id == activeItem?.value &&
                     activeItem?.type === "category"
                       ? "item-selected"
-                      : null
+                      : 'item-no-selected'
                   }
                   key={category.id}
                 >

@@ -29,64 +29,72 @@ export function HomePagePromotions() {
   const loading = loadingProducts || loadingPromotions;
 
   return (
-    <article className="homepage-promotions-section">
-      <h1>Promociones</h1>
-      {loadingPromotions ? (
-        <div
-          style={{ display: "flex", justifyContent: "center", padding: "20px" }}
-        >
-          <Skeleton width="150px" height="25px" />
-        </div>
-      ) : !isError ? (
-        <Link to = {`/store?promotion=${currentPromotion?.id}`}><h2>{currentPromotion?.name}</h2></Link>
-      ) : null}
-      {loading ? (
-        <CardsSkeleton />
-      ) : error ? (
-        <Suspense fallback={<CardsSkeleton />}>
+    promotions.length > 0 && (
+      <article className="homepage-promotions-section">
+        <h1>Promociones</h1>
+        {loadingPromotions ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "20px",
+            }}
+          >
+            <Skeleton width="150px" height="25px" />
+          </div>
+        ) : !isError ? (
+          <Link to={`/store?promotion=${currentPromotion?.id}`}>
+            <h2>{currentPromotion?.name}</h2>
+          </Link>
+        ) : null}
+        {loading ? (
+          <CardsSkeleton />
+        ) : error ? (
+          <Suspense fallback={<CardsSkeleton />}>
+            <div style={styles.loaderContainer}>
+              <RetryQueryComponent
+                message={"Error obteniendo las Promociones"}
+                refetch={refetch}
+              />
+            </div>
+          </Suspense>
+        ) : promotions.length === 0 ? (
           <div style={styles.loaderContainer}>
             <RetryQueryComponent
-              message={"Error obteniendo las Promociones"}
+              message={"No hay promociones para mostrar"}
               refetch={refetch}
             />
           </div>
-        </Suspense>
-      ) : promotions.length === 0 ? (
-        <div style={styles.loaderContainer}>
-          <RetryQueryComponent
-            message={"No hay promociones para mostrar"}
-            refetch={refetch}
-          />
-        </div>
-      ) : (
-        <section className="cards-container">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                toastRef={null}
-                showAddToCartButton={false}
-                to={`/store/product/${product.id}`}
-              />
-            ))
-          ) : (
-            <div style={styles.noProductsCard}>
-              No hay productos en esta promoción
-            </div>
-          )}
-        </section>
-      )}
-      {loadingPromotions || isError ? null : (
-        <section className="points-container">
-          <NavigationPoints
-            currentIndex={currentIndex}
-            items={promotions}
-            onChange={(index) => setCurrentIndex(index)}
-          />
-        </section>
-      )}
-    </article>
+        ) : (
+          <section className="cards-container">
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  toastRef={null}
+                  showAddToCartButton={false}
+                  to={`/store/product/${product.id}`}
+                />
+              ))
+            ) : (
+              <div style={styles.noProductsCard}>
+                No hay productos en esta promoción
+              </div>
+            )}
+          </section>
+        )}
+        {loadingPromotions || isError ? null : (
+          <section className="points-container">
+            <NavigationPoints
+              currentIndex={currentIndex}
+              items={promotions}
+              onChange={(index) => setCurrentIndex(index)}
+            />
+          </section>
+        )}
+      </article>
+    )
   );
 }
 

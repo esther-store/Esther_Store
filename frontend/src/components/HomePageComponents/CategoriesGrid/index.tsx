@@ -13,8 +13,7 @@ export function CategoriesGrid() {
   return (
     <article className="homepage-categories-grid-container">
       <header>
-        <h1>Categorías</h1>
-        <h3>Encuentra facilmente lo que buscas</h3>
+        <h1>------- Categorías ------</h1>
       </header>
       {loading ? (
         <LoaderContainer>

@@ -121,5 +121,8 @@
     padding-top: 20px;
     gap:10px 20px;
   }
+  .navbar .navbar-logo-container{
+    justify-self: flex-start;
+  }
 }
 

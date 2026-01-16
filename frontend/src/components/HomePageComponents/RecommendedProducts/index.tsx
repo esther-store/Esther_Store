@@ -51,16 +51,8 @@ export function RecommendedProducts() {
         )}
       </aside>
       <header>
-        <h1>Productos Recomendados</h1>
+        <h1>----- Recomendados -----</h1>
       </header>
-      <section>
-        <p>
-          Te presentamos lo <strong>mejor valorado, más buscado y comprado</strong> de nuestra tienda. 
-          Desde prendas básicas hasta accesorios únicos,
-          <strong> cada artículo ha sido elegido por su originalidad</strong> y popularidad entre
-          nuestros clientes. <strong>¡Comienza a comprar ahora mismo!</strong>
-        </p>
-      </section>
     </article>
   );
 }

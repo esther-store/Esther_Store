@@ -99,24 +99,26 @@ function NavBar() {
         <li className="navbar-search-container">
           <Search redirectToStoreOnSearch={true} />
           {pathname == "/store" ? (
-            <Suspense
-              fallback={
-                <div style={{ marginLeft: "10px" }}>
-                  <Skeleton width="30px" height="30px" />
-                </div>
-              }
-            >
-              <OrderingProducts
-                style={{
-                  width: "40px",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-                placeholder=""
-                fixedPlaceholder={true}
-                dropdownIcon={() => <FilterIcon color="#D9658F" />}
-              />
-            </Suspense>
+            <div style={{marginLeft:"10px", marginRight:"-10px"}}>
+              <Suspense
+                fallback={
+                  <div style={{ marginLeft: "10px" }}>
+                    <Skeleton width="30px" height="30px" />
+                  </div>
+                }
+              >
+                <OrderingProducts
+                  style={{
+                    width: "40px",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                  placeholder=""
+                  fixedPlaceholder={true}
+                  dropdownIcon={() => <FilterIcon color="#d763aeff" />}
+                />
+              </Suspense>
+            </div>
           ) : null}
         </li>
         <li className="navbar-cart-container">

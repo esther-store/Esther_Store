@@ -3,12 +3,11 @@
     display: grid;
     grid-template-columns: minmax(150px, 450px) 50%;
     grid-template-areas: 
-    "image title"
-    "image description";
+    "title title"
+    "image image";
     justify-content: center;
     align-items: center;
-    gap:0px 50px;
-    margin-top: 50px;
+    gap:30px;
     margin-bottom: 50px;
     padding: 20px;
 }
@@ -20,38 +19,23 @@
     grid-area: title;
     align-self: flex-end;
 }
-.homepage-recommended-products > section{
-    grid-area: description;
-    align-self: flex-start;
-}
 
 .homepage-recommended-products > header > h1{
     margin: 0;
-    color: #D9658F;
+    color: #d763aeff;
     text-align: center;
-    font-family: "Poppins-Regular";
+    font-family: "Poppins-Medium";
     font-size: 35px;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    text-align: end;
     text-wrap: pretty;
-}
-
-.homepage-recommended-products > section > p{
-    text-align: end;
-    color: #313131;
-    text-align: right;
-    font-family: "Poppins-Regular";
-    font-size: 21px;
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-wrap: pretty;
+    white-space: nowrap;
 }
 
 .homepage-recommended-products > aside .pictures-details{
     border-radius: 15px;
     background-color: transparent;
-    max-height: 500px;
+    max-height: 800px;
+    max-width: 600px;
     overflow-y: hidden;
 }
 .homepage-recommended-products > aside img{
@@ -66,17 +50,13 @@
     .homepage-recommended-products > header > h1{
        font-size: 30px;
     }
-    .homepage-recommended-products > section > p{
-        font-size: 20px;
-    }
 }
 @media (max-width:800px) {
     .homepage-recommended-products{
         grid-template-columns:90%;
         grid-template-areas: 
         "title"
-        "image"
-        "description";
+        "image";
         gap:20px
     }
     .homepage-recommended-products > aside{
@@ -86,9 +66,6 @@
     .homepage-recommended-products > header > h1{
         text-align: center;
      }
-    .homepage-recommended-products > section > p{
-        text-align: start;
-    }
 }
 
 @media (max-width:600px) {
@@ -96,9 +73,8 @@
         grid-template-columns:100%;
         grid-template-areas: 
         "title"
-        "image"
-        "description";
-        gap:10px
+        "image";
+        gap:5px
     }
     .homepage-recommended-products > aside{
         width: 70%;
@@ -106,14 +82,14 @@
     }
 
     .homepage-recommended-products > header > h1{
-        font-size: 25px;
-    }
-    .homepage-recommended-products > section > p{
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
 @media (max-width: 500px){
+    .homepage-recommended-products{
+        margin-top: -30px;
+    }
     .homepage-recommended-products > aside{
         width: 100%;
         margin: auto;
