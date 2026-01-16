@@ -20,36 +20,40 @@ export function CategoriesGrid() {
           <GridSkeleton />
         </LoaderContainer>
       ) : isError ? (
-        <Suspense
-          fallback={
-            <LoaderContainer>
-              <GridSkeleton />
-            </LoaderContainer>
-          }
-        >
-          <RetryQueryComponent
-            refetch={refetch}
-            message={"Error obteniendo las categorías"}
-          />
-        </Suspense>
-      ) : categories.length === 0?
-      <Suspense
-          fallback={
-            <LoaderContainer>
-              <GridSkeleton />
-            </LoaderContainer>
-          }
-        >
-          <RetryQueryComponent
-            refetch={refetch}
-            message={"No hay categorías para mostrar"}
-          />
-        </Suspense>
-      :(
+        <div style={{ marginBottom: "20px" }}>
+          <Suspense
+            fallback={
+              <LoaderContainer>
+                <GridSkeleton />
+              </LoaderContainer>
+            }
+          >
+            <RetryQueryComponent
+              refetch={refetch}
+              message={"Error obteniendo las categorías"}
+            />
+          </Suspense>
+        </div>
+      ) : categories.length === 0 ? (
+        <div style={{ marginBottom: "20px" }}>
+          <Suspense
+            fallback={
+              <LoaderContainer>
+                <GridSkeleton />
+              </LoaderContainer>
+            }
+          >
+            <RetryQueryComponent
+              refetch={refetch}
+              message={"No hay categorías para mostrar"}
+            />
+          </Suspense>
+        </div>
+      ) : (
         <main className="homepage-categories-grid">
           {categories.map((category) => (
             <Link key={category.id} to={`/store?categoria=${category.id}`}>
-              <img src={category.img} alt = {category.nombre}/>
+              <img src={category.img} alt={category.nombre} />
               <div>{category.nombre}</div>
             </Link>
           ))}
