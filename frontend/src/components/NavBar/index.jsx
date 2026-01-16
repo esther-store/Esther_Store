@@ -131,17 +131,19 @@ function NavBar() {
             </Suspense>
         ) : null}
         </li>
-        <li className="navbar-categories-list-container">
-          <Suspense
-            fallback={
-              <div style={{ width: "90%", margin: "0 auto" }}>
-                <Skeleton width="100%" height="30px" />
-              </div>
-            }
-          >
-            <CategoriePromotionSlider />
-          </Suspense>
-        </li>
+        {pathname.startsWith("/store/product") === false && (
+          <li className="navbar-categories-list-container">
+            <Suspense
+              fallback={
+                <div style={{ width: "90%", margin: "0 auto" }}>
+                  <Skeleton width="100%" height="30px" />
+                </div>
+              }
+            >
+              <CategoriePromotionSlider />
+            </Suspense>
+          </li>
+        )}
       </ul>
     </nav>
   );
