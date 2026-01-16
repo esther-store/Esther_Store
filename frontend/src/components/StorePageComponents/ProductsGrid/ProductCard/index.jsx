@@ -3,6 +3,7 @@ import React from "react";
 import AddToCartButton from "@/components/Cart/AddToCartButton";
 import ProductPrice from "./ProductPrice";
 import { Link } from "react-router-dom";
+import { cutText } from "@/utils/cutText";
 
 const ProductCard = React.memo(function ProductCard({
   toastRef,
@@ -19,8 +20,7 @@ const ProductCard = React.memo(function ProductCard({
       </header>
       <Link to={to}>
         <section className="name-and-price-container">
-          <h1 className="product-card-name"> {product.product_name} </h1>
-          <div className="product-card-punctuation"></div>
+          <h1 className="product-card-name"> {cutText(product.product_name, 20)} </h1>
           <ProductPrice
             precio={product.precio}
             price_with_discounts={product.price_with_discounts}
