@@ -50,6 +50,7 @@ export function SimilarProductsSection({
                   product={product}
                   toastRef={toastRef}
                   onClick={() => navigate(`/store/product/${product?.id}`)}
+                  to = {`/store/product/${product?.id}`}
                 />
               );
             }

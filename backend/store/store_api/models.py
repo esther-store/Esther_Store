@@ -51,7 +51,7 @@ class Promotion(models.Model):
 
 class Producto(models.Model):
     product_name = models.CharField(max_length=100, unique=True, db_index=True)
-    product_description = models.CharField(max_length=500, blank=True, null=True, default = "", db_index=True)
+    product_description = models.TextField(blank=True, null=True, default = "")
     is_active = models.BooleanField(default=True)
     in_stock = models.IntegerField(null=True, blank = True, default = 0, validators = [MinValueValidator(limit_value=0)])
     precio = models.FloatField(default = 0, validators = [MinValueValidator(limit_value=0)], db_index=True)

@@ -23,33 +23,38 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
       alt: product?.product_name,
       id: 0,
     },
-    {
-      src: product?.product_img2,
-      alt: product?.product_name,
-      id: 1,
-    },
-    {
-      src: product?.product_img3,
-      alt: product?.product_name,
-      id: 2,
-    },
+    product?.product_img2.endsWith("blank.webp") === false
+      ? {
+          src: product?.product_img2,
+          alt: product?.product_name,
+          id: 1,
+        }
+      : null,
+    product?.product_img3.endsWith("blank.webp") === false
+      ? {
+          src: product?.product_img3,
+          alt: product?.product_name,
+          id: 2,
+        }
+      : null,
   ];
+
   return (
     <article className="product-details-section">
       <aside>
         {loading ? (
           <Skeleton width="100%" height="400px" />
         ) : (
-          <ImageSlider images={images} />
+          <ImageSlider images={images.filter((e) => e)} />
         )}
       </aside>
       <header>
         <h1>
-        {loading ? (
-          <Skeleton width="100%" height="25px"/>
-        ) : (
-          product?.product_name
-        )}
+          {loading ? (
+            <Skeleton width="100%" height="25px" />
+          ) : (
+            product?.product_name
+          )}
         </h1>
       </header>
       <section>
@@ -91,7 +96,7 @@ const ProductDetailsSection = React.memo(function ProductDetailsSection({
                 detail: `Producto agregado correctamente`,
               });
             }}
-            >
+          >
             Agregar al carrito
           </button>
         )}

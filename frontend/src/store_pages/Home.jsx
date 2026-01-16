@@ -16,12 +16,12 @@ function Home() {
       <title>{pagesTitle.home}</title>
       <ButtonGoTop/>
       <Hero/>
+      <span id = "recommended-products"/>
+      <RecommendedProducts />
       <span id = {"promotions"}/>
       <HomePagePromotions/>
       <span id = {"categories"}/>
       <CategoriesGrid/>
-      <span id = "recommended-products"/>
-      <RecommendedProducts />
     </main>
   );
 }

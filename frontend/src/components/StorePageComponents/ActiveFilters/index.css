@@ -11,13 +11,14 @@
     min-width: 150px;
     margin:0;
     padding:10px;
+    padding-top: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 16px;
+    font-size: 18px;
     font-family: "Poppins-Medium";
     font-weight: 400;
-    opacity: 0.7;
+    opacity: 1
 }
 
 .active-filters-list{
@@ -44,21 +45,21 @@
     justify-content: center;
     align-items: center;
     gap:10px;
-    background-color: #535353;
+    background-color: #070707;
     color:#fff;
-    border-radius: 15px;
+    border-radius: 10px;
     padding:3px 10px 3px 20px;
     opacity: 0.45;
+    font-family: "Poppins-Medium";
 }
 
 .active-filters-list span{ 
     display: flex;
     align-items: center;
     justify-content: center; 
-    font-family: "Raleway-Regular";
+    font-family: "Poppins-Medium";
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1.8px;
+    font-weight: 400;
 }
 
 .active-filters-list button{
@@ -68,7 +69,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-bottom: 3px;
 }
 
 @media (max-width: 510px) {

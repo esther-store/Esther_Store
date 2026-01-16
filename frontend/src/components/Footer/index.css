@@ -7,7 +7,7 @@
     gap:10px;
     text-align: center;
     padding:10px;
-    background-color: #74334B;
+    background-color: rgb(146, 68, 118);
     color: #fff;
     font-size: 12px;
     font-weight: 400;
@@ -38,10 +38,4 @@
     gap:50px
 }
 
-@media (max-width:500px) {
-    .social-networks-and-contact-container{
-        flex-direction: column;
-        gap:10px
-    }
-}
 
